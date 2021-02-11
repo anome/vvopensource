@@ -639,6 +639,155 @@
 		1AFF3B401D65B8BD000F5E94 /* Blue.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 96EE5D6219840D5C00231124 /* Blue.qtz */; };
 		5107014210E14BF200A67653 /* MutNRLockDict.h in Headers */ = {isa = PBXBuildFile; fileRef = 5107014010E14BF200A67653 /* MutNRLockDict.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5107014310E14BF200A67653 /* MutNRLockDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107014110E14BF200A67653 /* MutNRLockDict.m */; };
+		565D06B125D5314D0048C4DD /* isfLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06AF25D5314C0048C4DD /* isfLogo.jpg */; };
+		565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B225D5323B0048C4DD /* isfLogoBW.jpg */; };
+		565D06B625D532B00048C4DD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
+		565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
+		56BD40DE25B5F007002524CE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
+		56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
+		56BD410025B5F058002524CE /* MISFSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E325B5F054002524CE /* MISFSize.m */; };
+		56BD410125B5F058002524CE /* MISFTargetBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E425B5F054002524CE /* MISFTargetBuffer.m */; };
+		56BD410225B5F058002524CE /* RegexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E525B5F054002524CE /* RegexTools.h */; };
+		56BD410325B5F058002524CE /* MISFInputsBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E625B5F054002524CE /* MISFInputsBuffer.m */; };
+		56BD410425B5F058002524CE /* MISFInputsBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E725B5F054002524CE /* MISFInputsBuffer.h */; };
+		56BD410525B5F058002524CE /* MISFTextureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E825B5F054002524CE /* MISFTextureRenderer.m */; };
+		56BD410625B5F058002524CE /* FileTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E925B5F055002524CE /* FileTools.h */; };
+		56BD410725B5F058002524CE /* MISFMetalModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40EA25B5F055002524CE /* MISFMetalModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD410825B5F058002524CE /* MISFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40EB25B5F055002524CE /* MISFModel.m */; };
+		56BD410925B5F058002524CE /* MISFPreloadedMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40EC25B5F055002524CE /* MISFPreloadedMedia.m */; };
+		56BD410A25B5F058002524CE /* MISFShaderConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40ED25B5F055002524CE /* MISFShaderConverter.m */; };
+		56BD410B25B5F058002524CE /* MISFTextureRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40EE25B5F055002524CE /* MISFTextureRenderer.h */; };
+		56BD410C25B5F058002524CE /* MISFRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40EF25B5F055002524CE /* MISFRenderer.h */; };
+		56BD410D25B5F058002524CE /* MISFRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40F025B5F055002524CE /* MISFRenderer.m */; };
+		56BD410E25B5F058002524CE /* MISFErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40F125B5F056002524CE /* MISFErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD410F25B5F058002524CE /* MISFErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40F225B5F056002524CE /* MISFErrorCodes.m */; };
+		56BD411025B5F058002524CE /* MISFSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40F325B5F056002524CE /* MISFSize.h */; };
+		56BD411125B5F058002524CE /* MISFTargetBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40F425B5F056002524CE /* MISFTargetBuffer.h */; };
+		56BD411225B5F058002524CE /* MISFRenderPass.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40F525B5F056002524CE /* MISFRenderPass.m */; };
+		56BD411325B5F058002524CE /* MISFModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40F625B5F056002524CE /* MISFModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD411425B5F058002524CE /* MISFAttribBufferDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40F725B5F056002524CE /* MISFAttribBufferDefinition.m */; };
+		56BD411525B5F058002524CE /* MISFInputDataType.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40F825B5F057002524CE /* MISFInputDataType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD411625B5F058002524CE /* MISFPreloadedMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40F925B5F057002524CE /* MISFPreloadedMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD411725B5F058002524CE /* MISFShaderConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40FA25B5F057002524CE /* MISFShaderConverter.h */; };
+		56BD411825B5F058002524CE /* MISFMetalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40FB25B5F057002524CE /* MISFMetalModel.m */; };
+		56BD411925B5F058002524CE /* MISFAttribBufferDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40FC25B5F057002524CE /* MISFAttribBufferDefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD411A25B5F058002524CE /* RegexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40FD25B5F057002524CE /* RegexTools.m */; };
+		56BD411B25B5F058002524CE /* MISFRenderPass.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40FE25B5F057002524CE /* MISFRenderPass.h */; };
+		56BD411C25B5F058002524CE /* FileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40FF25B5F058002524CE /* FileTools.m */; };
+		56BD412425B5F093002524CE /* VVISFKitTests_Metal_Regression.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD412325B5F093002524CE /* VVISFKitTests_Metal_Regression.m */; };
+		56BD412625B5F093002524CE /* VVISFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964FF27D1981B5AF00CCC808 /* VVISFKit.framework */; };
+		56BD413525B5F12B002524CE /* DDMathParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C8071219817BFE00FA7825 /* DDMathParser.framework */; };
+		56BD413625B5F12B002524CE /* VVBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961EA8ED100E8565007E6C25 /* VVBasics.framework */; };
+		56BD413725B5F12B002524CE /* VVBufferPool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C8073A19817C1600FA7825 /* VVBufferPool.framework */; };
+		56BD413825B5F12B002524CE /* VVISFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964FF27D1981B5AF00CCC808 /* VVISFKit.framework */; };
+		56BD413925B5F12B002524CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		56BD413A25B5F12B002524CE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE8C5FE1AF1AC63006C5018 /* CoreVideo.framework */; };
+		56BD414125B5F12B002524CE /* VVBasics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 961EA8ED100E8565007E6C25 /* VVBasics.framework */; };
+		56BD414225B5F12B002524CE /* DDMathParser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 96C8071219817BFE00FA7825 /* DDMathParser.framework */; };
+		56BD414325B5F12B002524CE /* VVBufferPool.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 96C8073A19817C1600FA7825 /* VVBufferPool.framework */; };
+		56BD414425B5F12B002524CE /* VVISFKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 964FF27D1981B5AF00CCC808 /* VVISFKit.framework */; };
+		56BD416625B5F1E0002524CE /* MetalImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415125B5F1DE002524CE /* MetalImageView.m */; };
+		56BD416725B5F1E0002524CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415225B5F1DE002524CE /* main.m */; };
+		56BD416825B5F1E0002524CE /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415325B5F1DE002524CE /* Shaders.metal */; };
+		56BD416B25B5F1E0002524CE /* TextureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415C25B5F1DF002524CE /* TextureRenderer.m */; };
+		56BD416C25B5F1E0002524CE /* Appdelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415D25B5F1DF002524CE /* Appdelegate.m */; };
+		56BD417025B5F1E0002524CE /* ISFMetalScene Test App-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BD416125B5F1E0002524CE /* ISFMetalScene Test App-Info.plist */; };
+		56BD417225B5F29A002524CE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
+		56BD417325B5F2A8002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
+		56BD417825B5F493002524CE /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD417725B5F493002524CE /* CoreImage.framework */; };
+		56BD417B25B5F4CC002524CE /* ISFMetalScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD417925B5F4CC002524CE /* ISFMetalScene.m */; };
+		56BD417C25B5F4F5002524CE /* ISFMetalScene.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD417A25B5F4CC002524CE /* ISFMetalScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD417D25B5F4F7002524CE /* ISFMetalScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD417925B5F4CC002524CE /* ISFMetalScene.m */; };
+		56BD418425B5F5E0002524CE /* working in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418025B5F5DF002524CE /* working */; };
+		56BD418525B5F5E0002524CE /* expectSpirvFail in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418125B5F5E0002524CE /* expectSpirvFail */; };
+		56BD418625B5F5E0002524CE /* expectParseFail in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418225B5F5E0002524CE /* expectParseFail */; };
+		56BD418725B5F5E0002524CE /* workingWithMinorChanges in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418325B5F5E0002524CE /* workingWithMinorChanges */; };
+		56BD418B25B5F6BD002524CE /* glslcc in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418A25B5F6BC002524CE /* glslcc */; };
+		56BD419225B5FA96002524CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56BD419025B5FA81002524CE /* InfoPlist.strings */; };
+		56BD419325B5FA9A002524CE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418F25B5FA80002524CE /* Credits.rtf */; };
+		56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BD419125B5FA81002524CE /* MainMenu.xib */; };
+		56BD422525B5FC62002524CE /* ASCII Art.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DA25B5FC61002524CE /* ASCII Art.fs */; };
+		56BD422625B5FC62002524CE /* City Lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DB25B5FC61002524CE /* City Lights.fs */; };
+		56BD422725B5FC62002524CE /* Dither-Bayer.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DC25B5FC61002524CE /* Dither-Bayer.fs */; };
+		56BD422825B5FC62002524CE /* VHS Glitch.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DD25B5FC61002524CE /* VHS Glitch.fs */; };
+		56BD422925B5FC62002524CE /* Bad TV Auto Scroll.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DE25B5FC61002524CE /* Bad TV Auto Scroll.vs */; };
+		56BD422A25B5FC62002524CE /* v002 Vignette.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DF25B5FC61002524CE /* v002 Vignette.fs */; };
+		56BD422B25B5FC62002524CE /* Auto-scale.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E025B5FC61002524CE /* Auto-scale.fs */; };
+		56BD422C25B5FC62002524CE /* Bokeh Disc+.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E125B5FC61002524CE /* Bokeh Disc+.fs */; };
+		56BD422D25B5FC62002524CE /* Old Video.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E225B5FC61002524CE /* Old Video.fs */; };
+		56BD422E25B5FC62002524CE /* Sharpen RGB.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E325B5FC61002524CE /* Sharpen RGB.vs */; };
+		56BD422F25B5FC62002524CE /* Shift RGB.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E425B5FC61002524CE /* Shift RGB.fs */; };
+		56BD423025B5FC62002524CE /* Borders around Alpha.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E525B5FC61002524CE /* Borders around Alpha.fs */; };
+		56BD423125B5FC62002524CE /* Auto-rotate.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E625B5FC61002524CE /* Auto-rotate.fs */; };
+		56BD423225B5FC62002524CE /* Controlled Chaos.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E725B5FC61002524CE /* Controlled Chaos.fs */; };
+		56BD423325B5FC62002524CE /* Black & White.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E825B5FC61002524CE /* Black & White.fs */; };
+		56BD423425B5FC62002524CE /* Neon.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E925B5FC61002524CE /* Neon.vs */; };
+		56BD423525B5FC62002524CE /* Bloom.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EA25B5FC61002524CE /* Bloom.fs */; };
+		56BD423625B5FC62002524CE /* Stripes.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EB25B5FC61002524CE /* Stripes.fs */; };
+		56BD423725B5FC62002524CE /* Fast Blur.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EC25B5FC61002524CE /* Fast Blur.vs */; };
+		56BD423825B5FC62002524CE /* Glow-Fast.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41ED25B5FC61002524CE /* Glow-Fast.vs */; };
+		56BD423925B5FC62002524CE /* v002 Crosshatch.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EE25B5FC61002524CE /* v002 Crosshatch.fs */; };
+		56BD423A25B5FC62002524CE /* Multi Pass Gaussian Blur.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EF25B5FC61002524CE /* Multi Pass Gaussian Blur.vs */; };
+		56BD423B25B5FC62002524CE /* Vibrance.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F025B5FC61002524CE /* Vibrance.fs */; };
+		56BD423C25B5FC62002524CE /* lookup_amatorka.png in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F125B5FC61002524CE /* lookup_amatorka.png */; };
+		56BD423D25B5FC62002524CE /* Pixelize.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F225B5FC61002524CE /* Pixelize.fs */; };
+		56BD423F25B5FC62002524CE /* Delay.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F425B5FC62002524CE /* Delay.fs */; };
+		56BD424025B5FC62002524CE /* v002 Bleach Bypass.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F525B5FC62002524CE /* v002 Bleach Bypass.fs */; };
+		56BD424125B5FC62002524CE /* Edges.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F625B5FC62002524CE /* Edges.vs */; };
+		56BD424225B5FC62002524CE /* Edge Blur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F725B5FC62002524CE /* Edge Blur.fs */; };
+		56BD424325B5FC62002524CE /* 3D Rotate.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F825B5FC62002524CE /* 3D Rotate.fs */; };
+		56BD424425B5FC62002524CE /* Wisps.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F925B5FC62002524CE /* Wisps.fs */; };
+		56BD424525B5FC62002524CE /* Auto-fade.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FA25B5FC62002524CE /* Auto-fade.fs */; };
+		56BD424625B5FC62002524CE /* Dither BW.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FB25B5FC62002524CE /* Dither BW.fs */; };
+		56BD424725B5FC62002524CE /* MissEtikate.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FC25B5FC62002524CE /* MissEtikate.fs */; };
+		56BD424825B5FC62002524CE /* Amatorka.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FD25B5FC62002524CE /* Amatorka.fs */; };
+		56BD424925B5FC62002524CE /* Multi Pass Gaussian Blur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FE25B5FC62002524CE /* Multi Pass Gaussian Blur.fs */; };
+		56BD424A25B5FC62002524CE /* Quake.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FF25B5FC62002524CE /* Quake.fs */; };
+		56BD424B25B5FC62002524CE /* Fast Blur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420025B5FC62002524CE /* Fast Blur.fs */; };
+		56BD424C25B5FC62002524CE /* Glow-Fast.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420125B5FC62002524CE /* Glow-Fast.fs */; };
+		56BD424D25B5FC62002524CE /* Color Posterize.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420225B5FC62002524CE /* Color Posterize.fs */; };
+		56BD424E25B5FC62002524CE /* Round Corner.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420325B5FC62002524CE /* Round Corner.fs */; };
+		56BD424F25B5FC62002524CE /* Edges.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420425B5FC62002524CE /* Edges.fs */; };
+		56BD425025B5FC62002524CE /* Color Monochrome.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420525B5FC62002524CE /* Color Monochrome.fs */; };
+		56BD425125B5FC62002524CE /* Edge Blur.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420625B5FC62002524CE /* Edge Blur.vs */; };
+		56BD425225B5FC62002524CE /* 3D Rotate.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420725B5FC62002524CE /* 3D Rotate.vs */; };
+		56BD425425B5FC62002524CE /* IQ_SmoothXOR.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420925B5FC62002524CE /* IQ_SmoothXOR.fs */; };
+		56BD425525B5FC62002524CE /* VVMotionBlur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420A25B5FC62002524CE /* VVMotionBlur.fs */; };
+		56BD425625B5FC62002524CE /* Dilate-Fast.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420B25B5FC62002524CE /* Dilate-Fast.fs */; };
+		56BD425725B5FC62002524CE /* Bad TV Auto Scroll.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420C25B5FC62002524CE /* Bad TV Auto Scroll.fs */; };
+		56BD425825B5FC62002524CE /* False Color.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420D25B5FC62002524CE /* False Color.fs */; };
+		56BD425925B5FC62002524CE /* CMYK Halftone-Lookaround.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420E25B5FC62002524CE /* CMYK Halftone-Lookaround.fs */; };
+		56BD425A25B5FC62002524CE /* Seascape.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420F25B5FC62002524CE /* Seascape.fs */; };
+		56BD425B25B5FC62002524CE /* Erode-Fast.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421025B5FC62002524CE /* Erode-Fast.fs */; };
+		56BD425C25B5FC62002524CE /* City Lights.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421125B5FC62002524CE /* City Lights.vs */; };
+		56BD425D25B5FC62002524CE /* Grid.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421225B5FC62002524CE /* Grid.fs */; };
+		56BD425E25B5FC62002524CE /* RGB Trails.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421325B5FC62002524CE /* RGB Trails.fs */; };
+		56BD425F25B5FC62002524CE /* Auto-move.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421425B5FC62002524CE /* Auto-move.fs */; };
+		56BD426025B5FC62002524CE /* Neon.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421525B5FC62002524CE /* Neon.fs */; };
+		56BD426125B5FC62002524CE /* Exposure Adjust.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421625B5FC62002524CE /* Exposure Adjust.fs */; };
+		56BD426225B5FC62002524CE /* Digital Clock.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421725B5FC62002524CE /* Digital Clock.fs */; };
+		56BD426325B5FC62002524CE /* Bloom.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421825B5FC62002524CE /* Bloom.vs */; };
+		56BD426425B5FC62002524CE /* Radial Gradient.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421925B5FC62002524CE /* Radial Gradient.fs */; };
+		56BD426525B5FC62002524CE /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421A25B5FC62002524CE /* lookup_miss_etikate.png */; };
+		56BD426625B5FC62002524CE /* Disc Spin.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421B25B5FC62002524CE /* Disc Spin.fs */; };
+		56BD426825B5FC62002524CE /* Auto-color.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421D25B5FC62002524CE /* Auto-color.fs */; };
+		56BD426925B5FC62002524CE /* Auto-rotate.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421E25B5FC62002524CE /* Auto-rotate.vs */; };
+		56BD426A25B5FC62002524CE /* Sharpen RGB.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421F25B5FC62002524CE /* Sharpen RGB.fs */; };
+		56BD426B25B5FC62002524CE /* Zoom Blur_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422125B5FC62002524CE /* Zoom Blur_m.fs */; };
+		56BD426C25B5FC62002524CE /* Freeze Frame_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422225B5FC62002524CE /* Freeze Frame_m.fs */; };
+		56BD426D25B5FC62002524CE /* VoronoiLines_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422325B5FC62002524CE /* VoronoiLines_m.fs */; };
+		56BD426E25B5FC62002524CE /* Constellations_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422425B5FC62002524CE /* Constellations_m.fs */; };
+		56BD427925B5FCBA002524CE /* multipleImageInputs.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD426F25B5FCAC002524CE /* multipleImageInputs.fs */; };
+		56BD427A25B5FCBA002524CE /* multipasstexture.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427025B5FCAE002524CE /* multipasstexture.fs */; };
+		56BD427B25B5FCBA002524CE /* variables.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427125B5FCAF002524CE /* variables.fs */; };
+		56BD427C25B5FCBA002524CE /* varying.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427225B5FCB1002524CE /* varying.fs */; };
+		56BD427D25B5FCBA002524CE /* multipass.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427325B5FCB3002524CE /* multipass.fs */; };
+		56BD427E25B5FCBA002524CE /* textureimport.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427425B5FCB4002524CE /* textureimport.fs */; };
+		56BD427F25B5FCBA002524CE /* multipass-eval.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427525B5FCB6002524CE /* multipass-eval.fs */; };
+		56BD428025B5FCBA002524CE /* multipass-eval-texture.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427625B5FCB7002524CE /* multipass-eval-texture.fs */; };
+		56BD428125B5FCBA002524CE /* varying.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427725B5FCB9002524CE /* varying.vs */; };
+		56BD428225B5FCBA002524CE /* lazytextureimport.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427825B5FCBA002524CE /* lazytextureimport.fs */; };
+		56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */; };
 		96128609100F830600C9C833 /* VVBasics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 961EA8ED100E8565007E6C25 /* VVBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9614010A198AD46D00335292 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		96140110198AD46D00335292 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9614010E198AD46D00335292 /* InfoPlist.strings */; };
@@ -1310,6 +1459,20 @@
 			remoteGlobalIDString = 964FF27C1981B5AF00CCC808;
 			remoteInfo = "VVISFKit-mac";
 		};
+		56BD412725B5F093002524CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 964FF27C1981B5AF00CCC808;
+			remoteInfo = "VVISFKit-mac";
+		};
+		56BD413025B5F12B002524CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9658764818CE5C2D003126BC;
+			remoteInfo = "Build Mac Frameworks";
+		};
 		96140120198AD47600335292 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -1753,6 +1916,19 @@
 				1A39E5AC1D65B45D0065F271 /* MGSFragaria.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56BD414025B5F12B002524CE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				56BD414125B5F12B002524CE /* VVBasics.framework in CopyFiles */,
+				56BD414225B5F12B002524CE /* DDMathParser.framework in CopyFiles */,
+				56BD414325B5F12B002524CE /* VVBufferPool.framework in CopyFiles */,
+				56BD414425B5F12B002524CE /* VVISFKit.framework in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		96140127198AD4A300335292 /* CopyFiles */ = {
@@ -2277,6 +2453,148 @@
 		32DBCF5E0370ADEE00C91783 /* VVOpenSource_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVOpenSource_Prefix.pch; sourceTree = "<group>"; };
 		5107014010E14BF200A67653 /* MutNRLockDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutNRLockDict.h; path = VVBasics/src/MutNRLockDict.h; sourceTree = "<group>"; };
 		5107014110E14BF200A67653 /* MutNRLockDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutNRLockDict.m; path = VVBasics/src/MutNRLockDict.m; sourceTree = "<group>"; };
+		565D06AF25D5314C0048C4DD /* isfLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogo.jpg; sourceTree = "<group>"; };
+		565D06B225D5323B0048C4DD /* isfLogoBW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogoBW.jpg; sourceTree = "<group>"; };
+		56BD40DD25B5F006002524CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		56BD40DF25B5F00C002524CE /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		56BD40E325B5F054002524CE /* MISFSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFSize.m; path = METAL/MISFSize.m; sourceTree = "<group>"; };
+		56BD40E425B5F054002524CE /* MISFTargetBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFTargetBuffer.m; path = METAL/MISFTargetBuffer.m; sourceTree = "<group>"; };
+		56BD40E525B5F054002524CE /* RegexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexTools.h; path = METAL/RegexTools.h; sourceTree = "<group>"; };
+		56BD40E625B5F054002524CE /* MISFInputsBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFInputsBuffer.m; path = METAL/MISFInputsBuffer.m; sourceTree = "<group>"; };
+		56BD40E725B5F054002524CE /* MISFInputsBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFInputsBuffer.h; path = METAL/MISFInputsBuffer.h; sourceTree = "<group>"; };
+		56BD40E825B5F054002524CE /* MISFTextureRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFTextureRenderer.m; path = METAL/MISFTextureRenderer.m; sourceTree = "<group>"; };
+		56BD40E925B5F055002524CE /* FileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileTools.h; path = METAL/FileTools.h; sourceTree = "<group>"; };
+		56BD40EA25B5F055002524CE /* MISFMetalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFMetalModel.h; path = METAL/MISFMetalModel.h; sourceTree = "<group>"; };
+		56BD40EB25B5F055002524CE /* MISFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFModel.m; path = METAL/MISFModel.m; sourceTree = "<group>"; };
+		56BD40EC25B5F055002524CE /* MISFPreloadedMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFPreloadedMedia.m; path = METAL/MISFPreloadedMedia.m; sourceTree = "<group>"; };
+		56BD40ED25B5F055002524CE /* MISFShaderConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFShaderConverter.m; path = METAL/MISFShaderConverter.m; sourceTree = "<group>"; };
+		56BD40EE25B5F055002524CE /* MISFTextureRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFTextureRenderer.h; path = METAL/MISFTextureRenderer.h; sourceTree = "<group>"; };
+		56BD40EF25B5F055002524CE /* MISFRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFRenderer.h; path = METAL/MISFRenderer.h; sourceTree = "<group>"; };
+		56BD40F025B5F055002524CE /* MISFRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFRenderer.m; path = METAL/MISFRenderer.m; sourceTree = "<group>"; };
+		56BD40F125B5F056002524CE /* MISFErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFErrorCodes.h; path = METAL/MISFErrorCodes.h; sourceTree = "<group>"; };
+		56BD40F225B5F056002524CE /* MISFErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFErrorCodes.m; path = METAL/MISFErrorCodes.m; sourceTree = "<group>"; };
+		56BD40F325B5F056002524CE /* MISFSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFSize.h; path = METAL/MISFSize.h; sourceTree = "<group>"; };
+		56BD40F425B5F056002524CE /* MISFTargetBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFTargetBuffer.h; path = METAL/MISFTargetBuffer.h; sourceTree = "<group>"; };
+		56BD40F525B5F056002524CE /* MISFRenderPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFRenderPass.m; path = METAL/MISFRenderPass.m; sourceTree = "<group>"; };
+		56BD40F625B5F056002524CE /* MISFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFModel.h; path = METAL/MISFModel.h; sourceTree = "<group>"; };
+		56BD40F725B5F056002524CE /* MISFAttribBufferDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFAttribBufferDefinition.m; path = METAL/MISFAttribBufferDefinition.m; sourceTree = "<group>"; };
+		56BD40F825B5F057002524CE /* MISFInputDataType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFInputDataType.h; path = METAL/MISFInputDataType.h; sourceTree = "<group>"; };
+		56BD40F925B5F057002524CE /* MISFPreloadedMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFPreloadedMedia.h; path = METAL/MISFPreloadedMedia.h; sourceTree = "<group>"; };
+		56BD40FA25B5F057002524CE /* MISFShaderConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFShaderConverter.h; path = METAL/MISFShaderConverter.h; sourceTree = "<group>"; };
+		56BD40FB25B5F057002524CE /* MISFMetalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFMetalModel.m; path = METAL/MISFMetalModel.m; sourceTree = "<group>"; };
+		56BD40FC25B5F057002524CE /* MISFAttribBufferDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFAttribBufferDefinition.h; path = METAL/MISFAttribBufferDefinition.h; sourceTree = "<group>"; };
+		56BD40FD25B5F057002524CE /* RegexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexTools.m; path = METAL/RegexTools.m; sourceTree = "<group>"; };
+		56BD40FE25B5F057002524CE /* MISFRenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFRenderPass.h; path = METAL/MISFRenderPass.h; sourceTree = "<group>"; };
+		56BD40FF25B5F058002524CE /* FileTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileTools.m; path = METAL/FileTools.m; sourceTree = "<group>"; };
+		56BD412125B5F093002524CE /* VVISFKitTests Metal Regression.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VVISFKitTests Metal Regression.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56BD412325B5F093002524CE /* VVISFKitTests_Metal_Regression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVISFKitTests_Metal_Regression.m; sourceTree = "<group>"; };
+		56BD412525B5F093002524CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56BD414825B5F12B002524CE /* ISFMetalScene Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISFMetalScene Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56BD414925B5F12D002524CE /* ISFGLScene Test App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ISFGLScene Test App copy-Info.plist"; path = "/Users/mto/Code/lab/Metal ISF/vvopensource-master/ISFGLScene Test App copy-Info.plist"; sourceTree = "<absolute>"; };
+		56BD415125B5F1DE002524CE /* MetalImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetalImageView.m; sourceTree = "<group>"; };
+		56BD415225B5F1DE002524CE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		56BD415325B5F1DE002524CE /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		56BD415725B5F1DE002524CE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		56BD415825B5F1DF002524CE /* ISFMetalScene Test App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISFMetalScene Test App-Prefix.pch"; sourceTree = "<group>"; };
+		56BD415A25B5F1DF002524CE /* TextureRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureRenderer.h; sourceTree = "<group>"; };
+		56BD415B25B5F1DF002524CE /* MetalImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetalImageView.h; sourceTree = "<group>"; };
+		56BD415C25B5F1DF002524CE /* TextureRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureRenderer.m; sourceTree = "<group>"; };
+		56BD415D25B5F1DF002524CE /* Appdelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appdelegate.m; sourceTree = "<group>"; };
+		56BD416125B5F1E0002524CE /* ISFMetalScene Test App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ISFMetalScene Test App-Info.plist"; sourceTree = "<group>"; };
+		56BD417725B5F493002524CE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		56BD417925B5F4CC002524CE /* ISFMetalScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISFMetalScene.m; path = METAL/ISFMetalScene.m; sourceTree = "<group>"; };
+		56BD417A25B5F4CC002524CE /* ISFMetalScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISFMetalScene.h; path = METAL/ISFMetalScene.h; sourceTree = "<group>"; };
+		56BD418025B5F5DF002524CE /* working */ = {isa = PBXFileReference; lastKnownFileType = folder; path = working; sourceTree = "<group>"; };
+		56BD418125B5F5E0002524CE /* expectSpirvFail */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expectSpirvFail; sourceTree = "<group>"; };
+		56BD418225B5F5E0002524CE /* expectParseFail */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expectParseFail; sourceTree = "<group>"; };
+		56BD418325B5F5E0002524CE /* workingWithMinorChanges */ = {isa = PBXFileReference; lastKnownFileType = folder; path = workingWithMinorChanges; sourceTree = "<group>"; };
+		56BD418A25B5F6BC002524CE /* glslcc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = glslcc; path = METAL/glslcc; sourceTree = "<group>"; };
+		56BD418F25B5FA80002524CE /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		56BD419025B5FA81002524CE /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		56BD419125B5FA81002524CE /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		56BD41DA25B5FC61002524CE /* ASCII Art.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "ASCII Art.fs"; sourceTree = "<group>"; };
+		56BD41DB25B5FC61002524CE /* City Lights.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "City Lights.fs"; sourceTree = "<group>"; };
+		56BD41DC25B5FC61002524CE /* Dither-Bayer.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Dither-Bayer.fs"; sourceTree = "<group>"; };
+		56BD41DD25B5FC61002524CE /* VHS Glitch.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "VHS Glitch.fs"; sourceTree = "<group>"; };
+		56BD41DE25B5FC61002524CE /* Bad TV Auto Scroll.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Bad TV Auto Scroll.vs"; sourceTree = "<group>"; };
+		56BD41DF25B5FC61002524CE /* v002 Vignette.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Vignette.fs"; sourceTree = "<group>"; };
+		56BD41E025B5FC61002524CE /* Auto-scale.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-scale.fs"; sourceTree = "<group>"; };
+		56BD41E125B5FC61002524CE /* Bokeh Disc+.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Bokeh Disc+.fs"; sourceTree = "<group>"; };
+		56BD41E225B5FC61002524CE /* Old Video.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Old Video.fs"; sourceTree = "<group>"; };
+		56BD41E325B5FC61002524CE /* Sharpen RGB.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Sharpen RGB.vs"; sourceTree = "<group>"; };
+		56BD41E425B5FC61002524CE /* Shift RGB.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Shift RGB.fs"; sourceTree = "<group>"; };
+		56BD41E525B5FC61002524CE /* Borders around Alpha.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Borders around Alpha.fs"; sourceTree = "<group>"; };
+		56BD41E625B5FC61002524CE /* Auto-rotate.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-rotate.fs"; sourceTree = "<group>"; };
+		56BD41E725B5FC61002524CE /* Controlled Chaos.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Controlled Chaos.fs"; sourceTree = "<group>"; };
+		56BD41E825B5FC61002524CE /* Black & White.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Black & White.fs"; sourceTree = "<group>"; };
+		56BD41E925B5FC61002524CE /* Neon.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Neon.vs; sourceTree = "<group>"; };
+		56BD41EA25B5FC61002524CE /* Bloom.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Bloom.fs; sourceTree = "<group>"; };
+		56BD41EB25B5FC61002524CE /* Stripes.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Stripes.fs; sourceTree = "<group>"; };
+		56BD41EC25B5FC61002524CE /* Fast Blur.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Fast Blur.vs"; sourceTree = "<group>"; };
+		56BD41ED25B5FC61002524CE /* Glow-Fast.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Glow-Fast.vs"; sourceTree = "<group>"; };
+		56BD41EE25B5FC61002524CE /* v002 Crosshatch.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Crosshatch.fs"; sourceTree = "<group>"; };
+		56BD41EF25B5FC61002524CE /* Multi Pass Gaussian Blur.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Multi Pass Gaussian Blur.vs"; sourceTree = "<group>"; };
+		56BD41F025B5FC61002524CE /* Vibrance.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Vibrance.fs; sourceTree = "<group>"; };
+		56BD41F125B5FC61002524CE /* lookup_amatorka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_amatorka.png; sourceTree = "<group>"; };
+		56BD41F225B5FC61002524CE /* Pixelize.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Pixelize.fs; sourceTree = "<group>"; };
+		56BD41F425B5FC62002524CE /* Delay.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Delay.fs; sourceTree = "<group>"; };
+		56BD41F525B5FC62002524CE /* v002 Bleach Bypass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Bleach Bypass.fs"; sourceTree = "<group>"; };
+		56BD41F625B5FC62002524CE /* Edges.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Edges.vs; sourceTree = "<group>"; };
+		56BD41F725B5FC62002524CE /* Edge Blur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Edge Blur.fs"; sourceTree = "<group>"; };
+		56BD41F825B5FC62002524CE /* 3D Rotate.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "3D Rotate.fs"; sourceTree = "<group>"; };
+		56BD41F925B5FC62002524CE /* Wisps.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Wisps.fs; sourceTree = "<group>"; };
+		56BD41FA25B5FC62002524CE /* Auto-fade.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-fade.fs"; sourceTree = "<group>"; };
+		56BD41FB25B5FC62002524CE /* Dither BW.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Dither BW.fs"; sourceTree = "<group>"; };
+		56BD41FC25B5FC62002524CE /* MissEtikate.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MissEtikate.fs; sourceTree = "<group>"; };
+		56BD41FD25B5FC62002524CE /* Amatorka.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Amatorka.fs; sourceTree = "<group>"; };
+		56BD41FE25B5FC62002524CE /* Multi Pass Gaussian Blur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Multi Pass Gaussian Blur.fs"; sourceTree = "<group>"; };
+		56BD41FF25B5FC62002524CE /* Quake.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Quake.fs; sourceTree = "<group>"; };
+		56BD420025B5FC62002524CE /* Fast Blur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Fast Blur.fs"; sourceTree = "<group>"; };
+		56BD420125B5FC62002524CE /* Glow-Fast.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Glow-Fast.fs"; sourceTree = "<group>"; };
+		56BD420225B5FC62002524CE /* Color Posterize.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Color Posterize.fs"; sourceTree = "<group>"; };
+		56BD420325B5FC62002524CE /* Round Corner.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Round Corner.fs"; sourceTree = "<group>"; };
+		56BD420425B5FC62002524CE /* Edges.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Edges.fs; sourceTree = "<group>"; };
+		56BD420525B5FC62002524CE /* Color Monochrome.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Color Monochrome.fs"; sourceTree = "<group>"; };
+		56BD420625B5FC62002524CE /* Edge Blur.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Edge Blur.vs"; sourceTree = "<group>"; };
+		56BD420725B5FC62002524CE /* 3D Rotate.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "3D Rotate.vs"; sourceTree = "<group>"; };
+		56BD420925B5FC62002524CE /* IQ_SmoothXOR.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = IQ_SmoothXOR.fs; sourceTree = "<group>"; };
+		56BD420A25B5FC62002524CE /* VVMotionBlur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VVMotionBlur.fs; sourceTree = "<group>"; };
+		56BD420B25B5FC62002524CE /* Dilate-Fast.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Dilate-Fast.fs"; sourceTree = "<group>"; };
+		56BD420C25B5FC62002524CE /* Bad TV Auto Scroll.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Bad TV Auto Scroll.fs"; sourceTree = "<group>"; };
+		56BD420D25B5FC62002524CE /* False Color.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "False Color.fs"; sourceTree = "<group>"; };
+		56BD420E25B5FC62002524CE /* CMYK Halftone-Lookaround.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "CMYK Halftone-Lookaround.fs"; sourceTree = "<group>"; };
+		56BD420F25B5FC62002524CE /* Seascape.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Seascape.fs; sourceTree = "<group>"; };
+		56BD421025B5FC62002524CE /* Erode-Fast.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Erode-Fast.fs"; sourceTree = "<group>"; };
+		56BD421125B5FC62002524CE /* City Lights.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "City Lights.vs"; sourceTree = "<group>"; };
+		56BD421225B5FC62002524CE /* Grid.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Grid.fs; sourceTree = "<group>"; };
+		56BD421325B5FC62002524CE /* RGB Trails.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "RGB Trails.fs"; sourceTree = "<group>"; };
+		56BD421425B5FC62002524CE /* Auto-move.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-move.fs"; sourceTree = "<group>"; };
+		56BD421525B5FC62002524CE /* Neon.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Neon.fs; sourceTree = "<group>"; };
+		56BD421625B5FC62002524CE /* Exposure Adjust.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Exposure Adjust.fs"; sourceTree = "<group>"; };
+		56BD421725B5FC62002524CE /* Digital Clock.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Digital Clock.fs"; sourceTree = "<group>"; };
+		56BD421825B5FC62002524CE /* Bloom.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Bloom.vs; sourceTree = "<group>"; };
+		56BD421925B5FC62002524CE /* Radial Gradient.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Radial Gradient.fs"; sourceTree = "<group>"; };
+		56BD421A25B5FC62002524CE /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
+		56BD421B25B5FC62002524CE /* Disc Spin.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Disc Spin.fs"; sourceTree = "<group>"; };
+		56BD421C25B5FC62002524CE /* v002 Technicolor.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Technicolor.fs"; sourceTree = "<group>"; };
+		56BD421D25B5FC62002524CE /* Auto-color.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-color.fs"; sourceTree = "<group>"; };
+		56BD421E25B5FC62002524CE /* Auto-rotate.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-rotate.vs"; sourceTree = "<group>"; };
+		56BD421F25B5FC62002524CE /* Sharpen RGB.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Sharpen RGB.fs"; sourceTree = "<group>"; };
+		56BD422125B5FC62002524CE /* Zoom Blur_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Zoom Blur_m.fs"; sourceTree = "<group>"; };
+		56BD422225B5FC62002524CE /* Freeze Frame_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Freeze Frame_m.fs"; sourceTree = "<group>"; };
+		56BD422325B5FC62002524CE /* VoronoiLines_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VoronoiLines_m.fs; sourceTree = "<group>"; };
+		56BD422425B5FC62002524CE /* Constellations_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Constellations_m.fs; sourceTree = "<group>"; };
+		56BD426F25B5FCAC002524CE /* multipleImageInputs.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = multipleImageInputs.fs; sourceTree = "<group>"; };
+		56BD427025B5FCAE002524CE /* multipasstexture.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = multipasstexture.fs; sourceTree = "<group>"; };
+		56BD427125B5FCAF002524CE /* variables.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = variables.fs; sourceTree = "<group>"; };
+		56BD427225B5FCB1002524CE /* varying.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = varying.fs; sourceTree = "<group>"; };
+		56BD427325B5FCB3002524CE /* multipass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = multipass.fs; sourceTree = "<group>"; };
+		56BD427425B5FCB4002524CE /* textureimport.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = textureimport.fs; sourceTree = "<group>"; };
+		56BD427525B5FCB6002524CE /* multipass-eval.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "multipass-eval.fs"; sourceTree = "<group>"; };
+		56BD427625B5FCB7002524CE /* multipass-eval-texture.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "multipass-eval-texture.fs"; sourceTree = "<group>"; };
+		56BD427725B5FCB9002524CE /* varying.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = varying.vs; sourceTree = "<group>"; };
+		56BD427825B5FCBA002524CE /* lazytextureimport.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lazytextureimport.fs; sourceTree = "<group>"; };
+		56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ISFMetal Test App Info.plist"; sourceTree = "<group>"; };
 		96140109198AD46D00335292 /* QT and Hap Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QT and Hap Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9614010D198AD46D00335292 /* QT and Hap Test App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QT and Hap Test App-Info.plist"; sourceTree = "<group>"; };
 		9614010F198AD46D00335292 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -2805,6 +3123,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56BD411E25B5F093002524CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */,
+				565D06B625D532B00048C4DD /* Metal.framework in Frameworks */,
+				56BD412625B5F093002524CE /* VVISFKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56BD413425B5F12B002524CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BD417825B5F493002524CE /* CoreImage.framework in Frameworks */,
+				56BD417325B5F2A8002524CE /* MetalKit.framework in Frameworks */,
+				56BD417225B5F29A002524CE /* Metal.framework in Frameworks */,
+				56BD413525B5F12B002524CE /* DDMathParser.framework in Frameworks */,
+				56BD413625B5F12B002524CE /* VVBasics.framework in Frameworks */,
+				56BD413725B5F12B002524CE /* VVBufferPool.framework in Frameworks */,
+				56BD413825B5F12B002524CE /* VVISFKit.framework in Frameworks */,
+				56BD413925B5F12B002524CE /* Cocoa.framework in Frameworks */,
+				56BD413A25B5F12B002524CE /* CoreVideo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96140106198AD46D00335292 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2865,6 +3209,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */,
+				56BD40DE25B5F007002524CE /* Metal.framework in Frameworks */,
 				964FF2991981B5DE00CCC808 /* VVBufferPool.framework in Frameworks */,
 				964FF2981981B5DB00CCC808 /* VVBasics.framework in Frameworks */,
 				964FF2961981B5D700CCC808 /* DDMathParser.framework in Frameworks */,
@@ -3032,6 +3378,8 @@
 				1AC5A4CC1CEE4138004DF358 /* MTCSender.app */,
 				1AFE77281D65AC9B003D8E7C /* ISF Editor.app */,
 				1A76E3101E3F568B00512B03 /* HapInAVF Test App.app */,
+				56BD412125B5F093002524CE /* VVISFKitTests Metal Regression.xctest */,
+				56BD414825B5F12B002524CE /* ISFMetalScene Test App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3045,9 +3393,11 @@
 				1AD1AA771CDBEC70002ABBE9 /* QuickLook plugins */,
 				96C00547185A445B00C33FE2 /* EXTERNAL CODE */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
+				56BD412225B5F093002524CE /* VVISFKitTests Metal Regression */,
 				96ACD7221706416300138AE6 /* Frameworks */,
 				1A6533491CEB7DB40003C9D1 /* Embedded Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				56BD414925B5F12D002524CE /* ISFGLScene Test App copy-Info.plist */,
 			);
 			name = VVOpenSource;
 			sourceTree = "<group>";
@@ -3859,6 +4209,229 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		56BD40E225B5F041002524CE /* METAL */ = {
+			isa = PBXGroup;
+			children = (
+				56BD428625B5FDC7002524CE /* Converter */,
+				56BD428525B5FDC2002524CE /* Rendering */,
+				56BD428425B5FDBE002524CE /* Model */,
+				56BD428325B5FDB9002524CE /* Agnostic */,
+				56BD417A25B5F4CC002524CE /* ISFMetalScene.h */,
+				56BD417925B5F4CC002524CE /* ISFMetalScene.m */,
+			);
+			name = METAL;
+			sourceTree = "<group>";
+		};
+		56BD412225B5F093002524CE /* VVISFKitTests Metal Regression */ = {
+			isa = PBXGroup;
+			children = (
+				565D06B225D5323B0048C4DD /* isfLogoBW.jpg */,
+				56BD418225B5F5E0002524CE /* expectParseFail */,
+				56BD418125B5F5E0002524CE /* expectSpirvFail */,
+				56BD418025B5F5DF002524CE /* working */,
+				56BD418325B5F5E0002524CE /* workingWithMinorChanges */,
+				56BD412325B5F093002524CE /* VVISFKitTests_Metal_Regression.m */,
+				56BD412525B5F093002524CE /* Info.plist */,
+			);
+			path = "VVISFKitTests Metal Regression";
+			sourceTree = "<group>";
+		};
+		56BD414C25B5F190002524CE /* ISFMetalScene Test App */ = {
+			isa = PBXGroup;
+			children = (
+				56BD417125B5F20F002524CE /* Metal Playground */,
+				56BD419625B5FB28002524CE /* Shaders */,
+				56BD418F25B5FA80002524CE /* Credits.rtf */,
+				56BD419025B5FA81002524CE /* InfoPlist.strings */,
+				56BD419125B5FA81002524CE /* MainMenu.xib */,
+				56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */,
+				56BD415725B5F1DE002524CE /* AppDelegate.h */,
+				56BD415D25B5F1DF002524CE /* Appdelegate.m */,
+				565D06AF25D5314C0048C4DD /* isfLogo.jpg */,
+				56BD416125B5F1E0002524CE /* ISFMetalScene Test App-Info.plist */,
+				56BD415825B5F1DF002524CE /* ISFMetalScene Test App-Prefix.pch */,
+				56BD415225B5F1DE002524CE /* main.m */,
+			);
+			path = "ISFMetalScene Test App";
+			sourceTree = "<group>";
+		};
+		56BD417125B5F20F002524CE /* Metal Playground */ = {
+			isa = PBXGroup;
+			children = (
+				56BD415B25B5F1DF002524CE /* MetalImageView.h */,
+				56BD415125B5F1DE002524CE /* MetalImageView.m */,
+				56BD415A25B5F1DF002524CE /* TextureRenderer.h */,
+				56BD415C25B5F1DF002524CE /* TextureRenderer.m */,
+				56BD415325B5F1DE002524CE /* Shaders.metal */,
+			);
+			path = "Metal Playground";
+			sourceTree = "<group>";
+		};
+		56BD419625B5FB28002524CE /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				56BD427825B5FCBA002524CE /* lazytextureimport.fs */,
+				56BD427625B5FCB7002524CE /* multipass-eval-texture.fs */,
+				56BD427525B5FCB6002524CE /* multipass-eval.fs */,
+				56BD427325B5FCB3002524CE /* multipass.fs */,
+				56BD427025B5FCAE002524CE /* multipasstexture.fs */,
+				56BD426F25B5FCAC002524CE /* multipleImageInputs.fs */,
+				56BD427425B5FCB4002524CE /* textureimport.fs */,
+				56BD427125B5FCAF002524CE /* variables.fs */,
+				56BD427225B5FCB1002524CE /* varying.fs */,
+				56BD427725B5FCB9002524CE /* varying.vs */,
+				56BD41D925B5FC61002524CE /* working */,
+				56BD422025B5FC62002524CE /* workingWithMinorChanges */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		56BD41D925B5FC61002524CE /* working */ = {
+			isa = PBXGroup;
+			children = (
+				56BD41DA25B5FC61002524CE /* ASCII Art.fs */,
+				56BD41DB25B5FC61002524CE /* City Lights.fs */,
+				56BD41DC25B5FC61002524CE /* Dither-Bayer.fs */,
+				56BD41DD25B5FC61002524CE /* VHS Glitch.fs */,
+				56BD41DE25B5FC61002524CE /* Bad TV Auto Scroll.vs */,
+				56BD41DF25B5FC61002524CE /* v002 Vignette.fs */,
+				56BD41E025B5FC61002524CE /* Auto-scale.fs */,
+				56BD41E125B5FC61002524CE /* Bokeh Disc+.fs */,
+				56BD41E225B5FC61002524CE /* Old Video.fs */,
+				56BD41E325B5FC61002524CE /* Sharpen RGB.vs */,
+				56BD41E425B5FC61002524CE /* Shift RGB.fs */,
+				56BD41E525B5FC61002524CE /* Borders around Alpha.fs */,
+				56BD41E625B5FC61002524CE /* Auto-rotate.fs */,
+				56BD41E725B5FC61002524CE /* Controlled Chaos.fs */,
+				56BD41E825B5FC61002524CE /* Black & White.fs */,
+				56BD41E925B5FC61002524CE /* Neon.vs */,
+				56BD41EA25B5FC61002524CE /* Bloom.fs */,
+				56BD41EB25B5FC61002524CE /* Stripes.fs */,
+				56BD41EC25B5FC61002524CE /* Fast Blur.vs */,
+				56BD41ED25B5FC61002524CE /* Glow-Fast.vs */,
+				56BD41EE25B5FC61002524CE /* v002 Crosshatch.fs */,
+				56BD41EF25B5FC61002524CE /* Multi Pass Gaussian Blur.vs */,
+				56BD41F025B5FC61002524CE /* Vibrance.fs */,
+				56BD41F125B5FC61002524CE /* lookup_amatorka.png */,
+				56BD41F225B5FC61002524CE /* Pixelize.fs */,
+				56BD41F425B5FC62002524CE /* Delay.fs */,
+				56BD41F525B5FC62002524CE /* v002 Bleach Bypass.fs */,
+				56BD41F625B5FC62002524CE /* Edges.vs */,
+				56BD41F725B5FC62002524CE /* Edge Blur.fs */,
+				56BD41F825B5FC62002524CE /* 3D Rotate.fs */,
+				56BD41F925B5FC62002524CE /* Wisps.fs */,
+				56BD41FA25B5FC62002524CE /* Auto-fade.fs */,
+				56BD41FB25B5FC62002524CE /* Dither BW.fs */,
+				56BD41FC25B5FC62002524CE /* MissEtikate.fs */,
+				56BD41FD25B5FC62002524CE /* Amatorka.fs */,
+				56BD41FE25B5FC62002524CE /* Multi Pass Gaussian Blur.fs */,
+				56BD41FF25B5FC62002524CE /* Quake.fs */,
+				56BD420025B5FC62002524CE /* Fast Blur.fs */,
+				56BD420125B5FC62002524CE /* Glow-Fast.fs */,
+				56BD420225B5FC62002524CE /* Color Posterize.fs */,
+				56BD420325B5FC62002524CE /* Round Corner.fs */,
+				56BD420425B5FC62002524CE /* Edges.fs */,
+				56BD420525B5FC62002524CE /* Color Monochrome.fs */,
+				56BD420625B5FC62002524CE /* Edge Blur.vs */,
+				56BD420725B5FC62002524CE /* 3D Rotate.vs */,
+				56BD420925B5FC62002524CE /* IQ_SmoothXOR.fs */,
+				56BD420A25B5FC62002524CE /* VVMotionBlur.fs */,
+				56BD420B25B5FC62002524CE /* Dilate-Fast.fs */,
+				56BD420C25B5FC62002524CE /* Bad TV Auto Scroll.fs */,
+				56BD420D25B5FC62002524CE /* False Color.fs */,
+				56BD420E25B5FC62002524CE /* CMYK Halftone-Lookaround.fs */,
+				56BD420F25B5FC62002524CE /* Seascape.fs */,
+				56BD421025B5FC62002524CE /* Erode-Fast.fs */,
+				56BD421125B5FC62002524CE /* City Lights.vs */,
+				56BD421225B5FC62002524CE /* Grid.fs */,
+				56BD421325B5FC62002524CE /* RGB Trails.fs */,
+				56BD421425B5FC62002524CE /* Auto-move.fs */,
+				56BD421525B5FC62002524CE /* Neon.fs */,
+				56BD421625B5FC62002524CE /* Exposure Adjust.fs */,
+				56BD421725B5FC62002524CE /* Digital Clock.fs */,
+				56BD421825B5FC62002524CE /* Bloom.vs */,
+				56BD421925B5FC62002524CE /* Radial Gradient.fs */,
+				56BD421A25B5FC62002524CE /* lookup_miss_etikate.png */,
+				56BD421B25B5FC62002524CE /* Disc Spin.fs */,
+				56BD421C25B5FC62002524CE /* v002 Technicolor.fs */,
+				56BD421D25B5FC62002524CE /* Auto-color.fs */,
+				56BD421E25B5FC62002524CE /* Auto-rotate.vs */,
+				56BD421F25B5FC62002524CE /* Sharpen RGB.fs */,
+			);
+			name = working;
+			path = "VVISFKitTests Metal Regression/working";
+			sourceTree = SOURCE_ROOT;
+		};
+		56BD422025B5FC62002524CE /* workingWithMinorChanges */ = {
+			isa = PBXGroup;
+			children = (
+				56BD422125B5FC62002524CE /* Zoom Blur_m.fs */,
+				56BD422225B5FC62002524CE /* Freeze Frame_m.fs */,
+				56BD422325B5FC62002524CE /* VoronoiLines_m.fs */,
+				56BD422425B5FC62002524CE /* Constellations_m.fs */,
+			);
+			name = workingWithMinorChanges;
+			path = "VVISFKitTests Metal Regression/workingWithMinorChanges";
+			sourceTree = SOURCE_ROOT;
+		};
+		56BD428325B5FDB9002524CE /* Agnostic */ = {
+			isa = PBXGroup;
+			children = (
+				56BD40F125B5F056002524CE /* MISFErrorCodes.h */,
+				56BD40F225B5F056002524CE /* MISFErrorCodes.m */,
+				56BD40F625B5F056002524CE /* MISFModel.h */,
+				56BD40EB25B5F055002524CE /* MISFModel.m */,
+				56BD40F325B5F056002524CE /* MISFSize.h */,
+				56BD40E325B5F054002524CE /* MISFSize.m */,
+				56BD40E525B5F054002524CE /* RegexTools.h */,
+				56BD40FD25B5F057002524CE /* RegexTools.m */,
+				56BD40E925B5F055002524CE /* FileTools.h */,
+				56BD40FF25B5F058002524CE /* FileTools.m */,
+			);
+			name = Agnostic;
+			sourceTree = "<group>";
+		};
+		56BD428425B5FDBE002524CE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				56BD40F825B5F057002524CE /* MISFInputDataType.h */,
+				56BD40FC25B5F057002524CE /* MISFAttribBufferDefinition.h */,
+				56BD40F725B5F056002524CE /* MISFAttribBufferDefinition.m */,
+				56BD40FE25B5F057002524CE /* MISFRenderPass.h */,
+				56BD40F525B5F056002524CE /* MISFRenderPass.m */,
+				56BD40EA25B5F055002524CE /* MISFMetalModel.h */,
+				56BD40FB25B5F057002524CE /* MISFMetalModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		56BD428525B5FDC2002524CE /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				56BD40E725B5F054002524CE /* MISFInputsBuffer.h */,
+				56BD40E625B5F054002524CE /* MISFInputsBuffer.m */,
+				56BD40F425B5F056002524CE /* MISFTargetBuffer.h */,
+				56BD40E425B5F054002524CE /* MISFTargetBuffer.m */,
+				56BD40F925B5F057002524CE /* MISFPreloadedMedia.h */,
+				56BD40EC25B5F055002524CE /* MISFPreloadedMedia.m */,
+				56BD40EF25B5F055002524CE /* MISFRenderer.h */,
+				56BD40F025B5F055002524CE /* MISFRenderer.m */,
+				56BD40EE25B5F055002524CE /* MISFTextureRenderer.h */,
+				56BD40E825B5F054002524CE /* MISFTextureRenderer.m */,
+			);
+			name = Rendering;
+			sourceTree = "<group>";
+		};
+		56BD428625B5FDC7002524CE /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				56BD40FA25B5F057002524CE /* MISFShaderConverter.h */,
+				56BD40ED25B5F055002524CE /* MISFShaderConverter.m */,
+				56BD418A25B5F6BC002524CE /* glslcc */,
+			);
+			name = Converter;
+			sourceTree = "<group>";
+		};
 		9614010B198AD46D00335292 /* QT and Hap Test App */ = {
 			isa = PBXGroup;
 			children = (
@@ -3996,6 +4569,7 @@
 		964FF27F1981B5AF00CCC808 /* VVISFKit framework */ = {
 			isa = PBXGroup;
 			children = (
+				56BD40E225B5F041002524CE /* METAL */,
 				964FF2861981B5AF00CCC808 /* VVISFKit.h */,
 				964FF29C1981B62400CCC808 /* ISFFileManager.h */,
 				964FF29D1981B62400CCC808 /* ISFFileManager.m */,
@@ -4145,6 +4719,7 @@
 		966D3E9618634FE900A7BE9E /* Applications */ = {
 			isa = PBXGroup;
 			children = (
+				56BD414C25B5F190002524CE /* ISFMetalScene Test App */,
 				9656D910100F89F70064EEA6 /* MIDITestApp */,
 				9628D17F100E8B5B00C3944E /* OSCTestApp */,
 				96B4931F106AEB8A008FB26E /* MIDI via OSC app */,
@@ -4209,6 +4784,9 @@
 		96ACD7221706416300138AE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56BD417725B5F493002524CE /* CoreImage.framework */,
+				56BD40DF25B5F00C002524CE /* MetalKit.framework */,
+				56BD40DD25B5F006002524CE /* Metal.framework */,
 				1A6CF32020E59DA000CF4502 /* Sparkle.framework */,
 				1AE4FE1B20AF6A4C00A7AC72 /* QuickTime.framework */,
 				1AFE77451D65B01D003D8E7C /* OpenGL.framework */,
@@ -4674,12 +5252,28 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BD410C25B5F058002524CE /* MISFRenderer.h in Headers */,
 				9660DC7819828687000C881E /* VVISFKit.h in Headers */,
+				56BD410B25B5F058002524CE /* MISFTextureRenderer.h in Headers */,
 				964FF2AD1981B62400CCC808 /* ISFAttrib.h in Headers */,
 				964FF2AF1981B62400CCC808 /* ISFFileManager.h in Headers */,
+				56BD411725B5F058002524CE /* MISFShaderConverter.h in Headers */,
 				964FF2B51981B62400CCC808 /* ISFGLScene.h in Headers */,
+				56BD417C25B5F4F5002524CE /* ISFMetalScene.h in Headers */,
+				56BD411625B5F058002524CE /* MISFPreloadedMedia.h in Headers */,
+				56BD410E25B5F058002524CE /* MISFErrorCodes.h in Headers */,
 				964FF2BA1981B62400CCC808 /* ISFRenderPass.h in Headers */,
+				56BD411325B5F058002524CE /* MISFModel.h in Headers */,
+				56BD410725B5F058002524CE /* MISFMetalModel.h in Headers */,
+				56BD411925B5F058002524CE /* MISFAttribBufferDefinition.h in Headers */,
+				56BD411525B5F058002524CE /* MISFInputDataType.h in Headers */,
+				56BD410625B5F058002524CE /* FileTools.h in Headers */,
 				964FF2BC1981B62400CCC808 /* ISFStringAdditions.h in Headers */,
+				56BD411125B5F058002524CE /* MISFTargetBuffer.h in Headers */,
+				56BD411B25B5F058002524CE /* MISFRenderPass.h in Headers */,
+				56BD411025B5F058002524CE /* MISFSize.h in Headers */,
+				56BD410425B5F058002524CE /* MISFInputsBuffer.h in Headers */,
+				56BD410225B5F058002524CE /* RegexTools.h in Headers */,
 				1AE0C96A1BAEBD1F00941BEF /* ISFObjectAdditions.h in Headers */,
 				964FF2BE1981B62400CCC808 /* ISFTargetBuffer.h in Headers */,
 			);
@@ -5232,6 +5826,43 @@
 			productReference = 1AFE77281D65AC9B003D8E7C /* ISF Editor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		56BD412025B5F093002524CE /* VVISFKitTests Metal Regression */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56BD412925B5F093002524CE /* Build configuration list for PBXNativeTarget "VVISFKitTests Metal Regression" */;
+			buildPhases = (
+				56BD411D25B5F093002524CE /* Sources */,
+				56BD411E25B5F093002524CE /* Frameworks */,
+				56BD411F25B5F093002524CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56BD412825B5F093002524CE /* PBXTargetDependency */,
+			);
+			name = "VVISFKitTests Metal Regression";
+			productName = "VVISFKitTests Metal Regression";
+			productReference = 56BD412125B5F093002524CE /* VVISFKitTests Metal Regression.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		56BD412E25B5F12B002524CE /* ISFMetalScene Test App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56BD414525B5F12B002524CE /* Build configuration list for PBXNativeTarget "ISFMetalScene Test App" */;
+			buildPhases = (
+				56BD413125B5F12B002524CE /* Sources */,
+				56BD413425B5F12B002524CE /* Frameworks */,
+				56BD413B25B5F12B002524CE /* Resources */,
+				56BD414025B5F12B002524CE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56BD412F25B5F12B002524CE /* PBXTargetDependency */,
+			);
+			name = "ISFMetalScene Test App";
+			productName = "ISFGLScene Test App";
+			productReference = 56BD414825B5F12B002524CE /* ISFMetalScene Test App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		96140108198AD46D00335292 /* QT and Hap Test App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9614011F198AD46D00335292 /* Build configuration list for PBXNativeTarget "QT and Hap Test App" */;
@@ -5630,6 +6261,10 @@
 					1AFE77271D65AC9B003D8E7C = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
+					56BD412025B5F093002524CE = {
+						CreatedOnToolsVersion = 11.5;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "VVOpenSource" */;
@@ -5694,6 +6329,8 @@
 				1A1A01E81CDBFE3D00E49E5A /* ISFQL */,
 				1A1A01F81CDBFE4900E49E5A /* ISFQL_Renderer */,
 				1A76E30F1E3F568B00512B03 /* HapInAVF Test App */,
+				56BD412025B5F093002524CE /* VVISFKitTests Metal Regression */,
+				56BD412E25B5F12B002524CE /* ISFMetalScene Test App */,
 			);
 		};
 /* End PBXProject section */
@@ -5993,6 +6630,112 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56BD411F25B5F093002524CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BD418625B5F5E0002524CE /* expectParseFail in Resources */,
+				56BD418525B5F5E0002524CE /* expectSpirvFail in Resources */,
+				56BD418725B5F5E0002524CE /* workingWithMinorChanges in Resources */,
+				56BD418425B5F5E0002524CE /* working in Resources */,
+				565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56BD413B25B5F12B002524CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BD422B25B5FC62002524CE /* Auto-scale.fs in Resources */,
+				56BD423325B5FC62002524CE /* Black & White.fs in Resources */,
+				56BD423D25B5FC62002524CE /* Pixelize.fs in Resources */,
+				56BD427A25B5FCBA002524CE /* multipasstexture.fs in Resources */,
+				56BD422E25B5FC62002524CE /* Sharpen RGB.vs in Resources */,
+				56BD424125B5FC62002524CE /* Edges.vs in Resources */,
+				56BD425825B5FC62002524CE /* False Color.fs in Resources */,
+				56BD426125B5FC62002524CE /* Exposure Adjust.fs in Resources */,
+				56BD423625B5FC62002524CE /* Stripes.fs in Resources */,
+				56BD422D25B5FC62002524CE /* Old Video.fs in Resources */,
+				56BD417025B5F1E0002524CE /* ISFMetalScene Test App-Info.plist in Resources */,
+				56BD422625B5FC62002524CE /* City Lights.fs in Resources */,
+				56BD422825B5FC62002524CE /* VHS Glitch.fs in Resources */,
+				56BD422F25B5FC62002524CE /* Shift RGB.fs in Resources */,
+				56BD427F25B5FCBA002524CE /* multipass-eval.fs in Resources */,
+				56BD423925B5FC62002524CE /* v002 Crosshatch.fs in Resources */,
+				56BD422C25B5FC62002524CE /* Bokeh Disc+.fs in Resources */,
+				56BD424B25B5FC62002524CE /* Fast Blur.fs in Resources */,
+				56BD427E25B5FCBA002524CE /* textureimport.fs in Resources */,
+				56BD422725B5FC62002524CE /* Dither-Bayer.fs in Resources */,
+				56BD423425B5FC62002524CE /* Neon.vs in Resources */,
+				56BD422925B5FC62002524CE /* Bad TV Auto Scroll.vs in Resources */,
+				56BD426825B5FC62002524CE /* Auto-color.fs in Resources */,
+				56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */,
+				56BD426325B5FC62002524CE /* Bloom.vs in Resources */,
+				56BD426B25B5FC62002524CE /* Zoom Blur_m.fs in Resources */,
+				56BD423825B5FC62002524CE /* Glow-Fast.vs in Resources */,
+				56BD423C25B5FC62002524CE /* lookup_amatorka.png in Resources */,
+				56BD428025B5FCBA002524CE /* multipass-eval-texture.fs in Resources */,
+				56BD424C25B5FC62002524CE /* Glow-Fast.fs in Resources */,
+				56BD422A25B5FC62002524CE /* v002 Vignette.fs in Resources */,
+				56BD427C25B5FCBA002524CE /* varying.fs in Resources */,
+				56BD424325B5FC62002524CE /* 3D Rotate.fs in Resources */,
+				56BD425025B5FC62002524CE /* Color Monochrome.fs in Resources */,
+				56BD424625B5FC62002524CE /* Dither BW.fs in Resources */,
+				56BD424E25B5FC62002524CE /* Round Corner.fs in Resources */,
+				56BD425D25B5FC62002524CE /* Grid.fs in Resources */,
+				56BD426425B5FC62002524CE /* Radial Gradient.fs in Resources */,
+				56BD424F25B5FC62002524CE /* Edges.fs in Resources */,
+				56BD422525B5FC62002524CE /* ASCII Art.fs in Resources */,
+				56BD426525B5FC62002524CE /* lookup_miss_etikate.png in Resources */,
+				56BD425125B5FC62002524CE /* Edge Blur.vs in Resources */,
+				56BD424A25B5FC62002524CE /* Quake.fs in Resources */,
+				56BD423F25B5FC62002524CE /* Delay.fs in Resources */,
+				56BD426E25B5FC62002524CE /* Constellations_m.fs in Resources */,
+				56BD423025B5FC62002524CE /* Borders around Alpha.fs in Resources */,
+				56BD419225B5FA96002524CE /* InfoPlist.strings in Resources */,
+				56BD423725B5FC62002524CE /* Fast Blur.vs in Resources */,
+				56BD428225B5FCBA002524CE /* lazytextureimport.fs in Resources */,
+				56BD425C25B5FC62002524CE /* City Lights.vs in Resources */,
+				56BD425925B5FC62002524CE /* CMYK Halftone-Lookaround.fs in Resources */,
+				56BD424825B5FC62002524CE /* Amatorka.fs in Resources */,
+				56BD424025B5FC62002524CE /* v002 Bleach Bypass.fs in Resources */,
+				56BD426225B5FC62002524CE /* Digital Clock.fs in Resources */,
+				56BD425425B5FC62002524CE /* IQ_SmoothXOR.fs in Resources */,
+				56BD423A25B5FC62002524CE /* Multi Pass Gaussian Blur.vs in Resources */,
+				56BD426D25B5FC62002524CE /* VoronoiLines_m.fs in Resources */,
+				56BD423225B5FC62002524CE /* Controlled Chaos.fs in Resources */,
+				56BD426625B5FC62002524CE /* Disc Spin.fs in Resources */,
+				56BD426C25B5FC62002524CE /* Freeze Frame_m.fs in Resources */,
+				56BD423525B5FC62002524CE /* Bloom.fs in Resources */,
+				56BD428125B5FCBA002524CE /* varying.vs in Resources */,
+				56BD425B25B5FC62002524CE /* Erode-Fast.fs in Resources */,
+				56BD424525B5FC62002524CE /* Auto-fade.fs in Resources */,
+				56BD424D25B5FC62002524CE /* Color Posterize.fs in Resources */,
+				56BD426025B5FC62002524CE /* Neon.fs in Resources */,
+				56BD427B25B5FCBA002524CE /* variables.fs in Resources */,
+				56BD425225B5FC62002524CE /* 3D Rotate.vs in Resources */,
+				56BD427D25B5FCBA002524CE /* multipass.fs in Resources */,
+				56BD424225B5FC62002524CE /* Edge Blur.fs in Resources */,
+				56BD419325B5FA9A002524CE /* Credits.rtf in Resources */,
+				565D06B125D5314D0048C4DD /* isfLogo.jpg in Resources */,
+				56BD423B25B5FC62002524CE /* Vibrance.fs in Resources */,
+				56BD424925B5FC62002524CE /* Multi Pass Gaussian Blur.fs in Resources */,
+				56BD423125B5FC62002524CE /* Auto-rotate.fs in Resources */,
+				56BD426925B5FC62002524CE /* Auto-rotate.vs in Resources */,
+				56BD426A25B5FC62002524CE /* Sharpen RGB.fs in Resources */,
+				56BD424425B5FC62002524CE /* Wisps.fs in Resources */,
+				56BD425F25B5FC62002524CE /* Auto-move.fs in Resources */,
+				56BD425625B5FC62002524CE /* Dilate-Fast.fs in Resources */,
+				56BD424725B5FC62002524CE /* MissEtikate.fs in Resources */,
+				56BD427925B5FCBA002524CE /* multipleImageInputs.fs in Resources */,
+				56BD425725B5FC62002524CE /* Bad TV Auto Scroll.fs in Resources */,
+				56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */,
+				56BD425525B5FC62002524CE /* VVMotionBlur.fs in Resources */,
+				56BD425E25B5FC62002524CE /* RGB Trails.fs in Resources */,
+				56BD425A25B5FC62002524CE /* Seascape.fs in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96140107198AD46D00335292 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6039,6 +6782,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BD418B25B5F6BD002524CE /* glslcc in Resources */,
 				964FF2841981B5AF00CCC808 /* InfoPlist.strings in Resources */,
 				964FF2B71981B62400CCC808 /* ISFGLScenePassthru.vs in Resources */,
 				1A8A19971C15E09F0096BCB8 /* ISF_ES_Compatibility.txt in Resources */,
@@ -6525,6 +7269,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		56BD411D25B5F093002524CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BD412425B5F093002524CE /* VVISFKitTests_Metal_Regression.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56BD413125B5F12B002524CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BD416825B5F1E0002524CE /* Shaders.metal in Sources */,
+				56BD416B25B5F1E0002524CE /* TextureRenderer.m in Sources */,
+				56BD416625B5F1E0002524CE /* MetalImageView.m in Sources */,
+				56BD416C25B5F1E0002524CE /* Appdelegate.m in Sources */,
+				56BD417B25B5F4CC002524CE /* ISFMetalScene.m in Sources */,
+				56BD416725B5F1E0002524CE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96140105198AD46D00335292 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6598,13 +7363,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BD411225B5F058002524CE /* MISFRenderPass.m in Sources */,
 				964FF2AE1981B62400CCC808 /* ISFAttrib.m in Sources */,
+				56BD411825B5F058002524CE /* MISFMetalModel.m in Sources */,
+				56BD411C25B5F058002524CE /* FileTools.m in Sources */,
+				56BD410325B5F058002524CE /* MISFInputsBuffer.m in Sources */,
+				56BD410F25B5F058002524CE /* MISFErrorCodes.m in Sources */,
+				56BD410925B5F058002524CE /* MISFPreloadedMedia.m in Sources */,
+				56BD410825B5F058002524CE /* MISFModel.m in Sources */,
 				964FF2B01981B62400CCC808 /* ISFFileManager.m in Sources */,
+				56BD411425B5F058002524CE /* MISFAttribBufferDefinition.m in Sources */,
 				964FF2B61981B62400CCC808 /* ISFGLScene.m in Sources */,
+				56BD410D25B5F058002524CE /* MISFRenderer.m in Sources */,
+				56BD411A25B5F058002524CE /* RegexTools.m in Sources */,
 				1AE0C96B1BAEBD1F00941BEF /* ISFObjectAdditions.m in Sources */,
+				56BD410525B5F058002524CE /* MISFTextureRenderer.m in Sources */,
+				56BD417D25B5F4F7002524CE /* ISFMetalScene.m in Sources */,
+				56BD410A25B5F058002524CE /* MISFShaderConverter.m in Sources */,
 				964FF2BB1981B62400CCC808 /* ISFRenderPass.m in Sources */,
 				964FF2BD1981B62400CCC808 /* ISFStringAdditions.m in Sources */,
+				56BD410125B5F058002524CE /* MISFTargetBuffer.m in Sources */,
 				964FF2BF1981B62400CCC808 /* ISFTargetBuffer.m in Sources */,
+				56BD410025B5F058002524CE /* MISFSize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7006,6 +7786,16 @@
 			isa = PBXTargetDependency;
 			target = 964FF27C1981B5AF00CCC808 /* VVISFKit-mac */;
 			targetProxy = 1AFE773F1D65B002003D8E7C /* PBXContainerItemProxy */;
+		};
+		56BD412825B5F093002524CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 964FF27C1981B5AF00CCC808 /* VVISFKit-mac */;
+			targetProxy = 56BD412725B5F093002524CE /* PBXContainerItemProxy */;
+		};
+		56BD412F25B5F12B002524CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9658764818CE5C2D003126BC /* Build Mac Frameworks */;
+			targetProxy = 56BD413025B5F12B002524CE /* PBXContainerItemProxy */;
 		};
 		96140121198AD47600335292 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -9696,7 +10486,7 @@
 				INSTALL_PATH = /;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -9717,7 +10507,185 @@
 				IBC_WARNINGS = NO;
 				INSTALL_PATH = /;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		56BD412A25B5F093002524CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "VVISFKitTests Metal Regression/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.VVISFKit.VVISFKitTests-Metal-Regression";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		56BD412B25B5F093002524CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "VVISFKitTests Metal Regression/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.VVISFKit.VVISFKitTests-Metal-Regression";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		56BD414625B5F12B002524CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ISFMetalScene Test App/ISFMetalScene Test App-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "ISFMetalScene Test App/ISFMetal Test App Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		56BD414725B5F12B002524CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ISFMetalScene Test App/ISFMetalScene Test App-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "ISFMetalScene Test App/ISFMetal Test App Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -10013,6 +10981,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = VVISFKit;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -10048,6 +11017,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = VVISFKit;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -10962,6 +11932,24 @@
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,
 				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56BD412925B5F093002524CE /* Build configuration list for PBXNativeTarget "VVISFKitTests Metal Regression" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56BD412A25B5F093002524CE /* Debug */,
+				56BD412B25B5F093002524CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56BD414525B5F12B002524CE /* Build configuration list for PBXNativeTarget "ISFMetalScene Test App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56BD414625B5F12B002524CE /* Debug */,
+				56BD414725B5F12B002524CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

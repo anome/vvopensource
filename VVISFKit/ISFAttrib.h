@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #endif
 
+#import <Metal/Metal.h>
 
 
 
@@ -27,11 +28,12 @@ typedef NS_ENUM(NSInteger, ISFAttribValType)	{
 	ISFAT_Audio,	//!<	a long- the texture number (like GL_TEXTURE0) to pass to the shader
 	ISFAT_AudioFFT	//!<	a long- the texture number (like GL_TEXTURE0) to pass to the shader
 };
-///	union describing a value for one of the listed attribute types
+///	struct describing a value for one of the listed attribute types
 /**
 \ingroup VVISFKit
 */
-typedef union ISFAttribVal	{
+#warning mto-anomes: transformed union to struct : arc forbids id<MTLTexture> in unions. Dirtier than before memory-wise but should not affect GL behaviour
+typedef struct ISFAttribVal	{
 	BOOL			eventVal;		//!<	if this is an event attribute, set eventVal to YES
 	BOOL			boolVal;	//!<	if this is a bool attribute, store the desired value here
 	long			longVal;	//!<	if this is a long attribute, store the desired value here
@@ -40,6 +42,7 @@ typedef union ISFAttribVal	{
 	GLfloat			colorVal[4];	//!<	array of four floats, used if this is a color attribute
 	long			imageVal;	//!<	not really used- you never pass images as values (images are passed as VVBuffers, as there are resources that need to be retained and can't be passed strictly "by value").  included for symmetry.
 	long			audioVal;	//!<	really only used because audio and audioFFT inputs can specify a "max" value
+    id<MTLTexture>  metalImageVal; //!<used for metal implementation
 } ISFAttribVal;
 
 
@@ -68,6 +71,7 @@ typedef union ISFAttribVal	{
 
 //	creating attributes isn't really covered in the published documentation because you probably shouldn't be doing it from outside the framework.
 + (id) createWithName:(NSString *)n description:(NSString *)desc label:(NSString *)l type:(ISFAttribValType)t values:(ISFAttribVal)min :(ISFAttribVal) max :(ISFAttribVal)def :(ISFAttribVal)iden :(NSArray *)lArray :(NSArray *)vArray;
++ (id) createFromAttrib:(ISFAttrib*)attrib;
 - (id) initWithName:(NSString *)n description:(NSString *)desc label:(NSString *)l type:(ISFAttribValType)t values:(ISFAttribVal)min :(ISFAttribVal) max :(ISFAttribVal)def :(ISFAttribVal)iden :(NSArray *)lArray :(NSArray *)vArray;
 
 ///	returns the name of the attribute- the name of the attribute is also the variable name in the source!

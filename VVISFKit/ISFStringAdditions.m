@@ -85,6 +85,13 @@
 		NSLog(@"\t\terr: %s, %@. %@",__func__,nsErr,self);
 	return returnMe;
 }
+
+- (id) objectFromJSONStringWithError:(NSError**)errorPtr    {
+    //NSLog(@"%s",__func__);
+    NSData            *tmpData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    id                returnMe = (tmpData==nil) ? nil : [NSJSONSerialization JSONObjectWithData:tmpData options:NSJSONReadingAllowFragments error:errorPtr];
+    return returnMe;
+}
 - (id) mutableObjectFromJSONString	{
 	//NSLog(@"%s",__func__);
 	NSData			*tmpData = [self dataUsingEncoding:NSUTF8StringEncoding];
