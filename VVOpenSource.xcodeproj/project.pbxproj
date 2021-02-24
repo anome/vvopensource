@@ -641,8 +641,8 @@
 		5107014310E14BF200A67653 /* MutNRLockDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107014110E14BF200A67653 /* MutNRLockDict.m */; };
 		5609D4A025E6A14000A331E2 /* ISFSupportTest.vs in Resources */ = {isa = PBXBuildFile; fileRef = 5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */; };
 		5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5632A1BB25E6B703005B38D8 /* inputImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5632A1BA25E6B701005B38D8 /* inputImage.jpg */; };
 		5653F2E725E4FA3000CF6311 /* emptyMain.fs in Resources */ = {isa = PBXBuildFile; fileRef = 5653F2E625E4FA3000CF6311 /* emptyMain.fs */; };
-		565D06B125D5314D0048C4DD /* isfLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06AF25D5314C0048C4DD /* isfLogo.jpg */; };
 		565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B225D5323B0048C4DD /* isfLogoBW.jpg */; };
 		565D06B625D532B00048C4DD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
@@ -2458,8 +2458,8 @@
 		5107014110E14BF200A67653 /* MutNRLockDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutNRLockDict.m; path = VVBasics/src/MutNRLockDict.m; sourceTree = "<group>"; };
 		5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ISFSupportTest.vs; sourceTree = "<group>"; };
 		5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISFSceneBase.h; sourceTree = "<group>"; };
+		5632A1BA25E6B701005B38D8 /* inputImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inputImage.jpg; sourceTree = "<group>"; };
 		5653F2E625E4FA3000CF6311 /* emptyMain.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = emptyMain.fs; sourceTree = "<group>"; };
-		565D06AF25D5314C0048C4DD /* isfLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogo.jpg; sourceTree = "<group>"; };
 		565D06B225D5323B0048C4DD /* isfLogoBW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogoBW.jpg; sourceTree = "<group>"; };
 		565D06B925D544770048C4DD /* glslcc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = glslcc; sourceTree = "<group>"; };
 		56BD40DD25B5F006002524CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
@@ -4254,7 +4254,7 @@
 				56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */,
 				56BD415725B5F1DE002524CE /* AppDelegate.h */,
 				56BD415D25B5F1DF002524CE /* Appdelegate.m */,
-				565D06AF25D5314C0048C4DD /* isfLogo.jpg */,
+				5632A1BA25E6B701005B38D8 /* inputImage.jpg */,
 				56BD416125B5F1E0002524CE /* ISFMetalScene Test App-Info.plist */,
 				56BD415825B5F1DF002524CE /* ISFMetalScene Test App-Prefix.pch */,
 				56BD415225B5F1DE002524CE /* main.m */,
@@ -6727,9 +6727,9 @@
 				56BD427D25B5FCBA002524CE /* multipass.fs in Resources */,
 				56BD424225B5FC62002524CE /* Edge Blur.fs in Resources */,
 				56BD419325B5FA9A002524CE /* Credits.rtf in Resources */,
-				565D06B125D5314D0048C4DD /* isfLogo.jpg in Resources */,
 				56BD423B25B5FC62002524CE /* Vibrance.fs in Resources */,
 				56BD424925B5FC62002524CE /* Multi Pass Gaussian Blur.fs in Resources */,
+				5632A1BB25E6B703005B38D8 /* inputImage.jpg in Resources */,
 				56BD423125B5FC62002524CE /* Auto-rotate.fs in Resources */,
 				56BD426925B5FC62002524CE /* Auto-rotate.vs in Resources */,
 				56BD426A25B5FC62002524CE /* Sharpen RGB.fs in Resources */,

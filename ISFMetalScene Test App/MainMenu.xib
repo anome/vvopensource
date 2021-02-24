@@ -651,44 +651,56 @@
         <window title="ISFGLScene Test App" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="484" height="523"/>
+            <rect key="contentRect" x="335" y="390" width="484" height="498"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="484" height="523"/>
+                <rect key="frame" x="0.0" y="0.0" width="484" height="498"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Go-XB-Zb4" customClass="MetalImageView">
-                        <rect key="frame" x="8" y="260" width="467" height="263"/>
+                        <rect key="frame" x="8" y="250" width="467" height="248"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     </customView>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD7-ag-ME1" userLabel="ShaderSourceButton">
+                        <rect key="frame" x="6" y="212" width="204" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="9R3-i4-hyB">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <menu key="menu" id="d0g-GP-CPm"/>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="onShaderSourceButtonClicked:" target="494" id="zB8-Gp-EMC"/>
+                        </connections>
+                    </popUpButton>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDn-F7-Urf">
-                        <rect key="frame" x="18" y="224" width="96" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="12" y="196" width="96" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="28O-7b-dLW"/>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqN-BF-YxW">
-                        <rect key="frame" x="18" y="204" width="96" height="24"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="12" y="173" width="96" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="7" tickMarkPosition="above" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="44i-MO-Cup"/>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5z4-Nx-Sxq">
-                        <rect key="frame" x="18" y="183" width="96" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="12" y="153" width="96" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ck5-WT-nsV"/>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bJ-j9-KgM">
-                        <rect key="frame" x="18" y="148" width="96" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="12" y="121" width="96" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8vX-Jf-QsA"/>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EgR-9R-ga6">
-                        <rect key="frame" x="18" y="131" width="96" height="24"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="12" y="106" width="96" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="9" tickMarkPosition="above" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="s5s-6C-jNS"/>
                     </slider>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="137" y="-38.5"/>
+            <point key="canvasLocation" x="137" y="-46"/>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
@@ -696,6 +708,7 @@
                 <outlet property="onSliderOneChange" destination="MDn-F7-Urf" id="TDW-zf-0zi"/>
                 <outlet property="onSliderThreeChange" destination="5z4-Nx-Sxq" id="k2L-Kb-11f"/>
                 <outlet property="onSliderTwoChange" destination="sqN-BF-YxW" id="OIL-Uu-BAT"/>
+                <outlet property="shaderSourceButton" destination="wD7-ag-ME1" id="zCm-EQ-LWT"/>
                 <outlet property="sliderFive" destination="EgR-9R-ga6" id="7oO-8r-TCc"/>
                 <outlet property="sliderFour" destination="9bJ-j9-KgM" id="t71-Kf-2a4"/>
                 <outlet property="sliderOne" destination="MDn-F7-Urf" id="lgn-74-xCA"/>

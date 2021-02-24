@@ -9,6 +9,8 @@
     id<MTLTexture> inputImage;
     id<MTLTexture> secondInputImage;
     int passIndex;
+    ISFMetalScene *isfScene;
+    NSString *shaderFileToRender;
 }
 
 - (id)init
@@ -16,6 +18,7 @@
     if( self = [super init] )
     {
         passIndex = 0;
+        shaderFileToRender = @"Auto-rotate";
         return self;
     }
     [self release];
@@ -24,126 +27,100 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    NSArray<NSString *> *shaderFiles = @[
+        /// Generators
+        @"Stripes",
+        @"Seascape",
+        @"Constellations_m",
+        @"Digital Clock",
+        @"Controlled Chaos",
+        @"Disc Spin",
+        @"Grid",
+        @"IQ_SmoothXOR",
+        @"Radial Gradient",
+        @"Stripes",
+        @"VoronoiLines_m",
+        @"Wisps",
+        /// Effects
+        @"Auto-rotate",
+        @"3D Rotate",
+        @"Edge Blur",
+        @"Multi Pass Gaussian Blur",
+        @"Fast Blur",
+        @"Bad TV Auto Scroll",
+        @"Edges",
+        @"Sharpen RGB",
+        @"Neon",
+        @"City Lights",
+        @"Amatorka",
+        @"ASCII Art",
+        @"Dither-Bayer",
+        @"v002 Vignette",
+        @"Old Video",
+        @"Shift RGB",
+        @"Borders around Alpha",
+        @"v002 Crosshatch",
+        @"Pixelize",
+        @"Dither BW",
+        @"Round Corner",
+        @"Bump Distortion_m",
+        @"CMYK Halftone-Lookaround",
+        @"RGB Trails",
+        @"VHS Glitch",
+        @"Time Glitch RGB_m",
+        @"v002 Technicolor",
+        @"Exposure Adjust",
+        @"False Color",
+        @"Color Monochrome",
+        @"Color Posterize",
+        @"MissEtikate",
+        @"v002 Bleach Bypass",
+        @"Vibrance",
+        @"Zoom Blur",
+        @"Dilate-Fast",
+        @"Erode-Fast",
+        @"VVMotionBlur",
+        @"Bokeh Disc+",
+        @"Auto-move",
+        @"Delay",
+        @"Auto-color",
+        @"Auto-scale",
+        @"Quake",
+        @"Freeze Frame_m",
+        @"Black & White",
+        @"Auto-scale",
+        @"Auto-color",
+        @"Bokeh Disc+",
+        /// Tests
+        @"emptyMain",
+        @"variables",
+        @"multipass-eval",
+        @"multipass-eval-texture",
+        @"multipass",
+        @"multipasstexture",
+        @"textureimport",
+        @"lazytextureimport",
+        @"multipleImageInputs",
+        @"varying",
+        @"nonExistingFile",  // NSCocoaErrorDomain 258 The File name is invalid
+        @"errorBadJsonBlob", // NSCocoaErrorDomain invalid value around character 53
+        @"errorImportedImageNoName",
+        @"errorImportedImagepathNotAString",
+        @"errorSpirVfnRedefined",
+    ];
+    for( NSString *file in shaderFiles )
+    {
+        [shaderSourceButton addItemWithTitle:file];
+    }
+    [shaderSourceButton selectItemWithTitle:shaderFileToRender];
+
     NSBundle *bundle = [NSBundle mainBundle];
-    NSURL *imageUrl = [bundle URLForResource:@"isfLogo" withExtension:@"jpg"];
-    NSURL *secondImageUrl = [bundle URLForResource:@"isfLogoBW" withExtension:@"jpg"];
+    NSURL *imageUrl = [bundle URLForResource:@"inputImage" withExtension:@"jpg"];
+    NSURL *secondImageUrl = [bundle URLForResource:@"inputImage" withExtension:@"jpg"];
     inputImage = [[self loadTextureUsingMetalKit:imageUrl device:metalImageView.device] retain];
     secondInputImage = [[self loadTextureUsingMetalKit:secondImageUrl device:metalImageView.device] retain];
 
-    NSString *fileName = @"ISFSupportTest";
-
-//    fileName = @"multipass-eval";
-//    fileName = @"multipass-eval-texture";
-//    fileName = @"multipass";
-//    fileName = @"multipasstexture";
-//    fileName = @"textureimport";
-//    fileName = @"variables";
-//    fileName = @"lazytextureimport";
-//    fileName = @"multipleImageInputs";
-//    fileName = @"varying";
-    fileName = @"emptyMain";
-
-//    fileName = @"nonExistingFile";  // NSCocoaErrorDomain 258 The File name is invalid
-//    fileName = @"errorBadJsonBlob"; // NSCocoaErrorDomain invalid value around character 53
-//    fileName = @"errorImportedImageNoName";
-//    fileName = @"errorImportedImagepathNotAString";
-//    fileName = @"errorSpirVfnRedefined";
-
-//    fileName = @"Auto-rotate";
-//    fileName = @"3D Rotate";
-//    fileName = @"Edge Blur";
-//    fileName = @"Multi Pass Gaussian Blur";
-//    fileName = @"Fast Blur";
-//    fileName = @"Bad TV Auto Scroll";
-//    fileName = @"Edges";
-//    fileName = @"Sharpen RGB";
-//    fileName = @"Neon";
-//    fileName = @"City Lights";
-//    fileName = @"Stripes";
-//    fileName = @"Seascape";
-    fileName = @"Constellations_m";
-//    fileName = @"Digital Clock";
-//    fileName = @"Controlled Chaos";
-//    fileName = @"Disc Spin";
-//    fileName = @"Grid";
-//    fileName = @"IQ_SmoothXOR";
-//    fileName = @"Radial Gradient";
-//    fileName = @"Stripes";
-//    fileName = @"VoronoiLines_m";
-//    fileName = @"Wisps";
-//    fileName = @"Amatorka";
-//    fileName = @"ASCII Art";
-//    fileName = @"Dither-Bayer";
-//    fileName = @"v002 Vignette";
-//    fileName = @"Old Video";
-//    fileName = @"Shift RGB";
-//    fileName = @"Borders around Alpha";
-//    fileName = @"v002 Crosshatch";
-//    fileName = @"Pixelize";
-//    fileName = @"Dither BW";
-//    fileName = @"Round Corner";
-//    fileName = @"Bump Distortion_m";
-//    fileName = @"CMYK Halftone-Lookaround";
-//    fileName = @"RGB Trails";
-//    fileName = @"VHS Glitch";
-//    fileName = @"Time Glitch RGB_m";
-//    fileName = @"v002 Technicolor";
-//    fileName = @"Exposure Adjust";
-//    fileName = @"False Color";
-//    fileName = @"Color Monochrome";
-//    fileName = @"Color Posterize";
-//    fileName = @"MissEtikate";
-//    fileName = @"v002 Bleach Bypass";
-//    fileName = @"Vibrance";
-//    fileName = @"Zoom Blur";
-//    fileName = @"Dilate-Fast";
-//    fileName = @"Erode-Fast";
-//    fileName = @"VVMotionBlur";
-//    fileName = @"Bokeh Disc+";
-//    fileName = @"Auto-move";
-//    fileName = @"Delay";
-//    fileName = @"Auto-color";
-//    fileName = @"Auto-scale";
-//    fileName = @"Quake";
-//    fileName = @"Freeze Frame_m";
-//    fileName = @"Black & White";
-//    fileName = @"Auto-scale";
-//    fileName = @"Auto-color";
-//    fileName = @"Bokeh Disc+";
-
-    NSString *filePath = [bundle pathForResource:fileName ofType:@"fs"];
-
-    // Preload API
-    {
-        NSError *preloadError;
-        MISFPreloadedMedia *preloadedModel = [ISFMetalScene preloadFile:filePath
-                                                               onDevice:metalImageView.device
-                                                              withError:&preloadError];
-        if( preloadedModel == nil )
-        {
-            NSLog(@"PRELOAD ERROR ! %@", preloadError);
-        }
-        NSError *error;
-        isfScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
-                                             pixelFormat:metalImageView.colorPixelFormat
-                                          preloadedMedia:preloadedModel
-                                               withError:&error];
-        if( isfScene == nil )
-        {
-            NSLog(@"ERROR ! %@", error);
-        }
-    }
-
-    // Classic API
-    NSError *error;
-    isfScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
-                                         pixelFormat:metalImageView.colorPixelFormat
-                                    fragmentFilePath:filePath
-                                           withError:&error];
-    if( isfScene == nil )
-    {
-        NSLog(@"ERROR ! %@", error);
-    }
+    [self loadIsfScene];
 
     //	make the displaylink, which will drive rendering
     CVReturn err = kCVReturnSuccess;
@@ -175,6 +152,10 @@
 {
     passIndex += 1;
 
+    if( isfScene == nil )
+    {
+        return;
+    }
     if( commandQueue == nil )
     {
         commandQueue = [metalImageView.device newCommandQueue];
@@ -240,7 +221,7 @@
     BOOL success = [isfScene renderOnTexture:screenTexture onCommandBuffer:commandBuffer withError:&renderError];
     if( !success )
     {
-        NSLog(@"Render error %@", renderError);
+        NSLog(@"RENDER ERROR %@", renderError);
     }
     [commandBuffer commit];
     [commandBuffer waitUntilCompleted];
@@ -248,6 +229,48 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
       [metalImageView setNeedsDisplay:YES];
     }];
+}
+
+- (void)loadIsfScene
+{
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *filePath = [bundle pathForResource:shaderFileToRender ofType:@"fs"];
+
+    // Preload API
+    {
+        NSError *preloadError;
+        MISFPreloadedMedia *preloadedModel = [ISFMetalScene preloadFile:filePath
+                                                               onDevice:metalImageView.device
+                                                              withError:&preloadError];
+        if( preloadedModel == nil )
+        {
+            NSLog(@"PRELOAD ERROR ! %@", preloadError);
+            return;
+        }
+        NSError *error;
+        isfScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
+                                             pixelFormat:metalImageView.colorPixelFormat
+                                          preloadedMedia:preloadedModel
+                                               withError:&error];
+        if( isfScene == nil )
+        {
+            NSLog(@"ERROR ! %@", error);
+            return;
+        }
+    }
+
+    // Classic API
+    /*
+        NSError *error;
+        isfScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
+                                             pixelFormat:metalImageView.colorPixelFormat
+                                        fragmentFilePath:filePath
+                                               withError:&error];
+        if( isfScene == nil )
+        {
+            NSLog(@"ERROR ! %@", error);
+        }
+     */
 }
 
 #pragma mark Pure utils
@@ -270,6 +293,7 @@
 - (id<MTLTexture>)loadTextureUsingMetalKit:(NSURL *)url device:(id<MTLDevice>)device
 {
     MTKTextureLoader *loader = [[MTKTextureLoader alloc] initWithDevice:device];
+    // bottom left origin for jpg
     NSDictionary<MTKTextureLoaderOption, id> *options =
         @{MTKTextureLoaderOptionSRGB : @NO, MTKTextureLoaderOptionOrigin : MTKTextureLoaderOriginBottomLeft};
     id<MTLTexture> texture = [loader newTextureWithContentsOfURL:url options:options error:nil];
@@ -280,6 +304,14 @@
         return nil;
     }
     return texture;
+}
+
+- (IBAction)onShaderSourceButtonClicked:(id)sender
+{
+
+    shaderFileToRender = shaderSourceButton.selectedItem.title;
+    isfScene = nil;
+    [self loadIsfScene];
 }
 
 @end
