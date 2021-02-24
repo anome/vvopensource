@@ -546,18 +546,8 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
         if( isMultiPass )
         {
-            MISFTargetBuffer *targetBuffer = [persistentBuffers objectForKey:passOutputKey];
-            //           passOutputTexture = [[metal_tempBuffers objectForKey:passOutputKey] getTexture];
+            MISFTargetBuffer *targetBuffer = [self getBufferNamed:passOutputKey];
             if( targetBuffer == nil )
-            {
-                targetBuffer = [tempBuffers objectForKey:passOutputKey];
-            }
-
-            if( targetBuffer != nil )
-            {
-                passOutputTexture = [targetBuffer getBufferTexture];
-            }
-            else
             {
                 if( errorPtr )
                 {
@@ -569,6 +559,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                 }
                 return NO;
             }
+            passOutputTexture = [targetBuffer getBufferTexture];
 
             renderer.builtin_RENDERSIZE =
                 NSMakeSize(passOutputTexture.width, passOutputTexture.height); // outputTexture?
@@ -590,13 +581,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         }
         else // Single Pass
         {
-            MISFTargetBuffer *targetBuffer = [tempBuffers objectForKey:passOutputKey];
-            // Look for pass in persistent but also temp buffers
-            if( targetBuffer == nil )
-            {
-                // Try in persistents
-                targetBuffer = [persistentBuffers objectForKey:passOutputKey];
-            }
+            MISFTargetBuffer *targetBuffer = [self getBufferNamed:passOutputKey];
             if( targetBuffer == nil )
             {
                 // Supposed to render in a target we dont have !
@@ -863,6 +848,18 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     }
     [inputs unlock];
     return returnMe;
+}
+
+- (MISFTargetBuffer *)getBufferNamed:(NSString *)bufferName
+{
+    MISFTargetBuffer *targetBuffer = [persistentBuffers objectForKey:bufferName];
+    // If unlucky, look in temp buffers
+    if( targetBuffer == nil )
+    {
+        targetBuffer = [tempBuffers objectForKey:bufferName];
+    }
+    // Return might be nil
+    return targetBuffer;
 }
 
 #pragma mark - Model getters
