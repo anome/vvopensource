@@ -1029,8 +1029,6 @@ Translation goes in three steps:
 
     if( count != numberOfMatchesExpected )
     {
-
-        // TODO: error
         NSDictionary *userInfo = @{
             @"Failed to replace string" :
                 [NSString stringWithFormat:@"Occurrences mismatch (Expected %i, got %lu occurences of the string). "

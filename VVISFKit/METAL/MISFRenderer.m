@@ -76,7 +76,7 @@ static NSString *const VERTEX_BUFFER_STRUCT =
      "    float4 clipSpacePosition [[position]];\n"
      "    float4 color;\n"
      "    float2 textureCoordinate;\n"
-     "    float4 gl_Position;\n" // TODO: this is just to help spirV conversion but should not be used
+     "    float4 gl_Position;\n" // this is just to help spirV conversion but should not be used
      "/* {MARKER FOR INJECTION RASTERIZER DATA CONTENT} */\n"
      "} RasterizerData;\n";
 
@@ -338,6 +338,7 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         }
         else
         {
+            // Make spir-V main0_out struct disappear. (not used anyway?)
             NSString *structString = [vertexCode substringWithRange:structRange];
             NSString *structContent = [[[[[structString stringByReplacingOccurrencesOfString:@"{" withString:@""]
                 stringByReplacingOccurrencesOfString:@"}"
@@ -345,7 +346,7 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
                 stringByReplacingOccurrencesOfString:@"main0_out"
                                           withString:@""]
                 stringByReplacingOccurrencesOfString:@"float4 gl_Position [[position]];"
-                                          withString:@""]; // No need to add this one
+                                          withString:@""];
             NSError *regexError;
             rasteriserDataStruct = [RegexTools injectString:structContent
                                                    inString:rasteriserDataStruct
