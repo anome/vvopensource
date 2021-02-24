@@ -255,7 +255,8 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
             {
                 bufferRequiresEval = YES;
             }
-            MTLPixelFormat pixelFormatForBuffer = model.targetBuffer.floatFlag ? PIXEL_FORMAT_FOR_FLOAT_TARGET : pixelFormat;
+            MTLPixelFormat pixelFormatForBuffer =
+                model.targetBuffer.floatFlag ? PIXEL_FORMAT_FOR_FLOAT_TARGET : pixelFormat;
             MISFTargetBuffer *newBuffer = [MISFTargetBuffer createForDevice:device
                                                                 pixelFormat:pixelFormatForBuffer
                                                                   fromModel:model.targetBuffer];
@@ -410,19 +411,13 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     renderers = [NSMutableArray new];
     for( int n = 0; n < passes.count; n++ )
     {
-        // TODO: error return from misfrenderer
         MTLPixelFormat pixelFormatForRenderer = passes[n].targetIsFloat ? PIXEL_FORMAT_FOR_FLOAT_TARGET : pixelFormat;
         MISFRenderer *renderer = [[MISFRenderer alloc] initWithDevice:device
                                                      colorPixelFormat:pixelFormatForRenderer
-                                                    forPreloadedMedia:preloadedMedia];
+                                                    forPreloadedMedia:preloadedMedia
+                                                            withError:errorPtr];
         if( renderer == nil )
         {
-            if( errorPtr )
-            {
-                NSDictionary *userInfo =
-                    @{@"Shader could not compile" : [NSString stringWithFormat:@"Shader could not be compiled"]};
-                *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFSceneError userInfo:userInfo];
-            }
             return NO;
         }
         [renderers addObject:renderer];

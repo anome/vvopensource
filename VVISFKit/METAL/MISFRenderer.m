@@ -120,14 +120,19 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
 - (instancetype)initWithDevice:(id<MTLDevice>)device
               colorPixelFormat:(MTLPixelFormat)colorPixelFormat
                       forModel:(MISFMetalModel *)model
+                     withError:(NSError **)errorPtr
 {
     MISFPreloadedMedia *modelForRenderer = [MISFRenderer preloadModel:model onDevice:device withError:nil];
-    return [self initWithDevice:device colorPixelFormat:colorPixelFormat forPreloadedMedia:modelForRenderer];
+    return [self initWithDevice:device
+               colorPixelFormat:colorPixelFormat
+              forPreloadedMedia:modelForRenderer
+                      withError:errorPtr];
 }
 
 - (instancetype)initWithDevice:(id<MTLDevice>)device
               colorPixelFormat:(MTLPixelFormat)colorPixelFormat
              forPreloadedMedia:(MISFPreloadedMedia *)preloadedMedia
+                     withError:(NSError **)errorPtr
 {
     self = [super init];
     if( self )
@@ -167,7 +172,6 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         id<MTLFunction> fragmentFunction = [preloadedMedia.fragmentLibrary newFunctionWithName:@"main0"];
 
         // Set up a descriptor for creating a pipeline state object
-        NSError *pipelineError = NULL;
         MTLRenderPipelineDescriptor *pipelineStateDescriptor = [[MTLRenderPipelineDescriptor alloc] init];
         pipelineStateDescriptor.vertexFunction = vertexFunction;
         pipelineStateDescriptor.fragmentFunction = fragmentFunction;
@@ -181,11 +185,10 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         //        MTLBlendFactorOneMinusSourceAlpha;
         //        pipelineStateDescriptor.colorAttachments[0].destinationAlphaBlendFactor =
         //        MTLBlendFactorOneMinusSourceAlpha;
-        pipelineState = [device newRenderPipelineStateWithDescriptor:pipelineStateDescriptor error:&pipelineError];
+        pipelineState = [device newRenderPipelineStateWithDescriptor:pipelineStateDescriptor error:errorPtr];
 
         if( !pipelineState )
         {
-            NSLog(@"ERR: Failed to created screen2Tex pipeline state, error %@", pipelineError);
             return nil;
         }
     }

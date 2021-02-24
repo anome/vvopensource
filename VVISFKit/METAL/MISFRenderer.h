@@ -11,7 +11,8 @@
 /// Basic initialisation
 - (instancetype)initWithDevice:(id<MTLDevice>)device
               colorPixelFormat:(MTLPixelFormat)colorPixelFormat
-                      forModel:(MISFMetalModel *)model;
+                      forModel:(MISFMetalModel *)model
+                     withError:(NSError **)errorPtr;
 
 /// Initialisation with preloading & error checks
 + (MISFPreloadedMedia *)preloadModel:(MISFMetalModel *)model
@@ -20,7 +21,8 @@
 
 - (instancetype)initWithDevice:(id<MTLDevice>)device
               colorPixelFormat:(MTLPixelFormat)colorPixelFormat
-             forPreloadedMedia:(MISFPreloadedMedia *)model;
+             forPreloadedMedia:(MISFPreloadedMedia *)model
+                     withError:(NSError **)errorPtr;
 
 /// Rendering
 - (void)renderIsfOnTexture:(id<MTLTexture>)outputTexture
