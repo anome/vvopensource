@@ -713,7 +713,6 @@ Translation goes in three steps:
     const int initialIndex = IS_VERTEX(programType) ? 3 : 1;
     for( int index = initialIndex; index < parameterList.count; index++ )
     {
-
         NSString *parameter = parameterList[index];
         // closing parenthesis can be the last of the list if there was one too much coma character. Ignore it.
         if( [parameter isEqualToString:@")"] )
@@ -1022,9 +1021,9 @@ Translation goes in three steps:
         // TODO: error
         NSDictionary *userInfo = @{
             @"Failed to replace string" :
-                [NSString stringWithFormat:@"Occurrences mismatch (Expected %lu, got %i occurences of the string). "
+                [NSString stringWithFormat:@"Occurrences mismatch (Expected %i, got %lu occurences of the string). "
                                            @"String to replace: (%@) \n String replacement: (%@)",
-                                           count, numberOfMatchesExpected, occurence, replacement]
+                                           numberOfMatchesExpected, count, occurence, replacement]
         };
         *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
         return nil;
