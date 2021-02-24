@@ -220,10 +220,10 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
     // --- Prep Render Pass
     MTLRenderPassDescriptor *renderPassDescriptor = [MTLRenderPassDescriptor renderPassDescriptor];
     renderPassDescriptor.colorAttachments[0].texture = outputTexture;
-    renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionLoad;
-    renderPassDescriptor.colorAttachments[0].storeAction =
-        MTLStoreActionStore; // TODO: adapt this if temp buffer or persistent
-                             //    renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 0);
+    // always start fresh
+    renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
+    renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+    renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 0);
 
     // Create a render command encoder so we can render into something
     id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];
