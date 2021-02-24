@@ -69,13 +69,12 @@
     }
 }
 
-- (void)evalWithSubstitutionsDict:(NSDictionary *)substitutionDict
+- (void)evalSizeWithSubstitutionDict:(NSDictionary *)substitutionDict
 {
     if( widthExpression == nil && heightExpression == nil )
     {
         return;
     }
-
     VVSIZE newSize = VVMAKESIZE(0, 0);
     NSNumber *tmpNum = nil;
     tmpNum = [substitutionDict objectForKey:@"WIDTH"];

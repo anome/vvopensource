@@ -24,14 +24,11 @@
     {
         returnMe.name = model.name;
     }
-#warning mto-anomes: possible edge case: if only one eval string is given and not two
-    if( model.evalWidth )
+    // Only accept both evals at the same time
+    if( model.evalWidth != nil && model.evalHeight != nil )
     {
         [returnMe setTargetWidthString:model.evalWidth];
-    }
-    if( model.evalHeight )
-    {
-        [returnMe setTargetWidthString:model.evalHeight];
+        [returnMe setTargetHeightString:model.evalHeight];
     }
 
     if( returnMe == nil )
@@ -93,6 +90,7 @@
     }
     return texture;
 }
+
 - (id<MTLTexture>)createTextureForDevice:(id<MTLDevice>)theDevice
                                    width:(int)width
                                   height:(int)height
@@ -135,7 +133,7 @@
 
 - (void)evalTargetSizeWithSubstitutionsDict:(NSDictionary *)dict
 {
-    [bufferSize evalWithSubstitutionsDict:dict];
+    [bufferSize evalSizeWithSubstitutionDict:dict];
 }
 
 @end

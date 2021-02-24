@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setWidthString:(NSString *)newTargetWidthString;
 - (void)setHeightString:(NSString *)newTargetHeightString;
 
-- (void)evalWithSubstitutionsDict:(NSDictionary *)d;
+- (void)evalSizeWithSubstitutionDict:(NSDictionary *)d;
 - (BOOL)needsEval;
 
 @property(readonly) double width;

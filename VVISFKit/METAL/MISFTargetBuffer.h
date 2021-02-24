@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Quick access to MISFSize API
 #warning mto-anomes: bad design, but kept so far to have a similar API with GL
+#warning mto-anomes: possible edge case: if only one eval string is given and not two
 - (BOOL)targetSizeNeedsEval;
 - (void)evalTargetSizeWithSubstitutionsDict:(NSDictionary *)d;
 - (void)setTargetSize:(VVSIZE)n;
