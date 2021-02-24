@@ -31,6 +31,7 @@
     isfExpectedToParseFail = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"expectParseFail"];
     isfExpectedToSpirvFail = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"expectSpirvFail"];
     testDevice = MTLCreateSystemDefaultDevice();
+    self.continueAfterFailure = NO;
 }
 
 - (void)tearDown
@@ -96,27 +97,27 @@
 
 - (void)testLoadAndRenderWorkingShaders
 {
-    for( NSString *fileName in workingIsfs )
+    for( NSString *filePath in workingIsfs )
     {
-        NSLog(@"Testing Preloading for %@", fileName);
-        [self preloadShader:fileName];
+        NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
+        [self preloadShader:filePath];
     }
 }
 
 - (void)testLoadAndRenderWorkingWithMinorChangesShaders
 {
-    for( NSString *fileName in workingIsfWithMinorChanges )
+    for( NSString *filePath in workingIsfWithMinorChanges )
     {
-        NSLog(@"Testing Compile for %@", fileName);
-        [self preloadShader:fileName];
+        NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
+        [self preloadShader:filePath];
     }
 }
 
-//
 - (void)testparseErrorShaders
 {
     for( NSString *filePath in isfExpectedToParseFail )
     {
+        NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
         NSError *error;
         MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];
         XCTAssertNil(preloadedMedia, @"Parsing unexpectedly succeded for file %@ output %@", filePath, error);

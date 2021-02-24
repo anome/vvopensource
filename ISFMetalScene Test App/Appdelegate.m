@@ -41,6 +41,7 @@
 //    fileName = @"lazytextureimport";
 //    fileName = @"multipleImageInputs";
 //    fileName = @"varying";
+    fileName = @"emptyMain";
 
 //    fileName = @"nonExistingFile";  // NSCocoaErrorDomain 258 The File name is invalid
 //    fileName = @"errorBadJsonBlob"; // NSCocoaErrorDomain invalid value around character 53

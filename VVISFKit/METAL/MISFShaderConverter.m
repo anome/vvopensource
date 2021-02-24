@@ -326,12 +326,49 @@ Translation goes in three steps:
     {
     case ProgramTypeFragment:
     {
+        BOOL returnTypeIsVoid = NO;
+
+        NSRange range = [intermediate rangeOfString:@"fragment main0_out main0("];
+        if( range.location == NSNotFound )
+        {
+            // Try to find a void prototype
+            NSRange voidRange = [intermediate rangeOfString:@"fragment void main0("];
+            if( voidRange.location == NSNotFound )
+            {
+                if( errorPtr )
+                {
+                    NSDictionary *userInfo = @{
+                        ERROR_STRING_OPERATION_KEY : [NSString
+                            stringWithFormat:@"failed to find fragment main prototype during finaliseIntermediate"]
+                    };
+                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+                }
+                return nil;
+            }
+            else
+            {
+                returnTypeIsVoid = YES;
+            }
+        }
+
         // Change prototype return type
-        intermediate = [MISFShaderConverter replaceOccurences:@"fragment main0_out main0("
-                                                   withString:@"fragment float4 main0("
-                                                     onString:intermediate
-                                      numberOfMatchesExpected:1
-                                                        error:errorPtr];
+        if( returnTypeIsVoid )
+        {
+            intermediate = [MISFShaderConverter replaceOccurences:@"fragment void main0("
+                                                       withString:@"fragment float4 main0("
+                                                         onString:intermediate
+                                          numberOfMatchesExpected:1
+                                                            error:errorPtr];
+        }
+        else
+        {
+            intermediate = [MISFShaderConverter replaceOccurences:@"fragment main0_out main0("
+                                                       withString:@"fragment float4 main0("
+                                                         onString:intermediate
+                                          numberOfMatchesExpected:1
+                                                            error:errorPtr];
+        }
+
         if( intermediate == nil )
         {
             return nil;
@@ -352,6 +389,21 @@ Translation goes in three steps:
         intermediate = [MISFShaderConverter identifyCodePartsInIntermediate:intermediate
                                                                 programType:programType
                                                                   withError:errorPtr];
+
+        if( returnTypeIsVoid )
+        {
+            intermediate = [MISFShaderConverter
+                injectCode:@"// ISF Default return for empty fragment\n return float4(0.0,0.0,0.0,0.0);"
+                    inCode:intermediate
+                  atMarker:ISF_MARKER_INSIDE_FRAGMENT_MAIN
+                 withError:errorPtr];
+            if( intermediate == nil )
+            {
+                return nil;
+            }
+            // main is empty, so ignore the rest, it's useless
+            break;
+        }
 
         // ISF Built-in function IMG_SIZE becomes a preprocessor macro in MSL. string replaced based on expected Spir-V
         // output Output Function could be absent because Spir-V removes it if not used
