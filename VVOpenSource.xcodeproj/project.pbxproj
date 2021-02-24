@@ -639,6 +639,7 @@
 		1AFF3B401D65B8BD000F5E94 /* Blue.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 96EE5D6219840D5C00231124 /* Blue.qtz */; };
 		5107014210E14BF200A67653 /* MutNRLockDict.h in Headers */ = {isa = PBXBuildFile; fileRef = 5107014010E14BF200A67653 /* MutNRLockDict.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5107014310E14BF200A67653 /* MutNRLockDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107014110E14BF200A67653 /* MutNRLockDict.m */; };
+		5609D4A025E6A14000A331E2 /* ISFSupportTest.vs in Resources */ = {isa = PBXBuildFile; fileRef = 5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */; };
 		5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5653F2E725E4FA3000CF6311 /* emptyMain.fs in Resources */ = {isa = PBXBuildFile; fileRef = 5653F2E625E4FA3000CF6311 /* emptyMain.fs */; };
 		565D06B125D5314D0048C4DD /* isfLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06AF25D5314C0048C4DD /* isfLogo.jpg */; };
@@ -2455,6 +2456,7 @@
 		32DBCF5E0370ADEE00C91783 /* VVOpenSource_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVOpenSource_Prefix.pch; sourceTree = "<group>"; };
 		5107014010E14BF200A67653 /* MutNRLockDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutNRLockDict.h; path = VVBasics/src/MutNRLockDict.h; sourceTree = "<group>"; };
 		5107014110E14BF200A67653 /* MutNRLockDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutNRLockDict.m; path = VVBasics/src/MutNRLockDict.m; sourceTree = "<group>"; };
+		5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ISFSupportTest.vs; sourceTree = "<group>"; };
 		5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISFSceneBase.h; sourceTree = "<group>"; };
 		5653F2E625E4FA3000CF6311 /* emptyMain.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = emptyMain.fs; sourceTree = "<group>"; };
 		565D06AF25D5314C0048C4DD /* isfLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogo.jpg; sourceTree = "<group>"; };
@@ -4705,6 +4707,7 @@
 				965C1D0C198403C400111741 /* AppDelegate.m */,
 				965C1D0E198403C400111741 /* MainMenu.xib */,
 				96EE5D66198410BC00231124 /* ISFSupportTest.fs */,
+				5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */,
 				965C1D00198403C300111741 /* Supporting Files */,
 			);
 			path = "ISFGLScene Test App";
@@ -6850,6 +6853,7 @@
 				96EE5D67198410BC00231124 /* ISFSupportTest.fs in Resources */,
 				965C1D04198403C300111741 /* InfoPlist.strings in Resources */,
 				965C1D0A198403C300111741 /* Credits.rtf in Resources */,
+				5609D4A025E6A14000A331E2 /* ISFSupportTest.vs in Resources */,
 				965C1D10198403C400111741 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
