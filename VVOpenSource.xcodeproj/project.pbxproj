@@ -639,10 +639,12 @@
 		1AFF3B401D65B8BD000F5E94 /* Blue.qtz in Resources */ = {isa = PBXBuildFile; fileRef = 96EE5D6219840D5C00231124 /* Blue.qtz */; };
 		5107014210E14BF200A67653 /* MutNRLockDict.h in Headers */ = {isa = PBXBuildFile; fileRef = 5107014010E14BF200A67653 /* MutNRLockDict.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5107014310E14BF200A67653 /* MutNRLockDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 5107014110E14BF200A67653 /* MutNRLockDict.m */; };
+		5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		565D06B125D5314D0048C4DD /* isfLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06AF25D5314C0048C4DD /* isfLogo.jpg */; };
 		565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B225D5323B0048C4DD /* isfLogoBW.jpg */; };
 		565D06B625D532B00048C4DD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
+		565D06BA25D544770048C4DD /* glslcc in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B925D544770048C4DD /* glslcc */; };
 		56BD40DE25B5F007002524CE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
 		56BD410025B5F058002524CE /* MISFSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E325B5F054002524CE /* MISFSize.m */; };
@@ -702,7 +704,6 @@
 		56BD418525B5F5E0002524CE /* expectSpirvFail in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418125B5F5E0002524CE /* expectSpirvFail */; };
 		56BD418625B5F5E0002524CE /* expectParseFail in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418225B5F5E0002524CE /* expectParseFail */; };
 		56BD418725B5F5E0002524CE /* workingWithMinorChanges in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418325B5F5E0002524CE /* workingWithMinorChanges */; };
-		56BD418B25B5F6BD002524CE /* glslcc in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418A25B5F6BC002524CE /* glslcc */; };
 		56BD419225B5FA96002524CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56BD419025B5FA81002524CE /* InfoPlist.strings */; };
 		56BD419325B5FA9A002524CE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418F25B5FA80002524CE /* Credits.rtf */; };
 		56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BD419125B5FA81002524CE /* MainMenu.xib */; };
@@ -2453,8 +2454,10 @@
 		32DBCF5E0370ADEE00C91783 /* VVOpenSource_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVOpenSource_Prefix.pch; sourceTree = "<group>"; };
 		5107014010E14BF200A67653 /* MutNRLockDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutNRLockDict.h; path = VVBasics/src/MutNRLockDict.h; sourceTree = "<group>"; };
 		5107014110E14BF200A67653 /* MutNRLockDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutNRLockDict.m; path = VVBasics/src/MutNRLockDict.m; sourceTree = "<group>"; };
+		5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISFSceneBase.h; sourceTree = "<group>"; };
 		565D06AF25D5314C0048C4DD /* isfLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogo.jpg; sourceTree = "<group>"; };
 		565D06B225D5323B0048C4DD /* isfLogoBW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogoBW.jpg; sourceTree = "<group>"; };
+		565D06B925D544770048C4DD /* glslcc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = glslcc; sourceTree = "<group>"; };
 		56BD40DD25B5F006002524CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		56BD40DF25B5F00C002524CE /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		56BD40E325B5F054002524CE /* MISFSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFSize.m; path = METAL/MISFSize.m; sourceTree = "<group>"; };
@@ -2508,7 +2511,6 @@
 		56BD418125B5F5E0002524CE /* expectSpirvFail */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expectSpirvFail; sourceTree = "<group>"; };
 		56BD418225B5F5E0002524CE /* expectParseFail */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expectParseFail; sourceTree = "<group>"; };
 		56BD418325B5F5E0002524CE /* workingWithMinorChanges */ = {isa = PBXFileReference; lastKnownFileType = folder; path = workingWithMinorChanges; sourceTree = "<group>"; };
-		56BD418A25B5F6BC002524CE /* glslcc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = glslcc; path = METAL/glslcc; sourceTree = "<group>"; };
 		56BD418F25B5FA80002524CE /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		56BD419025B5FA81002524CE /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		56BD419125B5FA81002524CE /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -4218,6 +4220,7 @@
 				56BD428325B5FDB9002524CE /* Agnostic */,
 				56BD417A25B5F4CC002524CE /* ISFMetalScene.h */,
 				56BD417925B5F4CC002524CE /* ISFMetalScene.m */,
+				5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */,
 			);
 			name = METAL;
 			sourceTree = "<group>";
@@ -4427,7 +4430,7 @@
 			children = (
 				56BD40FA25B5F057002524CE /* MISFShaderConverter.h */,
 				56BD40ED25B5F055002524CE /* MISFShaderConverter.m */,
-				56BD418A25B5F6BC002524CE /* glslcc */,
+				565D06B925D544770048C4DD /* glslcc */,
 			);
 			name = Converter;
 			sourceTree = "<group>";
@@ -5266,6 +5269,7 @@
 				56BD411325B5F058002524CE /* MISFModel.h in Headers */,
 				56BD410725B5F058002524CE /* MISFMetalModel.h in Headers */,
 				56BD411925B5F058002524CE /* MISFAttribBufferDefinition.h in Headers */,
+				5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */,
 				56BD411525B5F058002524CE /* MISFInputDataType.h in Headers */,
 				56BD410625B5F058002524CE /* FileTools.h in Headers */,
 				964FF2BC1981B62400CCC808 /* ISFStringAdditions.h in Headers */,
@@ -6782,7 +6786,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56BD418B25B5F6BD002524CE /* glslcc in Resources */,
+				565D06BA25D544770048C4DD /* glslcc in Resources */,
 				964FF2841981B5AF00CCC808 /* InfoPlist.strings in Resources */,
 				964FF2B71981B62400CCC808 /* ISFGLScenePassthru.vs in Resources */,
 				1A8A19971C15E09F0096BCB8 /* ISF_ES_Compatibility.txt in Resources */,

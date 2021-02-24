@@ -87,6 +87,7 @@
         _persistentBuffers = [NSArray<MISFModelBuffer *> new];
         _importedImages = [NSArray<MISFModelImportedImage *> new];
         _inputs = [NSArray<ISFAttrib *> new];
+        _fileFunctionality = ISFF_Source;
     }
     BOOL openFilesSuccess = [self openFilesWithError:errorPtr];
     if( !openFilesSuccess )
@@ -594,6 +595,8 @@
         BOOL isAudioInput = NO;
         BOOL isFilterImageInput = NO;
         BOOL hasTransitionProgress = NO;
+        BOOL hasTransitionStart = NO;
+        BOOL hasTransitionEnd = NO;
 
         for( NSDictionary *inputDict in inputsArray )
         {
@@ -639,21 +642,24 @@
                         defVal.imageVal = 0;
                         idenVal.imageVal = 0;
                         isImageInput = YES;
-                        // METAL IGNORE
-                        //                         if ([inputKey isEqualToString:@"inputImage"])    {
-                        //                         isFilterImageInput = YES;
-                        //                         fileFunctionality = ISFF_Filter;
-                        //                         }
-                        //                         else if ([inputKey isEqualToString:@"startImage"])    {
-                        //                         hasTransitionStart = YES;
-                        //                         }
-                        //                         else if ([inputKey isEqualToString:@"endImage"])    {
-                        //                         hasTransitionEnd = YES;
-                        //                         }
+
+                        if( [inputKey isEqualToString:@"inputImage"] )
+                        {
+                            isFilterImageInput = YES;
+                            _fileFunctionality = ISFF_Filter;
+                        }
+                        else if( [inputKey isEqualToString:@"startImage"] )
+                        {
+                            hasTransitionStart = YES;
+                        }
+                        else if( [inputKey isEqualToString:@"endImage"] )
+                        {
+                            hasTransitionEnd = YES;
+                        }
                     }
                     else if( [typeString isEqualToString:@"audio"] )
                     {
-                        // METAL IGNORE
+#warning mto-anomes: METAL IGNORE
                         /*
                          newAttribType = ISFAT_Audio;
                          minVal.audioVal = 0;
@@ -750,7 +756,7 @@
                     }
                     else if( [typeString isEqualToString:@"event"] )
                     {
-                        // METAL IGNORE
+#warning mto-anomes METAL IGNORE
                         /*
                          //NSLog(@"********* ERR: %s",__func__);
                          newAttribType = ISFAT_Event;
@@ -947,7 +953,7 @@
                     {
                         inputKey = nil;
                     }
-
+#warning mto-anomes metal ignore
                     // if (!isFilterImageInput)    {
                     if( inputKey != nil )
                     {
@@ -969,12 +975,10 @@
         }
 
         //    if the file had all of the requirements for a transition, set the functionality
-        // METAL IGNORE
-        /*
-         if ((hasTransitionStart == YES)&&(hasTransitionEnd == YES)&&(hasTransitionProgress == YES))    {
-         fileFunctionality = ISFF_Transition;
-         }
-         */
+        if( (hasTransitionStart == YES) && (hasTransitionEnd == YES) && (hasTransitionProgress == YES) )
+        {
+            _fileFunctionality = ISFF_Transition;
+        }
     }
 
     VVRELEASE(_inputs);

@@ -60,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(readonly, retain) NSString *jsonString;
 @property(readonly, retain) NSString *fragShaderSource;
 @property(readonly, retain) NSString *vertShaderSource;
+@property(readonly) ISFFunctionality fileFunctionality;
+
 @property(readonly) BOOL hasVertexShader;
 
 @end

@@ -22,7 +22,6 @@
     NSMutableArray<MISFRenderPass *> *passes;
     NSMutableArray<MISFRenderer *> *renderers;
     MISFTextureRenderer *textureRenderer;
-    MutLockArray *_inputs; //    array of ISFAttrib instances for the various inputs
     MutLockArray *importedImageInputs;
     VVStopwatch *swatch;  //    used to pass time to shaders
     int renderFrameIndex; //    used to pass FRAMEINDEX to shaders
@@ -34,6 +33,7 @@
     id<MTLTexture> outputTexture;
     MISFPreloadedMedia *preloadedMedia;
 }
+@synthesize inputs;
 
 #pragma mark INIT
 
@@ -73,7 +73,7 @@
         tempBuffers = [NSMutableDictionary<NSString *, MISFTargetBuffer *> new];
         importedImages = [NSMutableArray<ISFAttrib *> new];
         renderers = nil;
-        _inputs = [[MutLockArray alloc] init];
+        inputs = [[MutLockArray alloc] init];
         importedImageInputs = [[MutLockArray alloc] init];
         swatch = [[VVStopwatch alloc] init];
         BOOL allocateSuccess = [self allocateGpuResourcesWithError:errorPtr];
@@ -189,7 +189,7 @@
 
 - (void)dealloc
 {
-    VVRELEASE(_inputs);
+    VVRELEASE(inputs);
     VVRELEASE(swatch);
     VVRELEASE(persistentBuffers);
     VVRELEASE(tempBuffers);
@@ -205,7 +205,7 @@
 - (BOOL)allocateGpuResourcesWithError:(NSError **)errorPtr
 {
     MISFModel *isfModel = preloadedMedia.model.parentModel;
-    [_inputs lockRemoveAllObjects];
+    [inputs lockRemoveAllObjects];
     NSLog(@"description %@", isfModel.fileDescription);
     NSLog(@"credits %@", isfModel.credits);
     NSLog(@"cat names %@", isfModel.categoryNames);
@@ -269,7 +269,7 @@
     for( ISFAttrib *attrib in isfModel.inputs )
     {
         ISFAttrib *copyAttrib = [ISFAttrib createFromAttrib:attrib];
-        [_inputs lockAddObject:copyAttrib];
+        [inputs lockAddObject:copyAttrib];
     }
 
     // parse imported images and add them to inputs
@@ -333,7 +333,7 @@
             ISFAttribVal currentVal;
             currentVal.metalImageVal = importedBuffer;
             [newAttrib setCurrentVal:currentVal];
-            [_inputs lockAddObject:newAttrib];
+            [inputs lockAddObject:newAttrib];
             [importedImages addObject:newAttrib];
         }
     }
@@ -362,7 +362,7 @@
         // This will be filled at render time (because texture sizes might change)
         currentVal.metalImageVal = nil;
         [newAttrib setCurrentVal:currentVal];
-        [_inputs lockAddObject:newAttrib];
+        [inputs lockAddObject:newAttrib];
     }
 
     for( NSString *bufferKey in persistentBuffers )
@@ -385,7 +385,7 @@
         // This will be filled at render time (because texture sizes might change)
         currentVal.metalImageVal = nil;
         [newAttrib setCurrentVal:currentVal];
-        [_inputs lockAddObject:newAttrib];
+        [inputs lockAddObject:newAttrib];
     }
 
     //    if the file had all of the requirements for a transition, set the functionality
@@ -549,7 +549,7 @@
             id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
             passCommandBuffer.label =
                 [NSString stringWithFormat:@"Pass command buffer N %i [Frame %i]", index, renderFrameIndex];
-            [renderer renderIsfOnTexture:passOutputTexture onCommandBuffer:passCommandBuffer withInputs:_inputs];
+            [renderer renderIsfOnTexture:passOutputTexture onCommandBuffer:passCommandBuffer withInputs:inputs];
             [passCommandBuffer commit];
             if( isLastPass )
             {
@@ -581,13 +581,11 @@
                 }
                 return NO;
             }
-            //            [targetBuffer setTargetSize:NSMakeSize(outputTexture.width, outputTexture.height)];
             passOutputTexture = [targetBuffer getBufferTexture];
-            renderer.builtin_RENDERSIZE =
-                NSMakeSize(passOutputTexture.width, passOutputTexture.height); // outputTexture?
+            renderer.builtin_RENDERSIZE = NSMakeSize(passOutputTexture.width, passOutputTexture.height);
             id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
             passCommandBuffer.label = @"ISF Single pass command Buffer";
-            [renderer renderIsfOnTexture:passOutputTexture onCommandBuffer:passCommandBuffer withInputs:_inputs];
+            [renderer renderIsfOnTexture:passOutputTexture onCommandBuffer:passCommandBuffer withInputs:inputs];
             [passCommandBuffer commit];
             [textureRenderer renderFromTexture:passOutputTexture inTexture:outputTexture onCommandBuffer:commandBuffer];
         }
@@ -609,8 +607,8 @@
     {
         return;
     }
-    [_inputs rdlock];
-    for( ISFAttrib *attrib in [_inputs array] )
+    [inputs rdlock];
+    for( ISFAttrib *attrib in [inputs array] )
     {
         if( [[attrib attribName] isEqualToString:k] )
         {
@@ -618,15 +616,15 @@
             break;
         }
     }
-    [_inputs unlock];
+    [inputs unlock];
 }
 
 - (void)setNSObjectVal:(id)objectVal forInputKey:(NSString *)inputKey
 {
     if( objectVal == nil || inputKey == nil )
         return;
-    [_inputs rdlock];
-    for( ISFAttrib *attrib in [_inputs array] )
+    [inputs rdlock];
+    for( ISFAttrib *attrib in [inputs array] )
     {
         if( [[attrib attribName] isEqualToString:inputKey] )
         {
@@ -688,7 +686,7 @@
             break;
         }
     }
-    [_inputs unlock];
+    [inputs unlock];
 }
 
 #pragma mark MISC
@@ -780,8 +778,8 @@
     if( !bufferRequiresEval )
         return nil;
     NSMutableDictionary *returnMe = MUTDICT;
-    [_inputs rdlock];
-    for( ISFAttrib *attrib in [_inputs array] )
+    [inputs rdlock];
+    for( ISFAttrib *attrib in [inputs array] )
     {
         ISFAttribValType attribType = [attrib attribType];
         ISFAttribVal attribVal = [attrib currentVal];
@@ -814,7 +812,7 @@
             break;
         }
     }
-    [_inputs unlock];
+    [inputs unlock];
     return returnMe;
 }
 
@@ -863,6 +861,60 @@
 - (NSArray<NSString *> *)passTargetNames
 {
     return [[preloadedMedia.model.parentModel.passes valueForKey:@"targetBuffer"] valueForKey:@"name"];
+}
+
+- (ISFFunctionality)fileFunctionality
+{
+    return preloadedMedia.model.parentModel.fileFunctionality;
+}
+
+- (int)passCount
+{
+    if( passes == nil )
+    {
+        return 0;
+    }
+    return (int)[passes count];
+}
+
+#warning mto-anomes: mocked
+// This just doesnt make sense in Metal API, because user gives the texture in which to draw, and the scene adapts its
+// size according to it
+- (VVSIZE)renderSize
+{
+    return VVMAKESIZE(0, 0);
+}
+
+- (NSMutableArray *)inputsOfType:(ISFAttribValType)t
+{
+    NSMutableArray *returnMe = MUTARRAY;
+    [inputs rdlock];
+    for( ISFAttrib *attrib in [inputs array] )
+    {
+        if( [attrib attribType] == t )
+            [returnMe addObject:attrib];
+    }
+    [inputs unlock];
+    return returnMe;
+}
+- (ISFAttrib *)attribForInputWithKey:(NSString *)k
+{
+    if( k == nil )
+        return nil;
+    ISFAttrib *returnMe = nil;
+    [inputs rdlock];
+    for( ISFAttrib *attrib in [inputs array] )
+    {
+        if( [[attrib attribName] isEqualToString:k] )
+        {
+            returnMe = attrib;
+            break;
+        }
+    }
+    [inputs unlock];
+    if( returnMe != nil )
+        [returnMe retain];
+    return [returnMe autorelease];
 }
 
 @end

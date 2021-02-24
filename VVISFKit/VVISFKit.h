@@ -6,11 +6,13 @@
 #import "ISFStringAdditions.h"
 #import "ISFObjectAdditions.h"
 #import "ISFTargetBuffer.h"
+#import "ISFSceneBase.h"
 
 // Metal
 #import "MISFErrorCodes.h"
 #import "ISFMetalScene.h"
 #import "MISFPreloadedMedia.h"
+
 
 /**
 \defgroup VVISFKit VVISFKit framework

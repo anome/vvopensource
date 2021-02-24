@@ -10,7 +10,7 @@
 #import <VVBasics/VVBasics.h>
 #import "ISFTargetBuffer.h"
 #import "ISFRenderPass.h"
-
+#import "ISFSceneBase.h"
 
 
 
@@ -32,7 +32,7 @@ extern NSString			*_ISFMacro2DRectBiasString;	//	same as above, slightly differe
 /**
 \ingroup VVISFKit
 */
-@interface ISFGLScene : GLShaderScene	{
+@interface ISFGLScene : GLShaderScene <ISFSceneBase>	{
 	BOOL				throwExceptions;	//	NO by default
 	
 	OSSpinLock			propertyLock;	//	locks the file* vars and categoryNames (everything before the empty line)
@@ -76,12 +76,14 @@ extern NSString			*_ISFMacro2DRectBiasString;	//	same as above, slightly differe
 	VVBuffer			*geoXYVBO;
 }
 
-//- (id) initWithSharedContext:(NSOpenGLContext *)c;
-//- (id) initWithSharedContext:(NSOpenGLContext *)c pixelFormat:(NSOpenGLPixelFormat *)p sized:(VVSIZE)s;
+#pragma mark - GL Specific API
 
-///	Loads the ISF .fs file at the passed path
+///    Loads the ISF .fs file at the passed path
 - (void) useFile:(NSString *)p;
 - (void) useFile:(NSString *)p resetTimer:(BOOL)r;
+
+//- (id) initWithSharedContext:(NSOpenGLContext *)c;
+//- (id) initWithSharedContext:(NSOpenGLContext *)c pixelFormat:(NSOpenGLPixelFormat *)p sized:(VVSIZE)s;
 
 ///	if an ISF file has an input at the specified key, retains the buffer to be used at that input on the next rendering pass
 /**
@@ -95,26 +97,7 @@ extern NSString			*_ISFMacro2DRectBiasString;	//	same as above, slightly differe
 ///	retrieves the current buffer being used at the passed key
 - (VVBuffer *) bufferForInputImageKey:(NSString *)k;
 - (VVBuffer *) bufferForInputAudioKey:(NSString *)k;
-- (void) purgeInputGLTextures;
-///	applies the passed value to the input with the passed key
-/**
-@param n the value you want to pass, as an ISFAttribVal union
-@param k the key of the input you want to pass the value to
-*/
-- (void) setValue:(ISFAttribVal)n forInputKey:(NSString *)k;
-///	applies the passed value to the input with the passed key
-/**
-@param n the value you want to pass, as an NSObject of some sort.  if it's a color, pass NSColor- if it's a point, pass an NSValue created from an NSPoint- if it's an image, pass a VVBuffer- else, pass an NSNumber.
-@param k the key of the input you want to pass the value to.
-*/
-- (void) setNSObjectVal:(id)n forInputKey:(NSString *)k;
-///	returns an array with all the inputs matching the passed type (an array of ISFAttrib instances)
-/**
-@param t the type of attributes you want returned
-*/
-- (NSMutableArray *) inputsOfType:(ISFAttribValType)t;
-///	returns a ptr to the ISFAttrib instance used by this scene which describes the input at the passed key
-- (ISFAttrib *) attribForInputWithKey:(NSString *)k;
+
 
 - (ISFTargetBuffer *) findPersistentBufferNamed:(NSString *)n;
 - (ISFTargetBuffer *) findTempBufferNamed:(NSString *)n;
@@ -134,41 +117,29 @@ extern NSString			*_ISFMacro2DRectBiasString;	//	same as above, slightly differe
 @param d a mutable dictionary, into which the output of the various render passes will be stored
 */
 - (void) renderToBuffer:(VVBuffer *)b sized:(VVSIZE)s renderTime:(double)t passDict:(NSMutableDictionary *)d;
+
+
+@property (assign,readwrite) BOOL throwExceptions;
+///    returns a MutLockArray (from VVBasics) of all the image-type (ISFAT_Image) ISFAttrib instances, one for each input in the currently loaded ISF file
+@property (readonly) MutLockArray *imageInputs;
+@property (readonly) MutLockArray *audioInputs;
+@property (readonly) int imageInputsCount;
+@property (readonly) int audioInputsCount;
+
+#warning mto-anomes: This is a copy of ISFSceneBase jsonString, it could be removed !
+@property (readonly) NSString *jsonSource;
+
+
+#pragma mark - Could be private ?
+
 - (void) render;
 
 - (void) _assembleShaderSource;
 - (NSMutableString *) _assembleShaderSource_VarDeclarations;
 - (NSMutableDictionary *) _assembleSubstitutionDict;
 - (void) _clearImageImports;
-
-@property (assign,readwrite) BOOL throwExceptions;
-///	returns the path of the currently-loaded ISF file
-@property (readonly) NSString *filePath;
-///	returns the name of the currently-loaded ISF file
-@property (readonly) NSString *fileName;
-///	returns a string with the description (pulled from the JSON blob) of the ISF file
-@property (readonly) NSString *fileDescription;
-///	returns a string with the credits (pulled from the JSON blob) of the ISF file
-@property (readonly) NSString *fileCredits;
-@property (readonly) ISFFunctionality fileFunctionality;
-///	returns an array with the category names (as NSStrings) of this ISF file.  pulled from the JSON blob.
-@property (readonly) NSMutableArray *categoryNames;
-///	returns a MutLockArray (from VVBasics) of ISFAttrib instances, one for each of the inputs
-@property (readonly) MutLockArray *inputs;
-///	returns a MutLockArray (from VVBasics) of all the image-type (ISFAT_Image) ISFAttrib instances, one for each input in the currently loaded ISF file
-@property (readonly) MutLockArray *imageInputs;
-@property (readonly) MutLockArray *audioInputs;
-@property (readonly) VVSIZE renderSize;
-@property (readonly) int passCount;
-@property (readonly) NSArray *passTargetNames;
-@property (readonly) int imageInputsCount;
-@property (readonly) int audioInputsCount;
-@property (readonly) NSString *jsonSource;
-@property (readonly) NSString *jsonString;
-@property (readonly) NSString *vertShaderSource;
-@property (readonly) NSString *fragShaderSource;
-
 - (void) _renderLock;
 - (void) _renderUnlock;
-
+- (void) purgeInputGLTextures;
 @end
+
