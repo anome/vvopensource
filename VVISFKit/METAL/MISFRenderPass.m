@@ -2,6 +2,8 @@
 #import <VVBasics/VVBasics.h>
 
 @implementation MISFRenderPass
+@synthesize targetName;
+@synthesize targetIsFloat;
 
 + (id)create
 {
@@ -16,6 +18,7 @@
     if( self = [super init] )
     {
         targetName = nil;
+        targetIsFloat = NO;
         return self;
     }
     [self release];
@@ -26,7 +29,5 @@
     VVRELEASE(targetName);
     [super dealloc];
 }
-
-@synthesize targetName;
 
 @end

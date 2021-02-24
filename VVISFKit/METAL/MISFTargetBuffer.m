@@ -50,7 +50,6 @@
         name = nil;
         texture = nil;
         bufferSize = [MISFSize new];
-        floatFlag = NO;
         return self;
     }
     [self release];
@@ -62,21 +61,6 @@
     VVRELEASE(texture);
     VVRELEASE(bufferSize);
     [super dealloc];
-}
-
-- (void)setFloatFlag:(BOOL)n
-{
-    // NSLog(@"%s ... %d",__func__,n);
-    BOOL changed = (floatFlag == n) ? NO : YES;
-    if( !changed )
-    {
-        return;
-    }
-    floatFlag = n;
-}
-- (BOOL)floatFlag
-{
-    return floatFlag;
 }
 
 - (void)clearBuffer
@@ -101,7 +85,6 @@
         if( texture.width != bufferSize.width || texture.height != bufferSize.height )
         {
             VVRELEASE(texture);
-#warning mto-anomes: float flag is ignored (no check and no allocation for it)
             texture = [self createTextureForDevice:device
                                              width:bufferSize.width
                                             height:bufferSize.height

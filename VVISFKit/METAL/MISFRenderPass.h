@@ -1,12 +1,10 @@
 
 
 @interface MISFRenderPass : NSObject
-{
-    NSString *targetName;
-}
 
 + (id)create;
 
 @property(retain, readwrite) NSString *targetName;
+@property(readwrite, nonatomic) BOOL targetIsFloat;
 
 @end

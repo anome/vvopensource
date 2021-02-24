@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
     id<MTLTexture> texture;
     MISFSize *bufferSize;
     NSString *name; //    the name of this buffer
-    BOOL floatFlag; //    NO by default. if YES, makes float textures!
 }
 
 + (id)createForDevice:(id<MTLDevice>)theDevice pixelFormat:(MTLPixelFormat)thePixelFormat;
@@ -23,9 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
           pixelFormat:(MTLPixelFormat)thePixelFormat
             fromModel:(MISFModelBuffer *)model;
 
-#warning mto-anomes: float flag not implemented
-- (void)setFloatFlag:(BOOL)n;
-- (BOOL)floatFlag;
 // Used if the buffer should be temporary
 - (void)clearBuffer;
 - (id<MTLTexture>)getBufferTexture;

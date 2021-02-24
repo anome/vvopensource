@@ -60,8 +60,8 @@
 //    fileName = @"Neon";
 //    fileName = @"City Lights";
 //    fileName = @"Stripes";
-    fileName = @"Seascape";
-//    fileName = @"Constellations_m";
+//    fileName = @"Seascape";
+    fileName = @"Constellations_m";
 //    fileName = @"Digital Clock";
 //    fileName = @"Controlled Chaos";
 //    fileName = @"Disc Spin";

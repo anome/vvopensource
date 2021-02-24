@@ -13,6 +13,9 @@
 #import <DDMathParser/DDMathParser.h>
 #import <MetalKit/MetalKit.h>
 
+// Not quite the same bit-wise than GL implementation, but seems to work just fine
+const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
+
 @implementation ISFMetalScene
 {
     NSMutableDictionary<NSString *, MISFTargetBuffer *> *persistentBuffers;
@@ -230,7 +233,10 @@
         {
             bufferRequiresEval = YES;
         }
-        MISFTargetBuffer *newBuffer = [MISFTargetBuffer createForDevice:device pixelFormat:pixelFormat fromModel:model];
+        MTLPixelFormat pixelFormatForBuffer = model.floatFlag ? PIXEL_FORMAT_FOR_FLOAT_TARGET : pixelFormat;
+        MISFTargetBuffer *newBuffer = [MISFTargetBuffer createForDevice:device
+                                                            pixelFormat:pixelFormatForBuffer
+                                                              fromModel:model];
         [persistentBuffers setValue:newBuffer forKey:newBuffer.name];
     }
 
@@ -239,8 +245,7 @@
     {
         MISFRenderPass *newPass = [MISFRenderPass create];
         newPass.targetName = model.targetBuffer.name;
-        [passes addObject:newPass];
-
+        newPass.targetIsFloat = model.targetBuffer.floatFlag;
         MISFTargetBuffer *targetForPass = [persistentBuffers objectForKey:newPass.targetName];
 
         // Create one if needed
@@ -250,8 +255,9 @@
             {
                 bufferRequiresEval = YES;
             }
+            MTLPixelFormat pixelFormatForBuffer = model.targetBuffer.floatFlag ? PIXEL_FORMAT_FOR_FLOAT_TARGET : pixelFormat;
             MISFTargetBuffer *newBuffer = [MISFTargetBuffer createForDevice:device
-                                                                pixelFormat:pixelFormat
+                                                                pixelFormat:pixelFormatForBuffer
                                                                   fromModel:model.targetBuffer];
             if( model.targetBuffer.persistent )
             {
@@ -262,6 +268,8 @@
                 [tempBuffers setValue:newBuffer forKey:newBuffer.name];
             }
         }
+
+        [passes addObject:newPass];
     }
 
     //    if at this point there aren't any passes, add an empty pass
@@ -402,9 +410,21 @@
     renderers = [NSMutableArray new];
     for( int n = 0; n < passes.count; n++ )
     {
+        // TODO: error return from misfrenderer
+        MTLPixelFormat pixelFormatForRenderer = passes[n].targetIsFloat ? PIXEL_FORMAT_FOR_FLOAT_TARGET : pixelFormat;
         MISFRenderer *renderer = [[MISFRenderer alloc] initWithDevice:device
-                                                     colorPixelFormat:pixelFormat
+                                                     colorPixelFormat:pixelFormatForRenderer
                                                     forPreloadedMedia:preloadedMedia];
+        if( renderer == nil )
+        {
+            if( errorPtr )
+            {
+                NSDictionary *userInfo =
+                    @{@"Shader could not compile" : [NSString stringWithFormat:@"Shader could not be compiled"]};
+                *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFSceneError userInfo:userInfo];
+            }
+            return NO;
+        }
         [renderers addObject:renderer];
     }
 
