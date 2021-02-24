@@ -432,8 +432,6 @@ Translation goes in three steps:
                   replaceOccurences:@"float2 vv_FragNormCoord = float2(0.0);"
                          withString:@""
                                      "float2 vv_FragNormCoord = isf_FragNormCoord;\n"
-                                     // clipSpacePosition in intermediate doesnt have the same coordinates than
-                                     // glsl, so flip it
                                      "float4 gl_FragCoord = "
                                      "float4(isf_outputTexture.get_width()*in.textureCoordinate.x, "
                                      "isf_outputTexture.get_height()*(1.0-in.textureCoordinate.y), 0, 0);\n"
@@ -561,6 +559,9 @@ Translation goes in three steps:
                                      "out.clipSpacePosition.xy = pixelSpacePosition / (viewportSize / 2.0);\n"
                                      "out.clipSpacePosition.z = 0.0;\n"
                                      "out.clipSpacePosition.w = 1.0;\n"
+                                     "// Flip clipSpacePosition to match GL (gl_Position). Will be de-inverted just "
+                                     "before return\n"
+                                     "out.clipSpacePosition.y = out.clipSpacePosition.y * -1.0;\n"
                                      "out.textureCoordinate = vertexArray[vertexID].textureCoordinate;\n"
                                      ""
                            onString:intermediate
@@ -593,9 +594,20 @@ Translation goes in three steps:
         {
             return nil;
         }
+
+        intermediate = [intermediate
+            stringByReplacingOccurrencesOfString:@"return out"
+                                      withString:
+                                          @""
+                                           "// De-flip clipSpacePosition (gl_Position) for fragment\n"
+                                           "out.clipSpacePosition.y = out.clipSpacePosition.y * -1.0;\n return out"
+
+        ];
+
 #warning mto-anomes: gl_FragCoord is not defined here (it is in fragment). maybe look for an example online that uses it? or add access to RENDERSIZE manually in the buffer to make sure we can access proper size
         intermediate = [intermediate stringByReplacingOccurrencesOfString:@"out.gl_Position"
                                                                withString:@"out.clipSpacePosition"];
+
         break;
     }
     }
