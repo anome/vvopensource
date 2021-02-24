@@ -21,6 +21,13 @@
     NSMutableArray<ISFAttrib *> *importedImages;
     NSMutableArray<MISFRenderPass *> *passes;
     NSMutableArray<MISFRenderer *> *renderers;
+    // Contains inputs secretly added for rendering such as persistent and temp buffers. Adding those as inputs
+    // simplifies ISFRenderer logic
+    MutLockArray *privateInputs;
+// !! This array is a concatenation of arrays 'inputs' and 'privateInputs'. It's created once the two arrays have all
+// their values. After creation, inputs and privateInputs should not change ! (and have no reason to)
+#warning mto-anomes: possibly dangerous workaround. Nothing prevents user/developer to modify inputs or privateInputs
+    MutLockArray *publicAndPrivateInputs;
     MISFTextureRenderer *textureRenderer;
     MutLockArray *importedImageInputs;
     VVStopwatch *swatch;  //    used to pass time to shaders
@@ -74,6 +81,8 @@
         importedImages = [NSMutableArray<ISFAttrib *> new];
         renderers = nil;
         inputs = [[MutLockArray alloc] init];
+        privateInputs = [[MutLockArray alloc] init];
+        publicAndPrivateInputs = [[MutLockArray alloc] init];
         importedImageInputs = [[MutLockArray alloc] init];
         swatch = [[VVStopwatch alloc] init];
         BOOL allocateSuccess = [self allocateGpuResourcesWithError:errorPtr];
@@ -189,7 +198,9 @@
 
 - (void)dealloc
 {
+    VVRELEASE(publicAndPrivateInputs);
     VVRELEASE(inputs);
+    VVRELEASE(privateInputs);
     VVRELEASE(swatch);
     VVRELEASE(persistentBuffers);
     VVRELEASE(tempBuffers);
@@ -256,7 +267,7 @@
     //    if at this point there aren't any passes, add an empty pass
     if( [passes count] < 1 )
     {
-        NSString *MISF_SECRET_SINGLE_PASS_TARGET = @"misfsecret_SinglePassTarget";
+        NSString *MISF_SECRET_SINGLE_PASS_TARGET = @"misf_SinglePassTarget";
         MISFRenderPass *renderPass = [MISFRenderPass create];
         MISFTargetBuffer *targetBufferForPass = [MISFTargetBuffer createForDevice:device pixelFormat:pixelFormat];
         [targetBufferForPass setName:MISF_SECRET_SINGLE_PASS_TARGET];
@@ -341,7 +352,7 @@
     // Metal Resources allocation starts here
     textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device colorPixelFormat:pixelFormat];
 
-    // Inject all buffers as inputs...
+    // Inject all buffers as private inputs...
     for( NSString *bufferKey in tempBuffers )
     {
         ISFAttrib *newAttrib = nil;
@@ -362,7 +373,7 @@
         // This will be filled at render time (because texture sizes might change)
         currentVal.metalImageVal = nil;
         [newAttrib setCurrentVal:currentVal];
-        [inputs lockAddObject:newAttrib];
+        [privateInputs lockAddObject:newAttrib];
     }
 
     for( NSString *bufferKey in persistentBuffers )
@@ -385,16 +396,8 @@
         // This will be filled at render time (because texture sizes might change)
         currentVal.metalImageVal = nil;
         [newAttrib setCurrentVal:currentVal];
-        [inputs lockAddObject:newAttrib];
+        [privateInputs lockAddObject:newAttrib];
     }
-
-    //    if the file had all of the requirements for a transition, set the functionality
-#warning mto-anomes METAL IGNORE
-    /*
-     if ((hasTransitionStart == YES)&&(hasTransitionEnd == YES)&&(hasTransitionProgress == YES))    {
-     fileFunctionality = ISFF_Transition;
-     }
-     */
 
     renderers = [NSMutableArray new];
     for( int n = 0; n < passes.count; n++ )
@@ -405,6 +408,9 @@
         [renderers addObject:renderer];
     }
 
+    // at this point, inputs will no longer change so create an array containing everyone
+    [publicAndPrivateInputs lockAddObjectsFromArray:inputs];
+    [publicAndPrivateInputs lockAddObjectsFromArray:privateInputs];
     [self resetTimer];
     return YES;
 }
@@ -477,14 +483,14 @@
         id<MTLTexture> texture = [tempBuffers[bufferKey] getBufferTexture];
         ISFAttribVal imageVal;
         imageVal.metalImageVal = texture;
-        [self setValue:imageVal forInputKey:bufferKey];
+        [self setValue:imageVal forPrivateInputKey:bufferKey];
     }
     for( NSString *bufferKey in persistentBuffers )
     {
         id<MTLTexture> texture = [persistentBuffers[bufferKey] getBufferTexture];
         ISFAttribVal imageVal;
         imageVal.metalImageVal = texture;
-        [self setValue:imageVal forInputKey:bufferKey];
+        [self setValue:imageVal forPrivateInputKey:bufferKey];
     }
 
     // --------- Set buffer for Built-in ISF values
@@ -549,7 +555,10 @@
             id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
             passCommandBuffer.label =
                 [NSString stringWithFormat:@"Pass command buffer N %i [Frame %i]", index, renderFrameIndex];
-            [renderer renderIsfOnTexture:passOutputTexture onCommandBuffer:passCommandBuffer withInputs:inputs];
+
+            [renderer renderIsfOnTexture:passOutputTexture
+                         onCommandBuffer:passCommandBuffer
+                              withInputs:publicAndPrivateInputs];
             [passCommandBuffer commit];
             if( isLastPass )
             {
@@ -585,7 +594,9 @@
             renderer.builtin_RENDERSIZE = NSMakeSize(passOutputTexture.width, passOutputTexture.height);
             id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
             passCommandBuffer.label = @"ISF Single pass command Buffer";
-            [renderer renderIsfOnTexture:passOutputTexture onCommandBuffer:passCommandBuffer withInputs:inputs];
+            [renderer renderIsfOnTexture:passOutputTexture
+                         onCommandBuffer:passCommandBuffer
+                              withInputs:publicAndPrivateInputs];
             [passCommandBuffer commit];
             [textureRenderer renderFromTexture:passOutputTexture inTexture:outputTexture onCommandBuffer:commandBuffer];
         }
@@ -600,6 +611,24 @@
 }
 
 #pragma mark Inputs
+
+- (void)setValue:(ISFAttribVal)n forPrivateInputKey:(NSString *)k
+{
+    if( k == nil )
+    {
+        return;
+    }
+    [privateInputs rdlock];
+    for( ISFAttrib *attrib in [privateInputs array] )
+    {
+        if( [[attrib attribName] isEqualToString:k] )
+        {
+            [attrib setCurrentVal:n];
+            break;
+        }
+    }
+    [privateInputs unlock];
+}
 
 - (void)setValue:(ISFAttribVal)n forInputKey:(NSString *)k
 {
