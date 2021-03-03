@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -642,11 +642,25 @@
 		5609D4A025E6A14000A331E2 /* ISFSupportTest.vs in Resources */ = {isa = PBXBuildFile; fileRef = 5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */; };
 		5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5632A1BB25E6B703005B38D8 /* inputImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5632A1BA25E6B701005B38D8 /* inputImage.jpg */; };
+		5632A1C225E7F3DE005B38D8 /* MoltenVKShaderConverter in Resources */ = {isa = PBXBuildFile; fileRef = 5632A1C125E7F3DE005B38D8 /* MoltenVKShaderConverter */; };
+		564C56BC25EF9F4600DD8076 /* MoltenVKShaderConverter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 564C56BB25EF9F4600DD8076 /* MoltenVKShaderConverter.xcframework */; };
+		564C56C125EF9F7000DD8076 /* SPIRVConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C56BD25EF9F6F00DD8076 /* SPIRVConversion.h */; };
+		564C56C225EF9F7000DD8076 /* GLSLConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C56BE25EF9F6F00DD8076 /* GLSLConversion.h */; };
+		564C56C325EF9F7000DD8076 /* GLSLToSPIRVConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C56BF25EF9F7000DD8076 /* GLSLToSPIRVConverter.h */; };
+		564C56C425EF9F7000DD8076 /* SPIRVToMSLConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C56C025EF9F7000DD8076 /* SPIRVToMSLConverter.h */; };
+		564C907025EFA66900DD8076 /* MoltenVKShaderConverterTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C906C25EFA66900DD8076 /* MoltenVKShaderConverterTool.h */; };
+		564C907125EFA66900DD8076 /* OSSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 564C906D25EFA66900DD8076 /* OSSupport.mm */; };
+		564C907225EFA66900DD8076 /* MoltenVKShaderConverterTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 564C906E25EFA66900DD8076 /* MoltenVKShaderConverterTool.cpp */; };
+		564C907325EFA66900DD8076 /* OSSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C906F25EFA66900DD8076 /* OSSupport.h */; };
+		564C907925EFA68D00DD8076 /* MVKOSExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 564C907425EFA68D00DD8076 /* MVKOSExtensions.mm */; };
+		564C907A25EFA68D00DD8076 /* MVKStrings.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907525EFA68D00DD8076 /* MVKStrings.h */; };
+		564C907B25EFA68D00DD8076 /* MVKLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907625EFA68D00DD8076 /* MVKLogging.h */; };
+		564C907C25EFA68E00DD8076 /* MVKOSExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907725EFA68D00DD8076 /* MVKOSExtensions.h */; };
+		564C907D25EFA68E00DD8076 /* MVKCommonEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907825EFA68D00DD8076 /* MVKCommonEnvironment.h */; };
 		5653F2E725E4FA3000CF6311 /* emptyMain.fs in Resources */ = {isa = PBXBuildFile; fileRef = 5653F2E625E4FA3000CF6311 /* emptyMain.fs */; };
 		565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B225D5323B0048C4DD /* isfLogoBW.jpg */; };
 		565D06B625D532B00048C4DD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
-		565D06BA25D544770048C4DD /* glslcc in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B925D544770048C4DD /* glslcc */; };
 		56BD40DE25B5F007002524CE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
 		56BD410025B5F058002524CE /* MISFSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E325B5F054002524CE /* MISFSize.m */; };
@@ -659,7 +673,7 @@
 		56BD410725B5F058002524CE /* MISFMetalModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40EA25B5F055002524CE /* MISFMetalModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BD410825B5F058002524CE /* MISFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40EB25B5F055002524CE /* MISFModel.m */; };
 		56BD410925B5F058002524CE /* MISFPreloadedMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40EC25B5F055002524CE /* MISFPreloadedMedia.m */; };
-		56BD410A25B5F058002524CE /* MISFShaderConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40ED25B5F055002524CE /* MISFShaderConverter.m */; };
+		56BD410A25B5F058002524CE /* MISFShaderConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40ED25B5F055002524CE /* MISFShaderConverter.mm */; };
 		56BD410B25B5F058002524CE /* MISFTextureRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40EE25B5F055002524CE /* MISFTextureRenderer.h */; };
 		56BD410C25B5F058002524CE /* MISFRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40EF25B5F055002524CE /* MISFRenderer.h */; };
 		56BD410D25B5F058002524CE /* MISFRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40F025B5F055002524CE /* MISFRenderer.m */; };
@@ -2459,9 +2473,23 @@
 		5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ISFSupportTest.vs; sourceTree = "<group>"; };
 		5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISFSceneBase.h; sourceTree = "<group>"; };
 		5632A1BA25E6B701005B38D8 /* inputImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = inputImage.jpg; sourceTree = "<group>"; };
+		5632A1C125E7F3DE005B38D8 /* MoltenVKShaderConverter */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = MoltenVKShaderConverter; sourceTree = "<group>"; };
+		564C56BB25EF9F4600DD8076 /* MoltenVKShaderConverter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MoltenVKShaderConverter.xcframework; path = ../external/MoltenVK/Package/Release/MoltenVKShaderConverter/MoltenVKShaderConverter.xcframework; sourceTree = "<group>"; };
+		564C56BD25EF9F6F00DD8076 /* SPIRVConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPIRVConversion.h; path = ../external/MoltenVK/Package/Release/MoltenVKShaderConverter/include/MoltenVKShaderConverter/SPIRVConversion.h; sourceTree = "<group>"; };
+		564C56BE25EF9F6F00DD8076 /* GLSLConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLSLConversion.h; path = ../external/MoltenVK/Package/Release/MoltenVKShaderConverter/include/MoltenVKShaderConverter/GLSLConversion.h; sourceTree = "<group>"; };
+		564C56BF25EF9F7000DD8076 /* GLSLToSPIRVConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLSLToSPIRVConverter.h; path = ../external/MoltenVK/Package/Release/MoltenVKShaderConverter/include/MoltenVKShaderConverter/GLSLToSPIRVConverter.h; sourceTree = "<group>"; };
+		564C56C025EF9F7000DD8076 /* SPIRVToMSLConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPIRVToMSLConverter.h; path = ../external/MoltenVK/Package/Release/MoltenVKShaderConverter/include/MoltenVKShaderConverter/SPIRVToMSLConverter.h; sourceTree = "<group>"; };
+		564C906C25EFA66900DD8076 /* MoltenVKShaderConverterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoltenVKShaderConverterTool.h; path = ../external/MoltenVK/MoltenVKShaderConverter/MoltenVKShaderConverterTool/MoltenVKShaderConverterTool.h; sourceTree = "<group>"; };
+		564C906D25EFA66900DD8076 /* OSSupport.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OSSupport.mm; path = ../external/MoltenVK/MoltenVKShaderConverter/MoltenVKShaderConverterTool/OSSupport.mm; sourceTree = "<group>"; };
+		564C906E25EFA66900DD8076 /* MoltenVKShaderConverterTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MoltenVKShaderConverterTool.cpp; path = ../external/MoltenVK/MoltenVKShaderConverter/MoltenVKShaderConverterTool/MoltenVKShaderConverterTool.cpp; sourceTree = "<group>"; };
+		564C906F25EFA66900DD8076 /* OSSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSSupport.h; path = ../external/MoltenVK/MoltenVKShaderConverter/MoltenVKShaderConverterTool/OSSupport.h; sourceTree = "<group>"; };
+		564C907425EFA68D00DD8076 /* MVKOSExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MVKOSExtensions.mm; path = ../external/MoltenVK/Common/MVKOSExtensions.mm; sourceTree = "<group>"; };
+		564C907525EFA68D00DD8076 /* MVKStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKStrings.h; path = ../external/MoltenVK/Common/MVKStrings.h; sourceTree = "<group>"; };
+		564C907625EFA68D00DD8076 /* MVKLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKLogging.h; path = ../external/MoltenVK/Common/MVKLogging.h; sourceTree = "<group>"; };
+		564C907725EFA68D00DD8076 /* MVKOSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKOSExtensions.h; path = ../external/MoltenVK/Common/MVKOSExtensions.h; sourceTree = "<group>"; };
+		564C907825EFA68D00DD8076 /* MVKCommonEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKCommonEnvironment.h; path = ../external/MoltenVK/Common/MVKCommonEnvironment.h; sourceTree = "<group>"; };
 		5653F2E625E4FA3000CF6311 /* emptyMain.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = emptyMain.fs; sourceTree = "<group>"; };
 		565D06B225D5323B0048C4DD /* isfLogoBW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogoBW.jpg; sourceTree = "<group>"; };
-		565D06B925D544770048C4DD /* glslcc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = glslcc; sourceTree = "<group>"; };
 		56BD40DD25B5F006002524CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		56BD40DF25B5F00C002524CE /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		56BD40E325B5F054002524CE /* MISFSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFSize.m; path = METAL/MISFSize.m; sourceTree = "<group>"; };
@@ -2474,7 +2502,7 @@
 		56BD40EA25B5F055002524CE /* MISFMetalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFMetalModel.h; path = METAL/MISFMetalModel.h; sourceTree = "<group>"; };
 		56BD40EB25B5F055002524CE /* MISFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFModel.m; path = METAL/MISFModel.m; sourceTree = "<group>"; };
 		56BD40EC25B5F055002524CE /* MISFPreloadedMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFPreloadedMedia.m; path = METAL/MISFPreloadedMedia.m; sourceTree = "<group>"; };
-		56BD40ED25B5F055002524CE /* MISFShaderConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFShaderConverter.m; path = METAL/MISFShaderConverter.m; sourceTree = "<group>"; };
+		56BD40ED25B5F055002524CE /* MISFShaderConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MISFShaderConverter.mm; path = METAL/MISFShaderConverter.mm; sourceTree = "<group>"; };
 		56BD40EE25B5F055002524CE /* MISFTextureRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFTextureRenderer.h; path = METAL/MISFTextureRenderer.h; sourceTree = "<group>"; };
 		56BD40EF25B5F055002524CE /* MISFRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFRenderer.h; path = METAL/MISFRenderer.h; sourceTree = "<group>"; };
 		56BD40F025B5F055002524CE /* MISFRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFRenderer.m; path = METAL/MISFRenderer.m; sourceTree = "<group>"; };
@@ -3215,6 +3243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564C56BC25EF9F4600DD8076 /* MoltenVKShaderConverter.xcframework in Frameworks */,
 				56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */,
 				56BD40DE25B5F007002524CE /* Metal.framework in Frameworks */,
 				964FF2991981B5DE00CCC808 /* VVBufferPool.framework in Frameworks */,
@@ -4215,6 +4244,18 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		564C56BA25EF9F0B00DD8076 /* MoltenVK */ = {
+			isa = PBXGroup;
+			children = (
+				564C56BB25EF9F4600DD8076 /* MoltenVKShaderConverter.xcframework */,
+				564C56BE25EF9F6F00DD8076 /* GLSLConversion.h */,
+				564C56BF25EF9F7000DD8076 /* GLSLToSPIRVConverter.h */,
+				564C56BD25EF9F6F00DD8076 /* SPIRVConversion.h */,
+				564C56C025EF9F7000DD8076 /* SPIRVToMSLConverter.h */,
+			);
+			name = MoltenVK;
+			sourceTree = "<group>";
+		};
 		56BD40E225B5F041002524CE /* METAL */ = {
 			isa = PBXGroup;
 			children = (
@@ -4433,9 +4474,19 @@
 		56BD428625B5FDC7002524CE /* Converter */ = {
 			isa = PBXGroup;
 			children = (
+				564C906E25EFA66900DD8076 /* MoltenVKShaderConverterTool.cpp */,
+				564C906C25EFA66900DD8076 /* MoltenVKShaderConverterTool.h */,
+				564C906F25EFA66900DD8076 /* OSSupport.h */,
+				564C906D25EFA66900DD8076 /* OSSupport.mm */,
+				564C907825EFA68D00DD8076 /* MVKCommonEnvironment.h */,
+				564C907625EFA68D00DD8076 /* MVKLogging.h */,
+				564C907725EFA68D00DD8076 /* MVKOSExtensions.h */,
+				564C907425EFA68D00DD8076 /* MVKOSExtensions.mm */,
+				564C907525EFA68D00DD8076 /* MVKStrings.h */,
+				564C56BA25EF9F0B00DD8076 /* MoltenVK */,
 				56BD40FA25B5F057002524CE /* MISFShaderConverter.h */,
-				56BD40ED25B5F055002524CE /* MISFShaderConverter.m */,
-				565D06B925D544770048C4DD /* glslcc */,
+				56BD40ED25B5F055002524CE /* MISFShaderConverter.mm */,
+				5632A1C125E7F3DE005B38D8 /* MoltenVKShaderConverter */,
 			);
 			name = Converter;
 			sourceTree = "<group>";
@@ -5263,7 +5314,9 @@
 			files = (
 				56BD410C25B5F058002524CE /* MISFRenderer.h in Headers */,
 				9660DC7819828687000C881E /* VVISFKit.h in Headers */,
+				564C907D25EFA68E00DD8076 /* MVKCommonEnvironment.h in Headers */,
 				56BD410B25B5F058002524CE /* MISFTextureRenderer.h in Headers */,
+				564C907B25EFA68D00DD8076 /* MVKLogging.h in Headers */,
 				964FF2AD1981B62400CCC808 /* ISFAttrib.h in Headers */,
 				964FF2AF1981B62400CCC808 /* ISFFileManager.h in Headers */,
 				56BD411725B5F058002524CE /* MISFShaderConverter.h in Headers */,
@@ -5273,17 +5326,25 @@
 				56BD410E25B5F058002524CE /* MISFErrorCodes.h in Headers */,
 				964FF2BA1981B62400CCC808 /* ISFRenderPass.h in Headers */,
 				56BD411325B5F058002524CE /* MISFModel.h in Headers */,
+				564C56C425EF9F7000DD8076 /* SPIRVToMSLConverter.h in Headers */,
 				56BD410725B5F058002524CE /* MISFMetalModel.h in Headers */,
 				56BD411925B5F058002524CE /* MISFAttribBufferDefinition.h in Headers */,
 				5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */,
 				56BD411525B5F058002524CE /* MISFInputDataType.h in Headers */,
 				56BD410625B5F058002524CE /* FileTools.h in Headers */,
+				564C907025EFA66900DD8076 /* MoltenVKShaderConverterTool.h in Headers */,
+				564C56C325EF9F7000DD8076 /* GLSLToSPIRVConverter.h in Headers */,
+				564C56C125EF9F7000DD8076 /* SPIRVConversion.h in Headers */,
 				964FF2BC1981B62400CCC808 /* ISFStringAdditions.h in Headers */,
 				56BD411125B5F058002524CE /* MISFTargetBuffer.h in Headers */,
 				56BD411B25B5F058002524CE /* MISFRenderPass.h in Headers */,
+				564C907C25EFA68E00DD8076 /* MVKOSExtensions.h in Headers */,
 				56BD411025B5F058002524CE /* MISFSize.h in Headers */,
+				564C907325EFA66900DD8076 /* OSSupport.h in Headers */,
+				564C907A25EFA68D00DD8076 /* MVKStrings.h in Headers */,
 				56BD410425B5F058002524CE /* MISFInputsBuffer.h in Headers */,
 				56BD410225B5F058002524CE /* RegexTools.h in Headers */,
+				564C56C225EF9F7000DD8076 /* GLSLConversion.h in Headers */,
 				1AE0C96A1BAEBD1F00941BEF /* ISFObjectAdditions.h in Headers */,
 				964FF2BE1981B62400CCC808 /* ISFTargetBuffer.h in Headers */,
 			);
@@ -6793,9 +6854,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				565D06BA25D544770048C4DD /* glslcc in Resources */,
 				964FF2841981B5AF00CCC808 /* InfoPlist.strings in Resources */,
 				964FF2B71981B62400CCC808 /* ISFGLScenePassthru.vs in Resources */,
+				5632A1C225E7F3DE005B38D8 /* MoltenVKShaderConverter in Resources */,
 				1A8A19971C15E09F0096BCB8 /* ISF_ES_Compatibility.txt in Resources */,
 				964FF2B11981B62400CCC808 /* ISFGLMacro2D.txt in Resources */,
 				964FF2B21981B62400CCC808 /* ISFGLMacro2DBias.txt in Resources */,
@@ -7380,18 +7441,21 @@
 				56BD411825B5F058002524CE /* MISFMetalModel.m in Sources */,
 				56BD411C25B5F058002524CE /* FileTools.m in Sources */,
 				56BD410325B5F058002524CE /* MISFInputsBuffer.m in Sources */,
+				564C907225EFA66900DD8076 /* MoltenVKShaderConverterTool.cpp in Sources */,
 				56BD410F25B5F058002524CE /* MISFErrorCodes.m in Sources */,
 				56BD410925B5F058002524CE /* MISFPreloadedMedia.m in Sources */,
 				56BD410825B5F058002524CE /* MISFModel.m in Sources */,
 				964FF2B01981B62400CCC808 /* ISFFileManager.m in Sources */,
 				56BD411425B5F058002524CE /* MISFAttribBufferDefinition.m in Sources */,
 				964FF2B61981B62400CCC808 /* ISFGLScene.m in Sources */,
+				564C907125EFA66900DD8076 /* OSSupport.mm in Sources */,
 				56BD410D25B5F058002524CE /* MISFRenderer.m in Sources */,
 				56BD411A25B5F058002524CE /* RegexTools.m in Sources */,
 				1AE0C96B1BAEBD1F00941BEF /* ISFObjectAdditions.m in Sources */,
 				56BD410525B5F058002524CE /* MISFTextureRenderer.m in Sources */,
 				56BD417D25B5F4F7002524CE /* ISFMetalScene.m in Sources */,
-				56BD410A25B5F058002524CE /* MISFShaderConverter.m in Sources */,
+				56BD410A25B5F058002524CE /* MISFShaderConverter.mm in Sources */,
+				564C907925EFA68D00DD8076 /* MVKOSExtensions.mm in Sources */,
 				964FF2BB1981B62400CCC808 /* ISFRenderPass.m in Sources */,
 				964FF2BD1981B62400CCC808 /* ISFStringAdditions.m in Sources */,
 				56BD410125B5F058002524CE /* MISFTargetBuffer.m in Sources */,
@@ -8331,7 +8395,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = ISFonIOSTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.ISFonIOSTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8372,7 +8439,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = ISFonIOSTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.ISFonIOSTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8526,7 +8596,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = ISFQL_Renderer/Info.plist;
 				INSTALL_PATH = /Library/LaunchAgents;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vidvox.ISFQL-Renderer";
@@ -8569,7 +8642,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = ISFQL_Renderer/Info.plist;
 				INSTALL_PATH = /Library/LaunchAgents;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vidvox.ISFQL-Renderer";
@@ -8620,7 +8696,11 @@
 				INFOPLIST_FILE = VVBasics/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -8670,7 +8750,11 @@
 				INFOPLIST_FILE = VVBasics/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -8726,7 +8810,11 @@
 				INFOPLIST_FILE = VVBufferPool/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -8776,7 +8864,11 @@
 				INFOPLIST_FILE = VVBufferPool/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -8832,7 +8924,11 @@
 				INFOPLIST_FILE = DDMathParser/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -8882,7 +8978,11 @@
 				INFOPLIST_FILE = DDMathParser/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -8938,7 +9038,11 @@
 				INFOPLIST_FILE = VVISFKit/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -8988,7 +9092,11 @@
 				INFOPLIST_FILE = VVISFKit/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -9044,7 +9152,11 @@
 				INFOPLIST_FILE = VVUIToolbox/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -9094,7 +9206,11 @@
 				INFOPLIST_FILE = VVUIToolbox/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -9150,7 +9266,11 @@
 				INFOPLIST_FILE = VVOSC/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -9200,7 +9320,11 @@
 				INFOPLIST_FILE = VVOSC/Info.plist;
 				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DIPHONE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -9344,7 +9468,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = QCQL_Renderer/Info.plist;
 				INSTALL_PATH = /Library/LaunchAgents;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vidvox.QCQL-Renderer";
@@ -9387,7 +9514,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = QCQL_Renderer/Info.plist;
 				INSTALL_PATH = /Library/LaunchAgents;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vidvox.QCQL-Renderer";
@@ -9433,7 +9563,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = MultiClassXPC/Info.plist;
 				INSTALL_PATH = "@rpath";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -9477,7 +9611,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = MultiClassXPC/Info.plist;
 				INSTALL_PATH = "@rpath";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
@@ -9521,7 +9659,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = MultiClassXPCTestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.$(PRODUCT_NAME:rfc1034identifier)";
@@ -9558,7 +9699,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = MultiClassXPCTestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.$(PRODUCT_NAME:rfc1034identifier)";
@@ -9684,7 +9828,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "HapInAVF Test App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vidvox.HapInAVF-Test-App";
@@ -9727,7 +9874,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "HapInAVF Test App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vidvox.HapInAVF-Test-App";
@@ -9771,7 +9921,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = SyphonToAndFromVVBuffer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SyphonToAndFromVVBuffer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9808,7 +9962,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = SyphonToAndFromVVBuffer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SyphonToAndFromVVBuffer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9847,7 +10005,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = ArbitraryGLTextureToVVBuffer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.ArbitraryGLTextureToVVBuffer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9880,7 +10042,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = ArbitraryGLTextureToVVBuffer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.ArbitraryGLTextureToVVBuffer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -9936,7 +10102,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = MTCSender/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vidvox.MTCSender;
@@ -9974,7 +10143,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = MTCSender/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vidvox.MTCSender;
@@ -10017,7 +10189,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "PBOGLtoCPUtoGL Test App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.PBOGLtoCPUtoGL-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10054,7 +10229,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "PBOGLtoCPUtoGL Test App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.PBOGLtoCPUtoGL-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10096,7 +10274,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "TexRangeGLtoCPU Test App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.TexRangeGLtoCPU-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10133,7 +10314,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "TexRangeGLtoCPU Test App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.TexRangeGLtoCPU-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10175,7 +10359,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = GPUUploadBenchmark/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GPUUploadBenchmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10212,7 +10399,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = GPUUploadBenchmark/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GPUUploadBenchmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10254,7 +10444,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = GPUDownloadBenchmark/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GPUDownloadBenchmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10291,7 +10484,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = GPUDownloadBenchmark/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GPUDownloadBenchmark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10332,7 +10528,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = GLShaderSceneTestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GLShaderSceneTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10368,7 +10568,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = GLShaderSceneTestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.GLShaderSceneTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10417,7 +10621,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ISF Editor/ISF Editor-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = (
@@ -10467,7 +10674,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ISF Editor/ISF Editor-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = (
@@ -10574,7 +10784,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "VVISFKitTests Metal Regression/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -10629,7 +10843,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "VVISFKitTests Metal Regression/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -10664,7 +10882,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "ISFMetalScene Test App/ISFMetal Test App Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10693,7 +10914,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "ISFMetalScene Test App/ISFMetal Test App Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10728,7 +10952,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "QT and Hap Test App/QT and Hap Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10759,7 +10986,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "QT and Hap Test App/QT and Hap Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -10988,8 +11218,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/external/MoltenVK/**";
 				INFOPLIST_FILE = "VVISFKit/VVISFKit-Info.plist";
 				INSTALL_PATH = "@rpath";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/external/MoltenVK/Package/Release/**";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = VVISFKit;
@@ -11024,8 +11256,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/external/MoltenVK/**";
 				INFOPLIST_FILE = "VVISFKit/VVISFKit-Info.plist";
 				INSTALL_PATH = "@rpath";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/external/MoltenVK/Package/Release/**";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = VVISFKit;
@@ -11124,7 +11358,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "GLScene Test App/GLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11152,7 +11389,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "GLScene Test App/GLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11185,7 +11425,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "QCGLScene Test App/QCGLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11213,7 +11456,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "QCGLScene Test App/QCGLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11246,7 +11492,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "CIGLScene Test App/CIGLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11274,7 +11523,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "CIGLScene Test App/CIGLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11307,7 +11559,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "ISFGLScene Test App/ISFGLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11335,7 +11590,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "ISFGLScene Test App/ISFGLScene Test App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11406,7 +11664,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "OSCPingTester/OSCPingTester-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -11434,7 +11695,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "OSCPingTester/OSCPingTester-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vidvox.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

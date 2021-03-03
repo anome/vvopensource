@@ -1,0 +1,3 @@
+[submodule "external/MoltenVK"]
+	path = external/MoltenVK
+	url = git@github.com:anome/MoltenVK.git
