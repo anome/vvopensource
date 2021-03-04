@@ -698,12 +698,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="9" tickMarkPosition="above" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="s5s-6C-jNS"/>
                     </slider>
+                    <button verticalHuggingPriority="750" id="FY5-hH-8Sa">
+                        <rect key="frame" x="18" y="84" width="90" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S24-fm-VU1">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="137" y="-46"/>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
+                <outlet property="checkbox" destination="FY5-hH-8Sa" id="kFH-GL-2fa"/>
                 <outlet property="metalImageView" destination="7Go-XB-Zb4" id="IMp-96-pNi"/>
                 <outlet property="onSliderOneChange" destination="MDn-F7-Urf" id="TDW-zf-0zi"/>
                 <outlet property="onSliderThreeChange" destination="5z4-Nx-Sxq" id="k2L-Kb-11f"/>

@@ -15,6 +15,7 @@
     IBOutlet NSSlider *sliderFive;
     IBOutlet NSSlider *sliderInteger;
     IBOutlet NSPopUpButton *shaderSourceButton;
+    IBOutlet NSButton *checkbox;
 }
 
 - (void)renderCallback;

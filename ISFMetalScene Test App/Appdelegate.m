@@ -133,6 +133,11 @@
     //        }
     //
 
+    {
+        ISFAttribVal val;
+        val.boolVal = checkbox.integerValue ? YES : NO;
+        [isfScene setValue:val forInputKey:@"freeze"];
+    }
     isfScene.choosePassIndex = sliderTwo.intValue; // Disabled if you don't enable it manually
 
     {
