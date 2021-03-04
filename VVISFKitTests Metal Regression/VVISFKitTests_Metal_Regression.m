@@ -14,6 +14,7 @@
 @implementation VVISFKIT_METAL_Regression_Tests
 {
     NSArray<NSString *> *workingIsfs;
+     NSArray<NSString *> *IsfsneedingMinorChangesToWork;
     NSArray<NSString *> *workingIsfWithMinorChanges;
     NSArray<NSString *> *isfExpectedToParseFail;
     NSArray<NSString *> *isfExpectedToSpirvFail;
@@ -30,6 +31,7 @@
     workingIsfWithMinorChanges = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"workingWithMinorChanges"];
     isfExpectedToParseFail = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"expectParseFail"];
     isfExpectedToSpirvFail = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"expectSpirvFail"];
+    IsfsneedingMinorChangesToWork = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"needsMinorChangesToWork"];
     testDevice = MTLCreateSystemDefaultDevice();
     self.continueAfterFailure = NO;
 }
@@ -127,6 +129,17 @@
 - (void)testspirVForErrorShaders
 {
     for( NSString *filePath in isfExpectedToSpirvFail )
+    {
+        NSError *error;
+        MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];
+        XCTAssertNil(preloadedMedia, @"Parsing unexpectedly succeded for file %@ output %@", filePath, error);
+        XCTAssertNil(preloadedMedia, @"Transpilation unexpectedly succeded for filePath %@ output %@", filePath, error);
+    }
+}
+
+- (void)testspirVForNeedMinorChangesToWorkShaders
+{
+    for( NSString *filePath in IsfsneedingMinorChangesToWork )
     {
         NSError *error;
         MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];

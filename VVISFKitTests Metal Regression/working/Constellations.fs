@@ -43,7 +43,7 @@
 			]
 		},
 		{
-			"NAME": "SAFE_POSITION",
+			"NAME": "POSITION",
 			"LABEL": "position",
 			"TYPE": "point2D",
 			"DEFAULT": [
@@ -128,8 +128,6 @@
 
 
 /* Original shader at https://www.shadertoy.com/view/MsjyW3 */
-
-// MODIFICATION for SPIRV: input named "POSITION" is refused by SpirV. Renamed 'SAFE_POSITION'
 
 
 
@@ -352,7 +350,7 @@ vec4 pass0PointAtIndex(int index)
     float i = mod(float(index), float(POINTS_SIZE));
     float j = floor(  float(index)/float(POINTS_SIZE)  );
     float step = SPACING/float(POINTS_SIZE);
-    vec4 point = vec4(SCALE.x*step*i-SAFE_POSITION.x, SCALE.y*step*j-SAFE_POSITION.y, 0., 0.);
+    vec4 point = vec4(SCALE.x*step*i-POSITION.x, SCALE.y*step*j-POSITION.y, 0., 0.);
     float factor = mod(  (j+1.)*(i+1.)  ,  22.  ) + 1.;
     point.x += sin((20.+TIME/2.)*0.03*factor+i*0.5)*0.3;
     point.y += cos((20.+TIME/3.)*0.01*factor)*0.3;

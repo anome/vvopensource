@@ -659,6 +659,7 @@
 		564C907D25EFA68E00DD8076 /* MVKCommonEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907825EFA68D00DD8076 /* MVKCommonEnvironment.h */; };
 		564C908625F0E71D00DD8076 /* workingWithMinorChanges in Resources */ = {isa = PBXBuildFile; fileRef = 564C908425F0E71D00DD8076 /* workingWithMinorChanges */; };
 		564C908725F0E71D00DD8076 /* working in Resources */ = {isa = PBXBuildFile; fileRef = 564C908525F0E71D00DD8076 /* working */; };
+		564C908925F0EFA800DD8076 /* needsMinorChangesToWork in Resources */ = {isa = PBXBuildFile; fileRef = 564C908825F0EFA800DD8076 /* needsMinorChangesToWork */; };
 		565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B225D5323B0048C4DD /* isfLogoBW.jpg */; };
 		565D06B625D532B00048C4DD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
@@ -2410,6 +2411,7 @@
 		564C907825EFA68D00DD8076 /* MVKCommonEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKCommonEnvironment.h; path = ../external/MoltenVK/Common/MVKCommonEnvironment.h; sourceTree = "<group>"; };
 		564C908425F0E71D00DD8076 /* workingWithMinorChanges */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = workingWithMinorChanges; path = "VVISFKitTests Metal Regression/workingWithMinorChanges"; sourceTree = SOURCE_ROOT; };
 		564C908525F0E71D00DD8076 /* working */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = working; path = "VVISFKitTests Metal Regression/working"; sourceTree = SOURCE_ROOT; };
+		564C908825F0EFA800DD8076 /* needsMinorChangesToWork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = needsMinorChangesToWork; sourceTree = "<group>"; };
 		565D06B225D5323B0048C4DD /* isfLogoBW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogoBW.jpg; sourceTree = "<group>"; };
 		56BD40DD25B5F006002524CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		56BD40DF25B5F00C002524CE /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
@@ -4113,6 +4115,7 @@
 			isa = PBXGroup;
 			children = (
 				565D06B225D5323B0048C4DD /* isfLogoBW.jpg */,
+				564C908825F0EFA800DD8076 /* needsMinorChangesToWork */,
 				56BD418225B5F5E0002524CE /* expectParseFail */,
 				56BD418125B5F5E0002524CE /* expectSpirvFail */,
 				56BD418025B5F5DF002524CE /* working */,
@@ -6449,6 +6452,7 @@
 				56BD418525B5F5E0002524CE /* expectSpirvFail in Resources */,
 				56BD418725B5F5E0002524CE /* workingWithMinorChanges in Resources */,
 				56BD418425B5F5E0002524CE /* working in Resources */,
+				564C908925F0EFA800DD8076 /* needsMinorChangesToWork in Resources */,
 				565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
