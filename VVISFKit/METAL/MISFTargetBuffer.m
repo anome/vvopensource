@@ -10,6 +10,7 @@
 + (id)createForDevice:(id<MTLDevice>)device pixelFormat:(MTLPixelFormat)pixelFormat
 {
     MISFTargetBuffer *returnMe = [[MISFTargetBuffer alloc] initWithDevice:device pixelFormat:pixelFormat];
+    returnMe.isPersistent = NO;
     if( returnMe == nil )
     {
         return nil;
@@ -35,6 +36,7 @@
     {
         return nil;
     }
+    returnMe.isPersistent = model.persistent;
     return [returnMe autorelease];
 }
 
@@ -46,6 +48,7 @@
         pixelFormat = thePixelFormat;
         name = nil;
         texture = nil;
+        self.isPersistent = NO;
         bufferSize = [MISFSize new];
         return self;
     }

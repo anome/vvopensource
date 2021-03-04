@@ -137,6 +137,7 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
     self = [super init];
     if( self )
     {
+        self.loadAction = MTLLoadActionClear;
         customVertexCode = preloadedMedia.vertexCode != nil;
 
         // --- Create built-in variables buffer
@@ -224,9 +225,9 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
     MTLRenderPassDescriptor *renderPassDescriptor = [MTLRenderPassDescriptor renderPassDescriptor];
     renderPassDescriptor.colorAttachments[0].texture = outputTexture;
     // always start fresh
-    renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
-    renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
     renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 0);
+    renderPassDescriptor.colorAttachments[0].loadAction = self.loadAction;
+    renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
 
     // Create a render command encoder so we can render into something
     id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];

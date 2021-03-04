@@ -18,9 +18,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
 @implementation ISFMetalScene
 {
-    NSMutableDictionary<NSString *, MISFTargetBuffer *> *persistentBuffers;
-    // Note: temp buffers are not really temp, they are kept just like persistent ones in this implementtion
-    NSMutableDictionary<NSString *, MISFTargetBuffer *> *tempBuffers;
+    NSMutableDictionary<NSString *, MISFTargetBuffer *> *shaderBuffers; // temporary and persistent ones
     NSMutableArray<ISFAttrib *> *importedImages;
     NSMutableArray<MISFRenderPass *> *passes;
     NSMutableArray<MISFRenderer *> *renderers;
@@ -79,8 +77,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         device = theDevice;
         pixelFormat = thePixelFormat;
         passes = [NSMutableArray<MISFRenderPass *> new];
-        persistentBuffers = [NSMutableDictionary<NSString *, MISFTargetBuffer *> new];
-        tempBuffers = [NSMutableDictionary<NSString *, MISFTargetBuffer *> new];
+        shaderBuffers = [NSMutableDictionary<NSString *, MISFTargetBuffer *> new];
         importedImages = [NSMutableArray<ISFAttrib *> new];
         renderers = nil;
         inputs = [[MutLockArray alloc] init];
@@ -205,8 +202,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     VVRELEASE(inputs);
     VVRELEASE(privateInputs);
     VVRELEASE(swatch);
-    VVRELEASE(persistentBuffers);
-    VVRELEASE(tempBuffers);
+    VVRELEASE(shaderBuffers);
     VVRELEASE(importedImages);
     VVRELEASE(renderers);
     VVRELEASE(textureRenderer);
@@ -237,7 +233,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         MISFTargetBuffer *newBuffer = [MISFTargetBuffer createForDevice:device
                                                             pixelFormat:pixelFormatForBuffer
                                                               fromModel:model];
-        [persistentBuffers setValue:newBuffer forKey:newBuffer.name];
+        [shaderBuffers setValue:newBuffer forKey:newBuffer.name];
     }
 
     // IMPLEMENT PASSES
@@ -246,7 +242,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         MISFRenderPass *newPass = [MISFRenderPass create];
         newPass.targetName = model.targetBuffer.name;
         newPass.targetIsFloat = model.targetBuffer.floatFlag;
-        MISFTargetBuffer *targetForPass = [persistentBuffers objectForKey:newPass.targetName];
+        MISFTargetBuffer *targetForPass = [shaderBuffers objectForKey:newPass.targetName];
 
         // Create one if needed
         if( targetForPass == nil )
@@ -260,14 +256,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
             MISFTargetBuffer *newBuffer = [MISFTargetBuffer createForDevice:device
                                                                 pixelFormat:pixelFormatForBuffer
                                                                   fromModel:model.targetBuffer];
-            if( model.targetBuffer.persistent )
-            {
-                [persistentBuffers setValue:newBuffer forKey:newBuffer.name];
-            }
-            else
-            {
-                [tempBuffers setValue:newBuffer forKey:newBuffer.name];
-            }
+            [shaderBuffers setValue:newBuffer forKey:newBuffer.name];
         }
 
         [passes addObject:newPass];
@@ -281,7 +270,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         MISFTargetBuffer *targetBufferForPass = [MISFTargetBuffer createForDevice:device pixelFormat:pixelFormat];
         [targetBufferForPass setName:MISF_SECRET_SINGLE_PASS_TARGET];
         renderPass.targetName = MISF_SECRET_SINGLE_PASS_TARGET;
-        [tempBuffers setObject:targetBufferForPass forKey:MISF_SECRET_SINGLE_PASS_TARGET];
+        [shaderBuffers setObject:targetBufferForPass forKey:MISF_SECRET_SINGLE_PASS_TARGET];
         [passes addObject:renderPass];
     }
 
@@ -362,30 +351,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device colorPixelFormat:pixelFormat];
 
     // Inject all buffers as private inputs...
-    for( NSString *bufferKey in tempBuffers )
-    {
-        ISFAttrib *newAttrib = nil;
-        ISFAttribVal minVal;
-        ISFAttribVal maxVal;
-        ISFAttribVal defVal;
-        ISFAttribVal idenVal;
-        minVal.imageVal = 0;
-        maxVal.imageVal = 0;
-        defVal.imageVal = 0;
-        idenVal.imageVal = 0;
-        newAttrib = [ISFAttrib createWithName:bufferKey
-                                  description:@""
-                                        label:bufferKey // used to change texture at lazy init
-                                         type:ISFAT_Image
-                                       values:minVal:maxVal:defVal:idenVal:nil:nil];
-        ISFAttribVal currentVal;
-        // This will be filled at render time (because texture sizes might change)
-        currentVal.metalImageVal = nil;
-        [newAttrib setCurrentVal:currentVal];
-        [privateInputs lockAddObject:newAttrib];
-    }
-
-    for( NSString *bufferKey in persistentBuffers )
+    for( NSString *bufferKey in shaderBuffers )
     {
         ISFAttrib *newAttrib = nil;
         ISFAttribVal minVal;
@@ -460,31 +426,16 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         [subDict setObject:NUMINT(outputTextureSize.height) forKey:@"HEIGHT"];
     }
 
-    //    make sure that all the persistent buffers are sized appropriately
+    //    make sure that all the buffers are sized appropriately
     // AND INITIALISE THEM DIRECTLY if needed
-    for( NSString *bufferKey in persistentBuffers )
+    for( NSString *bufferKey in shaderBuffers )
     {
-        MISFTargetBuffer *tmpBuffer = persistentBuffers[bufferKey];
+        MISFTargetBuffer *tmpBuffer = shaderBuffers[bufferKey];
 
         if( [tmpBuffer targetSizeNeedsEval] )
         {
             [tmpBuffer evalTargetSizeWithSubstitutionsDict:subDict];
         }
-
-        else
-        {
-            [tmpBuffer setTargetSize:outputTextureSize];
-        }
-    }
-    //    make sure all the temp buffers are also sized appropriately
-    for( NSString *bufferKey in tempBuffers )
-    {
-        MISFTargetBuffer *tmpBuffer = tempBuffers[bufferKey];
-        if( [tmpBuffer targetSizeNeedsEval] )
-        {
-            [tmpBuffer evalTargetSizeWithSubstitutionsDict:subDict];
-        }
-
         else
         {
             [tmpBuffer setTargetSize:outputTextureSize];
@@ -493,16 +444,9 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
     // Workaround : connect buffers to inputs as an easy way to make them accessible for the renderer
     // Runned every frame, could probably be runned only once
-    for( NSString *bufferKey in tempBuffers )
+    for( NSString *bufferKey in shaderBuffers )
     {
-        id<MTLTexture> texture = [tempBuffers[bufferKey] getBufferTexture];
-        ISFAttribVal imageVal;
-        imageVal.metalImageVal = texture;
-        [self setValue:imageVal forPrivateInputKey:bufferKey];
-    }
-    for( NSString *bufferKey in persistentBuffers )
-    {
-        id<MTLTexture> texture = [persistentBuffers[bufferKey] getBufferTexture];
+        id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTexture];
         ISFAttribVal imageVal;
         imageVal.metalImageVal = texture;
         [self setValue:imageVal forPrivateInputKey:bufferKey];
@@ -542,6 +486,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         if( isMultiPass )
         {
             MISFTargetBuffer *targetBuffer = [self getBufferNamed:passOutputKey];
+
             if( targetBuffer == nil )
             {
                 if( errorPtr )
@@ -558,6 +503,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
             renderer.builtin_RENDERSIZE =
                 NSMakeSize(passOutputTexture.width, passOutputTexture.height); // outputTexture?
+            renderer.loadAction = targetBuffer.isPersistent ? MTLLoadActionLoad : MTLLoadActionClear;
             id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
             passCommandBuffer.label =
                 [NSString stringWithFormat:@"Pass command buffer N %i [Frame %i]", index, renderFrameIndex];
@@ -847,13 +793,12 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
 - (MISFTargetBuffer *)getBufferNamed:(NSString *)bufferName
 {
-    MISFTargetBuffer *targetBuffer = [persistentBuffers objectForKey:bufferName];
+    MISFTargetBuffer *targetBuffer = [shaderBuffers objectForKey:bufferName];
     // If unlucky, look in temp buffers
     if( targetBuffer == nil )
     {
-        targetBuffer = [tempBuffers objectForKey:bufferName];
+        return nil;
     }
-    // Return might be nil
     return targetBuffer;
 }
 

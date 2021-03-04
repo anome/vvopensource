@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setTargetHeightString:(NSString *)n;
 
 @property(retain, readwrite) NSString *name;
+@property(readwrite) BOOL isPersistent;
 
 @end
 

@@ -36,5 +36,7 @@
 @property(readwrite, nonatomic) float builtin_TIMEDELTA;
 @property(readwrite, nonatomic) vector_float4 builtin_DATE;
 @property(readwrite, nonatomic) int builtin_FRAMEINDEX;
+/// For temp / persistent buffers
+@property(readwrite, nonatomic) MTLLoadAction loadAction;
 
 @end
