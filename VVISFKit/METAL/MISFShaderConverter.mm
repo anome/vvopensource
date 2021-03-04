@@ -123,7 +123,7 @@ static NSString *const ISF_MARKER_BEFORE_VERTEX_MAIN = @"\n/* ISF_MARKER_BEFORE_
                     [NSString stringWithFormat:@"Program type (%i) does not exist. This is likely an internal error",  \
                                                programType]                                                            \
             };                                                                                                         \
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];       \
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];  \
         }                                                                                                              \
         return defaultReturn;                                                                                          \
     }
@@ -207,7 +207,7 @@ Translation goes in three steps:
                     stringWithFormat:@"failed to find rangeMainPrototype during inject toppings. Regex Tools Error: %@",
                                      regexError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -281,10 +281,33 @@ Translation goes in three steps:
                           "-mo",
                           [outputFilePath UTF8String]};
     mvk::MoltenVKShaderConverterTool converter(argc, argv);
-    bool result = converter.run();
-    if( !result )
+    std::string errorMessage;
+    int errorCode = converter.run(errorMessage);
+    NSString *nsErrorMessage = [NSString stringWithCString:errorMessage.c_str()
+                                                  encoding:[NSString defaultCStringEncoding]];
+    if( errorCode != mvk::MVKForISFConversionErrorCode::SUCCESS )
     {
-        NSLog(@"woops");
+        //        NSLog(@"ConverterTool sent back an error %s --- %s", errorMessage.c_str(), errorMessage.data());
+        if( errorPtr )
+        {
+            NSUInteger nsErrorCode = ISFErrorCodeShaderConversion;
+            switch( errorCode )
+            {
+            case mvk::MVKForISFConversionErrorCode::GLSL_TO_SPIRV_ERROR:
+                nsErrorCode = ISFErrorCodeGLSLToSpirV;
+                break;
+            case mvk::MVKForISFConversionErrorCode::SPIRV_TO_MSL_ERROR:
+                nsErrorCode = ISFErrorCodeSpirVToMSL;
+                break;
+            }
+            NSDictionary *userInfo = @{
+                IS_VERTEX(programType) ? @"vertSrc" : @"fragSrc" : glsl,
+                IS_VERTEX(programType) ? @"vertErrLog" : @"fragErrLog" : nsErrorMessage
+
+            };
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:nsErrorCode userInfo:userInfo];
+        }
+        return nil;
     }
 #else
     NSTask *transpileTask = [[NSTask alloc] init];
@@ -313,6 +336,7 @@ Translation goes in three steps:
     NSString *resultErr = [[NSString alloc] initWithData:dataErr encoding:NSUTF8StringEncoding];
     [transpileTask waitUntilExit];
 #endif
+
     NSString *transpiled = nil;
     NSString *transpiledPath = nil;
 
@@ -331,15 +355,21 @@ Translation goes in three steps:
         if( errorPtr )
         {
 #ifdef USE_MOLTENVK_LIB
-#warning mto-anomes TODO
+            NSDictionary *userInfo = @{
+                @"Reading converted file failed" : [NSString
+                    stringWithFormat:
+                        @"Error reading file at %@\n File Error: %@. Maybe spirV failed silently, spirV output : %@",
+                        transpiledPath, error, nsErrorMessage]
+            };
 #else
             NSDictionary *userInfo = @{
                 @"SpirV-Cross Failed" : [NSString
                     stringWithFormat:@"Error reading file at %@\n%@. Maybe spirV failed, spirV output : %@ %@",
                                      transpiledPath, [error localizedFailureReason], result, resultErr]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+
 #endif
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -375,7 +405,9 @@ Translation goes in three steps:
                         ERROR_STRING_OPERATION_KEY : [NSString
                             stringWithFormat:@"failed to find fragment main prototype during finaliseIntermediate"]
                     };
-                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain
+                                                    code:ISFErrorCodeShaderConversion
+                                                userInfo:userInfo];
                 }
                 return nil;
             }
@@ -509,7 +541,9 @@ Translation goes in three steps:
                         ERROR_STRING_OPERATION_KEY : [NSString
                             stringWithFormat:@"failed to find vertex main prototype during finaliseIntermediate"]
                     };
-                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain
+                                                    code:ISFErrorCodeShaderConversion
+                                                userInfo:userInfo];
                 }
                 return nil;
             }
@@ -671,7 +705,7 @@ Translation goes in three steps:
                     stringWithFormat:@"failed to find void main Range during finalise Intermediate. Regex Error: %@",
                                      regexError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -731,7 +765,7 @@ Translation goes in three steps:
                                   @"failed to find main prototype Range during parseBufferDefinitions. Regex Error: %@",
                                   regexError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -751,7 +785,7 @@ Translation goes in three steps:
                                   @"failed to find parameter list Range during parseBufferDefinitions. Regex Error: %@",
                                   regexError2]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -819,7 +853,7 @@ Translation goes in three steps:
                                   @"failed to find mainPrototypeRange during replaceBuffers. Got RegexToolsError: %@",
                                   regexToolsError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -841,7 +875,7 @@ Translation goes in three steps:
                                   @"failed to find parameterListRange during replaceBuffers. Got RegexToolsError: %@",
                                   regexToolsError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -858,7 +892,7 @@ Translation goes in three steps:
                 ERROR_STRING_OPERATION_KEY :
                     [NSString stringWithFormat:@"failed to find rangeOfPrototypeDefinition during replaceBuffers"]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -879,7 +913,7 @@ Translation goes in three steps:
                 ERROR_STRING_OPERATION_KEY :
                     [NSString stringWithFormat:@"failed to find parameterListRangeInMsl during replaceBuffers"]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -925,7 +959,7 @@ Translation goes in three steps:
                 ERROR_STRING_OPERATION_KEY :
                     [NSString stringWithFormat:@"failed to find marker (%@) to inject code", marker]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         }
         return nil;
     }
@@ -1074,7 +1108,7 @@ Translation goes in three steps:
                                            @"String to replace: (%@) \n String replacement: (%@)",
                                            numberOfMatchesExpected, count, occurence, replacement]
         };
-        *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+        *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeShaderConversion userInfo:userInfo];
         return nil;
     }
     else

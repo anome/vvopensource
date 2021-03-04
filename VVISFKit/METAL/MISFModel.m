@@ -119,7 +119,7 @@
                 @"Invalid File" :
                     [NSString stringWithFormat:@"file %@ couldn't be loaded, FileError --> %@", _filePath, fileError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFParsingError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeParsing userInfo:userInfo];
         }
         return NO;
     }
@@ -192,7 +192,7 @@
         if( errorPtr )
         {
             NSDictionary *userInfo = @{@"Missing JSON Blob" : @"No JSON blob in ISF File parsed"};
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFParsingError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeParsing userInfo:userInfo];
         }
         return NO;
     }
@@ -233,7 +233,7 @@
         if( errorPtr )
         {
             NSDictionary *userInfo = @{@"Missing JSON Blob" : @"JSON blob was malormed. It should be a dict."};
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFParsingError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeParsing userInfo:userInfo];
         }
         return NO;
     }
@@ -467,7 +467,7 @@
         if( errorPtr )
         {
             NSDictionary *userInfo = @{@"Missing mandatory field" : @"IMPORTED images must have a name"};
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFParsingError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeParsing userInfo:userInfo];
         }
         return NO;
     }
@@ -480,7 +480,7 @@
                     [NSString stringWithFormat:@"supplied PATH for imported image named <%@> wasn't a string, %@",
                                                samplerName, partialPath]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFParsingError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeParsing userInfo:userInfo];
         }
         return NO;
     }

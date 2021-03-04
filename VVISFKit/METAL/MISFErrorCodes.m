@@ -2,7 +2,9 @@
 #import <Foundation/Foundation.h>
 
 NSString *const ISFErrorDomain = @"ISFErrorDomain";
-NSInteger ISFParsingError = 0;
-NSInteger ISFMetalConversionError = 1;
-NSInteger ISFRenderError = 2;
-NSInteger ISFSceneError = 3;
+NSInteger ISFErrorCodeParsing = 0;
+NSInteger ISFErrorCodeShaderConversion = 1;
+NSInteger ISFErrorCodeGLSLToSpirV = 2;
+NSInteger ISFErrorCodeSpirVToMSL = 3;
+NSInteger ISFErrorCodeRendering = 4;
+NSInteger ISFErrorCodeInternal = 5;

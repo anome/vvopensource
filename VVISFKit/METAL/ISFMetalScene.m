@@ -310,7 +310,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                     @"Missing filter resource" :
                         [NSString stringWithFormat:@"can't load, file %@ is missing", model.path]
                 };
-                *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFSceneError userInfo:userInfo];
+                *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeParsing userInfo:userInfo];
             }
             return NO;
         }
@@ -326,7 +326,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                     @"filter resource can't be loaded" :
                         [NSString stringWithFormat:@"file %@ was found, but can't be loaded", model.path]
                 };
-                *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFSceneError userInfo:userInfo];
+                *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeParsing userInfo:userInfo];
             }
             return NO;
         }
@@ -550,7 +550,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                         @"Internal error " :
                             [NSString stringWithFormat:@"could not find a buffer to render the pass !"]
                     };
-                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFRenderError userInfo:userInfo];
+                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeRendering userInfo:userInfo];
                 }
                 return NO;
             }
@@ -586,7 +586,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                         @"Internal error " :
                             [NSString stringWithFormat:@"could not find render target %@ to render into", passOutputKey]
                     };
-                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFRenderError userInfo:userInfo];
+                    *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeRendering userInfo:userInfo];
                 }
                 return NO;
             }

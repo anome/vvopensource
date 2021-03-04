@@ -2,9 +2,11 @@
 #define MISF_h
 
 extern NSString *const ISFErrorDomain;
-extern NSInteger ISFParsingError;
-extern NSInteger ISFMetalConversionError;
-extern NSInteger ISFSceneError;
-extern NSInteger ISFRenderError;
+extern NSInteger ISFErrorCodeParsing;
+extern NSInteger ISFErrorCodeShaderConversion;
+extern NSInteger ISFErrorCodeGLSLToSpirV;
+extern NSInteger ISFErrorCodeSpirVToMSL;
+extern NSInteger ISFErrorCodeRendering;
+extern NSInteger ISFErrorCodeInternal;
 
 #endif /* MISF_h */

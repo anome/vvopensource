@@ -21,7 +21,7 @@ static NSString *const ERROR_STRING_OPERATION_KEY = @"RegexTools String Operatio
                 ERROR_STRING_OPERATION_KEY :
                     [NSString stringWithFormat:@"Abort replace Pattern. Regex error: %@", regexError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeInternal userInfo:userInfo];
         }
         return nil;
     }
@@ -76,7 +76,7 @@ static NSString *const ERROR_STRING_OPERATION_KEY = @"RegexTools String Operatio
                 ERROR_STRING_OPERATION_KEY :
                     [NSString stringWithFormat:@"Abort range Pattern. Regex error: %@", regexError]
             };
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeInternal userInfo:userInfo];
         }
         return NSMakeRange(NSNotFound, NSNotFound);
     }
@@ -134,7 +134,7 @@ static NSString *const ERROR_STRING_OPERATION_KEY = @"RegexTools String Operatio
         {
             NSDictionary *userInfo =
                 @{ERROR_STRING_OPERATION_KEY : [NSString stringWithFormat:@"WARN: could not find marker for string"]};
-            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFMetalConversionError userInfo:userInfo];
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeInternal userInfo:userInfo];
         }
         return nil;
     }
