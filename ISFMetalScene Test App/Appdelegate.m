@@ -10,7 +10,8 @@
     id<MTLTexture> secondInputImage;
     int passIndex;
     ISFMetalScene *isfScene;
-    NSString *shaderFileToRender;
+    NSString *shaderFileKeyToRender;
+    NSMutableDictionary<NSString *, NSURL *> *shaderFiles;
 }
 
 - (id)init
@@ -18,7 +19,7 @@
     if( self = [super init] )
     {
         passIndex = 0;
-        shaderFileToRender = @"Auto-rotate";
+        shaderFileKeyToRender = @"Edge Blur.fs";
         return self;
     }
     [self release];
@@ -27,94 +28,29 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSArray<NSString *> *shaderFiles = @[
-        /// Generators
-        @"Stripes",
-        @"Seascape",
-        @"Constellations_m",
-        @"Digital Clock",
-        @"Controlled Chaos",
-        @"Disc Spin",
-        @"Grid",
-        @"IQ_SmoothXOR",
-        @"Radial Gradient",
-        @"Stripes",
-        @"VoronoiLines_m",
-        @"Wisps",
-        /// Effects
-        @"Auto-rotate",
-        @"3D Rotate",
-        @"Edge Blur",
-        @"Multi Pass Gaussian Blur",
-        @"Fast Blur",
-        @"Bad TV Auto Scroll",
-        @"Edges",
-        @"Sharpen RGB",
-        @"Neon",
-        @"City Lights",
-        @"Amatorka",
-        @"ASCII Art",
-        @"Dither-Bayer",
-        @"v002 Vignette",
-        @"Old Video",
-        @"Shift RGB",
-        @"Borders around Alpha",
-        @"v002 Crosshatch",
-        @"Pixelize",
-        @"Dither BW",
-        @"Round Corner",
-        @"Bump Distortion_m",
-        @"CMYK Halftone-Lookaround",
-        @"RGB Trails",
-        @"VHS Glitch",
-        @"Time Glitch RGB_m",
-        @"v002 Technicolor",
-        @"Exposure Adjust",
-        @"False Color",
-        @"Color Monochrome",
-        @"Color Posterize",
-        @"MissEtikate",
-        @"v002 Bleach Bypass",
-        @"Vibrance",
-        @"Zoom Blur",
-        @"Dilate-Fast",
-        @"Erode-Fast",
-        @"VVMotionBlur",
-        @"Bokeh Disc+",
-        @"Auto-move",
-        @"Delay",
-        @"Auto-color",
-        @"Auto-scale",
-        @"Quake",
-        @"Freeze Frame_m",
-        @"Black & White",
-        @"Auto-scale",
-        @"Auto-color",
-        @"Bokeh Disc+",
-        /// Tests
-        @"emptyMain",
-        @"variables",
-        @"multipass-eval",
-        @"multipass-eval-texture",
-        @"multipass",
-        @"multipasstexture",
-        @"textureimport",
-        @"lazytextureimport",
-        @"multipleImageInputs",
-        @"varying",
-        @"nonExistingFile",  // NSCocoaErrorDomain 258 The File name is invalid
-        @"errorBadJsonBlob", // NSCocoaErrorDomain invalid value around character 53
-        @"errorImportedImageNoName",
-        @"errorImportedImagepathNotAString",
-        @"errorSpirVfnRedefined",
-    ];
-    for( NSString *file in shaderFiles )
-    {
-        [shaderSourceButton addItemWithTitle:file];
-    }
-    [shaderSourceButton selectItemWithTitle:shaderFileToRender];
+    shaderFiles = [NSMutableDictionary<NSString *, NSURL *> new];
 
     NSBundle *bundle = [NSBundle mainBundle];
+
+    NSArray<NSURL *> *shaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"working"];
+    NSArray<NSURL *> *moreShaderUrls = [bundle URLsForResourcesWithExtension:@"fs"
+                                                                subdirectory:@"workingWithMinorChanges"];
+
+    for( NSURL *fileUrl in shaderUrls )
+    {
+        NSString *fileName = [fileUrl lastPathComponent];
+        [shaderFiles setValue:fileUrl forKey:fileName];
+        [shaderSourceButton addItemWithTitle:fileName];
+    }
+    for( NSURL *fileUrl in moreShaderUrls )
+    {
+        NSString *fileName = [fileUrl lastPathComponent];
+        [shaderFiles setValue:fileUrl forKey:fileName];
+        [shaderSourceButton addItemWithTitle:fileName];
+    }
+    [shaderSourceButton selectItemWithTitle:shaderFileKeyToRender];
+
+    //    NSBundle *bundle = [NSBundle mainBundle];
     NSURL *imageUrl = [bundle URLForResource:@"inputImage" withExtension:@"jpg"];
     NSURL *secondImageUrl = [bundle URLForResource:@"inputImage" withExtension:@"jpg"];
     inputImage = [[self loadTextureUsingMetalKit:imageUrl device:metalImageView.device] retain];
@@ -233,8 +169,8 @@
 
 - (void)loadIsfScene
 {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *filePath = [bundle pathForResource:shaderFileToRender ofType:@"fs"];
+    NSURL *fileUrl = [shaderFiles objectForKey:shaderFileKeyToRender];
+    NSString *filePath = fileUrl.path;
 
     // Preload API
     {
@@ -308,8 +244,8 @@
 
 - (IBAction)onShaderSourceButtonClicked:(id)sender
 {
-
-    shaderFileToRender = shaderSourceButton.selectedItem.title;
+    NSString *fileKey = shaderSourceButton.selectedItem.title;
+    shaderFileKeyToRender = fileKey;
     isfScene = nil;
     [self loadIsfScene];
 }

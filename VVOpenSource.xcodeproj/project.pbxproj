@@ -657,7 +657,8 @@
 		564C907B25EFA68D00DD8076 /* MVKLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907625EFA68D00DD8076 /* MVKLogging.h */; };
 		564C907C25EFA68E00DD8076 /* MVKOSExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907725EFA68D00DD8076 /* MVKOSExtensions.h */; };
 		564C907D25EFA68E00DD8076 /* MVKCommonEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C907825EFA68D00DD8076 /* MVKCommonEnvironment.h */; };
-		5653F2E725E4FA3000CF6311 /* emptyMain.fs in Resources */ = {isa = PBXBuildFile; fileRef = 5653F2E625E4FA3000CF6311 /* emptyMain.fs */; };
+		564C908625F0E71D00DD8076 /* workingWithMinorChanges in Resources */ = {isa = PBXBuildFile; fileRef = 564C908425F0E71D00DD8076 /* workingWithMinorChanges */; };
+		564C908725F0E71D00DD8076 /* working in Resources */ = {isa = PBXBuildFile; fileRef = 564C908525F0E71D00DD8076 /* working */; };
 		565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B225D5323B0048C4DD /* isfLogoBW.jpg */; };
 		565D06B625D532B00048C4DD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
@@ -723,87 +724,6 @@
 		56BD419225B5FA96002524CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56BD419025B5FA81002524CE /* InfoPlist.strings */; };
 		56BD419325B5FA9A002524CE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418F25B5FA80002524CE /* Credits.rtf */; };
 		56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BD419125B5FA81002524CE /* MainMenu.xib */; };
-		56BD422525B5FC62002524CE /* ASCII Art.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DA25B5FC61002524CE /* ASCII Art.fs */; };
-		56BD422625B5FC62002524CE /* City Lights.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DB25B5FC61002524CE /* City Lights.fs */; };
-		56BD422725B5FC62002524CE /* Dither-Bayer.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DC25B5FC61002524CE /* Dither-Bayer.fs */; };
-		56BD422825B5FC62002524CE /* VHS Glitch.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DD25B5FC61002524CE /* VHS Glitch.fs */; };
-		56BD422925B5FC62002524CE /* Bad TV Auto Scroll.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DE25B5FC61002524CE /* Bad TV Auto Scroll.vs */; };
-		56BD422A25B5FC62002524CE /* v002 Vignette.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41DF25B5FC61002524CE /* v002 Vignette.fs */; };
-		56BD422B25B5FC62002524CE /* Auto-scale.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E025B5FC61002524CE /* Auto-scale.fs */; };
-		56BD422C25B5FC62002524CE /* Bokeh Disc+.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E125B5FC61002524CE /* Bokeh Disc+.fs */; };
-		56BD422D25B5FC62002524CE /* Old Video.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E225B5FC61002524CE /* Old Video.fs */; };
-		56BD422E25B5FC62002524CE /* Sharpen RGB.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E325B5FC61002524CE /* Sharpen RGB.vs */; };
-		56BD422F25B5FC62002524CE /* Shift RGB.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E425B5FC61002524CE /* Shift RGB.fs */; };
-		56BD423025B5FC62002524CE /* Borders around Alpha.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E525B5FC61002524CE /* Borders around Alpha.fs */; };
-		56BD423125B5FC62002524CE /* Auto-rotate.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E625B5FC61002524CE /* Auto-rotate.fs */; };
-		56BD423225B5FC62002524CE /* Controlled Chaos.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E725B5FC61002524CE /* Controlled Chaos.fs */; };
-		56BD423325B5FC62002524CE /* Black & White.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E825B5FC61002524CE /* Black & White.fs */; };
-		56BD423425B5FC62002524CE /* Neon.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41E925B5FC61002524CE /* Neon.vs */; };
-		56BD423525B5FC62002524CE /* Bloom.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EA25B5FC61002524CE /* Bloom.fs */; };
-		56BD423625B5FC62002524CE /* Stripes.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EB25B5FC61002524CE /* Stripes.fs */; };
-		56BD423725B5FC62002524CE /* Fast Blur.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EC25B5FC61002524CE /* Fast Blur.vs */; };
-		56BD423825B5FC62002524CE /* Glow-Fast.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41ED25B5FC61002524CE /* Glow-Fast.vs */; };
-		56BD423925B5FC62002524CE /* v002 Crosshatch.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EE25B5FC61002524CE /* v002 Crosshatch.fs */; };
-		56BD423A25B5FC62002524CE /* Multi Pass Gaussian Blur.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41EF25B5FC61002524CE /* Multi Pass Gaussian Blur.vs */; };
-		56BD423B25B5FC62002524CE /* Vibrance.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F025B5FC61002524CE /* Vibrance.fs */; };
-		56BD423C25B5FC62002524CE /* lookup_amatorka.png in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F125B5FC61002524CE /* lookup_amatorka.png */; };
-		56BD423D25B5FC62002524CE /* Pixelize.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F225B5FC61002524CE /* Pixelize.fs */; };
-		56BD423F25B5FC62002524CE /* Delay.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F425B5FC62002524CE /* Delay.fs */; };
-		56BD424025B5FC62002524CE /* v002 Bleach Bypass.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F525B5FC62002524CE /* v002 Bleach Bypass.fs */; };
-		56BD424125B5FC62002524CE /* Edges.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F625B5FC62002524CE /* Edges.vs */; };
-		56BD424225B5FC62002524CE /* Edge Blur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F725B5FC62002524CE /* Edge Blur.fs */; };
-		56BD424325B5FC62002524CE /* 3D Rotate.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F825B5FC62002524CE /* 3D Rotate.fs */; };
-		56BD424425B5FC62002524CE /* Wisps.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41F925B5FC62002524CE /* Wisps.fs */; };
-		56BD424525B5FC62002524CE /* Auto-fade.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FA25B5FC62002524CE /* Auto-fade.fs */; };
-		56BD424625B5FC62002524CE /* Dither BW.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FB25B5FC62002524CE /* Dither BW.fs */; };
-		56BD424725B5FC62002524CE /* MissEtikate.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FC25B5FC62002524CE /* MissEtikate.fs */; };
-		56BD424825B5FC62002524CE /* Amatorka.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FD25B5FC62002524CE /* Amatorka.fs */; };
-		56BD424925B5FC62002524CE /* Multi Pass Gaussian Blur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FE25B5FC62002524CE /* Multi Pass Gaussian Blur.fs */; };
-		56BD424A25B5FC62002524CE /* Quake.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD41FF25B5FC62002524CE /* Quake.fs */; };
-		56BD424B25B5FC62002524CE /* Fast Blur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420025B5FC62002524CE /* Fast Blur.fs */; };
-		56BD424C25B5FC62002524CE /* Glow-Fast.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420125B5FC62002524CE /* Glow-Fast.fs */; };
-		56BD424D25B5FC62002524CE /* Color Posterize.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420225B5FC62002524CE /* Color Posterize.fs */; };
-		56BD424E25B5FC62002524CE /* Round Corner.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420325B5FC62002524CE /* Round Corner.fs */; };
-		56BD424F25B5FC62002524CE /* Edges.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420425B5FC62002524CE /* Edges.fs */; };
-		56BD425025B5FC62002524CE /* Color Monochrome.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420525B5FC62002524CE /* Color Monochrome.fs */; };
-		56BD425125B5FC62002524CE /* Edge Blur.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420625B5FC62002524CE /* Edge Blur.vs */; };
-		56BD425225B5FC62002524CE /* 3D Rotate.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420725B5FC62002524CE /* 3D Rotate.vs */; };
-		56BD425425B5FC62002524CE /* IQ_SmoothXOR.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420925B5FC62002524CE /* IQ_SmoothXOR.fs */; };
-		56BD425525B5FC62002524CE /* VVMotionBlur.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420A25B5FC62002524CE /* VVMotionBlur.fs */; };
-		56BD425625B5FC62002524CE /* Dilate-Fast.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420B25B5FC62002524CE /* Dilate-Fast.fs */; };
-		56BD425725B5FC62002524CE /* Bad TV Auto Scroll.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420C25B5FC62002524CE /* Bad TV Auto Scroll.fs */; };
-		56BD425825B5FC62002524CE /* False Color.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420D25B5FC62002524CE /* False Color.fs */; };
-		56BD425925B5FC62002524CE /* CMYK Halftone-Lookaround.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420E25B5FC62002524CE /* CMYK Halftone-Lookaround.fs */; };
-		56BD425A25B5FC62002524CE /* Seascape.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD420F25B5FC62002524CE /* Seascape.fs */; };
-		56BD425B25B5FC62002524CE /* Erode-Fast.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421025B5FC62002524CE /* Erode-Fast.fs */; };
-		56BD425C25B5FC62002524CE /* City Lights.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421125B5FC62002524CE /* City Lights.vs */; };
-		56BD425D25B5FC62002524CE /* Grid.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421225B5FC62002524CE /* Grid.fs */; };
-		56BD425E25B5FC62002524CE /* RGB Trails.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421325B5FC62002524CE /* RGB Trails.fs */; };
-		56BD425F25B5FC62002524CE /* Auto-move.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421425B5FC62002524CE /* Auto-move.fs */; };
-		56BD426025B5FC62002524CE /* Neon.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421525B5FC62002524CE /* Neon.fs */; };
-		56BD426125B5FC62002524CE /* Exposure Adjust.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421625B5FC62002524CE /* Exposure Adjust.fs */; };
-		56BD426225B5FC62002524CE /* Digital Clock.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421725B5FC62002524CE /* Digital Clock.fs */; };
-		56BD426325B5FC62002524CE /* Bloom.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421825B5FC62002524CE /* Bloom.vs */; };
-		56BD426425B5FC62002524CE /* Radial Gradient.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421925B5FC62002524CE /* Radial Gradient.fs */; };
-		56BD426525B5FC62002524CE /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421A25B5FC62002524CE /* lookup_miss_etikate.png */; };
-		56BD426625B5FC62002524CE /* Disc Spin.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421B25B5FC62002524CE /* Disc Spin.fs */; };
-		56BD426825B5FC62002524CE /* Auto-color.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421D25B5FC62002524CE /* Auto-color.fs */; };
-		56BD426925B5FC62002524CE /* Auto-rotate.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421E25B5FC62002524CE /* Auto-rotate.vs */; };
-		56BD426A25B5FC62002524CE /* Sharpen RGB.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD421F25B5FC62002524CE /* Sharpen RGB.fs */; };
-		56BD426B25B5FC62002524CE /* Zoom Blur_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422125B5FC62002524CE /* Zoom Blur_m.fs */; };
-		56BD426C25B5FC62002524CE /* Freeze Frame_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422225B5FC62002524CE /* Freeze Frame_m.fs */; };
-		56BD426D25B5FC62002524CE /* VoronoiLines_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422325B5FC62002524CE /* VoronoiLines_m.fs */; };
-		56BD426E25B5FC62002524CE /* Constellations_m.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD422425B5FC62002524CE /* Constellations_m.fs */; };
-		56BD427925B5FCBA002524CE /* multipleImageInputs.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD426F25B5FCAC002524CE /* multipleImageInputs.fs */; };
-		56BD427A25B5FCBA002524CE /* multipasstexture.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427025B5FCAE002524CE /* multipasstexture.fs */; };
-		56BD427B25B5FCBA002524CE /* variables.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427125B5FCAF002524CE /* variables.fs */; };
-		56BD427C25B5FCBA002524CE /* varying.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427225B5FCB1002524CE /* varying.fs */; };
-		56BD427D25B5FCBA002524CE /* multipass.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427325B5FCB3002524CE /* multipass.fs */; };
-		56BD427E25B5FCBA002524CE /* textureimport.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427425B5FCB4002524CE /* textureimport.fs */; };
-		56BD427F25B5FCBA002524CE /* multipass-eval.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427525B5FCB6002524CE /* multipass-eval.fs */; };
-		56BD428025B5FCBA002524CE /* multipass-eval-texture.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427625B5FCB7002524CE /* multipass-eval-texture.fs */; };
-		56BD428125B5FCBA002524CE /* varying.vs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427725B5FCB9002524CE /* varying.vs */; };
-		56BD428225B5FCBA002524CE /* lazytextureimport.fs in Resources */ = {isa = PBXBuildFile; fileRef = 56BD427825B5FCBA002524CE /* lazytextureimport.fs */; };
 		56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */; };
 		96128609100F830600C9C833 /* VVBasics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 961EA8ED100E8565007E6C25 /* VVBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9614010A198AD46D00335292 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
@@ -2488,7 +2408,8 @@
 		564C907625EFA68D00DD8076 /* MVKLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKLogging.h; path = ../external/MoltenVK/Common/MVKLogging.h; sourceTree = "<group>"; };
 		564C907725EFA68D00DD8076 /* MVKOSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKOSExtensions.h; path = ../external/MoltenVK/Common/MVKOSExtensions.h; sourceTree = "<group>"; };
 		564C907825EFA68D00DD8076 /* MVKCommonEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MVKCommonEnvironment.h; path = ../external/MoltenVK/Common/MVKCommonEnvironment.h; sourceTree = "<group>"; };
-		5653F2E625E4FA3000CF6311 /* emptyMain.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = emptyMain.fs; sourceTree = "<group>"; };
+		564C908425F0E71D00DD8076 /* workingWithMinorChanges */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = workingWithMinorChanges; path = "VVISFKitTests Metal Regression/workingWithMinorChanges"; sourceTree = SOURCE_ROOT; };
+		564C908525F0E71D00DD8076 /* working */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = working; path = "VVISFKitTests Metal Regression/working"; sourceTree = SOURCE_ROOT; };
 		565D06B225D5323B0048C4DD /* isfLogoBW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogoBW.jpg; sourceTree = "<group>"; };
 		56BD40DD25B5F006002524CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		56BD40DF25B5F00C002524CE /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
@@ -2546,88 +2467,6 @@
 		56BD418F25B5FA80002524CE /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		56BD419025B5FA81002524CE /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		56BD419125B5FA81002524CE /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		56BD41DA25B5FC61002524CE /* ASCII Art.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "ASCII Art.fs"; sourceTree = "<group>"; };
-		56BD41DB25B5FC61002524CE /* City Lights.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "City Lights.fs"; sourceTree = "<group>"; };
-		56BD41DC25B5FC61002524CE /* Dither-Bayer.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Dither-Bayer.fs"; sourceTree = "<group>"; };
-		56BD41DD25B5FC61002524CE /* VHS Glitch.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "VHS Glitch.fs"; sourceTree = "<group>"; };
-		56BD41DE25B5FC61002524CE /* Bad TV Auto Scroll.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Bad TV Auto Scroll.vs"; sourceTree = "<group>"; };
-		56BD41DF25B5FC61002524CE /* v002 Vignette.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Vignette.fs"; sourceTree = "<group>"; };
-		56BD41E025B5FC61002524CE /* Auto-scale.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-scale.fs"; sourceTree = "<group>"; };
-		56BD41E125B5FC61002524CE /* Bokeh Disc+.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Bokeh Disc+.fs"; sourceTree = "<group>"; };
-		56BD41E225B5FC61002524CE /* Old Video.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Old Video.fs"; sourceTree = "<group>"; };
-		56BD41E325B5FC61002524CE /* Sharpen RGB.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Sharpen RGB.vs"; sourceTree = "<group>"; };
-		56BD41E425B5FC61002524CE /* Shift RGB.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Shift RGB.fs"; sourceTree = "<group>"; };
-		56BD41E525B5FC61002524CE /* Borders around Alpha.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Borders around Alpha.fs"; sourceTree = "<group>"; };
-		56BD41E625B5FC61002524CE /* Auto-rotate.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-rotate.fs"; sourceTree = "<group>"; };
-		56BD41E725B5FC61002524CE /* Controlled Chaos.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Controlled Chaos.fs"; sourceTree = "<group>"; };
-		56BD41E825B5FC61002524CE /* Black & White.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Black & White.fs"; sourceTree = "<group>"; };
-		56BD41E925B5FC61002524CE /* Neon.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Neon.vs; sourceTree = "<group>"; };
-		56BD41EA25B5FC61002524CE /* Bloom.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Bloom.fs; sourceTree = "<group>"; };
-		56BD41EB25B5FC61002524CE /* Stripes.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Stripes.fs; sourceTree = "<group>"; };
-		56BD41EC25B5FC61002524CE /* Fast Blur.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Fast Blur.vs"; sourceTree = "<group>"; };
-		56BD41ED25B5FC61002524CE /* Glow-Fast.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Glow-Fast.vs"; sourceTree = "<group>"; };
-		56BD41EE25B5FC61002524CE /* v002 Crosshatch.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Crosshatch.fs"; sourceTree = "<group>"; };
-		56BD41EF25B5FC61002524CE /* Multi Pass Gaussian Blur.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Multi Pass Gaussian Blur.vs"; sourceTree = "<group>"; };
-		56BD41F025B5FC61002524CE /* Vibrance.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Vibrance.fs; sourceTree = "<group>"; };
-		56BD41F125B5FC61002524CE /* lookup_amatorka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_amatorka.png; sourceTree = "<group>"; };
-		56BD41F225B5FC61002524CE /* Pixelize.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Pixelize.fs; sourceTree = "<group>"; };
-		56BD41F425B5FC62002524CE /* Delay.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Delay.fs; sourceTree = "<group>"; };
-		56BD41F525B5FC62002524CE /* v002 Bleach Bypass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Bleach Bypass.fs"; sourceTree = "<group>"; };
-		56BD41F625B5FC62002524CE /* Edges.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Edges.vs; sourceTree = "<group>"; };
-		56BD41F725B5FC62002524CE /* Edge Blur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Edge Blur.fs"; sourceTree = "<group>"; };
-		56BD41F825B5FC62002524CE /* 3D Rotate.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "3D Rotate.fs"; sourceTree = "<group>"; };
-		56BD41F925B5FC62002524CE /* Wisps.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Wisps.fs; sourceTree = "<group>"; };
-		56BD41FA25B5FC62002524CE /* Auto-fade.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-fade.fs"; sourceTree = "<group>"; };
-		56BD41FB25B5FC62002524CE /* Dither BW.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Dither BW.fs"; sourceTree = "<group>"; };
-		56BD41FC25B5FC62002524CE /* MissEtikate.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MissEtikate.fs; sourceTree = "<group>"; };
-		56BD41FD25B5FC62002524CE /* Amatorka.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Amatorka.fs; sourceTree = "<group>"; };
-		56BD41FE25B5FC62002524CE /* Multi Pass Gaussian Blur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Multi Pass Gaussian Blur.fs"; sourceTree = "<group>"; };
-		56BD41FF25B5FC62002524CE /* Quake.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Quake.fs; sourceTree = "<group>"; };
-		56BD420025B5FC62002524CE /* Fast Blur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Fast Blur.fs"; sourceTree = "<group>"; };
-		56BD420125B5FC62002524CE /* Glow-Fast.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Glow-Fast.fs"; sourceTree = "<group>"; };
-		56BD420225B5FC62002524CE /* Color Posterize.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Color Posterize.fs"; sourceTree = "<group>"; };
-		56BD420325B5FC62002524CE /* Round Corner.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Round Corner.fs"; sourceTree = "<group>"; };
-		56BD420425B5FC62002524CE /* Edges.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Edges.fs; sourceTree = "<group>"; };
-		56BD420525B5FC62002524CE /* Color Monochrome.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Color Monochrome.fs"; sourceTree = "<group>"; };
-		56BD420625B5FC62002524CE /* Edge Blur.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Edge Blur.vs"; sourceTree = "<group>"; };
-		56BD420725B5FC62002524CE /* 3D Rotate.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "3D Rotate.vs"; sourceTree = "<group>"; };
-		56BD420925B5FC62002524CE /* IQ_SmoothXOR.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = IQ_SmoothXOR.fs; sourceTree = "<group>"; };
-		56BD420A25B5FC62002524CE /* VVMotionBlur.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VVMotionBlur.fs; sourceTree = "<group>"; };
-		56BD420B25B5FC62002524CE /* Dilate-Fast.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Dilate-Fast.fs"; sourceTree = "<group>"; };
-		56BD420C25B5FC62002524CE /* Bad TV Auto Scroll.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Bad TV Auto Scroll.fs"; sourceTree = "<group>"; };
-		56BD420D25B5FC62002524CE /* False Color.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "False Color.fs"; sourceTree = "<group>"; };
-		56BD420E25B5FC62002524CE /* CMYK Halftone-Lookaround.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "CMYK Halftone-Lookaround.fs"; sourceTree = "<group>"; };
-		56BD420F25B5FC62002524CE /* Seascape.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Seascape.fs; sourceTree = "<group>"; };
-		56BD421025B5FC62002524CE /* Erode-Fast.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Erode-Fast.fs"; sourceTree = "<group>"; };
-		56BD421125B5FC62002524CE /* City Lights.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "City Lights.vs"; sourceTree = "<group>"; };
-		56BD421225B5FC62002524CE /* Grid.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Grid.fs; sourceTree = "<group>"; };
-		56BD421325B5FC62002524CE /* RGB Trails.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "RGB Trails.fs"; sourceTree = "<group>"; };
-		56BD421425B5FC62002524CE /* Auto-move.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-move.fs"; sourceTree = "<group>"; };
-		56BD421525B5FC62002524CE /* Neon.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Neon.fs; sourceTree = "<group>"; };
-		56BD421625B5FC62002524CE /* Exposure Adjust.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Exposure Adjust.fs"; sourceTree = "<group>"; };
-		56BD421725B5FC62002524CE /* Digital Clock.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Digital Clock.fs"; sourceTree = "<group>"; };
-		56BD421825B5FC62002524CE /* Bloom.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Bloom.vs; sourceTree = "<group>"; };
-		56BD421925B5FC62002524CE /* Radial Gradient.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Radial Gradient.fs"; sourceTree = "<group>"; };
-		56BD421A25B5FC62002524CE /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
-		56BD421B25B5FC62002524CE /* Disc Spin.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Disc Spin.fs"; sourceTree = "<group>"; };
-		56BD421C25B5FC62002524CE /* v002 Technicolor.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v002 Technicolor.fs"; sourceTree = "<group>"; };
-		56BD421D25B5FC62002524CE /* Auto-color.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-color.fs"; sourceTree = "<group>"; };
-		56BD421E25B5FC62002524CE /* Auto-rotate.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Auto-rotate.vs"; sourceTree = "<group>"; };
-		56BD421F25B5FC62002524CE /* Sharpen RGB.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Sharpen RGB.fs"; sourceTree = "<group>"; };
-		56BD422125B5FC62002524CE /* Zoom Blur_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Zoom Blur_m.fs"; sourceTree = "<group>"; };
-		56BD422225B5FC62002524CE /* Freeze Frame_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "Freeze Frame_m.fs"; sourceTree = "<group>"; };
-		56BD422325B5FC62002524CE /* VoronoiLines_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = VoronoiLines_m.fs; sourceTree = "<group>"; };
-		56BD422425B5FC62002524CE /* Constellations_m.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Constellations_m.fs; sourceTree = "<group>"; };
-		56BD426F25B5FCAC002524CE /* multipleImageInputs.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = multipleImageInputs.fs; sourceTree = "<group>"; };
-		56BD427025B5FCAE002524CE /* multipasstexture.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = multipasstexture.fs; sourceTree = "<group>"; };
-		56BD427125B5FCAF002524CE /* variables.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = variables.fs; sourceTree = "<group>"; };
-		56BD427225B5FCB1002524CE /* varying.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = varying.fs; sourceTree = "<group>"; };
-		56BD427325B5FCB3002524CE /* multipass.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = multipass.fs; sourceTree = "<group>"; };
-		56BD427425B5FCB4002524CE /* textureimport.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = textureimport.fs; sourceTree = "<group>"; };
-		56BD427525B5FCB6002524CE /* multipass-eval.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "multipass-eval.fs"; sourceTree = "<group>"; };
-		56BD427625B5FCB7002524CE /* multipass-eval-texture.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "multipass-eval-texture.fs"; sourceTree = "<group>"; };
-		56BD427725B5FCB9002524CE /* varying.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = varying.vs; sourceTree = "<group>"; };
-		56BD427825B5FCBA002524CE /* lazytextureimport.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lazytextureimport.fs; sourceTree = "<group>"; };
 		56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ISFMetal Test App Info.plist"; sourceTree = "<group>"; };
 		96140109198AD46D00335292 /* QT and Hap Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QT and Hap Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9614010D198AD46D00335292 /* QT and Hap Test App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QT and Hap Test App-Info.plist"; sourceTree = "<group>"; };
@@ -4318,110 +4157,11 @@
 		56BD419625B5FB28002524CE /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				5653F2E625E4FA3000CF6311 /* emptyMain.fs */,
-				56BD427825B5FCBA002524CE /* lazytextureimport.fs */,
-				56BD427625B5FCB7002524CE /* multipass-eval-texture.fs */,
-				56BD427525B5FCB6002524CE /* multipass-eval.fs */,
-				56BD427325B5FCB3002524CE /* multipass.fs */,
-				56BD427025B5FCAE002524CE /* multipasstexture.fs */,
-				56BD426F25B5FCAC002524CE /* multipleImageInputs.fs */,
-				56BD427425B5FCB4002524CE /* textureimport.fs */,
-				56BD427125B5FCAF002524CE /* variables.fs */,
-				56BD427225B5FCB1002524CE /* varying.fs */,
-				56BD427725B5FCB9002524CE /* varying.vs */,
-				56BD41D925B5FC61002524CE /* working */,
-				56BD422025B5FC62002524CE /* workingWithMinorChanges */,
+				564C908525F0E71D00DD8076 /* working */,
+				564C908425F0E71D00DD8076 /* workingWithMinorChanges */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
-		};
-		56BD41D925B5FC61002524CE /* working */ = {
-			isa = PBXGroup;
-			children = (
-				56BD41DA25B5FC61002524CE /* ASCII Art.fs */,
-				56BD41DB25B5FC61002524CE /* City Lights.fs */,
-				56BD41DC25B5FC61002524CE /* Dither-Bayer.fs */,
-				56BD41DD25B5FC61002524CE /* VHS Glitch.fs */,
-				56BD41DE25B5FC61002524CE /* Bad TV Auto Scroll.vs */,
-				56BD41DF25B5FC61002524CE /* v002 Vignette.fs */,
-				56BD41E025B5FC61002524CE /* Auto-scale.fs */,
-				56BD41E125B5FC61002524CE /* Bokeh Disc+.fs */,
-				56BD41E225B5FC61002524CE /* Old Video.fs */,
-				56BD41E325B5FC61002524CE /* Sharpen RGB.vs */,
-				56BD41E425B5FC61002524CE /* Shift RGB.fs */,
-				56BD41E525B5FC61002524CE /* Borders around Alpha.fs */,
-				56BD41E625B5FC61002524CE /* Auto-rotate.fs */,
-				56BD41E725B5FC61002524CE /* Controlled Chaos.fs */,
-				56BD41E825B5FC61002524CE /* Black & White.fs */,
-				56BD41E925B5FC61002524CE /* Neon.vs */,
-				56BD41EA25B5FC61002524CE /* Bloom.fs */,
-				56BD41EB25B5FC61002524CE /* Stripes.fs */,
-				56BD41EC25B5FC61002524CE /* Fast Blur.vs */,
-				56BD41ED25B5FC61002524CE /* Glow-Fast.vs */,
-				56BD41EE25B5FC61002524CE /* v002 Crosshatch.fs */,
-				56BD41EF25B5FC61002524CE /* Multi Pass Gaussian Blur.vs */,
-				56BD41F025B5FC61002524CE /* Vibrance.fs */,
-				56BD41F125B5FC61002524CE /* lookup_amatorka.png */,
-				56BD41F225B5FC61002524CE /* Pixelize.fs */,
-				56BD41F425B5FC62002524CE /* Delay.fs */,
-				56BD41F525B5FC62002524CE /* v002 Bleach Bypass.fs */,
-				56BD41F625B5FC62002524CE /* Edges.vs */,
-				56BD41F725B5FC62002524CE /* Edge Blur.fs */,
-				56BD41F825B5FC62002524CE /* 3D Rotate.fs */,
-				56BD41F925B5FC62002524CE /* Wisps.fs */,
-				56BD41FA25B5FC62002524CE /* Auto-fade.fs */,
-				56BD41FB25B5FC62002524CE /* Dither BW.fs */,
-				56BD41FC25B5FC62002524CE /* MissEtikate.fs */,
-				56BD41FD25B5FC62002524CE /* Amatorka.fs */,
-				56BD41FE25B5FC62002524CE /* Multi Pass Gaussian Blur.fs */,
-				56BD41FF25B5FC62002524CE /* Quake.fs */,
-				56BD420025B5FC62002524CE /* Fast Blur.fs */,
-				56BD420125B5FC62002524CE /* Glow-Fast.fs */,
-				56BD420225B5FC62002524CE /* Color Posterize.fs */,
-				56BD420325B5FC62002524CE /* Round Corner.fs */,
-				56BD420425B5FC62002524CE /* Edges.fs */,
-				56BD420525B5FC62002524CE /* Color Monochrome.fs */,
-				56BD420625B5FC62002524CE /* Edge Blur.vs */,
-				56BD420725B5FC62002524CE /* 3D Rotate.vs */,
-				56BD420925B5FC62002524CE /* IQ_SmoothXOR.fs */,
-				56BD420A25B5FC62002524CE /* VVMotionBlur.fs */,
-				56BD420B25B5FC62002524CE /* Dilate-Fast.fs */,
-				56BD420C25B5FC62002524CE /* Bad TV Auto Scroll.fs */,
-				56BD420D25B5FC62002524CE /* False Color.fs */,
-				56BD420E25B5FC62002524CE /* CMYK Halftone-Lookaround.fs */,
-				56BD420F25B5FC62002524CE /* Seascape.fs */,
-				56BD421025B5FC62002524CE /* Erode-Fast.fs */,
-				56BD421125B5FC62002524CE /* City Lights.vs */,
-				56BD421225B5FC62002524CE /* Grid.fs */,
-				56BD421325B5FC62002524CE /* RGB Trails.fs */,
-				56BD421425B5FC62002524CE /* Auto-move.fs */,
-				56BD421525B5FC62002524CE /* Neon.fs */,
-				56BD421625B5FC62002524CE /* Exposure Adjust.fs */,
-				56BD421725B5FC62002524CE /* Digital Clock.fs */,
-				56BD421825B5FC62002524CE /* Bloom.vs */,
-				56BD421925B5FC62002524CE /* Radial Gradient.fs */,
-				56BD421A25B5FC62002524CE /* lookup_miss_etikate.png */,
-				56BD421B25B5FC62002524CE /* Disc Spin.fs */,
-				56BD421C25B5FC62002524CE /* v002 Technicolor.fs */,
-				56BD421D25B5FC62002524CE /* Auto-color.fs */,
-				56BD421E25B5FC62002524CE /* Auto-rotate.vs */,
-				56BD421F25B5FC62002524CE /* Sharpen RGB.fs */,
-			);
-			name = working;
-			path = "VVISFKitTests Metal Regression/working";
-			sourceTree = SOURCE_ROOT;
-		};
-		56BD422025B5FC62002524CE /* workingWithMinorChanges */ = {
-			isa = PBXGroup;
-			children = (
-				56BD422125B5FC62002524CE /* Zoom Blur_m.fs */,
-				56BD422225B5FC62002524CE /* Freeze Frame_m.fs */,
-				56BD422325B5FC62002524CE /* VoronoiLines_m.fs */,
-				56BD422425B5FC62002524CE /* Constellations_m.fs */,
-			);
-			name = workingWithMinorChanges;
-			path = "VVISFKitTests Metal Regression/workingWithMinorChanges";
-			sourceTree = SOURCE_ROOT;
 		};
 		56BD428325B5FDB9002524CE /* Agnostic */ = {
 			isa = PBXGroup;
@@ -6717,94 +6457,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56BD422B25B5FC62002524CE /* Auto-scale.fs in Resources */,
-				56BD423325B5FC62002524CE /* Black & White.fs in Resources */,
-				56BD423D25B5FC62002524CE /* Pixelize.fs in Resources */,
-				56BD427A25B5FCBA002524CE /* multipasstexture.fs in Resources */,
-				56BD422E25B5FC62002524CE /* Sharpen RGB.vs in Resources */,
-				56BD424125B5FC62002524CE /* Edges.vs in Resources */,
-				56BD425825B5FC62002524CE /* False Color.fs in Resources */,
-				56BD426125B5FC62002524CE /* Exposure Adjust.fs in Resources */,
-				56BD423625B5FC62002524CE /* Stripes.fs in Resources */,
-				56BD422D25B5FC62002524CE /* Old Video.fs in Resources */,
+				564C908725F0E71D00DD8076 /* working in Resources */,
+				564C908625F0E71D00DD8076 /* workingWithMinorChanges in Resources */,
 				56BD417025B5F1E0002524CE /* ISFMetalScene Test App-Info.plist in Resources */,
-				56BD422625B5FC62002524CE /* City Lights.fs in Resources */,
-				56BD422825B5FC62002524CE /* VHS Glitch.fs in Resources */,
-				56BD422F25B5FC62002524CE /* Shift RGB.fs in Resources */,
-				56BD427F25B5FCBA002524CE /* multipass-eval.fs in Resources */,
-				56BD423925B5FC62002524CE /* v002 Crosshatch.fs in Resources */,
-				56BD422C25B5FC62002524CE /* Bokeh Disc+.fs in Resources */,
-				56BD424B25B5FC62002524CE /* Fast Blur.fs in Resources */,
-				56BD427E25B5FCBA002524CE /* textureimport.fs in Resources */,
-				56BD422725B5FC62002524CE /* Dither-Bayer.fs in Resources */,
-				56BD423425B5FC62002524CE /* Neon.vs in Resources */,
-				56BD422925B5FC62002524CE /* Bad TV Auto Scroll.vs in Resources */,
-				56BD426825B5FC62002524CE /* Auto-color.fs in Resources */,
 				56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */,
-				56BD426325B5FC62002524CE /* Bloom.vs in Resources */,
-				56BD426B25B5FC62002524CE /* Zoom Blur_m.fs in Resources */,
-				56BD423825B5FC62002524CE /* Glow-Fast.vs in Resources */,
-				56BD423C25B5FC62002524CE /* lookup_amatorka.png in Resources */,
-				56BD428025B5FCBA002524CE /* multipass-eval-texture.fs in Resources */,
-				56BD424C25B5FC62002524CE /* Glow-Fast.fs in Resources */,
-				56BD422A25B5FC62002524CE /* v002 Vignette.fs in Resources */,
-				56BD427C25B5FCBA002524CE /* varying.fs in Resources */,
-				56BD424325B5FC62002524CE /* 3D Rotate.fs in Resources */,
-				56BD425025B5FC62002524CE /* Color Monochrome.fs in Resources */,
-				56BD424625B5FC62002524CE /* Dither BW.fs in Resources */,
-				56BD424E25B5FC62002524CE /* Round Corner.fs in Resources */,
-				56BD425D25B5FC62002524CE /* Grid.fs in Resources */,
-				56BD426425B5FC62002524CE /* Radial Gradient.fs in Resources */,
-				56BD424F25B5FC62002524CE /* Edges.fs in Resources */,
-				56BD422525B5FC62002524CE /* ASCII Art.fs in Resources */,
-				56BD426525B5FC62002524CE /* lookup_miss_etikate.png in Resources */,
-				56BD425125B5FC62002524CE /* Edge Blur.vs in Resources */,
-				56BD424A25B5FC62002524CE /* Quake.fs in Resources */,
-				56BD423F25B5FC62002524CE /* Delay.fs in Resources */,
-				56BD426E25B5FC62002524CE /* Constellations_m.fs in Resources */,
-				56BD423025B5FC62002524CE /* Borders around Alpha.fs in Resources */,
 				56BD419225B5FA96002524CE /* InfoPlist.strings in Resources */,
-				56BD423725B5FC62002524CE /* Fast Blur.vs in Resources */,
-				56BD428225B5FCBA002524CE /* lazytextureimport.fs in Resources */,
-				56BD425C25B5FC62002524CE /* City Lights.vs in Resources */,
-				56BD425925B5FC62002524CE /* CMYK Halftone-Lookaround.fs in Resources */,
-				56BD424825B5FC62002524CE /* Amatorka.fs in Resources */,
-				56BD424025B5FC62002524CE /* v002 Bleach Bypass.fs in Resources */,
-				56BD426225B5FC62002524CE /* Digital Clock.fs in Resources */,
-				56BD425425B5FC62002524CE /* IQ_SmoothXOR.fs in Resources */,
-				56BD423A25B5FC62002524CE /* Multi Pass Gaussian Blur.vs in Resources */,
-				56BD426D25B5FC62002524CE /* VoronoiLines_m.fs in Resources */,
-				56BD423225B5FC62002524CE /* Controlled Chaos.fs in Resources */,
-				56BD426625B5FC62002524CE /* Disc Spin.fs in Resources */,
-				56BD426C25B5FC62002524CE /* Freeze Frame_m.fs in Resources */,
-				56BD423525B5FC62002524CE /* Bloom.fs in Resources */,
-				56BD428125B5FCBA002524CE /* varying.vs in Resources */,
-				56BD425B25B5FC62002524CE /* Erode-Fast.fs in Resources */,
-				56BD424525B5FC62002524CE /* Auto-fade.fs in Resources */,
-				56BD424D25B5FC62002524CE /* Color Posterize.fs in Resources */,
-				56BD426025B5FC62002524CE /* Neon.fs in Resources */,
-				56BD427B25B5FCBA002524CE /* variables.fs in Resources */,
-				56BD425225B5FC62002524CE /* 3D Rotate.vs in Resources */,
-				56BD427D25B5FCBA002524CE /* multipass.fs in Resources */,
-				56BD424225B5FC62002524CE /* Edge Blur.fs in Resources */,
 				56BD419325B5FA9A002524CE /* Credits.rtf in Resources */,
-				56BD423B25B5FC62002524CE /* Vibrance.fs in Resources */,
-				56BD424925B5FC62002524CE /* Multi Pass Gaussian Blur.fs in Resources */,
 				5632A1BB25E6B703005B38D8 /* inputImage.jpg in Resources */,
-				56BD423125B5FC62002524CE /* Auto-rotate.fs in Resources */,
-				56BD426925B5FC62002524CE /* Auto-rotate.vs in Resources */,
-				56BD426A25B5FC62002524CE /* Sharpen RGB.fs in Resources */,
-				56BD424425B5FC62002524CE /* Wisps.fs in Resources */,
-				56BD425F25B5FC62002524CE /* Auto-move.fs in Resources */,
-				56BD425625B5FC62002524CE /* Dilate-Fast.fs in Resources */,
-				56BD424725B5FC62002524CE /* MissEtikate.fs in Resources */,
-				56BD427925B5FCBA002524CE /* multipleImageInputs.fs in Resources */,
-				56BD425725B5FC62002524CE /* Bad TV Auto Scroll.fs in Resources */,
 				56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */,
-				56BD425525B5FC62002524CE /* VVMotionBlur.fs in Resources */,
-				56BD425E25B5FC62002524CE /* RGB Trails.fs in Resources */,
-				56BD425A25B5FC62002524CE /* Seascape.fs in Resources */,
-				5653F2E725E4FA3000CF6311 /* emptyMain.fs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
