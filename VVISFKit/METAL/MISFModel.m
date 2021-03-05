@@ -1,4 +1,5 @@
 #import "MISFModel.h"
+#import "FileTools.h"
 #include "ISFStringAdditions.h"
 #import "MISFErrorCodes.h"
 #import "NSString+DDMathParsing.h"
@@ -381,10 +382,15 @@
                 NSString *tmpBufferName = [rawPassDict objectForKey:@"TARGET"];
                 if( tmpBufferName == nil && ![tmpBufferName isKindOfClass:stringClass] )
                 {
-                    // Pass must have a name, otherwise ignore it
-                    NSLog(@"ignore pass with no name"); // TODO: fire error?
-                    continue;
+                    // A pass with no target buffer name is still an acceptable pass
+                    NSString *uuid = [FileTools uuid];
+                    // '-' characters could cause glsl compilation errors
+                    NSString *safeUuidForVariableName = [uuid stringByReplacingOccurrencesOfString:@"-"
+                                                                                        withString:@"_"];
+                    tmpBufferName =
+                        [NSString stringWithFormat:@"%@_%@", @"IsfFallbackTargetNameForPass_", safeUuidForVariableName];
                 }
+
                 newPass.targetBuffer.name = tmpBufferName;
                 id persistentObj = [rawPassDict objectForKey:@"PERSISTENT"];
                 @autoreleasepool
