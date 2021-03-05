@@ -538,6 +538,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
             }
             passOutputTexture = [targetBuffer getBufferTexture];
             renderer.builtin_RENDERSIZE = NSMakeSize(passOutputTexture.width, passOutputTexture.height);
+            renderer.loadAction = targetBuffer.isPersistent ? MTLLoadActionLoad : MTLLoadActionClear;
             id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
             passCommandBuffer.label = @"ISF Single pass command Buffer";
             [renderer renderIsfOnTexture:passOutputTexture
