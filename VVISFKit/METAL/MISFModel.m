@@ -498,7 +498,7 @@
     }
     NSArray *newImportedImages = [_importedImages arrayByAddingObject:importedImage];
     VVRELEASE(_importedImages);
-    _importedImages = newImportedImages;
+    _importedImages = [newImportedImages retain];
     return YES;
 }
 
