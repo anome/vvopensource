@@ -85,6 +85,12 @@ static NSString *const MISF_TOPPINGS_SAMPLING_FUNCTIONS =
      "{\n"
      "    return texture(imageName, vec2(normalizedPixelCoord.x, normalizedPixelCoord.y));\n"
      "}\n"
+     // For people using GL2 api instead of ISF functions
+     "vec4 texture2D(sampler2D imageName, vec2 normalizedPixelCoord)\n"
+     "{\n"
+     "    return IMG_NORM_PIXEL(imageName, normalizedPixelCoord);\n"
+     "}\n"
+
      "\n";
 
 static NSString *const MISF_TOPPINGS_FIRST_IN_MAIN = @"\n"
