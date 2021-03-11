@@ -342,7 +342,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
             ISFAttribVal currentVal;
             currentVal.metalImageVal = importedBuffer;
             [newAttrib setCurrentVal:currentVal];
-            [inputs lockAddObject:newAttrib];
+            [privateInputs lockAddObject:newAttrib];
             [importedImages addObject:newAttrib];
         }
     }
