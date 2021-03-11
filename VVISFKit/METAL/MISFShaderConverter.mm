@@ -270,7 +270,7 @@ Translation goes in three steps:
     }
 
 #ifdef USE_MOLTENVK_LIB
-    int argc = 1 + 14;
+    int argc = 1 + 15;
     const char *argv[] = {"name",
                           "-gi",
                           [glslPath UTF8String],
@@ -284,6 +284,7 @@ Translation goes in three steps:
                           "-p",
                           "-c",
                           "-Iv",
+                          "-q",
                           "-mo",
                           [outputFilePath UTF8String]};
     mvk::MoltenVKShaderConverterTool converter(argc, argv);
