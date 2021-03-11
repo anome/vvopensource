@@ -5,3 +5,4 @@
 * VoronoiLines : variable and function sharing a common name (iGlobalTime) causes SpirV compilation error
 * Zoom Blur : variable named 'sample' is forbidden by SpirV.
 * Freeze Frame : variable named 'mix' is forbidden by SpirV
+* variableNamedSampler : variable named 'sampler' used as sampler2D can cause Metal compilation error (must use 'struct' tag to refer to type 'sampler' in this scope)
