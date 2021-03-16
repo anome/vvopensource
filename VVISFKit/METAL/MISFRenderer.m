@@ -312,7 +312,7 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
                                                                          DEFAULT_VERTEX_PROGRAM];
     NSString *fragmentCode = model.convertedFragmentCode;
 
-#warning mto-anomes MISFInputBuffer has metal resources inside but we dont use the metal resources here. We're interested in the buffer struct definitions. Best thing would be to refactor MISFInputBuffer and separate model from resources
+#warning mto-anomes MISFInputBuffer has GPU resources inside but we dont use the metal resources here. We're interested in the buffer struct definitions. Best thing would be to refactor MISFInputBuffer to separate model from GPU resources
     MISFInputsBuffer *inputsBufferForFragment =
         [MISFRenderer createInputBufferWithDefinitions:model.fragmentBufferDefinitions];
     MISFInputsBuffer *inputsBufferForVertex = nil;

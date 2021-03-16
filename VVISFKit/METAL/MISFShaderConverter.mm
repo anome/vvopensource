@@ -103,9 +103,7 @@ static NSString *const MISF_TOPPINGS_FIRST_IN_MAIN = @"\n"
 // https://regex101.com/r/nUXD8W/2
 static NSString *const MISF_REGEX_GL_VOID_MAIN_WITH_BRACKET =
     @"void\\s*main(\\s*|)[(]\\s*(\\s*|\\s*void\\s*)[)]\\s*[{]";
-#warning mto-anomes: TODO: no param = it's fragment void and might not work - create test shader to verify behaviour
 static NSString *const MISF_REGEX_METAL_FRAGMENT_MAIN_WITH_BRACKET = @"fragment float4 main0\\s*[(](.*)\\s*[{]";
-#warning mto-anomes: TODO: no param = it's vertex void and might not work - create test shader to verify behaviour
 static NSString *const MISF_REGEX_METAL_VERTEX_MAIN_WITH_BRACKET = @"vertex RasterizerData main0\\s*[(](.*)\\s*[{]";
 static NSString *const MISF_REGEX_METAL_FRAGMENT_MAIN = @"fragment float4 main0\\s*[(](.*)";
 static NSString *const MISF_REGEX_METAL_VERTEX_MAIN = @"vertex RasterizerData main0\\s*[(](.*)";

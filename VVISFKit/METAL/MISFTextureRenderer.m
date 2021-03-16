@@ -110,7 +110,7 @@ static NSString *const SHADER_CODE =
      "    return out;\n"
      "}\n"
 
-#warning mto-anomes: here, the isf final render should not be stretched. If the render is smaller, it should simply show it small in bottom left corner
+#warning mto-anomes: here, the isf final render should not be stretched. If the render is smaller, it should draw in real size in bottom left corner
      "fragment float4 \n"
      "ISF_textureToScreenSamplingShader(RasterizerData in [[stage_in]],\n"
      "                              texture2d<half> colorTexture [[ texture(MetalBitsTextureIndexZero) ]])\n"

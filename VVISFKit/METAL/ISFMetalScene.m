@@ -216,11 +216,11 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 {
     MISFModel *isfModel = preloadedMedia.model.parentModel;
     [inputs lockRemoveAllObjects];
-    NSLog(@"description %@", isfModel.fileDescription);
-    NSLog(@"credits %@", isfModel.credits);
-    NSLog(@"cat names %@", isfModel.categoryNames);
-    NSLog(@"name %@", isfModel.fileName);
-    NSLog(@"buffers %@", isfModel.persistentBuffers);
+    //    NSLog(@"description %@", isfModel.fileDescription);
+    //    NSLog(@"credits %@", isfModel.credits);
+    //    NSLog(@"cat names %@", isfModel.categoryNames);
+    //    NSLog(@"name %@", isfModel.fileName);
+    //    NSLog(@"buffers %@", isfModel.persistentBuffers);
 
     // IMPLEMENT PERSISTENT BUFFERS
     for( MISFModelBuffer *model in isfModel.persistentBuffers )
@@ -485,7 +485,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
         if( isMultiPass )
         {
-            MISFTargetBuffer *targetBuffer = [self getBufferNamed:passOutputKey];
+            MISFTargetBuffer *targetBuffer = [shaderBuffers objectForKey:passOutputKey];
 
             if( targetBuffer == nil )
             {
@@ -522,7 +522,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         }
         else // Single Pass
         {
-            MISFTargetBuffer *targetBuffer = [self getBufferNamed:passOutputKey];
+            MISFTargetBuffer *targetBuffer = [shaderBuffers objectForKey:passOutputKey];
             if( targetBuffer == nil )
             {
                 // Supposed to render in a target we dont have !
@@ -790,17 +790,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     }
     [inputs unlock];
     return returnMe;
-}
-
-- (MISFTargetBuffer *)getBufferNamed:(NSString *)bufferName
-{
-    MISFTargetBuffer *targetBuffer = [shaderBuffers objectForKey:bufferName];
-    // If unlucky, look in temp buffers
-    if( targetBuffer == nil )
-    {
-        return nil;
-    }
-    return targetBuffer;
 }
 
 #pragma mark - Model getters

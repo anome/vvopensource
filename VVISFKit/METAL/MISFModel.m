@@ -519,7 +519,6 @@
             //    describing the image to import
             for( id importDictKey in(NSDictionary *)anObj )
             {
-#warning mto-anomes: is this line subject to fails?
                 id importDict = anObj[importDictKey];
                 if( [importDict isKindOfClass:[NSDictionary class]] )
                 {
