@@ -4097,18 +4097,16 @@
 			name = MoltenVK;
 			sourceTree = "<group>";
 		};
-		56BD40E225B5F041002524CE /* METAL */ = {
+		56BD40E225B5F041002524CE /* Metal */ = {
 			isa = PBXGroup;
 			children = (
 				56BD428625B5FDC7002524CE /* Converter */,
 				56BD428525B5FDC2002524CE /* Rendering */,
 				56BD428425B5FDBE002524CE /* Model */,
-				56BD428325B5FDB9002524CE /* Agnostic */,
 				56BD417A25B5F4CC002524CE /* ISFMetalScene.h */,
 				56BD417925B5F4CC002524CE /* ISFMetalScene.m */,
-				5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */,
 			);
-			name = METAL;
+			name = Metal;
 			sourceTree = "<group>";
 		};
 		56BD412225B5F093002524CE /* VVISFKitTests Metal Regression */ = {
@@ -4169,6 +4167,7 @@
 		56BD428325B5FDB9002524CE /* Agnostic */ = {
 			isa = PBXGroup;
 			children = (
+				5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */,
 				56BD40F125B5F056002524CE /* MISFErrorCodes.h */,
 				56BD40F225B5F056002524CE /* MISFErrorCodes.m */,
 				56BD40F625B5F056002524CE /* MISFModel.h */,
@@ -4217,6 +4216,8 @@
 		56BD428625B5FDC7002524CE /* Converter */ = {
 			isa = PBXGroup;
 			children = (
+				56BD40FA25B5F057002524CE /* MISFShaderConverter.h */,
+				56BD40ED25B5F055002524CE /* MISFShaderConverter.mm */,
 				564C906E25EFA66900DD8076 /* MoltenVKShaderConverterTool.cpp */,
 				564C906C25EFA66900DD8076 /* MoltenVKShaderConverterTool.h */,
 				564C906F25EFA66900DD8076 /* OSSupport.h */,
@@ -4227,8 +4228,6 @@
 				564C907425EFA68D00DD8076 /* MVKOSExtensions.mm */,
 				564C907525EFA68D00DD8076 /* MVKStrings.h */,
 				564C56BA25EF9F0B00DD8076 /* MoltenVK */,
-				56BD40FA25B5F057002524CE /* MISFShaderConverter.h */,
-				56BD40ED25B5F055002524CE /* MISFShaderConverter.mm */,
 				5632A1C125E7F3DE005B38D8 /* MoltenVKShaderConverter */,
 			);
 			name = Converter;
@@ -4371,7 +4370,8 @@
 		964FF27F1981B5AF00CCC808 /* VVISFKit framework */ = {
 			isa = PBXGroup;
 			children = (
-				56BD40E225B5F041002524CE /* METAL */,
+				56BD428325B5FDB9002524CE /* Agnostic */,
+				56BD40E225B5F041002524CE /* Metal */,
 				964FF2861981B5AF00CCC808 /* VVISFKit.h */,
 				964FF29C1981B62400CCC808 /* ISFFileManager.h */,
 				964FF29D1981B62400CCC808 /* ISFFileManager.m */,
