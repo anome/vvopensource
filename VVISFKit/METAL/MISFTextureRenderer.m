@@ -139,10 +139,9 @@ static NSString *const SHADER_CODE =
 
 - (instancetype)initWithDevice:(id<MTLDevice>)device colorPixelFormat:(MTLPixelFormat)colorPixelFormat
 {
-    id<MTLLibrary> defaultLibrary = [device newDefaultLibrary];
     return [self initWithDevice:device
                      colorPixelFormat:colorPixelFormat
-                       customFragment:[defaultLibrary newFunctionWithName:@"ISF_textureToScreenSamplingShader"]
+                       customFragment:nil
         numberOfExtraColorAttachments:0];
 }
 
