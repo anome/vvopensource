@@ -711,7 +711,6 @@
 		56BD416825B5F1E0002524CE /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415325B5F1DE002524CE /* Shaders.metal */; };
 		56BD416B25B5F1E0002524CE /* TextureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415C25B5F1DF002524CE /* TextureRenderer.m */; };
 		56BD416C25B5F1E0002524CE /* Appdelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD415D25B5F1DF002524CE /* Appdelegate.m */; };
-		56BD417025B5F1E0002524CE /* ISFMetalScene Test App-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BD416125B5F1E0002524CE /* ISFMetalScene Test App-Info.plist */; };
 		56BD417225B5F29A002524CE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		56BD417325B5F2A8002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
 		56BD417825B5F493002524CE /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD417725B5F493002524CE /* CoreImage.framework */; };
@@ -2448,7 +2447,6 @@
 		56BD412325B5F093002524CE /* VVISFKitTests_Metal_Regression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVISFKitTests_Metal_Regression.m; sourceTree = "<group>"; };
 		56BD412525B5F093002524CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56BD414825B5F12B002524CE /* ISFMetalScene Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISFMetalScene Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		56BD414925B5F12D002524CE /* ISFGLScene Test App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ISFGLScene Test App copy-Info.plist"; path = "/Users/mto/Code/lab/Metal ISF/vvopensource-master/ISFGLScene Test App copy-Info.plist"; sourceTree = "<absolute>"; };
 		56BD415125B5F1DE002524CE /* MetalImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetalImageView.m; sourceTree = "<group>"; };
 		56BD415225B5F1DE002524CE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		56BD415325B5F1DE002524CE /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
@@ -2458,7 +2456,6 @@
 		56BD415B25B5F1DF002524CE /* MetalImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetalImageView.h; sourceTree = "<group>"; };
 		56BD415C25B5F1DF002524CE /* TextureRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureRenderer.m; sourceTree = "<group>"; };
 		56BD415D25B5F1DF002524CE /* Appdelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appdelegate.m; sourceTree = "<group>"; };
-		56BD416125B5F1E0002524CE /* ISFMetalScene Test App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ISFMetalScene Test App-Info.plist"; sourceTree = "<group>"; };
 		56BD417725B5F493002524CE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		56BD417925B5F4CC002524CE /* ISFMetalScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ISFMetalScene.m; path = METAL/ISFMetalScene.m; sourceTree = "<group>"; };
 		56BD417A25B5F4CC002524CE /* ISFMetalScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISFMetalScene.h; path = METAL/ISFMetalScene.h; sourceTree = "<group>"; };
@@ -3273,7 +3270,6 @@
 				96ACD7221706416300138AE6 /* Frameworks */,
 				1A6533491CEB7DB40003C9D1 /* Embedded Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				56BD414925B5F12D002524CE /* ISFGLScene Test App copy-Info.plist */,
 			);
 			name = VVOpenSource;
 			sourceTree = "<group>";
@@ -4136,7 +4132,6 @@
 				56BD415725B5F1DE002524CE /* AppDelegate.h */,
 				56BD415D25B5F1DF002524CE /* Appdelegate.m */,
 				5632A1BA25E6B701005B38D8 /* inputImage.jpg */,
-				56BD416125B5F1E0002524CE /* ISFMetalScene Test App-Info.plist */,
 				56BD415825B5F1DF002524CE /* ISFMetalScene Test App-Prefix.pch */,
 				56BD415225B5F1DE002524CE /* main.m */,
 			);
@@ -6463,7 +6458,6 @@
 			files = (
 				564C908725F0E71D00DD8076 /* working in Resources */,
 				564C908625F0E71D00DD8076 /* workingWithMinorChanges in Resources */,
-				56BD417025B5F1E0002524CE /* ISFMetalScene Test App-Info.plist in Resources */,
 				56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */,
 				56BD419225B5FA96002524CE /* InfoPlist.strings in Resources */,
 				56BD419325B5FA9A002524CE /* Credits.rtf in Resources */,
