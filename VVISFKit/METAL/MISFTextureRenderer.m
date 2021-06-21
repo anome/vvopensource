@@ -121,7 +121,7 @@ static NSString *const SHADER_CODE =
      "    constexpr sampler textureSampler (mag_filter::linear,\n"
      "                                      min_filter::linear, s_address::clamp_to_zero, t_address::clamp_to_zero,  "
      "r_address::clamp_to_zero);\n"
-     "   const float2 pixelTextureCoordinate = float2(colorTexture.get_width(), colorTexture.get_height());"
+     //"   const float2 pixelTextureCoordinate = float2(colorTexture.get_width(), colorTexture.get_height());\n"
      //"    const half4 colorSample = colorTexture.sample(pixelTextureSampler, in.pixelSpacePosition);\n"
      "    const half4 colorSample = colorTexture.sample(textureSampler, in.textureCoordinate);\n"
      "    return float4(colorSample);\n"
@@ -164,7 +164,7 @@ static NSString *const SHADER_CODE =
         }
         else
         {
-            NSLog(@"compiled perfectly!");
+            //NSLog(@"compiled perfectly!");
         }
 
         // Load the vertex/fragment functions from the library
