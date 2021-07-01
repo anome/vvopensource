@@ -642,7 +642,6 @@
 		5609D4A025E6A14000A331E2 /* ISFSupportTest.vs in Resources */ = {isa = PBXBuildFile; fileRef = 5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */; };
 		5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5623C95A25DBCB7B004FBE66 /* ISFSceneBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5632A1BB25E6B703005B38D8 /* inputImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5632A1BA25E6B701005B38D8 /* inputImage.jpg */; };
-		5632A1C225E7F3DE005B38D8 /* MoltenVKShaderConverter in Resources */ = {isa = PBXBuildFile; fileRef = 5632A1C125E7F3DE005B38D8 /* MoltenVKShaderConverter */; };
 		564C56BC25EF9F4600DD8076 /* MoltenVKShaderConverter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 564C56BB25EF9F4600DD8076 /* MoltenVKShaderConverter.xcframework */; };
 		564C56C125EF9F7000DD8076 /* SPIRVConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C56BD25EF9F6F00DD8076 /* SPIRVConversion.h */; };
 		564C56C225EF9F7000DD8076 /* GLSLConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 564C56BE25EF9F6F00DD8076 /* GLSLConversion.h */; };
@@ -6514,7 +6513,6 @@
 			files = (
 				964FF2841981B5AF00CCC808 /* InfoPlist.strings in Resources */,
 				964FF2B71981B62400CCC808 /* ISFGLScenePassthru.vs in Resources */,
-				5632A1C225E7F3DE005B38D8 /* MoltenVKShaderConverter in Resources */,
 				1A8A19971C15E09F0096BCB8 /* ISF_ES_Compatibility.txt in Resources */,
 				964FF2B11981B62400CCC808 /* ISFGLMacro2D.txt in Resources */,
 				964FF2B21981B62400CCC808 /* ISFGLMacro2DBias.txt in Resources */,
