@@ -82,9 +82,7 @@
 
     XCTAssertNotNil(inputImageForEffects,
                     @"failed to load test input image. This is an error due to test project, not vvisfkit");
-    ISFAttribVal imageVal;
-    imageVal.metalImageVal = inputImageForEffects;
-    [isfScene setValue:imageVal forInputKey:@"inputImage"];
+    [isfScene setNSObjectVal:inputImageForEffects forInputKey:@"inputImage"];
 
     BOOL success = [isfScene renderOnTexture:outputTexture onCommandBuffer:commandBuffer withError:&error];
     if( !success )

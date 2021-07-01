@@ -149,9 +149,7 @@
     }
 
     {
-        ISFAttribVal imageVal;
-        imageVal.metalImageVal = inputImage;
-        [isfScene setValue:imageVal forInputKey:@"inputImage"];
+        [isfScene setNSObjectVal:inputImage forInputKey:@"inputImage"];
     }
 
     /// RENDER

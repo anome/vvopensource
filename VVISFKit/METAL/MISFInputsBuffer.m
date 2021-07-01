@@ -229,7 +229,8 @@ static const size_t BUFFER_ALLOCATION_SIZE = sizeof(IsfInputsBufferType);
         // SPECIFIC CASE FOR IMAGES
         if( attribType == ISFAT_Image )
         {
-            id<MTLTexture> theImage = attrib.currentVal.metalImageVal;
+            id userInfo = attrib.userInfo;
+            id<MTLTexture> theImage = ([userInfo conformsToProtocol:@protocol(MTLTexture)] ? userInfo:nil);
             if( theImage == nil )
             {
                 NSLog(@"ERR: missing MTLTexture. Skip image input `%@`.", attribName);

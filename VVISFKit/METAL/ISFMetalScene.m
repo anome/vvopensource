@@ -339,9 +339,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                                              type:ISFAT_Image
                                            values:minVal:maxVal:defVal:idenVal:nil:nil];
             [newAttrib setUserInfo:importedBuffer];
-            ISFAttribVal currentVal;
-            currentVal.metalImageVal = importedBuffer;
-            [newAttrib setCurrentVal:currentVal];
             [privateInputs lockAddObject:newAttrib];
             [importedImages addObject:newAttrib];
         }
@@ -367,10 +364,8 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                                         label:bufferKey // used to change texture at lazy init
                                          type:ISFAT_Image
                                        values:minVal:maxVal:defVal:idenVal:nil:nil];
-        ISFAttribVal currentVal;
         // This will be filled at render time (because texture sizes might change)
-        currentVal.metalImageVal = nil;
-        [newAttrib setCurrentVal:currentVal];
+        [newAttrib setUserInfo:nil];
         [privateInputs lockAddObject:newAttrib];
     }
 
@@ -447,9 +442,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     for( NSString *bufferKey in shaderBuffers )
     {
         id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTexture];
-        ISFAttribVal imageVal;
-        imageVal.metalImageVal = texture;
-        [self setValue:imageVal forPrivateInputKey:bufferKey];
+        [self setNSObjectVal:texture forPrivateInputKey:bufferKey];
     }
 
     // --------- Set buffer for Built-in ISF values
@@ -557,6 +550,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     return YES;
 }
 
+
 #pragma mark Inputs
 
 - (void)setValue:(ISFAttribVal)n forPrivateInputKey:(NSString *)k
@@ -593,6 +587,33 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         }
     }
     [inputs unlock];
+}
+
+
+
+
+- (void)setNSObjectVal:(id)objectVal forPrivateInputKey:(NSString *)inputKey
+{
+    if( objectVal == nil || inputKey == nil )
+        return;
+    [privateInputs rdlock];
+    for( ISFAttrib *attrib in [privateInputs array] )
+    {
+        if( [[attrib attribName] isEqualToString:inputKey] )
+        {
+            ISFAttribValType type = [attrib attribType];
+            switch( type )
+            {
+                case ISFAT_Image:
+                    [attrib setUserInfo:objectVal];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+    }
+    [privateInputs unlock];
 }
 
 - (void)setNSObjectVal:(id)objectVal forInputKey:(NSString *)inputKey

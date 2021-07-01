@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 #endif
 
-#import <Metal/Metal.h>
 
 
 
@@ -28,12 +27,11 @@ typedef NS_ENUM(NSInteger, ISFAttribValType)	{
 	ISFAT_Audio,	//!<	a long- the texture number (like GL_TEXTURE0) to pass to the shader
 	ISFAT_AudioFFT	//!<	a long- the texture number (like GL_TEXTURE0) to pass to the shader
 };
-///	struct describing a value for one of the listed attribute types
+///	union describing a value for one of the listed attribute types
 /**
 \ingroup VVISFKit
 */
-#warning mto-anomes: transformed union to struct : arc forbids id<MTLTexture> in unions. Dirtier than before memory-wise but should not affect GL behaviour
-typedef struct ISFAttribVal	{
+typedef union ISFAttribVal	{
 	BOOL			eventVal;		//!<	if this is an event attribute, set eventVal to YES
 	BOOL			boolVal;	//!<	if this is a bool attribute, store the desired value here
 	long			longVal;	//!<	if this is a long attribute, store the desired value here
@@ -42,7 +40,6 @@ typedef struct ISFAttribVal	{
 	GLfloat			colorVal[4];	//!<	array of four floats, used if this is a color attribute
 	long			imageVal;	//!<	not really used- you never pass images as values (images are passed as VVBuffers, as there are resources that need to be retained and can't be passed strictly "by value").  included for symmetry.
 	long			audioVal;	//!<	really only used because audio and audioFFT inputs can specify a "max" value
-    id<MTLTexture>  metalImageVal; //!<used for metal implementation
 } ISFAttribVal;
 
 

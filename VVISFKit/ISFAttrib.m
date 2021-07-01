@@ -116,10 +116,6 @@
 				//NSLog(@"\t\tcurrentVal is %0.2f-%0.2f-%0.2f-%0.2f",currentVal.colorVal[0],currentVal.colorVal[1],currentVal.colorVal[2],currentVal.colorVal[3]);
 				break;
 			case ISFAT_Image:
-#warning mto-anomes: GLSL and METAL not properly separated - would require refactor
-                // METAL
-                currentVal.metalImageVal = def.metalImageVal;
-                // GLSL
 				currentVal.imageVal = def.imageVal;
 				//minVal.imageVal = min.imageVal;
 				//maxVal.imageVal = max.imageVal;
@@ -215,9 +211,7 @@
 				currentVal.colorVal[i] = n.colorVal[i];
 			break;
 		case ISFAT_Image:
-#warning mto-anomes: GLSL and METAL not properly separated - would require refactor
 			currentVal.imageVal = n.imageVal;
-            currentVal.metalImageVal = n.metalImageVal;
 			break;
 		case ISFAT_Cube:
 			currentVal.imageVal = n.imageVal;
