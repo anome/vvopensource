@@ -350,8 +350,8 @@ static const size_t BUFFER_ALLOCATION_SIZE = sizeof(IsfInputsBufferType);
     {
         NSString *declarationLine =
             [NSString stringWithFormat:
-                          @"constexpr sampler %@ (mag_filter::nearest, min_filter::nearest, s_address::clamp_to_zero, "
-                          @"t_address::clamp_to_zero,  r_address::clamp_to_zero);\n",
+                          @"constexpr sampler %@ (mag_filter::linear, min_filter::linear, s_address::clamp_to_edge, "
+                          @"t_address::clamp_to_edge,  r_address::clamp_to_edge);\n",
                           samplerName];
         variableDeclarations = [variableDeclarations stringByAppendingString:declarationLine];
     }

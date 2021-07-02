@@ -54,6 +54,7 @@
 {
     width = newTargetSize.width;
     height = newTargetSize.height;
+    [self forbidOddResolution];
 }
 
 //    returns a YES if there's a target width string
@@ -112,6 +113,18 @@
 {
     width = newSize.width;
     height = newSize.height;
+    [self forbidOddResolution];
 }
 
+- (void)forbidOddResolution
+{
+    if ( (int)width % 2 != 0)
+    {
+        width++;
+    }
+    if( (int)height % 2 != 0)
+    {
+        height++;
+    }
+}
 @end
