@@ -176,6 +176,15 @@ static NSString *const SHADER_CODE =
         pipelineStateDescriptor.vertexFunction = vertexFunction;
         pipelineStateDescriptor.fragmentFunction = fragmentFunction;
         pipelineStateDescriptor.colorAttachments[0].pixelFormat = colorPixelFormat;
+        
+        pipelineStateDescriptor.colorAttachments[0].blendingEnabled = YES;
+        pipelineStateDescriptor.colorAttachments[0].rgbBlendOperation = MTLBlendOperationAdd;
+        pipelineStateDescriptor.colorAttachments[0].alphaBlendOperation = MTLBlendOperationAdd;
+        pipelineStateDescriptor.colorAttachments[0].sourceRGBBlendFactor = MTLBlendFactorOne;
+        pipelineStateDescriptor.colorAttachments[0].sourceAlphaBlendFactor = MTLBlendFactorOne;
+        pipelineStateDescriptor.colorAttachments[0].destinationRGBBlendFactor = MTLBlendFactorOneMinusSourceAlpha;
+        pipelineStateDescriptor.colorAttachments[0].destinationAlphaBlendFactor = MTLBlendFactorOneMinusSourceAlpha;
+//        
 
         pipeline = [device newRenderPipelineStateWithDescriptor:pipelineStateDescriptor error:&error];
 

@@ -177,15 +177,18 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         pipelineStateDescriptor.vertexFunction = vertexFunction;
         pipelineStateDescriptor.fragmentFunction = fragmentFunction;
         pipelineStateDescriptor.colorAttachments[0].pixelFormat = colorPixelFormat;
-        //        pipelineStateDescriptor.colorAttachments[0].blendingEnabled = YES;
-        //        pipelineStateDescriptor.colorAttachments[0].rgbBlendOperation = MTLBlendFactorOne;
-        //        pipelineStateDescriptor.colorAttachments[0].alphaBlendOperation = MTLBlendOperationAdd;
-        //        pipelineStateDescriptor.colorAttachments[0].sourceRGBBlendFactor = MTLBlendFactorSourceAlpha;
-        //        pipelineStateDescriptor.colorAttachments[0].sourceAlphaBlendFactor = MTLBlendFactorSourceAlpha;
-        //        pipelineStateDescriptor.colorAttachments[0].destinationRGBBlendFactor =
-        //        MTLBlendFactorOneMinusSourceAlpha;
-        //        pipelineStateDescriptor.colorAttachments[0].destinationAlphaBlendFactor =
-        //        MTLBlendFactorOneMinusSourceAlpha;
+        pipelineStateDescriptor.colorAttachments[0].blendingEnabled = YES;
+        pipelineStateDescriptor.colorAttachments[0].rgbBlendOperation = MTLBlendOperationAdd;
+        pipelineStateDescriptor.colorAttachments[0].alphaBlendOperation = MTLBlendOperationAdd;
+        
+        pipelineStateDescriptor.colorAttachments[0].sourceRGBBlendFactor = MTLBlendFactorSourceAlpha;
+        pipelineStateDescriptor.colorAttachments[0].sourceAlphaBlendFactor = MTLBlendFactorSourceAlpha;
+        
+        pipelineStateDescriptor.colorAttachments[0].destinationRGBBlendFactor =
+        MTLBlendFactorOneMinusSourceAlpha;
+        pipelineStateDescriptor.colorAttachments[0].destinationAlphaBlendFactor =
+        MTLBlendFactorOneMinusSourceAlpha;
+        
         pipelineState = [device newRenderPipelineStateWithDescriptor:pipelineStateDescriptor error:errorPtr];
 
         if( !pipelineState )

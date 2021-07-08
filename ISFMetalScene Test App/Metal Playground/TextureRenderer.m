@@ -42,17 +42,14 @@
         pipelineStateDescriptor.fragmentFunction = self.fragment;
         pipelineStateDescriptor.colorAttachments[0].pixelFormat = colorPixelFormat;
 
-        // HAP Blending
-        /// (1-videoRGB)*BackRGB + (1)*VideoRGB
-        /// (1-videoAlphaAlpha) BackAlpha + (1)*videoAlpha
+
         pipelineStateDescriptor.colorAttachments[0].blendingEnabled = YES;
         pipelineStateDescriptor.colorAttachments[0].rgbBlendOperation = MTLBlendOperationAdd;
         pipelineStateDescriptor.colorAttachments[0].alphaBlendOperation = MTLBlendOperationAdd;
 
-        // Video is here
         pipelineStateDescriptor.colorAttachments[0].sourceRGBBlendFactor = MTLBlendFactorOne;
         pipelineStateDescriptor.colorAttachments[0].sourceAlphaBlendFactor = MTLBlendFactorOne;
-        // Clear color is here
+
         pipelineStateDescriptor.colorAttachments[0].destinationRGBBlendFactor = MTLBlendFactorOneMinusSourceAlpha;
         pipelineStateDescriptor.colorAttachments[0].destinationAlphaBlendFactor = MTLBlendFactorOneMinusSourceAlpha;
 
