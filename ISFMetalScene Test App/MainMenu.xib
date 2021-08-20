@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -651,78 +652,111 @@
         <window title="ISFMetalScene Test App" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371" userLabel="ISFMetalScene Test App">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="484" height="498"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="contentRect" x="335" y="390" width="580" height="400"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1175"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="484" height="498"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <rect key="frame" x="0.0" y="0.0" width="580" height="400"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Go-XB-Zb4" customClass="MetalImageView">
-                        <rect key="frame" x="8" y="250" width="467" height="248"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                        <rect key="frame" x="260" y="0.0" width="320" height="180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     </customView>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="00V-9n-u9C" customClass="VVBufferGLView">
+                        <rect key="frame" x="260" y="200" width="320" height="180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7x1-FG-uO8">
+                        <rect key="frame" x="258" y="182" width="326" height="16"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Metal" id="2Av-Q9-1Ub">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="PW1-0u-QyX">
+                        <rect key="frame" x="260" y="383" width="322" height="16"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="OpenGL" drawsBackground="YES" id="bvj-lv-tsG">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD7-ag-ME1" userLabel="ShaderSourceButton">
-                        <rect key="frame" x="6" y="212" width="204" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="17" y="356" width="155" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="9R3-i4-hyB">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" id="d0g-GP-CPm"/>
                         </popUpButtonCell>
                         <connections>
                             <action selector="onShaderSourceButtonClicked:" target="494" id="zB8-Gp-EMC"/>
                         </connections>
                     </popUpButton>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDn-F7-Urf">
-                        <rect key="frame" x="12" y="196" width="96" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="28O-7b-dLW"/>
-                    </slider>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqN-BF-YxW">
-                        <rect key="frame" x="12" y="173" width="96" height="24"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqN-BF-YxW" userLabel="Render Pass Explorer">
+                        <rect key="frame" x="18" y="330" width="224" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="7" tickMarkPosition="above" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="44i-MO-Cup"/>
                     </slider>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5z4-Nx-Sxq">
-                        <rect key="frame" x="12" y="153" width="96" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ck5-WT-nsV"/>
-                    </slider>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bJ-j9-KgM">
-                        <rect key="frame" x="12" y="121" width="96" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8vX-Jf-QsA"/>
-                    </slider>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EgR-9R-ga6">
-                        <rect key="frame" x="12" y="106" width="96" height="24"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" maxValue="9" tickMarkPosition="above" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="s5s-6C-jNS"/>
-                    </slider>
-                    <button verticalHuggingPriority="750" id="FY5-hH-8Sa">
-                        <rect key="frame" x="18" y="84" width="90" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S24-fm-VU1">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbz-XG-yDu">
+                        <rect key="frame" x="20" y="0.0" width="220" height="329"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                        <clipView key="contentView" drawsBackground="NO" id="UI9-Dc-Us9">
+                            <rect key="frame" x="1" y="1" width="218" height="327"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" id="lLN-nK-iJj">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GR2-Bi-XLg">
+                            <rect key="frame" x="1" y="312" width="218" height="16"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="FbK-BL-Bp8">
+                            <rect key="frame" x="203" y="1" width="16" height="327"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-lw-U87">
+                        <rect key="frame" x="204" y="353" width="43" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="&gt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fvi-0U-HL8">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="onButtonNextClicked:" target="494" id="JsO-Hp-ccZ"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wxE-Cw-tin">
+                        <rect key="frame" x="169" y="353" width="43" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="&lt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eTG-ra-bSc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onButtonPreviousClicked:" target="494" id="6Hd-WX-79O"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="137" y="-46"/>
+            <point key="canvasLocation" x="-55" y="-175"/>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
-                <outlet property="checkbox" destination="FY5-hH-8Sa" id="kFH-GL-2fa"/>
+                <outlet property="controlsStackView" destination="lLN-nK-iJj" id="TSj-WI-fBW"/>
+                <outlet property="glBufferView" destination="00V-9n-u9C" id="6ik-ex-aB7"/>
                 <outlet property="metalImageView" destination="7Go-XB-Zb4" id="IMp-96-pNi"/>
-                <outlet property="onSliderOneChange" destination="MDn-F7-Urf" id="TDW-zf-0zi"/>
-                <outlet property="onSliderThreeChange" destination="5z4-Nx-Sxq" id="k2L-Kb-11f"/>
-                <outlet property="onSliderTwoChange" destination="sqN-BF-YxW" id="OIL-Uu-BAT"/>
                 <outlet property="shaderSourceButton" destination="wD7-ag-ME1" id="zCm-EQ-LWT"/>
-                <outlet property="sliderFive" destination="EgR-9R-ga6" id="7oO-8r-TCc"/>
-                <outlet property="sliderFour" destination="9bJ-j9-KgM" id="t71-Kf-2a4"/>
-                <outlet property="sliderOne" destination="MDn-F7-Urf" id="lgn-74-xCA"/>
-                <outlet property="sliderThree" destination="5z4-Nx-Sxq" id="vma-u5-hgu"/>
-                <outlet property="sliderTwo" destination="sqN-BF-YxW" id="C64-uu-Edd"/>
+                <outlet property="sliderExplorePasses" destination="sqN-BF-YxW" id="GUf-Di-3yS"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>

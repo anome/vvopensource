@@ -1,17 +1,34 @@
 #import "AppDelegate.h"
+#import "CheckboxView.h"
+#import "SliderView.h"
 #import <MetalKit/MetalKit.h>
 #import <OpenGL/CGLMacro.h>
 
+#define RENDER_RES_WIDTH 1280
+#define RENDER_RES_HEIGHT 720
+
 @implementation AppDelegate
 {
+    // METAL
     id<MTLCommandQueue> commandQueue;
     id<MTLTexture> screenTexture;
     id<MTLTexture> inputImage;
-    id<MTLTexture> secondInputImage;
+    id<MTLTexture> inputImage2;
+    ISFMetalScene *metalScene;
     int passIndex;
-    ISFMetalScene *isfScene;
+
+    // GL
+    VVBuffer *glImageBuffer; //    this VVBuffer is created from a PNG file included with this application
+    VVBuffer *glImageBuffer2;
+    ISFGLScene *glScene;   //    tell this to load an ISF file and it renders buffers/textures
+    VVStopwatch *glSwatch; //    used to animate the size of the checkerboard
+    NSOpenGLContext *sharedContext;
+
+    // COMMON
     NSString *shaderFileKeyToRender;
     NSMutableDictionary<NSString *, NSURL *> *shaderFiles;
+    NSMutableArray<NSString *> *shaderKeys;
+    CVDisplayLinkRef displayLink;
 }
 
 - (id)init
@@ -19,7 +36,18 @@
     if( self = [super init] )
     {
         passIndex = 0;
-        shaderFileKeyToRender = @"Edge Blur.fs";
+        shaderFileKeyToRender = @"Seascape.fs";
+
+        /// GL INIT
+        //    make a shared GL context.  other GL contexts created to share this one may share resources (textures,
+        //    buffers, etc).
+        sharedContext = [[NSOpenGLContext alloc] initWithFormat:[GLScene defaultPixelFormat] shareContext:nil];
+        //    create the global buffer pool from the shared context
+        [VVBufferPool createGlobalVVBufferPoolWithSharedContext:sharedContext];
+
+        glSwatch = [[VVStopwatch alloc] init];
+        [glSwatch start];
+
         return self;
     }
     [self release];
@@ -29,32 +57,39 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     shaderFiles = [NSMutableDictionary<NSString *, NSURL *> new];
-
+    shaderKeys = [NSMutableArray<NSString *> new];
     NSBundle *bundle = [NSBundle mainBundle];
 
-    NSArray<NSURL *> *shaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"working"];
+    NSArray<NSURL *> *someShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"working"];
     NSArray<NSURL *> *moreShaderUrls = [bundle URLsForResourcesWithExtension:@"fs"
                                                                 subdirectory:@"workingWithMinorChanges"];
 
-    for( NSURL *fileUrl in shaderUrls )
+    NSArray<NSURL *> *shaderUrls = [someShaderUrls arrayByAddingObjectsFromArray:moreShaderUrls];
+    NSArray<NSURL *> *shaderUrlsAlphabetically =
+        [shaderUrls sortedArrayUsingComparator:^NSComparisonResult(NSURL *url1, NSURL *url2) {
+          NSString *filename1 = [url1 lastPathComponent];
+          NSString *filename2 = [url2 lastPathComponent];
+          return [filename1 localizedCaseInsensitiveCompare:filename2];
+        }];
+    for( NSURL *fileUrl in shaderUrlsAlphabetically )
     {
         NSString *fileName = [fileUrl lastPathComponent];
         [shaderFiles setValue:fileUrl forKey:fileName];
+        [shaderKeys addObject:fileName];
         [shaderSourceButton addItemWithTitle:fileName];
     }
-    for( NSURL *fileUrl in moreShaderUrls )
-    {
-        NSString *fileName = [fileUrl lastPathComponent];
-        [shaderFiles setValue:fileUrl forKey:fileName];
-        [shaderSourceButton addItemWithTitle:fileName];
-    }
+
     [shaderSourceButton selectItemWithTitle:shaderFileKeyToRender];
 
     //    NSBundle *bundle = [NSBundle mainBundle];
     NSURL *imageUrl = [bundle URLForResource:@"inputImage" withExtension:@"jpg"];
-    NSURL *secondImageUrl = [bundle URLForResource:@"inputImage" withExtension:@"jpg"];
     inputImage = [[self loadTextureUsingMetalKit:imageUrl device:metalImageView.device] retain];
-    secondInputImage = [[self loadTextureUsingMetalKit:secondImageUrl device:metalImageView.device] retain];
+
+    //    load the image buffer included with this app
+    NSImage *tmpImg = [[NSImage alloc] initWithContentsOfURL:imageUrl];
+    glImageBuffer = [[VVBufferPool globalVVBufferPool] allocBufferForNSImage:tmpImg];
+    [tmpImg release];
+    tmpImg = nil;
 
     [self loadIsfScene];
 
@@ -82,92 +117,8 @@
         CVDisplayLinkSetOutputCallback(displayLink, displayLinkCallback, self);
         CVDisplayLinkStart(displayLink);
     }
-}
-//	this method is called from the displaylink callback
-- (void)renderCallback
-{
-    passIndex += 1;
 
-    if( isfScene == nil )
-    {
-        return;
-    }
-    if( commandQueue == nil )
-    {
-        commandQueue = [metalImageView.device newCommandQueue];
-    }
-    if( screenTexture == nil )
-    {
-#warning mto-anomes: currently, if this resolution is not exactly the same as inputImage, texture sampling is not working correctly
-        screenTexture = [self createTextureForDevice:metalImageView.device
-                                               width:1280
-                                              height:720
-                                         pixelFormat:metalImageView.colorPixelFormat];
-    }
-
-    /// ISF
-    //    {
-    //        ISFAttribVal val;
-    //           val.floatVal = sliderOne.floatValue / 100;
-    //           [isfScene setValue:val forInputKey:@"xrot"];
-    //    }
-    //    {
-    //        ISFAttribVal val;
-    //           val.floatVal = sliderTwo.floatValue / 100;
-    //           [isfScene setValue:val forInputKey:@"yrot"];
-    //    }
-    //    {
-    //        ISFAttribVal val;
-    //           val.floatVal = sliderThree.floatValue / 100;
-    //           [isfScene setValue:val forInputKey:@"zrot"];
-    //    }
-    //    {
-    //        ISFAttribVal val;
-    //           val.floatVal = sliderFour.floatValue / 100;
-    //           [isfScene setValue:val forInputKey:@"zoom"];
-    //    }
-    //        {
-    //            ISFAttribVal val;
-    //               val.floatVal = sliderThree.floatValue;
-    //               [isfScene setValue:val forInputKey:@"blurAmount"];
-    //        }
-    //
-
-    {
-        ISFAttribVal val;
-        val.boolVal = checkbox.integerValue ? YES : NO;
-        [isfScene setValue:val forInputKey:@"freeze"];
-    }
-    isfScene.choosePassIndex = sliderTwo.intValue; // Disabled if you don't enable it manually
-
-    {
-        ISFAttribVal val;
-        val.floatVal = sliderOne.floatValue;
-        // Two options to send an input
-        //        [isfScene setValue:val forInputKey:@"width"];
-        [isfScene setNSObjectVal:[NSNumber numberWithFloat:sliderOne.floatValue / 100] forInputKey:@"width"];
-    }
-
-    {
-        [isfScene setNSObjectVal:inputImage forInputKey:@"inputImage"];
-    }
-
-    /// RENDER
-    id<MTLCommandBuffer> commandBuffer = [commandQueue commandBuffer];
-    commandBuffer.label = @"Metal ISF Test App Command Buffer";
-
-    NSError *renderError;
-    BOOL success = [isfScene renderOnTexture:screenTexture onCommandBuffer:commandBuffer withError:&renderError];
-    if( !success )
-    {
-        NSLog(@"RENDER ERROR %@", renderError);
-    }
-    [commandBuffer commit];
-    [commandBuffer waitUntilCompleted];
-    metalImageView.image = screenTexture;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-      [metalImageView setNeedsDisplay:YES];
-    }];
+    controlsStackView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)loadIsfScene
@@ -187,11 +138,11 @@
             return;
         }
         NSError *error;
-        isfScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
-                                             pixelFormat:metalImageView.colorPixelFormat
-                                          preloadedMedia:preloadedModel
-                                               withError:&error];
-        if( isfScene == nil )
+        metalScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
+                                               pixelFormat:metalImageView.colorPixelFormat
+                                            preloadedMedia:preloadedModel
+                                                 withError:&error];
+        if( metalScene == nil )
         {
             NSLog(@"ERROR ! %@", error);
             return;
@@ -201,19 +152,251 @@
     // Classic API
     /*
         NSError *error;
-        isfScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
+        metalScene = [[ISFMetalScene alloc] initWithDevice:metalImageView.device
                                              pixelFormat:metalImageView.colorPixelFormat
                                         fragmentFilePath:filePath
                                                withError:&error];
-        if( isfScene == nil )
+        if( metalScene == nil )
         {
             NSLog(@"ERROR ! %@", error);
         }
      */
+
+    //// GL
+    glScene = [[ISFGLScene alloc] initWithSharedContext:sharedContext];
+    [glScene setSize:NSMakeSize(RENDER_RES_WIDTH, RENDER_RES_HEIGHT)];
+    [glScene useFile:filePath];
+
+    //// Generate Controls UI
+    [[controlsStackView views] enumerateObjectsUsingBlock:^(NSView *obj, NSUInteger idx, BOOL *stop) {
+      [controlsStackView removeView:obj];
+    }];
+    MutLockArray *inputs = metalScene.inputs;
+    [inputs rdlock];
+    for( ISFAttrib *attrib in [inputs array] )
+    {
+        NSString *attribName = attrib.attribName;
+        ISFAttribValType attribType = attrib.attribType;
+
+        const ISFAttribVal defaultVal = [attrib defaultVal];
+        const ISFAttribVal minVal = [attrib minVal];
+        const ISFAttribVal maxVal = [attrib maxVal];
+        switch( attribType )
+        {
+        case ISFAT_Float:
+        {
+            NSRect frame = NSMakeRect(0, 0, 200, 50);
+            SliderView *slider = [[SliderView alloc] initWithFrame:frame
+                                                              name:attribName
+                                                            minVal:minVal.floatVal
+                                                        defaultVal:defaultVal.floatVal
+                                                            maxVal:maxVal.floatVal];
+            slider.onChange = ^(float value) {
+              NSLog(@"all good %f", value);
+              ISFAttribVal val;
+              val.floatVal = value;
+              [metalScene setValue:val forInputKey:attribName];
+              [glScene setValue:val forInputKey:attribName];
+            };
+            [slider awakeFromNib];
+            [controlsStackView addArrangedSubview:slider];
+            break;
+        }
+        case ISFAT_Bool:
+        {
+            NSRect frame = NSMakeRect(0, 0, 200, 50);
+            CheckboxView *checkbox = [[CheckboxView alloc] initWithFrame:frame
+                                                                    name:attribName
+                                                              defaultVal:defaultVal.boolVal];
+            checkbox.onChange = ^(BOOL value) {
+              NSLog(@"all good %@", value ? @"true" : @"false");
+              ISFAttribVal val;
+              val.boolVal = value;
+              [metalScene setValue:val forInputKey:attribName];
+              [glScene setValue:val forInputKey:attribName];
+            };
+            [checkbox awakeFromNib];
+            [controlsStackView addArrangedSubview:checkbox];
+            break;
+        }
+        case ISFAT_Long:
+        {
+            NSRect frame = NSMakeRect(0, 0, 200, 50);
+            SliderView *slider = [[SliderView alloc] initWithFrame:frame
+                                                              name:attribName
+                                                            minVal:minVal.longVal
+                                                        defaultVal:defaultVal.longVal
+                                                            maxVal:maxVal.longVal];
+            slider.onChange = ^(float value) {
+              NSLog(@"all good %f", value);
+              ISFAttribVal val;
+              val.longVal = floor(value);
+              [metalScene setValue:val forInputKey:attribName];
+              [glScene setValue:val forInputKey:attribName];
+            };
+            [slider awakeFromNib];
+            [controlsStackView addArrangedSubview:slider];
+            break;
+        }
+        case ISFAT_Color:
+        {
+            NSArray *channelNames = @[ @"Red", @"Green", @"Blue", @"Alpha" ];
+            for( int i = 0; i < 4; i++ )
+            {
+                NSString *sliderName = [[NSString stringWithFormat:@"%@ [%@]", attribName, channelNames[i]] retain];
+                NSRect frame = NSMakeRect(0, 0, 200, 50);
+                SliderView *slider = [[SliderView alloc] initWithFrame:frame
+                                                                  name:sliderName
+                                                                minVal:minVal.colorVal[i]
+                                                            defaultVal:defaultVal.colorVal[i]
+                                                                maxVal:maxVal.colorVal[i]];
+                slider.onChange = ^(float value) {
+                  ISFAttribVal val;
+                  GLfloat *currentVal = [attrib currentVal].colorVal;
+                  val.colorVal[0] = i == 0 ? value : currentVal[0];
+                  val.colorVal[1] = i == 1 ? value : currentVal[1];
+                  val.colorVal[2] = i == 2 ? value : currentVal[2];
+                  val.colorVal[3] = i == 3 ? value : currentVal[3];
+                  [metalScene setValue:val forInputKey:attribName];
+                  [glScene setValue:val forInputKey:attribName];
+                };
+                [slider awakeFromNib];
+                [controlsStackView addArrangedSubview:slider];
+            }
+            break;
+        }
+        case ISFAT_Point2D:
+        {
+            NSArray *channelNames = @[ @"X", @"Y" ];
+            for( int i = 0; i < 2; i++ )
+            {
+                NSString *sliderName = [[NSString stringWithFormat:@"%@ [%@]", attribName, channelNames[i]] retain];
+                NSRect frame = NSMakeRect(0, 0, 200, 50);
+                SliderView *slider = [[SliderView alloc] initWithFrame:frame
+                                                                  name:sliderName
+                                                                minVal:-1.
+                                                            defaultVal:0.
+                                                                maxVal:1.];
+                slider.onChange = ^(float value) {
+                  ISFAttribVal val;
+                  GLfloat *currentVal = [attrib currentVal].point2DVal;
+                  val.point2DVal[0] = i == 0 ? value : currentVal[0];
+                  val.point2DVal[1] = i == 1 ? value : currentVal[1];
+                  [metalScene setValue:val forInputKey:attribName];
+                  [glScene setValue:val forInputKey:attribName];
+                };
+                [slider awakeFromNib];
+                [controlsStackView addArrangedSubview:slider];
+            }
+        }
+        default:
+        {
+            NSLog(@"WARN: attrib type %lu not handled", attribType);
+            break;
+        }
+        }
+    }
+    [inputs unlock];
+}
+
+- (IBAction)onShaderSourceButtonClicked:(id)sender
+{
+    NSString *fileKey = shaderSourceButton.selectedItem.title;
+    shaderFileKeyToRender = fileKey;
+    metalScene = nil;
+    [self loadIsfScene];
+}
+
+- (IBAction)onButtonPreviousClicked:(id)sender
+{
+    NSString *fileKey = shaderSourceButton.selectedItem.title;
+    NSUInteger currentIndex = [shaderKeys indexOfObject:fileKey];
+    if( currentIndex == 0 )
+    {
+        return;
+    }
+    shaderFileKeyToRender = shaderKeys[currentIndex - 1];
+    [shaderSourceButton selectItemAtIndex:currentIndex - 1];
+    metalScene = nil;
+    [self loadIsfScene];
+}
+- (IBAction)onButtonNextClicked:(id)sender
+{
+    NSString *fileKey = shaderSourceButton.selectedItem.title;
+    NSUInteger currentIndex = [shaderKeys indexOfObject:fileKey];
+    if( currentIndex + 1 == shaderKeys.count )
+    {
+        return;
+    }
+    shaderFileKeyToRender = shaderKeys[currentIndex + 1];
+    [shaderSourceButton selectItemAtIndex:currentIndex + 1];
+    metalScene = nil;
+    [self loadIsfScene];
+}
+
+//    this method is called from the displaylink callback
+- (void)renderCallback
+{
+    passIndex += 1;
+
+    // Debug tool to explore passes one by one (for metal only) - disabled
+    metalScene.choosePassIndex = sliderExplorePasses.intValue;
+
+    if( metalScene == nil )
+    {
+        return;
+    }
+    if( commandQueue == nil )
+    {
+        commandQueue = [metalImageView.device newCommandQueue];
+    }
+    if( screenTexture == nil )
+    {
+#warning mto-anomes: currently, if this resolution is not exactly the same as inputImage, texture sampling is not working correctly
+        screenTexture = [self createTextureForDevice:metalImageView.device
+                                               width:RENDER_RES_WIDTH
+                                              height:RENDER_RES_HEIGHT
+                                         pixelFormat:metalImageView.colorPixelFormat];
+    }
+
+    {
+        [metalScene setNSObjectVal:inputImage forInputKey:@"inputImage"];
+        [glScene setFilterInputImageBuffer:glImageBuffer];
+    }
+
+    /// RENDER
+    id<MTLCommandBuffer> commandBuffer = [commandQueue commandBuffer];
+    commandBuffer.label = @"Metal ISF Test App Command Buffer";
+
+    NSError *renderError;
+    BOOL success = [metalScene renderOnTexture:screenTexture onCommandBuffer:commandBuffer withError:&renderError];
+    if( !success )
+    {
+        NSLog(@"RENDER ERROR %@", renderError);
+    }
+    [commandBuffer commit];
+    [commandBuffer waitUntilCompleted];
+    metalImageView.image = screenTexture;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+      [metalImageView setNeedsDisplay:YES];
+    }];
+}
+
+//    this method is called from the displaylink callback
+- (void)glRenderCallback
+{
+    //    tell the ISF scene to render a buffer (this renders to a GL texture)
+    VVBuffer *newTex = [glScene allocAndRenderABuffer];
+    //    draw the GL texture i just rendered in the buffer view
+    [glBufferView drawBuffer:newTex];
+    //    don't forget to release the buffer we allocated!
+    VVRELEASE(newTex);
+    //    tell the buffer pool to do its housekeeping (releases any "old" resources in the pool that have been sticking
+    //    around for a while)
+    [[VVBufferPool globalVVBufferPool] housekeeping];
 }
 
 #pragma mark Pure utils
-
 - (id<MTLTexture>)createTextureForDevice:(id<MTLDevice>)theDevice
                                    width:(int)width
                                   height:(int)height
@@ -245,14 +428,6 @@
     return texture;
 }
 
-- (IBAction)onShaderSourceButtonClicked:(id)sender
-{
-    NSString *fileKey = shaderSourceButton.selectedItem.title;
-    shaderFileKeyToRender = fileKey;
-    isfScene = nil;
-    [self loadIsfScene];
-}
-
 @end
 
 CVReturn displayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp *inNow, const CVTimeStamp *inOutputTime,
@@ -260,6 +435,8 @@ CVReturn displayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp *in
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     [(AppDelegate *)displayLinkContext renderCallback];
+    [(AppDelegate *)displayLinkContext glRenderCallback];
     [pool release];
+
     return kCVReturnSuccess;
 }

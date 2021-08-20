@@ -662,6 +662,12 @@
 		565D06B425D5323C0048C4DD /* isfLogoBW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565D06B225D5323B0048C4DD /* isfLogoBW.jpg */; };
 		565D06B625D532B00048C4DD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		565D06B725D532B40048C4DD /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
+		56609E2E26CFACA9004B9513 /* SliderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 56609E2C26CFACA9004B9513 /* SliderView.h */; };
+		56609E2F26CFACA9004B9513 /* SliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56609E2D26CFACA9004B9513 /* SliderView.m */; };
+		56609E7726CFB294004B9513 /* CheckboxView.h in Headers */ = {isa = PBXBuildFile; fileRef = 56609E7526CFB294004B9513 /* CheckboxView.h */; };
+		56609E7826CFB294004B9513 /* CheckboxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56609E7626CFB294004B9513 /* CheckboxView.m */; };
+		569F5E84268F6D6A00178BAE /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 569F5E83268F6D6A00178BAE /* lookup_miss_etikate.png */; };
+		56BC4D322698755F005457C7 /* rgbaTestcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 56BC4D312698755F005457C7 /* rgbaTestcard.png */; };
 		56BD40DE25B5F007002524CE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DD25B5F006002524CE /* Metal.framework */; };
 		56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
 		56BD410025B5F058002524CE /* MISFSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E325B5F054002524CE /* MISFSize.m */; };
@@ -724,6 +730,8 @@
 		56BD419325B5FA9A002524CE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD418F25B5FA80002524CE /* Credits.rtf */; };
 		56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56BD419125B5FA81002524CE /* MainMenu.xib */; };
 		56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */; };
+		56CE6E78268F4FAB00F77416 /* notWorking in Resources */ = {isa = PBXBuildFile; fileRef = 56CE6E77268F4FAB00F77416 /* notWorking */; };
+		56CE6EA8268F4FBE00F77416 /* notWorking in Resources */ = {isa = PBXBuildFile; fileRef = 56CE6EA7268F4FBE00F77416 /* notWorking */; };
 		96128609100F830600C9C833 /* VVBasics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 961EA8ED100E8565007E6C25 /* VVBasics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9614010A198AD46D00335292 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		96140110198AD46D00335292 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9614010E198AD46D00335292 /* InfoPlist.strings */; };
@@ -2411,6 +2419,12 @@
 		564C908525F0E71D00DD8076 /* working */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = working; path = "VVISFKitTests Metal Regression/working"; sourceTree = SOURCE_ROOT; };
 		564C908825F0EFA800DD8076 /* needsMinorChangesToWork */ = {isa = PBXFileReference; lastKnownFileType = folder; path = needsMinorChangesToWork; sourceTree = "<group>"; };
 		565D06B225D5323B0048C4DD /* isfLogoBW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = isfLogoBW.jpg; sourceTree = "<group>"; };
+		56609E2C26CFACA9004B9513 /* SliderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SliderView.h; sourceTree = "<group>"; };
+		56609E2D26CFACA9004B9513 /* SliderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SliderView.m; sourceTree = "<group>"; };
+		56609E7526CFB294004B9513 /* CheckboxView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckboxView.h; sourceTree = "<group>"; };
+		56609E7626CFB294004B9513 /* CheckboxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckboxView.m; sourceTree = "<group>"; };
+		569F5E83268F6D6A00178BAE /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lookup_miss_etikate.png; path = "VVISFKitTests Metal Regression/working/lookup_miss_etikate.png"; sourceTree = SOURCE_ROOT; };
+		56BC4D312698755F005457C7 /* rgbaTestcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rgbaTestcard.png; sourceTree = "<group>"; };
 		56BD40DD25B5F006002524CE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		56BD40DF25B5F00C002524CE /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		56BD40E325B5F054002524CE /* MISFSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFSize.m; path = METAL/MISFSize.m; sourceTree = "<group>"; };
@@ -2466,6 +2480,8 @@
 		56BD419025B5FA81002524CE /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		56BD419125B5FA81002524CE /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ISFMetal Test App Info.plist"; sourceTree = "<group>"; };
+		56CE6E77268F4FAB00F77416 /* notWorking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = notWorking; sourceTree = "<group>"; };
+		56CE6EA7268F4FBE00F77416 /* notWorking */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = notWorking; path = "VVISFKitTests Metal Regression/notWorking"; sourceTree = SOURCE_ROOT; };
 		96140109198AD46D00335292 /* QT and Hap Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QT and Hap Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9614010D198AD46D00335292 /* QT and Hap Test App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QT and Hap Test App-Info.plist"; sourceTree = "<group>"; };
 		9614010F198AD46D00335292 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -4092,6 +4108,17 @@
 			name = MoltenVK;
 			sourceTree = "<group>";
 		};
+		569DEEC626CE9B7800279F90 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				56609E2C26CFACA9004B9513 /* SliderView.h */,
+				56609E2D26CFACA9004B9513 /* SliderView.m */,
+				56609E7526CFB294004B9513 /* CheckboxView.h */,
+				56609E7626CFB294004B9513 /* CheckboxView.m */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		56BD40E225B5F041002524CE /* Metal */ = {
 			isa = PBXGroup;
 			children = (
@@ -4107,6 +4134,7 @@
 		56BD412225B5F093002524CE /* VVISFKitTests Metal Regression */ = {
 			isa = PBXGroup;
 			children = (
+				56CE6E77268F4FAB00F77416 /* notWorking */,
 				565D06B225D5323B0048C4DD /* isfLogoBW.jpg */,
 				564C908825F0EFA800DD8076 /* needsMinorChangesToWork */,
 				56BD418225B5F5E0002524CE /* expectParseFail */,
@@ -4122,6 +4150,7 @@
 		56BD414C25B5F190002524CE /* ISFMetalScene Test App */ = {
 			isa = PBXGroup;
 			children = (
+				569DEEC626CE9B7800279F90 /* Controls */,
 				56BD417125B5F20F002524CE /* Metal Playground */,
 				56BD419625B5FB28002524CE /* Shaders */,
 				56BD418F25B5FA80002524CE /* Credits.rtf */,
@@ -4130,6 +4159,7 @@
 				56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */,
 				56BD415725B5F1DE002524CE /* AppDelegate.h */,
 				56BD415D25B5F1DF002524CE /* Appdelegate.m */,
+				56BC4D312698755F005457C7 /* rgbaTestcard.png */,
 				5632A1BA25E6B701005B38D8 /* inputImage.jpg */,
 				56BD415825B5F1DF002524CE /* ISFMetalScene Test App-Prefix.pch */,
 				56BD415225B5F1DE002524CE /* main.m */,
@@ -4152,6 +4182,7 @@
 		56BD419625B5FB28002524CE /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				56CE6EA7268F4FBE00F77416 /* notWorking */,
 				564C908525F0E71D00DD8076 /* working */,
 				564C908425F0E71D00DD8076 /* workingWithMinorChanges */,
 			);
@@ -4493,6 +4524,7 @@
 			children = (
 				965C1D0B198403C300111741 /* AppDelegate.h */,
 				965C1D0C198403C400111741 /* AppDelegate.m */,
+				569F5E83268F6D6A00178BAE /* lookup_miss_etikate.png */,
 				965C1D0E198403C400111741 /* MainMenu.xib */,
 				96EE5D66198410BC00231124 /* ISFSupportTest.fs */,
 				5609D49F25E6A14000A331E2 /* ISFSupportTest.vs */,
@@ -5003,6 +5035,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56609E7726CFB294004B9513 /* CheckboxView.h in Headers */,
 				966D3E9518634F8000A7BE9E /* LICENSE in Headers */,
 				969FCE9E120DB9DA0067E617 /* lgpl-3.0.txt in Headers */,
 				961EA957100E8834007E6C25 /* MutLockArray.h in Headers */,
@@ -5015,6 +5048,7 @@
 				96BF10A9100E95200079A2E6 /* VVBasics.h in Headers */,
 				96ED419910628A5500D8373F /* VVCURLDL.h in Headers */,
 				5107014210E14BF200A67653 /* MutNRLockDict.h in Headers */,
+				56609E2E26CFACA9004B9513 /* SliderView.h in Headers */,
 				9621356914C7086C00E76C81 /* VVAssertionHandler.h in Headers */,
 				96AC180C185A41A500917830 /* MAZeroingWeakRef.h in Headers */,
 				96AC180F185A41A500917830 /* MAZeroingWeakRefNativeZWRNotAllowedTable.h in Headers */,
@@ -6443,6 +6477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56BD418625B5F5E0002524CE /* expectParseFail in Resources */,
+				56CE6E78268F4FAB00F77416 /* notWorking in Resources */,
 				56BD418525B5F5E0002524CE /* expectSpirvFail in Resources */,
 				56BD418725B5F5E0002524CE /* workingWithMinorChanges in Resources */,
 				56BD418425B5F5E0002524CE /* working in Resources */,
@@ -6459,6 +6494,8 @@
 				564C908625F0E71D00DD8076 /* workingWithMinorChanges in Resources */,
 				56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */,
 				56BD419225B5FA96002524CE /* InfoPlist.strings in Resources */,
+				56CE6EA8268F4FBE00F77416 /* notWorking in Resources */,
+				56BC4D322698755F005457C7 /* rgbaTestcard.png in Resources */,
 				56BD419325B5FA9A002524CE /* Credits.rtf in Resources */,
 				5632A1BB25E6B703005B38D8 /* inputImage.jpg in Resources */,
 				56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */,
@@ -6572,6 +6609,7 @@
 				965C1D0A198403C300111741 /* Credits.rtf in Resources */,
 				5609D4A025E6A14000A331E2 /* ISFSupportTest.vs in Resources */,
 				965C1D10198403C400111741 /* MainMenu.xib in Resources */,
+				569F5E84268F6D6A00178BAE /* lookup_miss_etikate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7046,6 +7084,8 @@
 				961EA958100E8834007E6C25 /* MutLockDict.m in Sources */,
 				961EA95A100E8834007E6C25 /* VVThreadLoop.m in Sources */,
 				961EA95C100E8834007E6C25 /* MutLockArray.m in Sources */,
+				56609E2F26CFACA9004B9513 /* SliderView.m in Sources */,
+				56609E7826CFB294004B9513 /* CheckboxView.m in Sources */,
 				961EA95D100E8834007E6C25 /* VVStopwatch.m in Sources */,
 				961EA961100E8834007E6C25 /* ObjectHolder.m in Sources */,
 				961EA965100E8834007E6C25 /* MutNRLockArray.m in Sources */,

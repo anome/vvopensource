@@ -1,21 +1,16 @@
 #import "MetalImageView.h"
 #import <Cocoa/Cocoa.h>
+#import <VVBasics/VVBasics.h>
+#import <VVBufferPool/VVBufferPool.h>
 #import <VVISFKit/VVISFKit.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
-    CVDisplayLinkRef displayLink;
-    NSOpenGLContext *sharedContext;
-
     IBOutlet MetalImageView *metalImageView;
-    IBOutlet NSSlider *sliderOne;
-    IBOutlet NSSlider *sliderTwo;
-    IBOutlet NSSlider *sliderThree;
-    IBOutlet NSSlider *sliderFour;
-    IBOutlet NSSlider *sliderFive;
-    IBOutlet NSSlider *sliderInteger;
+    IBOutlet NSSlider *sliderExplorePasses;
     IBOutlet NSPopUpButton *shaderSourceButton;
-    IBOutlet NSButton *checkbox;
+    IBOutlet NSStackView *controlsStackView;
+    IBOutlet VVBufferGLView *glBufferView;
 }
 
 - (void)renderCallback;
