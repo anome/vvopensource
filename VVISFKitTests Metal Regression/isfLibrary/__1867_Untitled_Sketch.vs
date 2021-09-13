@@ -1,0 +1,26 @@
+varying vec2 left_coord;
+varying vec2 right_coord;
+varying vec2 above_coord;
+varying vec2 below_coord;
+
+varying vec2 lefta_coord;
+varying vec2 righta_coord;
+varying vec2 leftb_coord;
+varying vec2 rightb_coord;
+
+
+void main()
+{
+	vv_vertShaderInit();
+	vec2 texc = vec2(vv_FragNormCoord[0],vv_FragNormCoord[1]) * RENDERSIZE ;
+	
+	left_coord = vec2(texc.xy + vec2(corner1 , corner2));
+	right_coord = vec2(texc.xy + vec2(corner3 , corner2));
+	above_coord = vec2(texc.xy + vec2(corner2 , corner3));
+	below_coord = vec2(texc.xy + vec2(corner2 , corner1));
+	
+	lefta_coord = vec2(texc.xy + vec2(corner4 , corner5));
+	righta_coord = vec2(texc.xy + vec2(corner5 , corner6));
+	leftb_coord = vec2(texc.xy + vec2(corner6 , corner7));
+	rightb_coord = vec2(texc.xy + vec2(corner7 , corner8));
+}
