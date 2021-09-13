@@ -68,6 +68,10 @@
 	]
 }*/
 
+// CHANGE MADE : pow() implementation differs between glsl and msl
+// Negative x are accepted in glsl, not in msl, so the sign must be added afterwards
+// See: powSign
+
 //	Adapted from http://www.airtightinteractive.com/demos/js/badtvshader/js/BadTVShader.js
 //	Also uses adopted Ashima WebGl Noise: https://github.com/ashima/webgl-noise
 
@@ -170,7 +174,13 @@ void main() {
 	//smooth distortion
 	float offset = snoise(vec2(yt*3.0,0.0))*0.2;
 	// boost distortion
-	offset = pow( offset*distortion1,3.0)/max(distortion1,0.001);
+    float powSign = 1.0;
+    
+    float powX = offset*distortion1;
+    if(powX < 0.0) {
+        powSign = -1.0;
+    }
+	offset = powSign * pow( abs(powX),3.0)/max(distortion1,0.001);
 	//add fine grain distortion
 	offset += snoise(vec2(yt*50.0,0.0))*distortion2*0.001;
 	//combine distortion on X with roll on Y
