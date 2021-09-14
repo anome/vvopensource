@@ -230,7 +230,7 @@ static const size_t BUFFER_ALLOCATION_SIZE = sizeof(IsfInputsBufferType);
         if( attribType == ISFAT_Image )
         {
             id userInfo = attrib.userInfo;
-            id<MTLTexture> theImage = ([userInfo conformsToProtocol:@protocol(MTLTexture)] ? userInfo:nil);
+            id<MTLTexture> theImage = ([userInfo conformsToProtocol:@protocol(MTLTexture)] ? userInfo : nil);
             if( theImage == nil )
             {
                 NSLog(@"ERR: missing MTLTexture. Skip image input `%@`.", attribName);
@@ -348,11 +348,10 @@ static const size_t BUFFER_ALLOCATION_SIZE = sizeof(IsfInputsBufferType);
     // Create samplers
     for( NSString *samplerName in samplerNames )
     {
-        NSString *declarationLine =
-            [NSString stringWithFormat:
-                          @"constexpr sampler %@ (mag_filter::linear, min_filter::linear, s_address::clamp_to_edge, "
-                          @"t_address::clamp_to_edge,  r_address::clamp_to_edge);\n",
-                          samplerName];
+        NSString *declarationLine = [NSString
+            stringWithFormat:@"constexpr sampler %@ (mag_filter::linear, min_filter::linear, s_address::clamp_to_edge, "
+                             @"t_address::clamp_to_edge,  r_address::clamp_to_edge);\n",
+                             samplerName];
         variableDeclarations = [variableDeclarations stringByAppendingString:declarationLine];
     }
     return variableDeclarations;

@@ -118,11 +118,11 @@
 
 - (void)forbidOddResolution
 {
-    if ( (int)width % 2 != 0)
+    if( (int)width % 2 != 0 )
     {
         width++;
     }
-    if( (int)height % 2 != 0)
+    if( (int)height % 2 != 0 )
     {
         height++;
     }

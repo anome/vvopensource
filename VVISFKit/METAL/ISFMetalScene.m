@@ -550,7 +550,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     return YES;
 }
 
-
 #pragma mark Inputs
 
 - (void)setValue:(ISFAttribVal)n forPrivateInputKey:(NSString *)k
@@ -589,9 +588,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     [inputs unlock];
 }
 
-
-
-
 - (void)setNSObjectVal:(id)objectVal forPrivateInputKey:(NSString *)inputKey
 {
     if( objectVal == nil || inputKey == nil )
@@ -604,11 +600,11 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
             ISFAttribValType type = [attrib attribType];
             switch( type )
             {
-                case ISFAT_Image:
-                    [attrib setUserInfo:objectVal];
-                    break;
-                default:
-                    break;
+            case ISFAT_Image:
+                [attrib setUserInfo:objectVal];
+                break;
+            default:
+                break;
             }
             break;
         }
