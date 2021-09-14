@@ -610,12 +610,27 @@ Translation goes in three steps:
                                                     inCode:intermediate
                                                   atMarker:ISF_MARKER_INSIDE_VERTEX_MAIN
                                                  withError:errorPtr];
+            if(intermediate == nil) {
+                return nil;
+            }
             // We know an empty vertex shader ends with this, so add a return at this point
-            intermediate = [MISFShaderConverter replaceOccurences:@"isf_vertShaderInit();"
+            NSString *firstOptionIntermediate = [MISFShaderConverter replaceOccurences:@"isf_vertShaderInit();"
                                                        withString:@"isf_vertShaderInit();\n return out;"
                                                          onString:intermediate
                                           numberOfMatchesExpected:1
                                                             error:errorPtr];
+            // Try second option (deprecated vv_ prefix)
+            if(firstOptionIntermediate == nil) {
+                intermediate = [MISFShaderConverter replaceOccurences:@"vv_vertShaderInit();"
+                                                           withString:@"vv_vertShaderInit();\n return out;"
+                                                             onString:intermediate
+                                              numberOfMatchesExpected:1
+                                                                error:errorPtr];
+            } else {
+                intermediate = firstOptionIntermediate;
+            }
+            
+            
             if( intermediate == nil )
             {
                 return nil;
