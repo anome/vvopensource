@@ -56,6 +56,7 @@ static NSString *const MISF_TOPPINGS_SAMPLING_FUNCTIONS =
      "{\n"
      "    return vec2(0.);\n"
      "}\n"
+
      "vec4 IMG_THIS_PIXEL(sampler2D imageName)\n"
      "{\n"
      "// Convert FragNormCoord of output size to a FragNormCoord on the sampled image size\n"
@@ -64,31 +65,63 @@ static NSString *const MISF_TOPPINGS_SAMPLING_FUNCTIONS =
      "vec2 imageNormCoord = vec2( fragPixelCoord.x / imageSize.x, fragPixelCoord.y / imageSize.y);\n"
      "    return texture(imageName, imageNormCoord);\n"
      "}\n"
+
+     "vec4 IMG_THIS_PIXEL(sampler2D imageName, float bias)\n"
+     "{\n"
+     "   return IMG_THIS_PIXEL(imageName);"
+     "}\n"
+
      "\n"
+
      // Doc is unclear about which one of those two methods should exist
      "vec4 IMG_THIS_NORM_PIXEL(sampler2D imageName)\n"
      "{\n"
      "   return IMG_THIS_PIXEL(imageName);\n"
      "}\n"
+     "vec4 IMG_THIS_NORM_PIXEL(sampler2D imageName, float bias)\n"
+     "{\n"
+     "   return IMG_THIS_NORM_PIXEL(imageName);\n"
+     "}\n"
+
      // Doc says this one, but it's never implemented in VVISFKit. Maybe in the cpp version?
      "vec4 IMG_NORM_THIS_PIXEL(sampler2D imageName)\n"
      "{\n"
      "   return IMG_THIS_PIXEL(imageName);\n"
      "}\n"
+     "vec4 IMG_NORM_THIS_PIXEL(sampler2D imageName, float bias)\n"
+     "{\n"
+     "   return IMG_NORM_THIS_PIXEL(imageName);\n"
+     "}\n"
      "\n"
+
      "vec4 IMG_PIXEL(sampler2D imageName, vec2 pixelCoord)\n"
      "{\n"
      "    return texture(imageName, vec2(pixelCoord.x/IMG_SIZE(imageName).x, pixelCoord.y/IMG_SIZE(imageName).y));\n"
      "}\n"
+     "vec4 IMG_PIXEL(sampler2D imageName, vec2 pixelCoord, float bias)\n"
+     "{\n"
+     "    return IMG_PIXEL(imageName, pixelCoord);\n"
+     "}\n"
+
      "\n"
+
      "vec4 IMG_NORM_PIXEL(sampler2D imageName, vec2 normalizedPixelCoord)\n"
      "{\n"
      "    return texture(imageName, vec2(normalizedPixelCoord.x, normalizedPixelCoord.y));\n"
      "}\n"
+     "vec4 IMG_NORM_PIXEL(sampler2D imageName, vec2 normalizedPixelCoord, float bias)\n"
+     "{\n"
+     "    return IMG_NORM_PIXEL(imageName, normalizedPixelCoord);\n"
+     "}\n"
+
      // For people using GL2 api instead of ISF functions
      "vec4 texture2D(sampler2D imageName, vec2 normalizedPixelCoord)\n"
      "{\n"
      "    return IMG_NORM_PIXEL(imageName, normalizedPixelCoord);\n"
+     "}\n"
+     "vec4 texture2D(sampler2D imageName, vec2 normalizedPixelCoord, float bias)\n"
+     "{\n"
+     "    return texture2D(imageName, normalizedPixelCoord);\n"
      "}\n"
 
      "\n";
