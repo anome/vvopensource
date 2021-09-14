@@ -36,7 +36,7 @@
     if( self = [super init] )
     {
         passIndex = 0;
-        shaderFileKeyToRender = @"Seascape.fs";
+        shaderFileKeyToRender = @"Controlled Chaos.fs";
 
         /// GL INIT
         //    make a shared GL context.  other GL contexts created to share this one may share resources (textures,
@@ -60,7 +60,8 @@
     shaderKeys = [NSMutableArray<NSString *> new];
     NSBundle *bundle = [NSBundle mainBundle];
 
-    NSArray<NSURL *> *someShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"working"];
+    NSArray<NSURL *> *someShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"isfLibrary"];
+
     NSArray<NSURL *> *moreShaderUrls = [bundle URLsForResourcesWithExtension:@"fs"
                                                                 subdirectory:@"workingWithMinorChanges"];
 
@@ -164,8 +165,16 @@
 
     //// GL
     glScene = [[ISFGLScene alloc] initWithSharedContext:sharedContext];
+    glScene.throwExceptions = YES;
     [glScene setSize:NSMakeSize(RENDER_RES_WIDTH, RENDER_RES_HEIGHT)];
-    [glScene useFile:filePath];
+    @try
+    {
+        [glScene useFile:filePath];
+    }
+    @catch( NSException *e )
+    {
+        NSLog(@"GL useFile crashed: %@", e);
+    }
 
     //// Generate Controls UI
     [[controlsStackView views] enumerateObjectsUsingBlock:^(NSView *obj, NSUInteger idx, BOOL *stop) {
@@ -192,7 +201,6 @@
                                                         defaultVal:defaultVal.floatVal
                                                             maxVal:maxVal.floatVal];
             slider.onChange = ^(float value) {
-              NSLog(@"all good %f", value);
               ISFAttribVal val;
               val.floatVal = value;
               [metalScene setValue:val forInputKey:attribName];
@@ -209,7 +217,6 @@
                                                                     name:attribName
                                                               defaultVal:defaultVal.boolVal];
             checkbox.onChange = ^(BOOL value) {
-              NSLog(@"all good %@", value ? @"true" : @"false");
               ISFAttribVal val;
               val.boolVal = value;
               [metalScene setValue:val forInputKey:attribName];
@@ -228,7 +235,6 @@
                                                         defaultVal:defaultVal.longVal
                                                             maxVal:maxVal.longVal];
             slider.onChange = ^(float value) {
-              NSLog(@"all good %f", value);
               ISFAttribVal val;
               val.longVal = floor(value);
               [metalScene setValue:val forInputKey:attribName];
@@ -385,15 +391,22 @@
 //    this method is called from the displaylink callback
 - (void)glRenderCallback
 {
-    //    tell the ISF scene to render a buffer (this renders to a GL texture)
-    VVBuffer *newTex = [glScene allocAndRenderABuffer];
-    //    draw the GL texture i just rendered in the buffer view
-    [glBufferView drawBuffer:newTex];
-    //    don't forget to release the buffer we allocated!
-    VVRELEASE(newTex);
-    //    tell the buffer pool to do its housekeeping (releases any "old" resources in the pool that have been sticking
-    //    around for a while)
-    [[VVBufferPool globalVVBufferPool] housekeeping];
+    @try
+    {
+        //    tell the ISF scene to render a buffer (this renders to a GL texture)
+        VVBuffer *newTex = [glScene allocAndRenderABuffer];
+        //    draw the GL texture i just rendered in the buffer view
+        [glBufferView drawBuffer:newTex];
+        //    don't forget to release the buffer we allocated!
+        VVRELEASE(newTex);
+        //    tell the buffer pool to do its housekeeping (releases any "old" resources in the pool that have been
+        //    sticking around for a while)
+        [[VVBufferPool globalVVBufferPool] housekeeping];
+    }
+    @catch( NSException *e )
+    {
+        NSLog(@"GL render crashed: %@", e);
+    }
 }
 
 #pragma mark Pure utils
