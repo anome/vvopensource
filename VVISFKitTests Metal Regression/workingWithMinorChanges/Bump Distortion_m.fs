@@ -10,7 +10,7 @@
 			"TYPE": "image"
 		},
 		{
-			"NAME": "level",
+			"NAME": "strength",
 			"TYPE": "float",
 			"MIN": -1.0,
 			"MAX": 1.0,
@@ -61,13 +61,13 @@ void main() {
 
 	if (r < radius_sized) 	{
 		float percent = 1.0-(radius_sized - r) / radius_sized;
-		if (level>=0.0)	{
+		if (strength>=0.0)	{
 			percent = percent * percent;
-			tc.x = r*pow(percent,level) * cos(a);
-			tc.y = r*pow(percent,level) * sin(a);
+			tc.x = r*pow(percent,strength) * cos(a);
+			tc.y = r*pow(percent,strength) * sin(a);
 		}
 		else	{
-			float adjustedLevel = level/2.0;
+			float adjustedLevel = strength/2.0;
 			tc.x = r*pow(percent,adjustedLevel) * cos(a);
 			tc.y = r*pow(percent,adjustedLevel) * sin(a);		
 		}
