@@ -1,11 +1,16 @@
 #import "AppDelegate.h"
 #import "CheckboxView.h"
 #import "SliderView.h"
+#import <CoreImage/CoreImage.h>
+#import <IOSurface/IOSurface.h>
 #import <MetalKit/MetalKit.h>
 #import <OpenGL/CGLMacro.h>
 
 #define RENDER_RES_WIDTH 1280
 #define RENDER_RES_HEIGHT 720
+
+#define ISF_EXPORT_GL_PATH @"/tmp/gl.tiff"
+#define ISF_EXPORT_METAL_PATH @"/tmp/metal.tiff"
 
 @implementation AppDelegate
 {
@@ -29,6 +34,11 @@
     NSMutableDictionary<NSString *, NSURL *> *shaderFiles;
     NSMutableArray<NSString *> *shaderKeys;
     CVDisplayLinkRef displayLink;
+
+    // GL/METAL VISUAL COMPARISON STUFF
+    IOSurfaceRef screenTextureSurfaceRef;
+    BOOL shouldExportNextFrame;
+    int frameExportCount;
 }
 
 - (id)init
@@ -36,11 +46,12 @@
     if( self = [super init] )
     {
         passIndex = 0;
-        shaderFileKeyToRender = @"Controlled Chaos.fs";
+        shaderFileKeyToRender = @"z_white.fs";
 
         /// GL INIT
         //    make a shared GL context.  other GL contexts created to share this one may share resources (textures,
         //    buffers, etc).
+        NSLog(@"GL Pixel format: %@", [GLScene defaultPixelFormat]);
         sharedContext = [[NSOpenGLContext alloc] initWithFormat:[GLScene defaultPixelFormat] shareContext:nil];
         //    create the global buffer pool from the shared context
         [VVBufferPool createGlobalVVBufferPoolWithSharedContext:sharedContext];
@@ -48,6 +59,8 @@
         glSwatch = [[VVStopwatch alloc] init];
         [glSwatch start];
 
+        shouldExportNextFrame = NO;
+        frameExportCount = 0;
         return self;
     }
     [self release];
@@ -62,8 +75,7 @@
 
     NSArray<NSURL *> *someShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"isfLibrary"];
 
-    NSArray<NSURL *> *moreShaderUrls = [bundle URLsForResourcesWithExtension:@"fs"
-                                                                subdirectory:@"workingWithMinorChanges"];
+    NSArray<NSURL *> *moreShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"working"];
 
     NSArray<NSURL *> *shaderUrls = [someShaderUrls arrayByAddingObjectsFromArray:moreShaderUrls];
     NSArray<NSURL *> *shaderUrlsAlphabetically =
@@ -340,12 +352,18 @@
     [self loadIsfScene];
 }
 
-//    this method is called from the displaylink callback
-- (void)renderCallback
+- (IBAction)onExportFrameClicked:(id)sender
 {
+    shouldExportNextFrame = YES;
+}
+
+//    this method is called from the displaylink callback
+- (void)glAndMetalrenderCallback
+{
+    /// METAL RENDERING
     passIndex += 1;
 
-    // Debug tool to explore passes one by one (for metal only) - disabled
+    // Debug tool to explore passes one by one (for metal only) - to enable manually in ISF Framework
     metalScene.choosePassIndex = sliderExplorePasses.intValue;
 
     if( metalScene == nil )
@@ -357,16 +375,29 @@
         commandQueue = [metalImageView.device newCommandQueue];
     }
     if( screenTexture == nil )
+
     {
-#warning mto-anomes: currently, if this resolution is not exactly the same as inputImage, texture sampling is not working correctly
+        // WIP: IO Surface backed mode
+        /*
+        // init our texture and IOSurface
+                NSDictionary<NSString *, id> *surfaceAttributes = @{(NSString*)kIOSurfaceIsGlobal: @(YES),
+                                                                    (NSString*)kIOSurfaceWidth: @(RENDER_RES_WIDTH),
+                                                                    (NSString*)kIOSurfaceHeight: @(RENDER_RES_HEIGHT),
+                                                                    (NSString*)kIOSurfacePixelFormat: @(80),
+                                                                    (NSString*)kIOSurfacePlaneBase: @(0),
+                                                                    (NSString*)kIOSurfaceBytesPerElement: @(4U)};
+                screenTextureSurfaceRef = IOSurfaceCreate((CFDictionaryRef) surfaceAttributes);
+         */
         screenTexture = [self createTextureForDevice:metalImageView.device
                                                width:RENDER_RES_WIDTH
                                               height:RENDER_RES_HEIGHT
                                          pixelFormat:metalImageView.colorPixelFormat];
+        //                         ioSurface:screenTextureSurfaceRef];
     }
 
     {
         [metalScene setNSObjectVal:inputImage forInputKey:@"inputImage"];
+        // TODO: nothing to do here?
         [glScene setFilterInputImageBuffer:glImageBuffer];
     }
 
@@ -376,28 +407,94 @@
 
     NSError *renderError;
     BOOL success = [metalScene renderOnTexture:screenTexture onCommandBuffer:commandBuffer withError:&renderError];
+
     if( !success )
     {
         NSLog(@"RENDER ERROR %@", renderError);
     }
+
+    // Needed to save frame
+
+    if( shouldExportNextFrame )
+    {
+        id<MTLBlitCommandEncoder> syncRenderEncoder = [commandBuffer blitCommandEncoder];
+        syncRenderEncoder.label = @"Sync Encoder";
+        [syncRenderEncoder synchronizeTexture:screenTexture slice:0 level:0];
+        [syncRenderEncoder endEncoding];
+    }
+
     [commandBuffer commit];
     [commandBuffer waitUntilCompleted];
     metalImageView.image = screenTexture;
+    CIImage *metalCiImage = [CIImage imageWithMTLTexture:screenTexture options:nil];
+    NSCIImageRep *metalRepresentation = [NSCIImageRep imageRepWithCIImage:metalCiImage];
+    NSImage *metalNsImage = [[NSImage alloc] initWithSize:metalRepresentation.size];
+    [metalNsImage addRepresentation:metalRepresentation];
+
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
       [metalImageView setNeedsDisplay:YES];
     }];
-}
 
-//    this method is called from the displaylink callback
-- (void)glRenderCallback
-{
+    /// GL RENDERING
     @try
     {
         //    tell the ISF scene to render a buffer (this renders to a GL texture)
         VVBuffer *newTex = [glScene allocAndRenderABuffer];
         //    draw the GL texture i just rendered in the buffer view
         [glBufferView drawBuffer:newTex];
-        //    don't forget to release the buffer we allocated!
+
+        if( shouldExportNextFrame )
+        {
+            VVBuffer *copyBuffer =
+                [[VVBufferPool globalVVBufferPool] allocBufferForTexBackedIOSurfaceSized:newTex.size];
+            BOOL success = [[VVBufferCopier globalBufferCopier] copyThisBuffer:newTex toThisBuffer:copyBuffer];
+            if( !success )
+            {
+                NSLog(@"ERROR: could not copy gl frame.");
+                shouldExportNextFrame = NO;
+            }
+            else
+            {
+                IOSurfaceRef ref = [copyBuffer localSurfaceRef];
+                CIImage *ciImage = [CIImage imageWithIOSurface:ref];
+                NSCIImageRep *rep = [NSCIImageRep imageRepWithCIImage:ciImage];
+                NSImage *nsImage = [[NSImage alloc] initWithSize:rep.size];
+                [nsImage addRepresentation:rep];
+                [self saveImage:nsImage withName:ISF_EXPORT_GL_PATH];
+
+                // Metal export
+                id<MTLTexture> lastDrawableDisplayed = metalImageView.image;
+
+                int width = (int)[lastDrawableDisplayed width];
+                int height = (int)[lastDrawableDisplayed height];
+                int rowBytes = width * 4;
+                int selfturesize = width * height * 4;
+
+                void *p = malloc(selfturesize);
+
+                [lastDrawableDisplayed getBytes:p
+                                    bytesPerRow:rowBytes
+                                     fromRegion:MTLRegionMake2D(0, 0, width, height)
+                                    mipmapLevel:0];
+
+                CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+                CGBitmapInfo bitmapInfo = kCGBitmapByteOrder32Little | kCGImageAlphaFirst;
+
+                CGDataProviderRef provider = CGDataProviderCreateWithData(nil, p, selfturesize, nil);
+                CGImageRef cgImageRef = CGImageCreate(width, height, 8, 32, rowBytes, colorSpace, bitmapInfo, provider,
+                                                      nil, true, (CGColorRenderingIntent)kCGRenderingIntentDefault);
+
+                NSImage *getImage = [[NSImage alloc] initWithCGImage:cgImageRef size:NSMakeSize(width, height)];
+                [self saveImage:getImage withName:ISF_EXPORT_METAL_PATH];
+                CFRelease(cgImageRef);
+                free(p);
+
+                [self compareImagesWithImageMagick];
+                shouldExportNextFrame = NO;
+                frameExportCount++;
+            }
+        }
+
         VVRELEASE(newTex);
         //    tell the buffer pool to do its housekeeping (releases any "old" resources in the pool that have been
         //    sticking around for a while)
@@ -410,6 +507,37 @@
 }
 
 #pragma mark Pure utils
+
+// Don't expext this to work if you dont have imagemagick on your machine
+- (void)compareImagesWithImageMagick
+{
+    //    compare -metric MSE a.jpg b.jpg /dev/null
+
+    NSTask *transpileTask = [[NSTask alloc] init];
+
+    NSString *binaryPath = @"/usr/local/bin/compare";
+    NSString *bashPath = @"/bin/bash";
+    transpileTask.launchPath = binaryPath;
+    NSArray *taskArguments =
+        [NSArray arrayWithObjects:@"-metric", @"MSE", ISF_EXPORT_GL_PATH, ISF_EXPORT_METAL_PATH, @"/dev/null", nil];
+    [transpileTask setArguments:taskArguments];
+
+    NSPipe *outputPipe = [NSPipe pipe];
+    [transpileTask setStandardOutput:outputPipe];
+
+    NSPipe *errorPipe = [NSPipe pipe];
+    [transpileTask setStandardError:errorPipe];
+
+    [transpileTask launch];
+    NSData *data = [[outputPipe fileHandleForReading] readDataToEndOfFile];
+    NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"Comparison result: %@", result);
+    NSData *dataErr = [[errorPipe fileHandleForReading] readDataToEndOfFile];
+    NSString *resultErr = [[NSString alloc] initWithData:dataErr encoding:NSUTF8StringEncoding];
+    NSLog(@"Comparison error? : %@", resultErr);
+    [transpileTask waitUntilExit];
+}
+
 - (id<MTLTexture>)createTextureForDevice:(id<MTLDevice>)theDevice
                                    width:(int)width
                                   height:(int)height
@@ -420,8 +548,24 @@
                                                                                                 height:height
                                                                                              mipmapped:NO];
     textureDescriptor.usage = MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;
-    textureDescriptor.storageMode = MTLStorageModePrivate; // GPU only for better performance
+    textureDescriptor.storageMode = MTLStorageModeManaged; // GPU only for better performance
     id<MTLTexture> texture = [theDevice newTextureWithDescriptor:textureDescriptor];
+    return texture;
+}
+
+- (id<MTLTexture>)createTextureForDevice:(id<MTLDevice>)theDevice
+                                   width:(int)width
+                                  height:(int)height
+                             pixelFormat:(MTLPixelFormat)thePixelFormat
+                               ioSurface:(IOSurfaceRef)ioSurface
+{
+    MTLTextureDescriptor *textureDescriptor = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:thePixelFormat
+                                                                                                 width:width
+                                                                                                height:height
+                                                                                             mipmapped:NO];
+    textureDescriptor.usage = MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;
+    textureDescriptor.storageMode = MTLStorageModeManaged; // GPU only for better performance
+    id<MTLTexture> texture = [theDevice newTextureWithDescriptor:textureDescriptor iosurface:ioSurface plane:0];
     return texture;
 }
 
@@ -441,14 +585,21 @@
     return texture;
 }
 
+- (void)saveImage:(NSImage *)image withName:(NSString *)fileName
+{
+    NSData *imageData = [image TIFFRepresentation];
+    NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+    imageData = [imageRep representationUsingType:NSBitmapImageFileTypeTIFF properties:@{}];
+    [imageData writeToFile:fileName atomically:NO];
+}
+
 @end
 
 CVReturn displayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp *inNow, const CVTimeStamp *inOutputTime,
                              CVOptionFlags flagsIn, CVOptionFlags *flagsOut, void *displayLinkContext)
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [(AppDelegate *)displayLinkContext renderCallback];
-    [(AppDelegate *)displayLinkContext glRenderCallback];
+    [(AppDelegate *)displayLinkContext glAndMetalrenderCallback];
     [pool release];
 
     return kCVReturnSuccess;

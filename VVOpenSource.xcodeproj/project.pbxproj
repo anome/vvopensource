@@ -779,6 +779,8 @@
 		56BD428825B5FFD9002524CE /* ISFMetal Test App Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */; };
 		56CE6E78268F4FAB00F77416 /* notWorking in Resources */ = {isa = PBXBuildFile; fileRef = 56CE6E77268F4FAB00F77416 /* notWorking */; };
 		56CE6EA8268F4FBE00F77416 /* notWorking in Resources */ = {isa = PBXBuildFile; fileRef = 56CE6EA7268F4FBE00F77416 /* notWorking */; };
+		56D22F8A2722EE0E0091F42A /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D22F892722EE0E0091F42A /* IOSurface.framework */; };
+		56D22FA22722EE7C0091F42A /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D22F892722EE0E0091F42A /* IOSurface.framework */; };
 		56E7DAF626D4D50400E30137 /* isfLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 56E7DAF526D4D50400E30137 /* isfLibrary */; };
 		56E7DB2626D4DA8200E30137 /* isfLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 56E7DB2526D4DA8200E30137 /* isfLibrary */; };
 		56E7DB2726D4DA8200E30137 /* isfLibrary in Resources */ = {isa = PBXBuildFile; fileRef = 56E7DB2526D4DA8200E30137 /* isfLibrary */; };
@@ -2579,6 +2581,7 @@
 		56BD428725B5FFD9002524CE /* ISFMetal Test App Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ISFMetal Test App Info.plist"; sourceTree = "<group>"; };
 		56CE6E77268F4FAB00F77416 /* notWorking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = notWorking; sourceTree = "<group>"; };
 		56CE6EA7268F4FBE00F77416 /* notWorking */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = notWorking; path = "VVISFKitTests Metal Regression/notWorking"; sourceTree = SOURCE_ROOT; };
+		56D22F892722EE0E0091F42A /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
 		56E7DAF526D4D50400E30137 /* isfLibrary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = isfLibrary; sourceTree = "<group>"; };
 		56E7DB2526D4DA8200E30137 /* isfLibrary */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = isfLibrary; path = "VVISFKitTests Metal Regression/isfLibrary"; sourceTree = SOURCE_ROOT; };
 		96140109198AD46D00335292 /* QT and Hap Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QT and Hap Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3123,6 +3126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D22FA22722EE7C0091F42A /* IOSurface.framework in Frameworks */,
 				56BD417825B5F493002524CE /* CoreImage.framework in Frameworks */,
 				56BD417325B5F2A8002524CE /* MetalKit.framework in Frameworks */,
 				56BD417225B5F29A002524CE /* Metal.framework in Frameworks */,
@@ -3254,6 +3258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D22F8A2722EE0E0091F42A /* IOSurface.framework in Frameworks */,
 				96EE5D471984074C00231124 /* DDMathParser.framework in Frameworks */,
 				96EE5D491984074C00231124 /* VVBasics.framework in Frameworks */,
 				96EE5D4A1984074C00231124 /* VVBufferPool.framework in Frameworks */,
@@ -4761,6 +4766,7 @@
 		96ACD7221706416300138AE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56D22F892722EE0E0091F42A /* IOSurface.framework */,
 				56BD417725B5F493002524CE /* CoreImage.framework */,
 				56BD40DF25B5F00C002524CE /* MetalKit.framework */,
 				56BD40DD25B5F006002524CE /* Metal.framework */,

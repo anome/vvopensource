@@ -13,7 +13,7 @@
     IBOutlet VVBufferGLView *glBufferView;
 }
 
-- (void)renderCallback;
+- (void)glAndMetalrenderCallback;
 
 @end
 
