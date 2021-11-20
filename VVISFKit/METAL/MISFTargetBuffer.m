@@ -108,7 +108,7 @@
     id<MTLTexture> texture = [theDevice newTextureWithDescriptor:textureDescriptor];
     if( texture == nil )
     {
-        NSLog(@"something went wrong");
+        NSLog(@"ISF: could not create texture for device");
     }
     return texture;
 }

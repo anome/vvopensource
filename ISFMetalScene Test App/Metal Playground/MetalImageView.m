@@ -25,7 +25,7 @@
     self.colorPixelFormat = self.srgb ? MTLPixelFormatBGRA8Unorm_sRGB : MTLPixelFormatBGRA8Unorm;
     textureRenderer = [[TextureRenderer alloc] initWithDevice:self.device colorPixelFormat:self.colorPixelFormat];
     textureRenderer.flip = self.flip;
-    textureRenderer.clearColor = MTLClearColorMake(0, 0, 0, 1);
+    textureRenderer.clearColor = MTLClearColorMake(0, 0, 0, 0);
 }
 
 - (void)dealloc
