@@ -301,7 +301,7 @@ Translation goes in three steps:
     }
 
 #ifdef USE_MOLTENVK_LIB
-    int argc = 1 + 15;
+    int argc = 1 + 14; // +15 with -p
     const char *argv[] = {"name",
                           "-gi",
                           [glslPath UTF8String],
@@ -312,10 +312,10 @@ Translation goes in three steps:
                           "-mv",
                           "1.1",
                           "-l",
-                          "-p",
+//                          "-p", // Report performance
                           "-c",
                           "-Iv",
-                          "-q",
+                          "-q", // Quiet mode
                           "-mo",
                           [outputFilePath UTF8String]};
     mvk::MoltenVKShaderConverterTool converter(argc, argv);
@@ -357,7 +357,7 @@ Translation goes in three steps:
     [@"" writeToFile:outputFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     NSArray *taskArguments =
         [NSArray arrayWithObjects:@"-gi", glslPath, @"-mp", @"macos", @"-t", programTypeParameter, @"-mv", @"1.1",
-                                  @"-l", @"-p", @"-c", @"-Iv", @"-mo", outputFilePath, nil];
+                                  @"-l", /*@"-p"*/, @"-c", @"-Iv", @"-mo", outputFilePath, nil];
     [transpileTask setArguments:taskArguments];
 
     NSPipe *outputPipe = [NSPipe pipe];
