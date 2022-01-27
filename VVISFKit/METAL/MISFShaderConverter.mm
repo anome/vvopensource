@@ -231,7 +231,7 @@ Translation goes in three steps:
 {
     CHECK_PROGRAM_TYPE(programType, nil)
     // First, identify code parts
-    NSError *regexError;
+    NSError *regexError = nil;
     NSRange rangeMainPrototype = [RegexTools getRangeInString:glCode
                                                       pattern:MISF_REGEX_GL_VOID_MAIN_WITH_BRACKET
                                                     withError:&regexError];
@@ -386,7 +386,7 @@ Translation goes in three steps:
     {
         transpiledPath = [outputFilePath stringByAppendingString:@""];
     }
-    NSError *error;
+    NSError *error = nil;
     transpiled = [NSString stringWithContentsOfFile:transpiledPath encoding:NSUTF8StringEncoding error:&error];
     if( transpiled == nil )
     {
@@ -746,7 +746,7 @@ Translation goes in three steps:
 {
     CHECK_PROGRAM_TYPE(programType, nil)
     // Identify code parts
-    NSError *regexError;
+    NSError *regexError = nil;
     NSRange rangeMainPrototype =
         [RegexTools getRangeInString:intermediate
                              pattern:IS_VERTEX(programType) ? MISF_REGEX_METAL_VERTEX_MAIN_WITH_BRACKET
@@ -806,7 +806,7 @@ Translation goes in three steps:
     CHECK_PROGRAM_TYPE(programType, nil)
     NSMutableArray<MISFAttribBufferDefinition *> *buffers = [NSMutableArray<MISFAttribBufferDefinition *> new];
 
-    NSError *regexError;
+    NSError *regexError = nil;
     NSRange rangeMainPrototype = [RegexTools
         getRangeInString:msl
                  pattern:IS_VERTEX(programType) ? MISF_REGEX_METAL_VERTEX_MAIN : MISF_REGEX_METAL_FRAGMENT_MAIN
@@ -828,7 +828,7 @@ Translation goes in three steps:
     }
     NSString *mainPrototype = [msl substringWithRange:rangeMainPrototype];
 
-    NSError *regexError2;
+    NSError *regexError2 = nil;
     NSRange rangeParameterList = [RegexTools getRangeInString:mainPrototype
                                                       pattern:MISF_REGEX_PARAMETER_LIST
                                                     withError:&regexError2];
@@ -895,7 +895,7 @@ Translation goes in three steps:
                     isVertex:(BOOL)isVertex
                    withError:(NSError **)errorPtr
 {
-    NSError *regexToolsError;
+    NSError *regexToolsError = nil;
     NSRange mainPrototypeRange =
         [RegexTools getRangeInString:msl
                              pattern:isVertex ? MISF_REGEX_METAL_VERTEX_MAIN : MISF_REGEX_METAL_FRAGMENT_MAIN
@@ -918,7 +918,7 @@ Translation goes in three steps:
 
     //    NSLog(@"Got main?");
     //    NSLog(@"%@", mainPrototype);
-    NSError *regexToolsError2;
+    NSError *regexToolsError2 = nil;
     NSRange parameterListRange = [RegexTools getRangeInString:mainPrototype
                                                       pattern:MISF_REGEX_PARAMETER_LIST
                                                     withError:&regexToolsError2];

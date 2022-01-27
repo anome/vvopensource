@@ -50,7 +50,7 @@
 
 - (void)preloadShader:(NSString *)filePath
 {
-    NSError *error;
+    NSError *error = nil;
     MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];
     if( preloadedMedia == nil )
     {
@@ -118,7 +118,7 @@
     for( NSString *filePath in isfExpectedToParseFail )
     {
         NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
-        NSError *error;
+        NSError *error = nil;
         MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];
         XCTAssertNil(preloadedMedia, @"Parsing unexpectedly succeded for file %@ output %@", filePath, error);
     }
@@ -128,7 +128,7 @@
 {
     for( NSString *filePath in isfExpectedToSpirvFail )
     {
-        NSError *error;
+        NSError *error = nil;
         MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];
         XCTAssertNil(preloadedMedia, @"Parsing unexpectedly succeded for file %@ output %@", filePath, error);
         XCTAssertNil(preloadedMedia, @"Transpilation unexpectedly succeded for filePath %@ output %@", filePath, error);
@@ -139,7 +139,7 @@
 {
     for( NSString *filePath in IsfsneedingMinorChangesToWork )
     {
-        NSError *error;
+        NSError *error = nil;
         MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];
         XCTAssertNil(preloadedMedia, @"Parsing unexpectedly succeded for file %@ output %@", filePath, error);
         XCTAssertNil(preloadedMedia, @"Transpilation unexpectedly succeded for filePath %@ output %@", filePath, error);

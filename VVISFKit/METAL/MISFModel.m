@@ -106,7 +106,7 @@
 - (BOOL)openFilesWithError:(NSError **)errorPtr
 {
     // Open & load fragment
-    NSError *fileError;
+    NSError *fileError = nil;
     VVRELEASE(rawFragmentString);
     rawFragmentString = [[NSString stringWithContentsOfFile:_filePath encoding:NSUTF8StringEncoding
                                                       error:&fileError] retain];

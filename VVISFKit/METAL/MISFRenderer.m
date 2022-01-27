@@ -348,7 +348,7 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
                                           withString:@""]
                 stringByReplacingOccurrencesOfString:@"float4 gl_Position [[position]];"
                                           withString:@""];
-            NSError *regexError;
+            NSError *regexError = nil;
             rasteriserDataStruct = [RegexTools injectString:structContent
                                                    inString:rasteriserDataStruct
                                                    atMarker:VERTEX_BUFFER_STRUCT_MARKER
