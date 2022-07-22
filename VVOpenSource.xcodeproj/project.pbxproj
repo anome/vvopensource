@@ -1088,6 +1088,7 @@
 		96EE5D701984171300231124 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684E8AE198348A000524F3C /* Quartz.framework */; };
 		96EE5D711984171D00231124 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684E8AC1983488F00524F3C /* QuartzCore.framework */; };
 		96F2F59D12D0B9ED003715F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A99011108CEA2600895DC1 /* Foundation.framework */; };
+		9C2A1D54288AD48300595BC4 /* OSSpinLockDeprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2872,6 +2873,7 @@
 		96ED419810628A5500D8373F /* VVCURLDL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VVCURLDL.m; path = VVBasics/src/VVCURLDL.m; sourceTree = "<group>"; };
 		96EE5D6219840D5C00231124 /* Blue.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = Blue.qtz; sourceTree = "<group>"; };
 		96EE5D66198410BC00231124 /* ISFSupportTest.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ISFSupportTest.fs; sourceTree = "<group>"; };
+		9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSSpinLockDeprecated.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3838,6 +3840,7 @@
 		1A7128B01B61065000528CDB /* MultiClassXPC framework */ = {
 			isa = PBXGroup;
 			children = (
+				9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */,
 				1A7128B31B61065000528CDB /* MultiClassXPC.h */,
 				1A7129091B610BFE00528CDB /* MCXProtocols.h */,
 				1A71290B1B610C1500528CDB /* MCXServiceManager.h */,
@@ -5169,6 +5172,7 @@
 				1A71290A1B610BFE00528CDB /* MCXProtocols.h in Headers */,
 				1A71290D1B610C1500528CDB /* MCXServiceManager.h in Headers */,
 				1A7129151B610C3100528CDB /* MCXServiceDelegate.h in Headers */,
+				9C2A1D54288AD48300595BC4 /* OSSpinLockDeprecated.h in Headers */,
 				1A7129111B610C2400528CDB /* MCXService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
