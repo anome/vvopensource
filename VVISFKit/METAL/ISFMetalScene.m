@@ -437,14 +437,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         }
     }
 
-    // Workaround : connect buffers to inputs as an easy way to make them accessible for the renderer
-    // Runned every frame, could probably be runned only once
-    for( NSString *bufferKey in shaderBuffers )
-    {
-        id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTextureWithCommandBuffer:commandBuffer];
-        [self setNSObjectVal:texture forPrivateInputKey:bufferKey];
-    }
-
     // --------- Set buffer for Built-in ISF values
     NSDate *nowDate = [NSDate date];
     NSDateComponents *dateComps = [[NSCalendar currentCalendar]
@@ -469,12 +461,21 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         renderer.builtin_FRAMEINDEX = (int)renderFrameIndex;
         renderer.builtin_TIMEDELTA = renderTimeDelta;
         renderer.builtin_PASSINDEX = index;
-
         renderer.builtin_TIME = renderTime;
         renderer.builtin_DATE = simd_make_float4([dateComps year], [dateComps month], [dateComps day], timeInSeconds);
         NSString *passOutputKey = renderPass.targetName;
         id<MTLTexture> passOutputTexture = nil; // nil;
         const BOOL isLastPass = (index + 1 == numberOfPasses);
+
+        id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
+
+        // Workaround : connect buffers to inputs as an easy way to make them accessible for the renderer
+        // Runned every frame/pass, could probably be runned only once (unless there's a resize)
+        for( NSString *bufferKey in shaderBuffers )
+        {
+            id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTextureWithCommandBuffer:passCommandBuffer];
+            [self setNSObjectVal:texture forPrivateInputKey:bufferKey];
+        }
 
         if( isMultiPass )
         {
@@ -492,15 +493,14 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                 }
                 return NO;
             }
-            passOutputTexture = [targetBuffer getBufferTextureWithCommandBuffer:commandBuffer];
+
+            passCommandBuffer.label =
+                [NSString stringWithFormat:@"Pass command buffer N %i [Frame %i]", index, renderFrameIndex];
+            passOutputTexture = [targetBuffer getBufferTextureWithCommandBuffer:passCommandBuffer];
 
             renderer.builtin_RENDERSIZE =
                 NSMakeSize(passOutputTexture.width, passOutputTexture.height); // outputTexture?
             renderer.loadAction = targetBuffer.isPersistent ? MTLLoadActionLoad : MTLLoadActionClear;
-            id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
-            passCommandBuffer.label =
-                [NSString stringWithFormat:@"Pass command buffer N %i [Frame %i]", index, renderFrameIndex];
-
             [renderer renderIsfOnTexture:passOutputTexture
                          onCommandBuffer:passCommandBuffer
                               withInputs:publicAndPrivateInputs];
@@ -529,11 +529,11 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                 }
                 return NO;
             }
-            passOutputTexture = [targetBuffer getBufferTextureWithCommandBuffer:commandBuffer];
+
+            passCommandBuffer.label = @"ISF Single pass command Buffer";
+            passOutputTexture = [targetBuffer getBufferTextureWithCommandBuffer:passCommandBuffer];
             renderer.builtin_RENDERSIZE = NSMakeSize(passOutputTexture.width, passOutputTexture.height);
             renderer.loadAction = targetBuffer.isPersistent ? MTLLoadActionLoad : MTLLoadActionClear;
-            id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
-            passCommandBuffer.label = @"ISF Single pass command Buffer";
             [renderer renderIsfOnTexture:passOutputTexture
                          onCommandBuffer:passCommandBuffer
                               withInputs:publicAndPrivateInputs];

@@ -1,4 +1,5 @@
 #import "MISFTargetBuffer.h"
+#import "MISFBlankRenderer.h"
 #import "MISFTextureRenderer.h"
 
 @implementation MISFTargetBuffer
@@ -80,6 +81,11 @@
                                          width:bufferSize.width
                                         height:bufferSize.height
                                    pixelFormat:pixelFormat];
+
+        // Init texture with blank data, because it might be read before any render occurs on it
+        MISFBlankRenderer *blankRenderer = [[MISFBlankRenderer alloc] initWithDevice:device
+                                                                    colorPixelFormat:pixelFormat];
+        [blankRenderer renderBlankOnTexture:texture onCommandBuffer:commandBuffer];
     }
     else
     {
