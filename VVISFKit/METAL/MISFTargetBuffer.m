@@ -1,4 +1,5 @@
 #import "MISFTargetBuffer.h"
+#import "MISFTextureRenderer.h"
 
 @implementation MISFTargetBuffer
 
@@ -70,7 +71,7 @@
 
 @synthesize name;
 
-- (id<MTLTexture>)getBufferTexture
+- (id<MTLTexture>)getBufferTextureWithCommandBuffer:(id<MTLCommandBuffer>)commandBuffer
 {
     // Verify all aspects of the texture
     if( texture == nil )
@@ -82,13 +83,25 @@
     }
     else
     {
+        // If resize, copy old texture into new correct sized texture
         if( texture.width != bufferSize.width || texture.height != bufferSize.height )
         {
-            VVRELEASE(texture);
-            texture = [self createTextureForDevice:device
-                                             width:bufferSize.width
-                                            height:bufferSize.height
-                                       pixelFormat:pixelFormat];
+            id<MTLTexture> newTexture = [self createTextureForDevice:device
+                                                               width:bufferSize.width
+                                                              height:bufferSize.height
+                                                         pixelFormat:pixelFormat];
+
+            MISFTextureRenderer *textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device
+                                                                              colorPixelFormat:pixelFormat];
+            [textureRenderer renderFromTexture:texture
+                                     inTexture:newTexture
+                               onCommandBuffer:commandBuffer
+                           useOutputAsViewport:YES];
+            [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
+              VVRELEASE(texture);
+              texture = newTexture;
+            }];
+            return newTexture;
         }
     }
     return texture;

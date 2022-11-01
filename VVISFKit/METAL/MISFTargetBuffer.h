@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Used if the buffer should be temporary
 - (void)clearBuffer;
-- (id<MTLTexture>)getBufferTexture;
+- (id<MTLTexture>)getBufferTextureWithCommandBuffer:(id<MTLCommandBuffer>)commandBuffer;
 
 // Quick access to MISFSize API
 #warning mto-anomes: bad design, but kept so far to have a similar API with GL

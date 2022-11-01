@@ -204,7 +204,18 @@ static NSString *const SHADER_CODE =
                 inTexture:(id<MTLTexture>)texture
           onCommandBuffer:(id<MTLCommandBuffer>)commandBuffer
 {
-    const MTLViewport viewport = (MTLViewport){0.0, 0.0, offScreenTexture.width, offScreenTexture.height, -1.0, 1.0};
+    [self renderFromTexture:offScreenTexture inTexture:texture onCommandBuffer:commandBuffer useOutputAsViewport:NO];
+}
+
+- (void)renderFromTexture:(id<MTLTexture>)offScreenTexture
+                inTexture:(id<MTLTexture>)texture
+          onCommandBuffer:(id<MTLCommandBuffer>)commandBuffer
+      useOutputAsViewport:(BOOL)useOutputAsViewport
+{
+#warning mto-anomes : code debt : not sure this changes anything for those don't using useOutputAsViewport. Must explore cases where those two have a different size and what's the expected behaviour compared to GL
+    const MTLViewport viewport =
+        useOutputAsViewport ? (MTLViewport){0.0, 0.0, texture.width, texture.height, -1.0, 1.0}
+                            : (MTLViewport){0.0, 0.0, offScreenTexture.width, offScreenTexture.height, -1.0, 1.0};
 
     if( offScreenTexture == nil )
     {

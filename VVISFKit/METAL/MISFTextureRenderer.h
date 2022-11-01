@@ -7,6 +7,11 @@
 
 - (void)renderFromTexture:(id<MTLTexture>)offScreenTexture
                 inTexture:(id<MTLTexture>)texture
+          onCommandBuffer:(id<MTLCommandBuffer>)commandBuffer
+      useOutputAsViewport:(BOOL)useOutputAsViewport;
+
+- (void)renderFromTexture:(id<MTLTexture>)offScreenTexture
+                inTexture:(id<MTLTexture>)texture
           onCommandBuffer:(id<MTLCommandBuffer>)commandBuffer;
 
 @property(readwrite) bool flip;

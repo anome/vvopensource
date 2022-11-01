@@ -441,7 +441,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     // Runned every frame, could probably be runned only once
     for( NSString *bufferKey in shaderBuffers )
     {
-        id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTexture];
+        id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTextureWithCommandBuffer:commandBuffer];
         [self setNSObjectVal:texture forPrivateInputKey:bufferKey];
     }
 
@@ -492,7 +492,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                 }
                 return NO;
             }
-            passOutputTexture = [targetBuffer getBufferTexture];
+            passOutputTexture = [targetBuffer getBufferTextureWithCommandBuffer:commandBuffer];
 
             renderer.builtin_RENDERSIZE =
                 NSMakeSize(passOutputTexture.width, passOutputTexture.height); // outputTexture?
@@ -529,7 +529,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                 }
                 return NO;
             }
-            passOutputTexture = [targetBuffer getBufferTexture];
+            passOutputTexture = [targetBuffer getBufferTextureWithCommandBuffer:commandBuffer];
             renderer.builtin_RENDERSIZE = NSMakeSize(passOutputTexture.width, passOutputTexture.height);
             renderer.loadAction = targetBuffer.isPersistent ? MTLLoadActionLoad : MTLLoadActionClear;
             id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
