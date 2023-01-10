@@ -49,7 +49,7 @@
         device = theDevice;
         pixelFormat = thePixelFormat;
         name = nil;
-        texture = nil;
+        self.texture = nil;
         self.isPersistent = NO;
         bufferSize = [MISFSize new];
         return self;
@@ -60,14 +60,14 @@
 - (void)dealloc
 {
     VVRELEASE(name);
-    VVRELEASE(texture);
+    VVRELEASE(self.texture);
     VVRELEASE(bufferSize);
     [super dealloc];
 }
 
 - (void)clearBuffer
 {
-    VVRELEASE(texture);
+    VVRELEASE(self.texture);
 }
 
 @synthesize name;
@@ -75,22 +75,22 @@
 - (id<MTLTexture>)getBufferTextureWithCommandBuffer:(id<MTLCommandBuffer>)commandBuffer
 {
     // Verify all aspects of the texture
-    if( texture == nil )
+    if( self.texture == nil )
     {
-        texture = [self createTextureForDevice:device
-                                         width:bufferSize.width
-                                        height:bufferSize.height
-                                   pixelFormat:pixelFormat];
+        self.texture = [self createTextureForDevice:device
+                                              width:bufferSize.width
+                                             height:bufferSize.height
+                                        pixelFormat:pixelFormat];
 
         // Init texture with blank data, because it might be read before any render occurs on it
         MISFBlankRenderer *blankRenderer = [[MISFBlankRenderer alloc] initWithDevice:device
                                                                     colorPixelFormat:pixelFormat];
-        [blankRenderer renderBlankOnTexture:texture onCommandBuffer:commandBuffer];
+        [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
     }
     else
     {
         // If resize, copy old texture into new correct sized texture
-        if( texture.width != bufferSize.width || texture.height != bufferSize.height )
+        if( self.texture.width != bufferSize.width || self.texture.height != bufferSize.height )
         {
             id<MTLTexture> newTexture = [self createTextureForDevice:device
                                                                width:bufferSize.width
@@ -99,18 +99,18 @@
 
             MISFTextureRenderer *textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device
                                                                               colorPixelFormat:pixelFormat];
-            [textureRenderer renderFromTexture:texture
+            [textureRenderer renderFromTexture:self.texture
                                      inTexture:newTexture
                                onCommandBuffer:commandBuffer
                            useOutputAsViewport:YES];
             [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
-              VVRELEASE(texture);
-              texture = newTexture;
+                VVRELEASE(self.texture);
+                self.texture = newTexture;
             }];
             return newTexture;
         }
     }
-    return texture;
+    return self.texture;
 }
 
 - (id<MTLTexture>)createTextureForDevice:(id<MTLDevice>)theDevice

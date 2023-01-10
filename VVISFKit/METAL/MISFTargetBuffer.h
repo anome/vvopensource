@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 {
     id<MTLDevice> device;
     MTLPixelFormat pixelFormat;
-    id<MTLTexture> texture;
     MISFSize *bufferSize;
     NSString *name; //    the name of this buffer
 }
@@ -37,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(retain, readwrite) NSString *name;
 @property(readwrite) BOOL isPersistent;
+@property(retain, readwrite, nullable) id<MTLTexture> texture;
 
 @end
 
