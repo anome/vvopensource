@@ -49,6 +49,7 @@
         device = theDevice;
         pixelFormat = thePixelFormat;
         name = nil;
+        readonlyTexture = nil;
         self.texture = nil;
         self.isPersistent = NO;
         bufferSize = [MISFSize new];
@@ -61,6 +62,7 @@
 {
     VVRELEASE(name);
     VVRELEASE(self.texture);
+    VVRELEASE(readonlyTexture);
     VVRELEASE(bufferSize);
     [super dealloc];
 }
@@ -68,6 +70,7 @@
 - (void)clearBuffer
 {
     VVRELEASE(self.texture);
+    VVRELEASE(readonlyTexture);
 }
 
 @synthesize name;
@@ -111,6 +114,24 @@
         }
     }
     return self.texture;
+}
+
+- (id<MTLTexture>)getBufferReadonlyTextureWithCommandBuffer:(id<MTLCommandBuffer>)commandBuffer
+{
+    if(readonlyTexture != nil)
+    {
+        BOOL sizeHasChanged = readonlyTexture.width != bufferSize.width || readonlyTexture.height != bufferSize.height;
+        if(!sizeHasChanged)
+        {
+            return readonlyTexture;
+        }
+    }
+    readonlyTexture = [self createTextureForDevice:device
+                                          width:bufferSize.width
+                                         height:bufferSize.height
+                                    pixelFormat:pixelFormat];
+   
+    return readonlyTexture;
 }
 
 - (id<MTLTexture>)createTextureForDevice:(id<MTLDevice>)theDevice

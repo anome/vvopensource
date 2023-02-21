@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
     MTLPixelFormat pixelFormat;
     MISFSize *bufferSize;
     NSString *name; //    the name of this buffer
+    // Usefull for metal limit cases (see usage of getBufferReadonlyTextureWithCommandBuffer)
+    id<MTLTexture> readonlyTexture;
 }
 
 + (id)createForDevice:(id<MTLDevice>)theDevice pixelFormat:(MTLPixelFormat)thePixelFormat;
@@ -24,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 // Used if the buffer should be temporary
 - (void)clearBuffer;
 - (id<MTLTexture>)getBufferTextureWithCommandBuffer:(id<MTLCommandBuffer>)commandBuffer;
+- (id<MTLTexture>)getBufferReadonlyTextureWithCommandBuffer:(id<MTLCommandBuffer>)commandBuffer;
 
 // Quick access to MISFSize API
 #warning mto-anomes: bad design, but kept so far to have a similar API with GL

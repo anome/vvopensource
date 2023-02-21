@@ -470,11 +470,25 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         id<MTLCommandBuffer> passCommandBuffer = [commandQueue commandBuffer];
 
         // Workaround : connect buffers to inputs as an easy way to make them accessible for the renderer
-        // Runned every frame/pass, could probably be runned only once (unless there's a resize)
+        // Runned every frame/pass, could probably be runned only once (unless there's a resize) (except for the blit part)
         for( NSString *bufferKey in shaderBuffers )
         {
             id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTextureWithCommandBuffer:passCommandBuffer];
-            [self setNSObjectVal:texture forPrivateInputKey:bufferKey];
+            id<MTLTexture> textureJustForInput = [shaderBuffers[bufferKey] getBufferReadonlyTextureWithCommandBuffer: passCommandBuffer];
+            id<MTLBlitCommandEncoder> blitCommandEncoder = [passCommandBuffer blitCommandEncoder];
+            blitCommandEncoder.label = @"ISF Blit safety for buffer input";
+            [blitCommandEncoder copyFromTexture:texture
+                                    sourceSlice:0
+                                    sourceLevel:0
+                                   sourceOrigin:MTLOriginMake(0, 0, 0)
+                                     sourceSize:MTLSizeMake(texture.width, texture.height, 1)
+                                      toTexture:textureJustForInput
+                               destinationSlice:0
+                               destinationLevel:0
+                              destinationOrigin:MTLOriginMake(0, 0, 0)];
+
+            [blitCommandEncoder endEncoding];
+            [self setNSObjectVal:textureJustForInput forPrivateInputKey:bufferKey];
         }
 
         if( isMultiPass )
