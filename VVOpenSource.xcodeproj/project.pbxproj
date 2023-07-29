@@ -719,7 +719,7 @@
 		56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
 		56BD410025B5F058002524CE /* MISFSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E325B5F054002524CE /* MISFSize.m */; };
 		56BD410125B5F058002524CE /* MISFTargetBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E425B5F054002524CE /* MISFTargetBuffer.m */; };
-		56BD410225B5F058002524CE /* RegexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E525B5F054002524CE /* RegexTools.h */; };
+		56BD410225B5F058002524CE /* RegexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E525B5F054002524CE /* RegexTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BD410325B5F058002524CE /* MISFInputsBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E625B5F054002524CE /* MISFInputsBuffer.m */; };
 		56BD410425B5F058002524CE /* MISFInputsBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E725B5F054002524CE /* MISFInputsBuffer.h */; };
 		56BD410525B5F058002524CE /* MISFTextureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E825B5F054002524CE /* MISFTextureRenderer.m */; };
@@ -1088,6 +1088,7 @@
 		96EE5D701984171300231124 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684E8AE198348A000524F3C /* Quartz.framework */; };
 		96EE5D711984171D00231124 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684E8AC1983488F00524F3C /* QuartzCore.framework */; };
 		96F2F59D12D0B9ED003715F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A99011108CEA2600895DC1 /* Foundation.framework */; };
+		9C1FB7002A7551EA009FC7D0 /* RegexToolsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1FB6FF2A7551EA009FC7D0 /* RegexToolsTest.m */; };
 		9C2A1D54288AD48300595BC4 /* OSSpinLockDeprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */; };
 		9C6659AE29118E5D006BC9F5 /* MISFBlankRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6659AC29118E5C006BC9F5 /* MISFBlankRenderer.m */; };
 		9C6659AF29118E5D006BC9F5 /* MISFBlankRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6659AD29118E5C006BC9F5 /* MISFBlankRenderer.h */; };
@@ -2875,6 +2876,7 @@
 		96ED419810628A5500D8373F /* VVCURLDL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VVCURLDL.m; path = VVBasics/src/VVCURLDL.m; sourceTree = "<group>"; };
 		96EE5D6219840D5C00231124 /* Blue.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = Blue.qtz; sourceTree = "<group>"; };
 		96EE5D66198410BC00231124 /* ISFSupportTest.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ISFSupportTest.fs; sourceTree = "<group>"; };
+		9C1FB6FF2A7551EA009FC7D0 /* RegexToolsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegexToolsTest.m; sourceTree = "<group>"; };
 		9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSSpinLockDeprecated.h; sourceTree = "<group>"; };
 		9C6659AC29118E5C006BC9F5 /* MISFBlankRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFBlankRenderer.m; path = METAL/MISFBlankRenderer.m; sourceTree = "<group>"; };
 		9C6659AD29118E5C006BC9F5 /* MISFBlankRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFBlankRenderer.h; path = METAL/MISFBlankRenderer.h; sourceTree = "<group>"; };
@@ -4302,6 +4304,7 @@
 				56BD418325B5F5E0002524CE /* workingWithMinorChanges */,
 				56BD412325B5F093002524CE /* VVISFKitTests_Metal_Regression.m */,
 				56BD412525B5F093002524CE /* Info.plist */,
+				9C1FB6FF2A7551EA009FC7D0 /* RegexToolsTest.m */,
 			);
 			path = "VVISFKitTests Metal Regression";
 			sourceTree = "<group>";
@@ -5262,6 +5265,7 @@
 				964FF2BA1981B62400CCC808 /* ISFRenderPass.h in Headers */,
 				56BD411325B5F058002524CE /* MISFModel.h in Headers */,
 				564C56C425EF9F7000DD8076 /* SPIRVToMSLConverter.h in Headers */,
+				56BD410225B5F058002524CE /* RegexTools.h in Headers */,
 				56BD410725B5F058002524CE /* MISFMetalModel.h in Headers */,
 				56BD411925B5F058002524CE /* MISFAttribBufferDefinition.h in Headers */,
 				5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */,
@@ -5279,7 +5283,6 @@
 				564C907325EFA66900DD8076 /* OSSupport.h in Headers */,
 				564C907A25EFA68D00DD8076 /* MVKStrings.h in Headers */,
 				56BD410425B5F058002524CE /* MISFInputsBuffer.h in Headers */,
-				56BD410225B5F058002524CE /* RegexTools.h in Headers */,
 				564C56C225EF9F7000DD8076 /* GLSLConversion.h in Headers */,
 				1AE0C96A1BAEBD1F00941BEF /* ISFObjectAdditions.h in Headers */,
 				964FF2BE1981B62400CCC808 /* ISFTargetBuffer.h in Headers */,
@@ -7236,6 +7239,7 @@
 				566D483226D4EBEA00E6785B /* __VVIFKit_Metal_Test_IsfLibrary_AutoGenerated_chunk20.m in Sources */,
 				566D483626D4EBEA00E6785B /* __VVIFKit_Metal_Test_IsfLibrary_AutoGenerated_chunk31.m in Sources */,
 				566D482226D4EBEA00E6785B /* __VVIFKit_Metal_Test_IsfLibrary_AutoGenerated_chunk28.m in Sources */,
+				9C1FB7002A7551EA009FC7D0 /* RegexToolsTest.m in Sources */,
 				566D483926D4EBEA00E6785B /* __VVIFKit_Metal_Test_IsfLibrary_AutoGenerated_chunk1.m in Sources */,
 				566D482D26D4EBEA00E6785B /* __VVIFKit_Metal_Test_IsfLibrary_AutoGenerated_chunk29.m in Sources */,
 				566D483026D4EBEA00E6785B /* __VVIFKit_Metal_Test_IsfLibrary_AutoGenerated_chunk46.m in Sources */,

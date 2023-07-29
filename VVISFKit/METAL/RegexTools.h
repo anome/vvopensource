@@ -6,6 +6,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)detectPatternForVariableName:(NSString *)variableName;
 + (NSString *)detectPatternForFunctionName:(NSString *)functionName;
++ (NSString *)detectPatternForFunctions:(NSString*)functions withFirstParameter:(NSString*)parameter;
+
++ (BOOL)searchString:(NSString *)stringToSearch forPattern:(NSString *)pattern withError:(NSError **)errorPtr;
 + (NSString *)substituteInString:(NSString *)stringToSubstitute
                     variableName:(NSString *)variableName
                         byString:(NSString *)substitutionString

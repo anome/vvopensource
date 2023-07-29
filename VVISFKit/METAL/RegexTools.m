@@ -62,6 +62,30 @@ static NSString *const ERROR_STRING_OPERATION_KEY = @"RegexTools String Operatio
                                 withError:errorPtr];
 }
 
++ (BOOL)searchString:(NSString *)stringToSearch forPattern:(NSString *)pattern withError:(NSError **)errorPtr
+{
+    NSError *regexError = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:NSRegularExpressionAnchorsMatchLines
+                                                                             error:&regexError];
+    if( regexError )
+    {
+        if( errorPtr )
+        {
+            NSDictionary *userInfo = @{
+                ERROR_STRING_OPERATION_KEY :
+                    [NSString stringWithFormat:@"Abort search Pattern. Regex error: %@", regexError]
+            };
+            *errorPtr = [NSError errorWithDomain:ISFErrorDomain code:ISFErrorCodeInternal userInfo:userInfo];
+        }
+        return NO;
+    }
+    NSRange stringRange = NSMakeRange(0, [stringToSearch length]);
+    NSArray* results = [regex matchesInString:stringToSearch options:0 range:stringRange];
+    
+    return [results count] != 0;
+}
+
 + (NSRange)getRangeInString:(NSString *)stringToSearch pattern:(NSString *)pattern withError:(NSError **)errorPtr
 {
     NSError *regexError = nil;
@@ -100,6 +124,12 @@ static NSString *const ERROR_STRING_OPERATION_KEY = @"RegexTools String Operatio
     NSString *part1 = @"(?<=(\\s|[(,*\\/+-]))(";
     NSString *part2 = @")(?=(\\s*\\())";
     return [[part1 stringByAppendingString:functionName] stringByAppendingString:part2];
+}
+
++ (NSString *)detectPatternForFunctions:(NSString*)functions withFirstParameter:(NSString*)parameter;
+{
+    // https://regex101.com./r/6RRx7x/1
+    return [NSString stringWithFormat:@"(?<=(\\s|[(,*\\/+-]))(%@)(?=(\\s*\\(\\s*%@))", functions, parameter];
 }
 
 + (int)extractNumberFromString:(NSString *)val

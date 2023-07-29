@@ -12,7 +12,7 @@
 #import "MISFErrorCodes.h"
 #import "ISFMetalScene.h"
 #import "MISFPreloadedMedia.h"
-
+#import "RegexTools.h"
 
 /**
 \defgroup VVISFKit VVISFKit framework
