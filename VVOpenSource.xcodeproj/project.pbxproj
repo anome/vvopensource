@@ -719,7 +719,7 @@
 		56BD40E025B5F00C002524CE /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BD40DF25B5F00C002524CE /* MetalKit.framework */; };
 		56BD410025B5F058002524CE /* MISFSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E325B5F054002524CE /* MISFSize.m */; };
 		56BD410125B5F058002524CE /* MISFTargetBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E425B5F054002524CE /* MISFTargetBuffer.m */; };
-		56BD410225B5F058002524CE /* RegexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E525B5F054002524CE /* RegexTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BD410225B5F058002524CE /* RegexTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E525B5F054002524CE /* RegexTools.h */; };
 		56BD410325B5F058002524CE /* MISFInputsBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E625B5F054002524CE /* MISFInputsBuffer.m */; };
 		56BD410425B5F058002524CE /* MISFInputsBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BD40E725B5F054002524CE /* MISFInputsBuffer.h */; };
 		56BD410525B5F058002524CE /* MISFTextureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40E825B5F054002524CE /* MISFTextureRenderer.m */; };
@@ -5265,8 +5265,8 @@
 				964FF2BA1981B62400CCC808 /* ISFRenderPass.h in Headers */,
 				56BD411325B5F058002524CE /* MISFModel.h in Headers */,
 				564C56C425EF9F7000DD8076 /* SPIRVToMSLConverter.h in Headers */,
-				56BD410225B5F058002524CE /* RegexTools.h in Headers */,
 				56BD410725B5F058002524CE /* MISFMetalModel.h in Headers */,
+				56BD410225B5F058002524CE /* RegexTools.h in Headers */,
 				56BD411925B5F058002524CE /* MISFAttribBufferDefinition.h in Headers */,
 				5623C95B25DBCB7B004FBE66 /* ISFSceneBase.h in Headers */,
 				56BD411525B5F058002524CE /* MISFInputDataType.h in Headers */,

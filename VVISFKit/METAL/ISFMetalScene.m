@@ -393,7 +393,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     [self resetTimer];
     
     
-    // WIP: test for the buffer readwrite workaround
+    // Check if we might need a buffer readwrite workaround
     bool isSinglePass = passes.count == 1;
     if(isSinglePass)
     {
@@ -401,7 +401,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         NSString *targetName = passModel.targetName;
         NSString *samplerFunctionNames = @"IMG_NORM_PIXEL|IMG_PIXEL|texture2D|IMG_THIS_PIXEL|IMG_NORM_THIS_PIXEL";
         NSString *pattern = [RegexTools detectPatternForFunctions:samplerFunctionNames withFirstParameter:targetName];
-        NSLog(@"RWBUFFER: %@ %@", targetName, pattern);
         NSError *regexError = nil;
         bool found = [RegexTools searchString:preloadedMedia.model.convertedFragmentCode forPattern:pattern withError:&regexError];
         if( regexError )
@@ -418,16 +417,16 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         }
         if(found)
         {
-            NSLog(@"RWBUFFER: ACTIVE WORKAROUND for %@", preloadedMedia.model.parentModel.fileName);
+            //NSLog(@"RWBUFFER: ACTIVE WORKAROUND for %@", preloadedMedia.model.parentModel.fileName);
             enableBufferReadWriteWorkaround = YES;
             if ([preloadedMedia.model.convertedFragmentCode containsString:@"BYPASS_WORKAROUND"]) {
-                NSLog(@"RWBUFFER: BYPASS");
+                //NSLog(@"RWBUFFER: BYPASS");
                 enableBufferReadWriteWorkaround = NO;
             }
         }
         else
         {
-            NSLog(@"RWBUFFER: IS OK");
+           // Normal behaviour
         }
         
     }

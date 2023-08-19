@@ -12,6 +12,7 @@
 #import "MISFErrorCodes.h"
 #import "ISFMetalScene.h"
 #import "MISFPreloadedMedia.h"
+// Made public for tests
 #import "RegexTools.h"
 
 /**
