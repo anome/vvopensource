@@ -3,6 +3,7 @@
 #import <MetalKit/MetalKit.h>
 #import <VVISFKit/VVISFKit.h>
 #import <XCTest/XCTest.h>
+#import "RegexTools.h"
 
 
 /// Partial test for latest RegexTools features
