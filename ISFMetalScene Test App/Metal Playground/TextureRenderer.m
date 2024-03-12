@@ -145,7 +145,7 @@
     MTLRenderPassDescriptor *renderPassDescriptor = [MTLRenderPassDescriptor renderPassDescriptor];
     renderPassDescriptor.colorAttachments[0].texture = texture;
     renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
-    renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionDontCare;
+    renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
     renderPassDescriptor.colorAttachments[0].clearColor = self.clearColor;
 
     // Create a render command encoder so we can render into something
