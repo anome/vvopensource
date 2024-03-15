@@ -107,8 +107,8 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
 + (MISFMetalModel *)convertModelToMetal:(MISFModel *)model withError:(NSError **)errorPtr
 {
-    MISFMetalModel *media = [MISFMetalModel new];
-    media.parentModel = model;
+    MISFMetalModel *metalModel = [MISFMetalModel new];
+    metalModel.parentModel = model;
     NSString *varDeclarations =
         [[[ISFMetalScene _assembleShaderSource_VarDeclarationsFromModel:model] copy] autorelease];
     NSString *fragmentCode = [MISFShaderConverter translateFragmentToMetal:model.fragShaderSource
@@ -118,7 +118,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     {
         return nil;
     }
-    media.convertedFragmentCode = fragmentCode;
+    metalModel.convertedFragmentCode = fragmentCode;
 
     NSArray<MISFAttribBufferDefinition *> *fragmentBufferDefinitions =
         [MISFShaderConverter parseFragmentBuffers:fragmentCode withError:errorPtr];
@@ -126,7 +126,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     {
         return nil;
     }
-    media.fragmentBufferDefinitions = fragmentBufferDefinitions;
+    metalModel.fragmentBufferDefinitions = fragmentBufferDefinitions;
 
     if( model.hasVertexShader )
     {
@@ -137,17 +137,17 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         {
             return nil;
         }
-        media.convertedVertexCode = vertexCode;
+        metalModel.convertedVertexCode = vertexCode;
         NSArray<MISFAttribBufferDefinition *> *vertexBufferDefinitions =
             [MISFShaderConverter parseVertexBuffers:vertexCode withError:errorPtr];
         if( vertexBufferDefinitions == nil )
         {
             return nil;
         }
-        media.vertexBufferDefinitions = vertexBufferDefinitions;
+        metalModel.vertexBufferDefinitions = vertexBufferDefinitions;
     }
 
-    return media;
+    return metalModel;
 }
 
 + (MISFPreloadedMedia *)preloadModel:(MISFMetalModel *)model
