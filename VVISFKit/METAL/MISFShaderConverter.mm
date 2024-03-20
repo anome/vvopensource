@@ -35,8 +35,9 @@ static NSString *const MISF_TOPPINGS_BUILTINS_UNIFORM_DEFINITIONS =
      "uniform float        TIMEDELTA;\n"
      "uniform vec4        DATE;\n"
      "uniform int        FRAMEINDEX;\n"
-     "uniform vec2 isf_FragNormCoord;\n"
-     "uniform vec2 vv_FragNormCoord;\n";
+     "vec2 isf_FragNormCoord;\n"
+     "vec2 vv_FragNormCoord;\n"
+;
 
 static NSString *const MISF_TOPPINGS_VERTEX_FUNCTIONS = @""
                                                          ""
@@ -127,8 +128,8 @@ static NSString *const MISF_TOPPINGS_SAMPLING_FUNCTIONS =
      "\n";
 
 static NSString *const MISF_TOPPINGS_FIRST_IN_MAIN = @"\n"
-                                                      "vec2 isf_FragNormCoord = vec2(0,0);\n"
-                                                      "vec2 vv_FragNormCoord = vec2(0,0);\n"
+                                                      "isf_FragNormCoord = vec2(0,0);\n"
+                                                      "vv_FragNormCoord = vec2(0,0);\n"
                                                       "vec2 isf_fragCoord = floor(isf_FragNormCoord * RENDERSIZE);";
 
 #pragma mark REGEX PATTERNS
@@ -512,8 +513,8 @@ Translation goes in three steps:
         // ISF Built-in function IMG_SIZE becomes a preprocessor macro in MSL. string replaced based on expected Spir-V
         // output Output Function could be absent because Spir-V removes it if not used
         intermediate = [intermediate
-            stringByReplacingOccurrencesOfString:@"inline float2 IMG_SIZE(thread const texture2d<float> imageName, "
-                                                 @"thread const sampler imageNameSmplr)\n"
+            stringByReplacingOccurrencesOfString:@"inline float2 IMG_SIZE(texture2d<float> imageName, "
+                                                 @"sampler imageNameSmplr)\n"
                                                   "{\n"
                                                   "    return float2(0.0);\n"
                                                   "}"
