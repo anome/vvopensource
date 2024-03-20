@@ -1095,6 +1095,7 @@
 		9CBC9FF62B9F54D300FCF346 /* inOutQualifier in Resources */ = {isa = PBXBuildFile; fileRef = 9CBC9FF52B9F54D300FCF346 /* inOutQualifier */; };
 		9CBC9FFA2B9F55B900FCF346 /* inOutQualifier in Resources */ = {isa = PBXBuildFile; fileRef = 9CBC9FF92B9F55B900FCF346 /* inOutQualifier */; };
 		9CBC9FFB2B9F55B900FCF346 /* inOutQualifier in Resources */ = {isa = PBXBuildFile; fileRef = 9CBC9FF92B9F55B900FCF346 /* inOutQualifier */; };
+		9CED36802BAAFEFB0000E7E1 /* needsMinorChangesToWork in Resources */ = {isa = PBXBuildFile; fileRef = 9CED367F2BAAFEFB0000E7E1 /* needsMinorChangesToWork */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2885,6 +2886,7 @@
 		9C6659AD29118E5C006BC9F5 /* MISFBlankRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFBlankRenderer.h; path = METAL/MISFBlankRenderer.h; sourceTree = "<group>"; };
 		9CBC9FF52B9F54D300FCF346 /* inOutQualifier */ = {isa = PBXFileReference; lastKnownFileType = folder; path = inOutQualifier; sourceTree = "<group>"; };
 		9CBC9FF92B9F55B900FCF346 /* inOutQualifier */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = inOutQualifier; path = "VVISFKitTests Metal Regression/inOutQualifier"; sourceTree = SOURCE_ROOT; };
+		9CED367F2BAAFEFB0000E7E1 /* needsMinorChangesToWork */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = needsMinorChangesToWork; path = "VVISFKitTests Metal Regression/needsMinorChangesToWork"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4350,6 +4352,7 @@
 		56BD419625B5FB28002524CE /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				9CED367F2BAAFEFB0000E7E1 /* needsMinorChangesToWork */,
 				9CBC9FF92B9F55B900FCF346 /* inOutQualifier */,
 				56E7DB2526D4DA8200E30137 /* isfLibrary */,
 				56CE6EA7268F4FBE00F77416 /* notWorking */,
@@ -6679,6 +6682,7 @@
 				56BC4D322698755F005457C7 /* rgbaTestcard.png in Resources */,
 				56BD419325B5FA9A002524CE /* Credits.rtf in Resources */,
 				5632A1BB25E6B703005B38D8 /* inputImage.jpg in Resources */,
+				9CED36802BAAFEFB0000E7E1 /* needsMinorChangesToWork in Resources */,
 				56BD419425B5FA9E002524CE /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
