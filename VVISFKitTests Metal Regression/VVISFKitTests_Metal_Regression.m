@@ -18,6 +18,8 @@
     NSArray<NSString *> *workingIsfWithMinorChanges;
     NSArray<NSString *> *isfExpectedToParseFail;
     NSArray<NSString *> *isfExpectedToSpirvFail;
+    NSArray<NSString *> *milluminShadersPathes;
+    NSArray<NSString *> *milluminUsersShadersPathes;
     NSBundle *bundle;
     MISFModel *model;
     id<MTLDevice> testDevice;
@@ -32,6 +34,8 @@
     isfExpectedToParseFail = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"expectParseFail"];
     isfExpectedToSpirvFail = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"expectSpirvFail"];
     IsfsneedingMinorChangesToWork = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"needsMinorChangesToWork"];
+    milluminShadersPathes = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"milluminShaders"];
+    milluminUsersShadersPathes = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"milluminUsersShaders"];
     testDevice = MTLCreateSystemDefaultDevice();
     self.continueAfterFailure = NO;
 }
@@ -94,6 +98,24 @@
 }
 
 #pragma mark Tests
+
+- (void)testLoadAndRenderMilluminShaders
+{
+    for( NSString *filePath in milluminShadersPathes )
+    {
+        NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
+        [self preloadShader:filePath];
+    }
+}
+
+- (void)testLoadAndRenderMilluminUsersShaders
+{
+    for( NSString *filePath in milluminUsersShadersPathes )
+    {
+        NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
+        [self preloadShader:filePath];
+    }
+}
 
 - (void)testLoadAndRenderWorkingShaders
 {

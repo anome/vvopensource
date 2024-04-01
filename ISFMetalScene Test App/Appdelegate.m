@@ -73,9 +73,9 @@
     shaderKeys = [NSMutableArray<NSString *> new];
     NSBundle *bundle = [NSBundle mainBundle];
 
-    NSArray<NSURL *> *someShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"isfLibrary"];
+    NSArray<NSURL *> *someShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"milluminShaders"];
 
-    NSArray<NSURL *> *moreShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"working"];
+    NSArray<NSURL *> *moreShaderUrls = [bundle URLsForResourcesWithExtension:@"fs" subdirectory:@"milluminUsersShaders"];
 
     NSArray<NSURL *> *shaderUrls = [someShaderUrls arrayByAddingObjectsFromArray:moreShaderUrls];
     NSArray<NSURL *> *shaderUrlsAlphabetically =
