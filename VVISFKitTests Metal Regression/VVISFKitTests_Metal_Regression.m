@@ -20,6 +20,7 @@
     NSArray<NSString *> *isfExpectedToSpirvFail;
     NSArray<NSString *> *milluminShadersPathes;
     NSArray<NSString *> *milluminUsersShadersPathes;
+    NSArray<NSString *> *milluminUsersShadersFallbackingToGlPathes;
     NSBundle *bundle;
     MISFModel *model;
     id<MTLDevice> testDevice;
@@ -36,6 +37,7 @@
     IsfsneedingMinorChangesToWork = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"needsMinorChangesToWork"];
     milluminShadersPathes = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"milluminShaders"];
     milluminUsersShadersPathes = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"milluminUsersShaders"];
+    milluminUsersShadersFallbackingToGlPathes = [bundle pathsForResourcesOfType:@"fs" inDirectory:@"milluminUsersShadersFallbackingToGl"];
     testDevice = MTLCreateSystemDefaultDevice();
     self.continueAfterFailure = NO;
 }
@@ -108,12 +110,25 @@
     }
 }
 
+
+
 - (void)testLoadAndRenderMilluminUsersShaders
 {
     for( NSString *filePath in milluminUsersShadersPathes )
     {
         NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
         [self preloadShader:filePath];
+    }
+}
+
+- (void)testLoadAndRenderMilluminShadersFallbackingToGl
+{
+    for( NSString *filePath in milluminUsersShadersFallbackingToGlPathes )
+    {
+        NSLog(@"\n\n\n\n\n==========\nTesting %@\n==========", filePath);
+        NSError *error = nil;
+        MISFPreloadedMedia *preloadedMedia = [ISFMetalScene preloadFile:filePath onDevice:testDevice withError:&error];
+        XCTAssertNil(preloadedMedia, @"Parsing unexpectedly succeded for file %@ output %@", filePath, error);
     }
 }
 
