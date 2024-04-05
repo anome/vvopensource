@@ -513,8 +513,8 @@ Translation goes in three steps:
         // ISF Built-in function IMG_SIZE becomes a preprocessor macro in MSL. string replaced based on expected Spir-V
         // output Output Function could be absent because Spir-V removes it if not used
         intermediate = [intermediate
-            stringByReplacingOccurrencesOfString:@"inline float2 IMG_SIZE(texture2d<float> imageName, "
-                                                 @"sampler imageNameSmplr)\n"
+            stringByReplacingOccurrencesOfString:@"inline float2 IMG_SIZE(thread const texture2d<float> imageName, "
+                                                 @"thread const sampler imageNameSmplr)\n"
                                                   "{\n"
                                                   "    return float2(0.0);\n"
                                                   "}"
