@@ -593,7 +593,11 @@ double			_machTimeToNsFactor;
 	pthread_mutex_unlock(&sendingLock);
 }
 #else
-static MIDISysexSendRequest request;
+void requestCompletionProc(MIDISysexSendRequest *request)
+{
+    free(request);
+    free(request->completionRefCon);
+}
 - (void) sendMsg:(VVMIDIMessage *)m	{
 	if (![self enabled] || !sender || m==nil)
 		return;
@@ -616,133 +620,114 @@ static MIDISysexSendRequest request;
 	pthread_mutex_lock(&sendingLock);
 	
 	//	if the message is a 'begin sysex dump', add the sysex vals to the packet list
-	if ([m type] == VVMIDIBeginSysexDumpVal)	{
-		NSArray			*msgSysexArray = [m sysexArray];
-		NSEnumerator	*it = [msgSysexArray objectEnumerator];
-		NSNumber		*numPtr = nil;
-		Byte			*bufferPtr;
-		Byte			*bytePtr;
-		
-		bufferPtr = (Byte *)calloc([msgSysexArray count]+2, sizeof(Byte));
-		bytePtr = bufferPtr;
-		//	write that sysex start byte
-		*bytePtr = 0xF0;
-		++bytePtr;
-		//	run through array of NSNumbers, fill buffer with their contents
-		while (numPtr = [it nextObject])	{
-			*bytePtr = [numPtr unsignedCharValue];
-			++bytePtr;
-		}
-		//	write the sysex stop byte
-		*bytePtr = 0xF7;
-		/*
-		//	just dump the contents of the buffer i'm about to send- for debugging...
-		for (int i=0;i<[msgSysexArray count]+2;++i)	{
-			//NSLog(@"\t%X",bufferPtr[i]);
-		}
-		*/
+    if ([m type] == VVMIDIBeginSysexDumpVal)	{
+        NSArray			*msgSysexArray = [m sysexArray];
+        NSEnumerator	*it = [msgSysexArray objectEnumerator];
+        NSNumber		*numPtr = nil;
+        Byte			*bufferPtr;
         
-        
-//        request.destination = endpointRef;
-//        request.data = bytePtr;
-//        request.bytesToSend = msgSysexArray.count+2;
-//        request.complete = NO;
-//        request.reserved[0] = 0;
-//        request.reserved[1] = 0;
-//        request.reserved[2] = 0;
-//        request.completionProc = nil;
-//        request.completionRefCon = nil;
-//
-//        MIDISendSysex(&request);
-
-        
-        /*if( NO )
-        {
-            MIDIPacketListAdd(packetList,1024,currentPacket,timestamp,[msgSysexArray count]+2,bufferPtr);
-            
-            //    if this is a virtual sender, this node "owns" the source- i need to call 'MIDIReceived'
-            if (virtualSender)    {
-                err = MIDIReceived(endpointRef,packetList);
-                if (err != noErr)    {
-                    NSLog(@"\t\terr %ld at MIDIReceived A",(long)err);
-                }
-            }
-            //    if this isn't a virtual sender, something else is managing the source- call 'MIDISend'
-            else    {
-                err = MIDISend(portRef,endpointRef,packetList);
-                if (err != noErr)    {
-                    NSLog(@"\t\terr %ld at MIDISend A",(long)err);
-                    goto BAIL;
-                }
-            }
-            
-            currentPacket = MIDIPacketListInit(packetList);
+        bufferPtr = (Byte *)calloc([msgSysexArray count]+2, sizeof(Byte));
+        uint32_t index = 0;
+        //	write that sysex start byte
+        bufferPtr[index++] = 0xF0;
+        //	run through array of NSNumbers, fill buffer with their contents
+        while (numPtr = [it nextObject])	{
+            bufferPtr[index++] = [numPtr unsignedCharValue];
         }
+        //	write the sysex stop byte
+        bufferPtr[index++] = 0xF7;
+        /*
+         //	just dump the contents of the buffer i'm about to send- for debugging...
+         for (int i=0;i<[msgSysexArray count]+2;++i)	{
+         //NSLog(@"\t%X",bufferPtr[i]);
+         }
+         */
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //    if this is a virtual sender, this node "owns" the source- i need to call 'MIDIReceivedEventList'
+        if (virtualSender)    {
+            MIDIEventList evtList;
+            evtList.numPackets = 1;
+            evtList.protocol = kMIDIProtocol_1_0;
+            evtList.packet[0].timeStamp = 0;
+            evtList.packet[0].wordCount = 1;
+            memset(evtList.packet[0].words, 0 , sizeof(evtList.packet[0].words));
+            
+            evtList.packet[0].wordCount = ceil(  (msgSysexArray.count+1) / 3.0  )  +  1;
+            for(int i=0; i<evtList.packet[0].wordCount-1; i++)
+            {
+                UInt32 value = (0x20 << 24);
+                for(int j=0; j<3 && i*3+j<msgSysexArray.count+1; j++)
+                {
+                    value |= (bufferPtr[i*3+j] << (16-j*8));
+                }
+                evtList.packet[0].words[i] = value;
+            }
+            evtList.packet[0].words[evtList.packet[0].wordCount-1] = 0x20F70000;
+            
+            err = MIDIReceivedEventList(endpointRef,&evtList);
+            if (err != noErr)    {
+                NSLog(@"\t\terr %ld at MIDIReceived A",(long)err);
+            }
+        }
+        //    if this isn't a virtual sender, something else is managing the source- call 'MIDISendSysex'
         else
         {
-            long l = msgSysexArray.count+2;
-            ByteCount n = ceilf(l/4.0);
-            UInt32 d[64];
-            for(int i=0; i<l; i++)
-            {
-                d[i] =
-                (  (i*4+0<l?bufferPtr[i*4+0]:0)  <<  24  ) |
-                (  (i*4+1<l?bufferPtr[i*4+1]:0)  <<  16  ) |
-                (  (i*4+2<l?bufferPtr[i*4+2]:0)  <<  8   ) |
-                (  (i*4+3<l?bufferPtr[i*4+3]:0)  );
+            MIDISysexSendRequest *request = malloc(sizeof(MIDISysexSendRequest));
+            request->destination = endpointRef;
+            request->data = bufferPtr;
+            request->bytesToSend = (UInt32)(msgSysexArray.count+2);
+            request->complete = NO;
+            request->reserved[0] = 0;
+            request->reserved[1] = 0;
+            request->reserved[2] = 0;
+            request->completionProc = requestCompletionProc;
+            request->completionRefCon = bufferPtr;
+            err = MIDISendSysex(request);
+            if (err != noErr)    {
+                NSLog(@"\t\terr %ld at MIDISendSysex A",(long)err);
+                goto BAIL;
             }
-            
-            n = 3;
-            d[0] =
-            (0x20  <<  24  ) |
-            (bufferPtr[0]  <<  16  ) |
-            (bufferPtr[1]  <<  8   ) |
-            (bufferPtr[2]  );
-            
-            d[1] =
-            (bufferPtr[3]  <<  24  ) |
-            (bufferPtr[4]  <<  16  ) |
-            (bufferPtr[5]  <<  8   ) |
-            (bufferPtr[6]  );
-            
-            d[2] =
-            (bufferPtr[7]  <<  24  ) |
-            (bufferPtr[8]  <<  16  ) |
-            (0  <<  8   ) |
-            (0  );
-            
-//            n = 1;
-//            d[0] = (0x20 << 24) | ((0xB0 | 0) << 16) | ((0 & 0x7F) << 8) | (64);
-                        
-                        
-            
-            NSLog(@"%ld => %lu", l, n);
-            MIDIEventListAdd(&evtList, sizeof(MIDIEventPacket), &evtList.packet[0], timestamp, n, &d[0]);
-            
-            
-            //    if this is a virtual sender, this node "owns" the source- i need to call 'MIDIReceived'
-            if (virtualSender)    {
-                err = MIDIReceivedEventList(endpointRef,&evtList);
-                if (err != noErr)    {
-                    NSLog(@"\t\terr %ld at MIDIReceived A",(long)err);
-                }
-            }
-            //    if this isn't a virtual sender, something else is managing the source- call 'MIDISend'
-            else    {
-                err = MIDISendEventList(portRef,endpointRef,&evtList);
-                if (err != noErr)    {
-                    NSLog(@"\t\terr %ld at MIDISend A",(long)err);
-                    goto BAIL;
-                }
-            }
-            
-            currentPacket = MIDIPacketListInit(packetList);
-        }*/
-        
-        
-        free(bufferPtr);
+        }
         goto BAIL;
-	}
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
 	//	else it's not a sysex val
 	else	{
         evtList.packet[0].words[0] = (0x20 << 24) | ((m.type | m.channel) << 16);
@@ -773,7 +758,7 @@ static MIDISysexSendRequest request;
 				break;
 		}
 	}
-		
+    
 	//	if this is a virtual sender, this node "owns" the source- i need to call 'MIDIReceived'
 	if (virtualSender)	{
 		err = MIDIReceivedEventList(endpointRef,&evtList);
