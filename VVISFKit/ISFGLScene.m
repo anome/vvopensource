@@ -804,7 +804,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 								labelArray = [inputDict objectForKey:@"LABELS"];
 								if (valArray!=nil && [valArray isKindOfClass:arrayClass] && labelArray!=nil && [labelArray isKindOfClass:arrayClass] && [valArray count]==[labelArray count])	{
 									minVal.longVal = 0.0;
-									maxVal.longVal = 10.0;
+									maxVal.longVal = 99.0;
 								}
 								else	{
 									valArray = nil;
