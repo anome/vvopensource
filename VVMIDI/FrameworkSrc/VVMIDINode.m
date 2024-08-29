@@ -726,7 +726,6 @@ void requestCompletionProc(MIDISysexSendRequest *request)
         
         
         
-        
     }
 	//	else it's not a sysex val
 	else	{
@@ -768,7 +767,24 @@ void requestCompletionProc(MIDISysexSendRequest *request)
 	}
 	//	if this isn't a virtual sender, something else is managing the source- call 'MIDISend'
 	else	{
-		err = MIDISendEventList(portRef,endpointRef,&evtList);
+
+        if( [m type] == VVMIDIMTCQuarterFrameVal ) {
+            MIDIPacket *newPacket = NULL;
+            
+            scratchStruct[0] = (m.type | m.channel);
+            scratchStruct[1] = (m.data1 & 0x7F);
+            scratchStruct[2] = m.data2;
+            timestamp = 0; // required for an unknown reason
+            
+            newPacket = MIDIPacketListAdd(packetList,1024,currentPacket,timestamp,2,scratchStruct); // size=2 because MTC does not use data2
+            currentPacket = newPacket;
+            
+            err = MIDISend(portRef, endpointRef, packetList);
+        }
+        else {
+            err = MIDISendEventList(portRef,endpointRef,&evtList);
+        }
+
 		if (err != noErr)	{
 			NSLog(@"\t\terr %ld at MIDISend A",(long)err);
 			goto BAIL;
