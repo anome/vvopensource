@@ -45,6 +45,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 }
 @synthesize inputs;
 
+
 #pragma mark INIT
 
 - (id)initWithDevice:(id<MTLDevice>)theDevice

@@ -153,6 +153,7 @@
     return texture;
 }
 
+
 - (void)setTargetWidthString:(NSString *)newWidthString
 {
     [bufferSize setWidthString:newWidthString];

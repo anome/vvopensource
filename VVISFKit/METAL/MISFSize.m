@@ -52,8 +52,8 @@
 #warning mto-anomes: useless?
 - (void)setTargetSize:(VVSIZE)newTargetSize
 {
-    width = newTargetSize.width;
-    height = newTargetSize.height;
+    width = fmax(newTargetSize.width, 1);
+    height = fmax(newTargetSize.height, 1);
     [self forbidOddResolution];
 }
 
@@ -111,8 +111,8 @@
 
 - (void)setSize:(VVSIZE)newSize
 {
-    width = newSize.width;
-    height = newSize.height;
+    width = fmax(newSize.width, 1);
+    height = fmax(newSize.height, 1);
     [self forbidOddResolution];
 }
 
