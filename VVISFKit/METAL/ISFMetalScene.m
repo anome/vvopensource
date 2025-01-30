@@ -450,6 +450,11 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
              renderTime:(double)t
               withError:(NSError **)errorPtr
 {
+    if( outputTexture == nil || commandBuffer == nil )
+    {
+        return NO;
+    }
+    
     id<MTLCommandQueue> commandQueue = [commandBuffer commandQueue];
 
     const VVSIZE outputTextureSize = VVMAKESIZE(outputTexture.width, outputTexture.height);
