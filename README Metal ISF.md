@@ -17,18 +17,25 @@ MoltenVK is added in the folder `external` as a git submodule
 After cloning, make sure to fetch the submodule with :
 `git submodule init `
 `git submodule update`
-    
+(if error, checkout manually MoltenVK repository !)
+
 Then :
 `cd external/MoltenVK/`
 `brew install cmake python3 ninja`
 `./fetchDependencies --macos`
 
+(if python is not found, `sudo ln -s /usr/bin/python3 /usr/local/bin/python`)
+(if python not found again, `sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python`)
+
+
+Note : the fetchDependencies script gets the LATEST version of glsc and other tools. __It may cause regressions over time !!__
+
+
+(VulkanSamples may not be included : if so, ignore it !)
 
 Then (this is to fix a bug discovered March 2024 -- hacky workaround for LM_HEAT.fs) : 
 - Open up external/MoltenVK/ExternalDependencies.xcodeproj
 - look for this line "replace_illegal_names(keywords);" and comment it
-
-
 
 Lastly :
 - open MoltenVKPackaging.xcodeproj
@@ -38,7 +45,7 @@ Lastly :
 - (LATEST, WITH LIBS UPDATE - MARCH 2025) Run VVISFKitTest Metal Regression and got these results (v1.1.0) : Tests 9302 / Passed 8476 / Failed 826
 - The regression testing allow to detect changes as moltenVK libs update themselves. Keep an eye on the millumin-related tests bellow
 - To avoid Millumin regressions : Make sure the tests are like this
-![Tests Mars 2025](./tests_tests_v20250327.png)
+![Tests Mars 2025](./tests_v20250327.png)
 - (Good practice) Test LM_HEAT with metalTestApp to make sure the replace_illegal_names() change works as attended
 - build VVISFKit
 - Enjoy
