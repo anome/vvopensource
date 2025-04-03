@@ -110,8 +110,6 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
 {
     vector_uint2 _viewportSize;
     id<MTLRenderPipelineState> pipelineState;
-    MISFBuiltInVariablesBufferType builtInVariablesDataPointer;
-    id<MTLBuffer> builtInVariablesBuffer;
     MISFInputsBuffer *inputsBufferForFragment;
     MISFInputsBuffer *inputsBufferForVertex;
     BOOL customVertexCode;
@@ -140,10 +138,6 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         self.loadAction = MTLLoadActionClear;
         customVertexCode = preloadedMedia.vertexCode != nil;
 
-        // --- Create built-in variables buffer
-
-        builtInVariablesBuffer = [device newBufferWithLength:sizeof(MISFBuiltInVariablesBufferType)
-                                                     options:MTLResourceStorageModeShared];
 
         // --- Create Buffer for ISF Inputs
 #warning mto-anomes: this is a bit dirty
@@ -235,9 +229,13 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
     [renderEncoder setRenderPipelineState:pipelineState];
     [renderEncoder setFragmentTexture:outputTexture atIndex:0];
 
-    // --- feeding buffer of Built in variables
+    // This buffer is re-created at each frame to make our renderer stateless in case of concurrent renders with different resolutions/contexts
     {
-        MISFBuiltInVariablesBufferType *pointer = builtInVariablesBuffer.contents;
+        // --- Create built-in variables buffer
+        id<MTLBuffer> builtInVariablesBuffer = [[commandBuffer device] newBufferWithLength:sizeof(MISFBuiltInVariablesBufferType)
+                                                    options:MTLResourceStorageModeShared];
+        // --- feed buffer of Built in variables
+        MISFBuiltInVariablesBufferType builtInVariablesDataPointer;
         builtInVariablesDataPointer.PASSINDEX = self.builtin_PASSINDEX;
         builtInVariablesDataPointer.RENDERSIZE =
             simd_make_float2(self.builtin_RENDERSIZE.width, self.builtin_RENDERSIZE.height);
@@ -246,13 +244,17 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         builtInVariablesDataPointer.DATE =
             simd_make_float4(self.builtin_DATE.x, self.builtin_DATE.y, self.builtin_DATE.z, self.builtin_DATE.w);
         builtInVariablesDataPointer.FRAMEINDEX = self.builtin_FRAMEINDEX;
+        // Get data pointer on struct
+        MISFBuiltInVariablesBufferType *pointer = builtInVariablesBuffer.contents;
         *pointer = builtInVariablesDataPointer;
+        [renderEncoder setFragmentBuffer:builtInVariablesBuffer offset:0 atIndex:BufferIndexZero];
+        
+        if( customVertexCode )
+        {
+            [renderEncoder setVertexBuffer:builtInVariablesBuffer offset:0 atIndex:BufferIndexTwo];
+        }
     }
-    [renderEncoder setFragmentBuffer:builtInVariablesBuffer offset:0 atIndex:BufferIndexZero];
-    if( customVertexCode )
-    {
-        [renderEncoder setVertexBuffer:builtInVariablesBuffer offset:0 atIndex:BufferIndexTwo];
-    }
+    
 
     // Vertex Buffer
     [renderEncoder setVertexBytes:quadVertices length:sizeof(quadVertices) atIndex:MetalBitsVertexInputIndexVertices];
