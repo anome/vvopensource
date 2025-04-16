@@ -253,6 +253,8 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         {
             [renderEncoder setVertexBuffer:builtInVariablesBuffer offset:0 atIndex:BufferIndexTwo];
         }
+        
+        [builtInVariablesBuffer release];
     }
     
 
