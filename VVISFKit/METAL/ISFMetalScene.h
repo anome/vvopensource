@@ -33,7 +33,8 @@
              renderTime:(double)t
               withError:(NSError **)errorPtr;
 
-// Debug only
-@property(readwrite, nonatomic) int choosePassIndex;
+@property(readwrite, nonatomic) BOOL inputImagesArePremultipled;
+@property(readwrite, nonatomic) BOOL inputImagesAreFlipped;
+@property(readwrite, nonatomic) int choosePassIndex; // debug only
 
 @end

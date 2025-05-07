@@ -35,6 +35,8 @@ static NSString *const MISF_TOPPINGS_BUILTINS_UNIFORM_DEFINITIONS =
      "uniform float        TIMEDELTA;\n"
      "uniform vec4        DATE;\n"
      "uniform int        FRAMEINDEX;\n"
+     "uniform bool        texture_inputImagesArePremultipled;\n"
+     "uniform bool        texture_inputImagesAreFlipped;\n"
      "vec2 isf_FragNormCoord;\n"
      "vec2 vv_FragNormCoord;\n"
 ;
@@ -60,11 +62,13 @@ static NSString *const MISF_TOPPINGS_SAMPLING_FUNCTIONS =
 
      "vec4 IMG_THIS_PIXEL(sampler2D imageName)\n"
      "{\n"
-     "// Convert FragNormCoord of output size to a FragNormCoord on the sampled image size\n"
-     "vec2 imageSize = IMG_SIZE(imageName);\n"
-     "vec2 fragPixelCoord = vec2(RENDERSIZE.x * isf_FragNormCoord.x, RENDERSIZE.y * isf_FragNormCoord.y);\n"
-     "vec2 imageNormCoord = vec2( fragPixelCoord.x / imageSize.x, fragPixelCoord.y / imageSize.y);\n"
-     "    return texture(imageName, imageNormCoord);\n"
+     "    // Convert FragNormCoord of output size to a FragNormCoord on the sampled image size\n"
+     "    vec2 imageSize = IMG_SIZE(imageName);\n"
+     "    vec2 fragPixelCoord = vec2(RENDERSIZE.x * isf_FragNormCoord.x, RENDERSIZE.y * isf_FragNormCoord.y);\n"
+     "    vec2 imageNormCoord = vec2( fragPixelCoord.x / imageSize.x, texture_inputImagesAreFlipped ? 1.0 - fragPixelCoord.y / imageSize.y : fragPixelCoord.y / imageSize.y);\n"
+     "    vec4 color = texture(imageName, imageNormCoord);\n"
+     "    if( texture_inputImagesArePremultipled && 0 < color.a ) color.rgb /= color.a;\n"
+     "    return color;\n"
      "}\n"
 
      "vec4 IMG_THIS_PIXEL(sampler2D imageName, float bias)\n"
@@ -97,7 +101,9 @@ static NSString *const MISF_TOPPINGS_SAMPLING_FUNCTIONS =
 
      "vec4 IMG_PIXEL(sampler2D imageName, vec2 pixelCoord)\n"
      "{\n"
-     "    return texture(imageName, vec2(pixelCoord.x/IMG_SIZE(imageName).x, pixelCoord.y/IMG_SIZE(imageName).y));\n"
+     "    vec4 color = texture(imageName, vec2(pixelCoord.x/IMG_SIZE(imageName).x, texture_inputImagesAreFlipped ? 1.0-pixelCoord.y/IMG_SIZE(imageName).y : pixelCoord.y/IMG_SIZE(imageName).y));\n"
+     "    if( texture_inputImagesArePremultipled && 0 < color.a ) color.rgb /= color.a;\n"
+     "    return color;\n"
      "}\n"
      "vec4 IMG_PIXEL(sampler2D imageName, vec2 pixelCoord, float bias)\n"
      "{\n"
@@ -108,7 +114,9 @@ static NSString *const MISF_TOPPINGS_SAMPLING_FUNCTIONS =
 
      "vec4 IMG_NORM_PIXEL(sampler2D imageName, vec2 normalizedPixelCoord)\n"
      "{\n"
-     "    return texture(imageName, vec2(normalizedPixelCoord.x, normalizedPixelCoord.y));\n"
+     "    vec4 color = texture(imageName, vec2(normalizedPixelCoord.x, texture_inputImagesAreFlipped ? 1.0 - normalizedPixelCoord.y : normalizedPixelCoord.y));\n"
+     "    if( texture_inputImagesArePremultipled && 0 < color.a ) color.rgb /= color.a;\n"
+     "    return color;\n"
      "}\n"
      "vec4 IMG_NORM_PIXEL(sampler2D imageName, vec2 normalizedPixelCoord, float bias)\n"
      "{\n"
@@ -1127,7 +1135,7 @@ Translation goes in three steps:
 {
     // TODO: remove the two last ones?
     NSArray<NSString *> *isfBuiltInVariables = @[
-        @"TIME", @"RENDERSIZE", @"PASSINDEX", @"TIMEDELTA", @"FRAMEINDEX", @"DATE", @"isf_FragNormCoord",
+        @"TIME", @"RENDERSIZE", @"PASSINDEX", @"TIMEDELTA", @"FRAMEINDEX", @"DATE", @"texture_inputImagesArePremultipled", @"texture_inputImagesAreFlipped", @"isf_FragNormCoord",
         @"vv_FragNormCoord"
     ];
     for( int index = 0; index < isfBuiltInVariables.count; index++ )

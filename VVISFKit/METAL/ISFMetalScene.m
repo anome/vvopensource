@@ -75,6 +75,8 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     self = [super init];
     if( self )
     {
+        _inputImagesArePremultipled = NO;
+        _inputImagesAreFlipped = NO;
 #warning mto-anomes: error case: if preloadedmedia MTLdevice and given MTLdevice here are different, it could turn bad
         preloadedMedia = [thePreloadedMedia retain];
         device = theDevice;
@@ -512,6 +514,8 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         renderer.builtin_PASSINDEX = index;
         renderer.builtin_TIME = renderTime;
         renderer.builtin_DATE = simd_make_float4([dateComps year], [dateComps month], [dateComps day], timeInSeconds);
+        renderer.builtin_texture_inputImagesArePremultipled = self.inputImagesArePremultipled;
+        renderer.builtin_texture_inputImagesAreFlipped = self.inputImagesAreFlipped;
         NSString *passOutputKey = renderPass.targetName;
         id<MTLTexture> passOutputTexture = nil; // nil;
         const BOOL isLastPass = (index + 1 == numberOfPasses);
@@ -620,6 +624,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     }
     return YES;
 }
+
 
 #pragma mark Inputs
 

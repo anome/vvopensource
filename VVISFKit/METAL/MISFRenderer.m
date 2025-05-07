@@ -25,6 +25,8 @@ typedef struct
     float TIMEDELTA;
     vector_float4 DATE;
     int FRAMEINDEX;
+    bool texture_inputImagesArePremultipled;
+    bool texture_inputImagesAreFlipped;
 } MISFBuiltInVariablesBufferType;
 
 typedef enum BufferIndex
@@ -66,6 +68,8 @@ static NSString *const SHADER_TYPES = @""
                                        "    float TIMEDELTA;\n"
                                        "    vector_float4 DATE;\n"
                                        "    int FRAMEINDEX;\n"
+                                       "    bool texture_inputImagesArePremultipled;\n"
+                                       "    bool texture_inputImagesAreFlipped;\n"
                                        "} IsfBuiltInsBufferType;\n";
 
 static NSString *const VERTEX_BUFFER_STRUCT_MARKER = @"/* {MARKER FOR INJECTION RASTERIZER DATA CONTENT} */";
@@ -104,7 +108,9 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
                                                             "float TIME = isf_builtIns.TIME;\n"
                                                             "float TIMEDELTA = isf_builtIns.TIMEDELTA;\n"
                                                             "float4 DATE = isf_builtIns.DATE;\n"
-                                                            "float FRAMEINDEX = isf_builtIns.FRAMEINDEX;\n";
+                                                            "float FRAMEINDEX = isf_builtIns.FRAMEINDEX;\n"
+                                                            "bool texture_inputImagesArePremultipled = isf_builtIns.texture_inputImagesArePremultipled;\n"
+                                                            "bool texture_inputImagesAreFlipped = isf_builtIns.texture_inputImagesAreFlipped;\n";
 
 @implementation MISFRenderer
 {
@@ -244,6 +250,8 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         builtInVariablesDataPointer.DATE =
             simd_make_float4(self.builtin_DATE.x, self.builtin_DATE.y, self.builtin_DATE.z, self.builtin_DATE.w);
         builtInVariablesDataPointer.FRAMEINDEX = self.builtin_FRAMEINDEX;
+        builtInVariablesDataPointer.texture_inputImagesArePremultipled = self.builtin_texture_inputImagesArePremultipled;
+        builtInVariablesDataPointer.texture_inputImagesAreFlipped = self.builtin_texture_inputImagesAreFlipped;
         // Get data pointer on struct
         MISFBuiltInVariablesBufferType *pointer = builtInVariablesBuffer.contents;
         *pointer = builtInVariablesDataPointer;
@@ -257,6 +265,7 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         [builtInVariablesBuffer release];
     }
     
+
 
     // Vertex Buffer
     [renderEncoder setVertexBytes:quadVertices length:sizeof(quadVertices) atIndex:MetalBitsVertexInputIndexVertices];

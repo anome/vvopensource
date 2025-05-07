@@ -36,6 +36,8 @@
 @property(readwrite, nonatomic) float builtin_TIMEDELTA;
 @property(readwrite, nonatomic) vector_float4 builtin_DATE;
 @property(readwrite, nonatomic) int builtin_FRAMEINDEX;
+@property(readwrite, nonatomic) BOOL builtin_texture_inputImagesArePremultipled;
+@property(readwrite, nonatomic) BOOL builtin_texture_inputImagesAreFlipped;
 /// For temp / persistent buffers
 @property(readwrite, nonatomic) MTLLoadAction loadAction;
 
