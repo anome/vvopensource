@@ -315,6 +315,11 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
     return inputBuffer;
 }
 
+/**
+ Preloads as many GPU ressources as possible
+ @param model
+ @return PreloadedMedia
+ */
 + (MISFPreloadedMedia *)preloadModel:(MISFMetalModel *)model
                             onDevice:(id<MTLDevice>)device
                            withError:(NSError **)errorPtr

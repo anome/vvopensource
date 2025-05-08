@@ -4,7 +4,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// It's just a dumb container for a few types
+/// Container of ISF model + as many pre-loaded GPU ressources as possible. Use this object as starting point for rendering
 @interface MISFPreloadedMedia : NSObject
 
 @property(readwrite, retain) MISFMetalModel *model;

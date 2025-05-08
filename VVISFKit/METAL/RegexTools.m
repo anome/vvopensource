@@ -110,25 +110,137 @@ static NSString *const ERROR_STRING_OPERATION_KEY = @"RegexTools String Operatio
     return result;
 }
 
+/**
+Generates Rexgex pattern to search a specific varibaleName in code
+ @param variableName to search
+ @returns regex pattern of variable, usable for regex search
+ // https://regex101.com/r/7YYye1/6
+ --> This one was cool, but \K not handled by OBJC (\s|[(*\/+-])\K(variableName)(?!(\w|\s*\())
+
+ --- SHOULD MATCH
+
+ if ((!variableName))
+ fmod(variableName)
+ variableName
+     variableName
+ variableName;
+ variableName+0
+ variableName/0
+ variableName-0
+ variableName*0
+ 0+variableName
+ 0-variableName
+ 0/variableName
+ 0*variableName
+ fn(variableName)
+ (1,variableName,variableName,1)
+ (mixOffset-variableName)/(tmpRadius-variableName));
+
+ --- SHOULD PARTIALLY MATCH
+
+ variableName.variableName;
+
+ --- SHOULD NOT MATCH
+
+ someOther.variableName
+ someOthervariableName ;
+ someOther_variableName
+ variableName_someOther
+ variableNameSomeOther;
+ variableName()
+ variableName ()
+ */
 + (NSString *)detectPatternForVariableName:(NSString *)variableName
 {
-    // https://regex101.com/r/7YYye1/6
     NSString *part1 = @"(?<=(\\s|[(,*\\/!+-]))(";
     NSString *part2 = @")(?!(\\w|\\s*\\())";
     return [[part1 stringByAppendingString:variableName] stringByAppendingString:part2];
 }
 
+/**
+ Generates Rexgex pattern to search a specific function in code
+  @param functionName to search
+  @returns regex pattern of function, usable for regex search
+ // https://regex101.com/r/CeWWrG/1
+ --- SHOULD MATCH
+
+ functionName()
+ functionName ()
+ functionName ()
+ a.functionName()
+ .functionname()
+ -functionName()
+ +functionName()
+ /functionName()
+ *functionName()
+ mod(functionName())
+ mod(functionName(),functionName(), functionName(),)
+
+
+ -- SHOULD NOT MATCH
+ functionName2()
+ notfunctionName()
+ variableName
+     variableName
+ functionName;
+ functionName+0
+ functionName/0
+ functionName-0
+ functionName*0
+ 0+functionName
+ 0-functionName
+ 0/functionName
+ 0*functionName
+ fn(functionName)
+ (1,functionName,functionName,1)
+ (mixOffset-functionName)/(tmpRadius-functionName));
+ */
 + (NSString *)detectPatternForFunctionName:(NSString *)functionName
 {
-    // https://regex101.com/r/CeWWrG/1
     NSString *part1 = @"(?<=(\\s|[(,*\\/+-]))(";
     NSString *part2 = @")(?=(\\s*\\())";
     return [[part1 stringByAppendingString:functionName] stringByAppendingString:part2];
 }
 
+/**
+ Generates Rexgex pattern to search a specific functions with specific first parameter name in code
+ @param functionNames to search, as a regex list such as fn1|fn2|fn3
+ @param firstParameter to search
+ @returns regex pattern of function, usable for regex search
+ // https://regex101.com/r/6RRx7x/1
+ --- SHOULD MATCH
+
+ vec4 sourceUv = IMG_NORM_PIXEL(BufferA, uv);
+ vec4 sourceUv = IMG_PIXEL(BufferA, uv);
+ vec4 sourceUv = IMG_NORM_THIS_PIXEL(BufferA, uv);
+ vec4 sourceUv = IMG_THIS_PIXEL(BufferA, uv);
+ vec4 sourceUv = texture2D(BufferA, uv);
+
+ vec4 sourceUv = IMG_NORM_PIXEL(
+ BufferA, uv);
+
+ vec4 sourceUv = IMG_NORM_PIXEL(
+    BufferA, uv);
+
+ vec4 sourceUv = IMG_NORM_PIXEL
+ (
+    BufferA, uv);
+
+ IMG_NORM_PIXEL(
+    BufferA   , uv);
+
+
+ --- SHOULD NOT MATCH
+ vec4 sourceUv = IMG_NORM_PIXEL(BufferB, uv);
+ vec4 sourceUv = IMG_PIXEL(BufferB, uv);
+ vec4 sourceUv = IMG_NORM_THIS_PIXEL(BufferB, uv);
+ vec4 sourceUv = IMG_THIS_PIXEL(BufferB, uv);
+ vec4 sourceUv = texture2D(BufferB, uv);
+ vec4 sourceUv = texture2D(buffera, uv);
+ vec4 sourceUv = texture2d(buffera, uv);
+ */
 + (NSString *)detectPatternForFunctions:(NSString*)functions withFirstParameter:(NSString*)parameter;
 {
-    // https://regex101.com./r/6RRx7x/1
     return [NSString stringWithFormat:@"(?<=(\\s|[(,*\\/+-]))(%@)(?=(\\s*\\(\\s*%@))", functions, parameter];
 }
 

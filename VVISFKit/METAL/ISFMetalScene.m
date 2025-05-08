@@ -102,12 +102,22 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
 #pragma mark SHADER PREP
 
+/**
+ Parse ISF shader
+ @parameter filepath: filepath of ISF file
+ @returns MISFModel : object-oriented description of ISF
+ */
 + (MISFModel *)parseFile:(NSString *)filePath withError:(NSError **)errorPtr
 {
     MISFModel *isfModel = [[MISFModel alloc] initWithFilePath:filePath withError:errorPtr];
     return isfModel;
 }
 
+/**
+ Converts a GL ISF Model to Metal ISF Model
+ @parameter motel: gl Model
+ @returns MISFMetalModel : object-oriented description of ISF for metal
+ */
 + (MISFMetalModel *)convertModelToMetal:(MISFModel *)model withError:(NSError **)errorPtr
 {
     MISFMetalModel *metalModel = [MISFMetalModel new];
@@ -760,6 +770,11 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
 
 #pragma mark MISC
 
+/**
+ Assemble a fragment code snippet  containing all the custom ISF variables and buffers for a specific model
+ @param model
+ @returns string fragment code
+ */
 + (NSMutableString *)_assembleShaderSource_VarDeclarationsFromModel:(MISFModel *)model
 {
     NSMutableString *varDeclarations = [NSMutableString stringWithCapacity:0];

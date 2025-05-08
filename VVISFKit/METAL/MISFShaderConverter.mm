@@ -142,15 +142,30 @@ static NSString *const MISF_TOPPINGS_FIRST_IN_MAIN = @"\n"
 
 #pragma mark REGEX PATTERNS
 
-// https://regex101.com/r/nUXD8W/2
+/**
+ // https://regex101.com/r/nUXD8W/2
+ --- Test: cover from best to worst code formattings
+ void main() {}
+ void main(void) {}
+ void main( void ) {}
+ void main(     void      ) {}
+ void main () {}
+ void main ( ) {}
+ void main    () {}
+ void main    (    ) {}
+ void main    () {}
+ void main    (     ) {}
+ void   main        (         ) {}
+ void       main             (         ) {}
+ */
 static NSString *const MISF_REGEX_GL_VOID_MAIN_WITH_BRACKET =
     @"void\\s*main(\\s*|)[(]\\s*(\\s*|\\s*void\\s*)[)]\\s*[{]";
+
 static NSString *const MISF_REGEX_METAL_FRAGMENT_MAIN_WITH_BRACKET = @"fragment float4 main0\\s*[(](.*)\\s*[{]";
 static NSString *const MISF_REGEX_METAL_VERTEX_MAIN_WITH_BRACKET = @"vertex RasterizerData main0\\s*[(](.*)\\s*[{]";
 static NSString *const MISF_REGEX_METAL_FRAGMENT_MAIN = @"fragment float4 main0\\s*[(](.*)";
 static NSString *const MISF_REGEX_METAL_VERTEX_MAIN = @"vertex RasterizerData main0\\s*[(](.*)";
 static NSString *const MISF_REGEX_PARAMETER_LIST = @"(.*)";
-
 static NSString *const ISF_MARKER_INSIDE_FRAGMENT_MAIN = @"\n/* ISF_MARKER_INSIDE_MAIN_FRAGMENT */\n";
 static NSString *const ISF_MARKER_BEFORE_FRAGMENT_MAIN = @"\n/* ISF_MARKER_BEFORE_MAIN_FRAGMENT */\n";
 static NSString *const ISF_MARKER_INSIDE_VERTEX_MAIN = @"\n/* ISF_MARKER_INSIDE_MAIN_VERTEX */\n";
@@ -180,6 +195,13 @@ static NSString *const ISF_MARKER_BEFORE_VERTEX_MAIN = @"\n/* ISF_MARKER_BEFORE_
 
 using namespace std;
 #pragma mark Translation
+/**
+ Translates isf-gl fragment code to isf-metal code
+ @param gl fragment shader code
+ @param inputUniforms
+ @param errorPtr
+ @returns translated code
+ */
 + (NSString *)translateFragmentToMetal:(NSString *)glCode
                          inputUniforms:(NSString *)isfInputUniforms
                              withError:(NSError **)errorPtr
@@ -190,6 +212,13 @@ using namespace std;
                                            withError:errorPtr];
 }
 
+/**
+ Translates isf-gl veryex code to isf-metal code
+ @param gl vertex shader code
+ @param inputUniforms
+ @param errorPtr
+ @returns translated code
+ */
 + (NSString *)translateVertexToMetal:(NSString *)glCode
                        inputUniforms:(NSString *)isfInputUniforms
                            withError:(NSError **)errorPtr
@@ -201,10 +230,19 @@ using namespace std;
 }
 
 /*
-Translation goes in three steps:
- 1. injecting strings inside the glsl for spirV to transpile properly (glslWithToppings)
- 2. Running Spir-V (intermediate)
- 3. Making string replaces in the Spir-V built MSL to make it ISF-compliant
+
+ */
+/**
+ Translates isf-gl code to isf-metal code
+ Translation goes in three steps:
+  1/3 injecting strings inside the glsl for spirV to transpile properly (glslWithToppings)
+  2/3 Running Spir-V (intermediate)
+  3/3 Making string replaces in the Spir-V built MSL to make it ISF-compliant
+ @param gl shader code
+ @param inputUniforms
+ @param programType (fragment, vertex)
+ @param errorPtr
+ @returns translated code
  */
 + (NSString *)translateCodeToMetal:(NSString *)glCode
                      inputUniforms:(NSString *)isfInputUniforms
@@ -233,6 +271,15 @@ Translation goes in three steps:
     return metalIsf;
 }
 
+
+/**
+ Translation step (1/3) from GL to Metal ISF code
+ Adds elements "toppings" in GL code for SPIR-V translation to work properly (step 2/3)
+ @param glsl shader code
+ @param program type (fragment, vertex)
+ @param errorPtr
+ @returns translated code
+ */
 + (NSString *)injectToppingsInCode:(NSString *)glCode
                   isfInputUniforms:(NSString *)isfInputUniforms
                        programType:(ProgramType)programType
@@ -289,6 +336,14 @@ Translation goes in three steps:
     return glWithToppings;
 }
 
+/**
+ Translation step (2/3) from GL to Metal ISF code
+ Uses SPIR-V shader converter from MoltenVK framework
+ @param glsl shader code (from step 1/3)
+ @param program type (fragment, vertex)
+ @param errorPtr
+ @returns translated code
+ */
 + (NSString *)spirVConvertToMetal:(NSString *)glsl programType:(ProgramType)programType withError:(NSError **)errorPtr
 {
     CHECK_PROGRAM_TYPE(programType, nil)
@@ -427,6 +482,13 @@ Translation goes in three steps:
     //    NSLog(@"Reflection: %@ - %@", reflectionFilePath, reflection);
 }
 
+/**
+ Translation step (3/3) from GL to Metal ISF code
+ @param intermediate shader code (from step 2/3)
+ @param program type (fragment, vertex)
+ @param errorPtr
+ @returns finalised Metal ISF Code
+ */
 + (NSString *)finaliseIntermediate:(NSString *)intermediate
                        programType:(ProgramType)programType
                          withError:(NSError **)errorPtr
@@ -1043,6 +1105,12 @@ Translation goes in three steps:
 
 #include <simd/simd.h>
 
+/**
+ Converts ISFInput string types to object-oriented types
+ @param dirty string type for IsfInput
+ @returns MISFInputDataType
+ // TODO: default scenario should throw an error
+ */
 + (MISFInputDataType)typeOfPartialTypeToken:(NSString *)partialType
 {
     NSString *stringToTest = [partialType stringByReplacingOccurrencesOfString:@"&" withString:@""];
@@ -1084,11 +1152,15 @@ Translation goes in three steps:
     return MisfDataTypeBool;
 }
 
+/**
+ Gets memory size of specific data type
+ @param dataType
+ @returns memory size
+ */
 + (size_t)sizeOfDataType:(MISFInputDataType)dataType
 {
     switch( dataType )
     {
-
     case MisfDataTypeFloat:
         return sizeof(float);
     case MisfDataTypeFloat2:
@@ -1112,7 +1184,6 @@ Translation goes in three steps:
 {
     switch( dataType )
     {
-
     case MisfDataTypeFloat:
         return @"float";
     case MisfDataTypeFloat2:
