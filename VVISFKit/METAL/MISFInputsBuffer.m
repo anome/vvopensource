@@ -233,7 +233,8 @@ static const size_t BUFFER_ALLOCATION_SIZE = sizeof(IsfInputsBufferType);
             id<MTLTexture> theImage = ([userInfo conformsToProtocol:@protocol(MTLTexture)] ? userInfo : nil);
             if( theImage == nil )
             {
-                NSLog(@"ERR: missing MTLTexture. Skip image input `%@`.", attribName);
+#warning mto-anomes : silent error
+//                NSLog(@"ERR: missing MTLTexture. Skip image input `%@`.", attribName);
                 continue;
             }
 

@@ -16,6 +16,7 @@
 
 // Not quite the same bit-wise than GL implementation, but seems to work just fine
 const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
+#define MISF_SECRET_SINGLE_PASS_TARGET @"misf_SinglePassTarget"
 
 @implementation ISFMetalScene
 {
@@ -77,6 +78,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     {
         _inputImagesArePremultipled = NO;
         _inputImagesAreFlipped = NO;
+        _bypassSinglePassRenderIsolation = NO;
 #warning mto-anomes: error case: if preloadedmedia MTLdevice and given MTLdevice here are different, it could turn bad
         preloadedMedia = [thePreloadedMedia retain];
         device = theDevice;
@@ -281,7 +283,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     //    if at this point there aren't any passes, add an empty pass
     if( [passes count] < 1 )
     {
-        NSString *MISF_SECRET_SINGLE_PASS_TARGET = @"misf_SinglePassTarget";
         MISFRenderPass *renderPass = [MISFRenderPass create];
         MISFTargetBuffer *targetBufferForPass = [MISFTargetBuffer createForDevice:device pixelFormat:pixelFormat];
         [targetBufferForPass setName:MISF_SECRET_SINGLE_PASS_TARGET];
@@ -536,9 +537,9 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         // Runned every frame/pass, could probably be runned only once (unless there's a resize) (except for the blit buffer readwrite workaround)
         for( NSString *bufferKey in shaderBuffers )
         {
-            id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTextureWithCommandBuffer:passCommandBuffer];
             if(enableBufferReadWriteWorkaround)
             {
+                id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTextureWithCommandBuffer:passCommandBuffer];
                 id<MTLTexture> textureJustForInput = [shaderBuffers[bufferKey] getBufferReadonlyTextureWithCommandBuffer: passCommandBuffer];
                 id<MTLBlitCommandEncoder> blitCommandEncoder = [passCommandBuffer blitCommandEncoder];
                 blitCommandEncoder.label = @"ISF Blit buffer readwrite workaround";
@@ -555,8 +556,13 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
                 [blitCommandEncoder endEncoding];
                 [self setNSObjectVal:textureJustForInput forPrivateInputKey:bufferKey];
             }
+            else if(_bypassSinglePassRenderIsolation && [bufferKey isEqualToString:MISF_SECRET_SINGLE_PASS_TARGET])
+            {
+                continue;
+            }
             else
             {
+                id<MTLTexture> texture = [shaderBuffers[bufferKey] getBufferTextureWithCommandBuffer:passCommandBuffer];
                 [self setNSObjectVal:texture forPrivateInputKey:bufferKey];
             }
 
@@ -616,14 +622,16 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
             }
 
             passCommandBuffer.label = @"ISF Single pass command Buffer";
-            passOutputTexture = [targetBuffer getBufferTextureWithCommandBuffer:passCommandBuffer];
+            passOutputTexture = _bypassSinglePassRenderIsolation ? outputTexture : [targetBuffer getBufferTextureWithCommandBuffer:passCommandBuffer];
+            renderer.loadAction = _bypassSinglePassRenderIsolation ? MTLLoadActionClear : (targetBuffer.isPersistent ? MTLLoadActionLoad : MTLLoadActionClear);
             renderer.builtin_RENDERSIZE = NSMakeSize(passOutputTexture.width, passOutputTexture.height);
-            renderer.loadAction = targetBuffer.isPersistent ? MTLLoadActionLoad : MTLLoadActionClear;
-            [renderer renderIsfOnTexture:passOutputTexture
+            [renderer renderIsfOnTexture: passOutputTexture
                          onCommandBuffer:passCommandBuffer
                               withInputs:publicAndPrivateInputs];
             [passCommandBuffer commit];
-            [textureRenderer renderFromTexture:passOutputTexture inTexture:outputTexture onCommandBuffer:commandBuffer];
+            if(!_bypassSinglePassRenderIsolation) {
+                [textureRenderer renderFromTexture:passOutputTexture inTexture:outputTexture onCommandBuffer:commandBuffer];
+            }
         }
     }
 

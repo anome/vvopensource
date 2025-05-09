@@ -35,6 +35,8 @@
 
 @property(readwrite, nonatomic) BOOL inputImagesArePremultipled;
 @property(readwrite, nonatomic) BOOL inputImagesAreFlipped;
+// Gain one redraw for performance, but could cause flip,color issues or glitches if the shader re-uses its output (persistent buffers)
+@property(readwrite, nonatomic) BOOL bypassSinglePassRenderIsolation;
 @property(readwrite, nonatomic) int choosePassIndex; // debug only
 
 @end
