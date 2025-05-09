@@ -1,6 +1,4 @@
 #import "MISFTargetBuffer.h"
-#import "MISFBlankRenderer.h"
-#import "MISFTextureRenderer.h"
 
 @implementation MISFTargetBuffer
 
@@ -53,6 +51,10 @@
         self.texture = nil;
         self.isPersistent = NO;
         bufferSize = [MISFSize new];
+        blankRenderer = [[MISFBlankRenderer alloc] initWithDevice:device
+                                                                 colorPixelFormat:pixelFormat];
+        textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device
+                                                    colorPixelFormat:pixelFormat];
         return self;
     }
     [self release];
@@ -64,6 +66,8 @@
     VVRELEASE(self.texture);
     VVRELEASE(readonlyTexture);
     VVRELEASE(bufferSize);
+    VVRELEASE(blankRenderer);
+    VVRELEASE(textureRenderer);
     [super dealloc];
 }
 
@@ -86,8 +90,6 @@
                                         pixelFormat:pixelFormat];
 
         // Init texture with blank data, because it might be read before any render occurs on it
-        MISFBlankRenderer *blankRenderer = [[MISFBlankRenderer alloc] initWithDevice:device
-                                                                    colorPixelFormat:pixelFormat];
         [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
     }
     else
@@ -100,8 +102,7 @@
                                                               height:bufferSize.height
                                                          pixelFormat:pixelFormat];
 
-            MISFTextureRenderer *textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device
-                                                                              colorPixelFormat:pixelFormat];
+            NSLog(@"[OPTIM] - Init Texture Renderer, again?");
             [textureRenderer renderFromTexture:self.texture
                                      inTexture:newTexture
                                onCommandBuffer:commandBuffer

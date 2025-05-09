@@ -5,6 +5,8 @@
 #import <Metal/Metal.h>
 #import <VVBasics/VVBasics.h>
 #import <VVBufferPool/VVBufferPool.h>
+#import "MISFBlankRenderer.h"
+#import "MISFTextureRenderer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *name; //    the name of this buffer
     // Usefull for metal limit cases (see usage of getBufferReadonlyTextureWithCommandBuffer)
     id<MTLTexture> readonlyTexture;
+    MISFBlankRenderer *blankRenderer;
+    MISFTextureRenderer *textureRenderer;
 }
 
 + (id)createForDevice:(id<MTLDevice>)theDevice pixelFormat:(MTLPixelFormat)thePixelFormat;
