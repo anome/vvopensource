@@ -623,7 +623,7 @@ using namespace std;
         intermediate = [MISFShaderConverter replaceOccurences:@"return out;"
                                                    withString:@"return out._RESERVED_IDENTIFIER_FIXUP_gl_FragColor;"
                                                      onString:intermediate
-                                      numberOfMatchesExpected:1
+                                      numberOfMatchesExpected:-1
                                                         error:errorPtr];
         if( intermediate == nil )
         {
@@ -1219,6 +1219,9 @@ using namespace std;
     return NO;
 }
 
+/**
+ @param numberOfMatches: return error if nb of matches is not correct. Enter -1 for no match number verification
+ */
 + (NSString *)replaceOccurences:(NSString *)occurence
                      withString:(NSString *)replacement
                        onString:(NSString *)str
@@ -1237,7 +1240,7 @@ using namespace std;
         }
     }
 
-    if( count != numberOfMatchesExpected )
+    if( numberOfMatchesExpected != -1 && count != numberOfMatchesExpected )
     {
         NSDictionary *userInfo = @{
             @"Failed to replace string" :
