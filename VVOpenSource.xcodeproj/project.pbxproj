@@ -1090,6 +1090,8 @@
 		96F2F59D12D0B9ED003715F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A99011108CEA2600895DC1 /* Foundation.framework */; };
 		9C1FB7002A7551EA009FC7D0 /* RegexToolsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1FB6FF2A7551EA009FC7D0 /* RegexToolsTest.m */; };
 		9C2A1D54288AD48300595BC4 /* OSSpinLockDeprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */; };
+		9C4CCD1E2F097755001707E1 /* MISFTexturePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C4CCD1C2F097755001707E1 /* MISFTexturePool.h */; };
+		9C4CCD1F2F097755001707E1 /* MISFTexturePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4CCD1D2F097755001707E1 /* MISFTexturePool.m */; };
 		9C6659AE29118E5D006BC9F5 /* MISFBlankRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6659AC29118E5C006BC9F5 /* MISFBlankRenderer.m */; };
 		9C6659AF29118E5D006BC9F5 /* MISFBlankRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6659AD29118E5C006BC9F5 /* MISFBlankRenderer.h */; };
 		9CB5CEB92BBA8B83009A85ED /* milluminUsersShaders in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5CEB72BBA8B83009A85ED /* milluminUsersShaders */; };
@@ -2887,6 +2889,8 @@
 		96EE5D66198410BC00231124 /* ISFSupportTest.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ISFSupportTest.fs; sourceTree = "<group>"; };
 		9C1FB6FF2A7551EA009FC7D0 /* RegexToolsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegexToolsTest.m; sourceTree = "<group>"; };
 		9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSSpinLockDeprecated.h; sourceTree = "<group>"; };
+		9C4CCD1C2F097755001707E1 /* MISFTexturePool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MISFTexturePool.h; sourceTree = "<group>"; };
+		9C4CCD1D2F097755001707E1 /* MISFTexturePool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MISFTexturePool.m; sourceTree = "<group>"; };
 		9C6659AC29118E5C006BC9F5 /* MISFBlankRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MISFBlankRenderer.m; path = METAL/MISFBlankRenderer.m; sourceTree = "<group>"; };
 		9C6659AD29118E5C006BC9F5 /* MISFBlankRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MISFBlankRenderer.h; path = METAL/MISFBlankRenderer.h; sourceTree = "<group>"; };
 		9CB5CEB72BBA8B83009A85ED /* milluminUsersShaders */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = milluminUsersShaders; path = "VVISFKitTests Metal Regression/milluminUsersShaders"; sourceTree = SOURCE_ROOT; };
@@ -4424,6 +4428,8 @@
 				56BD40F025B5F055002524CE /* MISFRenderer.m */,
 				56BD40EE25B5F055002524CE /* MISFTextureRenderer.h */,
 				56BD40E825B5F054002524CE /* MISFTextureRenderer.m */,
+				9C4CCD1C2F097755001707E1 /* MISFTexturePool.h */,
+				9C4CCD1D2F097755001707E1 /* MISFTexturePool.m */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -5297,6 +5303,7 @@
 				56BD411525B5F058002524CE /* MISFInputDataType.h in Headers */,
 				56BD410625B5F058002524CE /* FileTools.h in Headers */,
 				564C907025EFA66900DD8076 /* MoltenVKShaderConverterTool.h in Headers */,
+				9C4CCD1E2F097755001707E1 /* MISFTexturePool.h in Headers */,
 				564C56C325EF9F7000DD8076 /* GLSLToSPIRVConverter.h in Headers */,
 				564C56C125EF9F7000DD8076 /* SPIRVConversion.h in Headers */,
 				964FF2BC1981B62400CCC808 /* ISFStringAdditions.h in Headers */,

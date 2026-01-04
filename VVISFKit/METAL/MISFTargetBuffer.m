@@ -55,6 +55,7 @@
                                                                  colorPixelFormat:pixelFormat];
         textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device
                                                     colorPixelFormat:pixelFormat];
+        texturePool = [MISFTexturePool new];
         return self;
     }
     [self release];
@@ -94,26 +95,54 @@
     }
     else
     {
-        // If resize, copy old texture into new correct sized texture
+        // If resize
         if( self.texture.width != bufferSize.width || self.texture.height != bufferSize.height )
         {
-            id<MTLTexture> newTexture = [self createTextureForDevice:device
-                                                               width:bufferSize.width
-                                                              height:bufferSize.height
-                                                         pixelFormat:pixelFormat];
-
-            NSLog(@"[OPTIM] - Init Texture Renderer, again?");
-            [textureRenderer renderFromTexture:self.texture
-                                     inTexture:newTexture
-                               onCommandBuffer:commandBuffer
-                           useOutputAsViewport:YES];
-            [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
+            // If buffer is persistent, use a texturePool and try to fetch previous same-sized buffers
+            // This is to cover the edge case when user is using the same MISFScene for multiple resolutions simultaneously
+            // To avoid "loosing" the persistent buffer visual at each resolution change and keep visual continuity
+            if( self.isPersistent )
+            {
+                id<MTLTexture> pooledTexture = [texturePool acquireTextureWithWidth:bufferSize.width
+                                                                        height:bufferSize.height
+                                                                   pixelFormat:pixelFormat
+                                                                        device:device];
+                if( pooledTexture )
+                {
+                    [texturePool recycleTexture:self.texture];
+                    VVRELEASE(self.texture); // TexturePool handles its own ownership
+                    self.texture = pooledTexture;
+                }
+                else
+                {
+                    id<MTLTexture> newTexture = [self createTextureForDevice:device
+                                                                       width:bufferSize.width
+                                                                      height:bufferSize.height
+                                                                 pixelFormat:pixelFormat];
+                    // Make sure it's not de-allocated before completedHandler
+                    id<MTLTexture> __block oldTexture = [self.texture retain];
+                    self.texture = newTexture;
+                    // Init texture with blank data, because it might be read before any render occurs on it
+                    [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
+                    [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
+                        [texturePool recycleTexture:oldTexture];
+                        VVRELEASE(oldTexture);
+                    }];
+                }
+            }
+            // non-persistent case
+            else
+            {
+                id<MTLTexture> newTexture = [self createTextureForDevice:device
+                                                                   width:bufferSize.width
+                                                                  height:bufferSize.height
+                                                             pixelFormat:pixelFormat];
                 VVRELEASE(self.texture);
                 self.texture = newTexture;
-            }];
-            return newTexture;
+            }
         }
     }
+    
     return self.texture;
 }
 
