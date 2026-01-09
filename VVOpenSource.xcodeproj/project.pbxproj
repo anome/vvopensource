@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -1091,7 +1091,6 @@
 		9C1FB7002A7551EA009FC7D0 /* RegexToolsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1FB6FF2A7551EA009FC7D0 /* RegexToolsTest.m */; };
 		9C2A1D54288AD48300595BC4 /* OSSpinLockDeprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2A1D53288AD48300595BC4 /* OSSpinLockDeprecated.h */; };
 		9C4CCD1E2F097755001707E1 /* MISFTexturePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C4CCD1C2F097755001707E1 /* MISFTexturePool.h */; };
-		9C4CCD1F2F097755001707E1 /* MISFTexturePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4CCD1D2F097755001707E1 /* MISFTexturePool.m */; };
 		9C6659AE29118E5D006BC9F5 /* MISFBlankRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6659AC29118E5C006BC9F5 /* MISFBlankRenderer.m */; };
 		9C6659AF29118E5D006BC9F5 /* MISFBlankRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6659AD29118E5C006BC9F5 /* MISFBlankRenderer.h */; };
 		9CB5CEB92BBA8B83009A85ED /* milluminUsersShaders in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5CEB72BBA8B83009A85ED /* milluminUsersShaders */; };
@@ -1103,6 +1102,7 @@
 		9CED36802BAAFEFB0000E7E1 /* needsMinorChangesToWork in Resources */ = {isa = PBXBuildFile; fileRef = 9CED367F2BAAFEFB0000E7E1 /* needsMinorChangesToWork */; };
 		9CED36822BAB009A0000E7E1 /* milluminShaders in Resources */ = {isa = PBXBuildFile; fileRef = 9CED36812BAB00990000E7E1 /* milluminShaders */; };
 		9CED36842BAB02310000E7E1 /* milluminUsersShaders in Resources */ = {isa = PBXBuildFile; fileRef = 9CED36832BAB02310000E7E1 /* milluminUsersShaders */; };
+		DF4B6C2F2F110023005A007A /* MISFTexturePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4CCD1D2F097755001707E1 /* MISFTexturePool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -7392,6 +7392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4B6C2F2F110023005A007A /* MISFTexturePool.m in Sources */,
 				56BD411225B5F058002524CE /* MISFRenderPass.m in Sources */,
 				964FF2AE1981B62400CCC808 /* ISFAttrib.m in Sources */,
 				56BD411825B5F058002524CE /* MISFMetalModel.m in Sources */,
