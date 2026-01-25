@@ -1,4 +1,11 @@
 #import "MISFTargetBuffer.h"
+#import "MISFTexturePoolsManager.h"
+
+
+@interface MISFTargetBuffer()
+@property (readwrite, retain) NSString *callerId;
+@end
+
 
 
 @implementation MISFTargetBuffer
@@ -56,6 +63,7 @@
                                                                  colorPixelFormat:pixelFormat];
         textureRenderer = [[MISFTextureRenderer alloc] initWithDevice:device
                                                     colorPixelFormat:pixelFormat];
+        self.callerId = [[NSUUID UUID] UUIDString];
         return self;
     }
     return nil;
@@ -64,6 +72,7 @@
 - (void)dealloc
 {
     VVRELEASE(name);
+#warning mto-anomes : double release?
     VVRELEASE(self.texture);
     VVRELEASE(readonlyTexture);
     VVRELEASE(bufferSize);
@@ -73,6 +82,7 @@
 
 - (void)clearBuffer
 {
+#warning mto-anomes : double release?
     VVRELEASE(self.texture);
     VVRELEASE(readonlyTexture);
 }
@@ -84,6 +94,7 @@
     // Verify all aspects of the texture
     if( self.texture == nil )
     {
+#warning mto-anomes : double retain - possible memory leak?
         self.texture = [self createTextureForDevice:device
                                               width:bufferSize.width
                                              height:bufferSize.height
@@ -99,18 +110,33 @@
         {
             if( self.isPersistent )
             {
-                id<MTLTexture> newTexture = [self createTextureForDevice:device
-                                                                   width:bufferSize.width
-                                                                  height:bufferSize.height
-                                                             pixelFormat:pixelFormat];
-                // Make sure it's not de-allocated before completedHandler
-                id<MTLTexture> __block oldTexture = self.texture;
-                self.texture = newTexture;
-                // Init texture with blank data, because it might be read before any render occurs on it
-                [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
-                [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
-                    VVRELEASE(oldTexture);
-                }];
+                id<MTLTexture> pooledTexture = [[MISFTexturePoolsManager sharedManager] acquireTextureWithWidth:bufferSize.width
+                                                                        height:bufferSize.height
+                                                                   pixelFormat:pixelFormat
+                                                                        device:device
+                withCallerId:self.callerId]; // owned
+                if( pooledTexture )
+                {
+                    [[MISFTexturePoolsManager sharedManager] recycleTexture:self.texture withCalledId:self.callerId];
+                    self.texture = pooledTexture;
+                    
+                }
+                else
+                {
+                    id<MTLTexture> newTexture = [self createTextureForDevice:device
+                                                                       width:bufferSize.width
+                                                                      height:bufferSize.height
+                                                                 pixelFormat:pixelFormat]; // owned
+                    // Make sure it's not de-allocated before completedHandler
+                    id<MTLTexture> __block oldTexture = self.texture;
+                    self.texture = newTexture;
+                    // Init texture with blank data, because it might be read before any render occurs on it
+                    [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
+                    [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
+                        [[MISFTexturePoolsManager sharedManager] recycleTexture:oldTexture withCalledId:self.callerId];
+
+                    }];
+                }
             }
             // non-persistent case
             else
@@ -119,8 +145,8 @@
                                                                    width:bufferSize.width
                                                                   height:bufferSize.height
                                                              pixelFormat:pixelFormat];
-                VVRELEASE(self.texture);
                 self.texture = newTexture;
+
             }
         }
     }
