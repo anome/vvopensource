@@ -109,9 +109,9 @@
                                                                         device:device];
                 if( pooledTexture )
                 {
-                    [texturePool recycleTexture:self.texture];
-                    VVRELEASE(self.texture); // TexturePool handles its own ownership
-                    self.texture = pooledTexture;
+//                    [texturePool recycleTexture:self.texture];
+//                    VVRELEASE(self.texture); // TexturePool handles its own ownership
+//                    self.texture = pooledTexture;
                 }
                 else
                 {
@@ -121,11 +121,12 @@
                                                                  pixelFormat:pixelFormat];
                     // Make sure it's not de-allocated before completedHandler
                     id<MTLTexture> __block oldTexture = [self.texture retain];
+                    VVRELEASE(self.texture);
                     self.texture = newTexture;
                     // Init texture with blank data, because it might be read before any render occurs on it
                     [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
                     [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
-                        [texturePool recycleTexture:oldTexture];
+//                        [texturePool recycleTexture:oldTexture];
                         VVRELEASE(oldTexture);
                     }];
                 }
