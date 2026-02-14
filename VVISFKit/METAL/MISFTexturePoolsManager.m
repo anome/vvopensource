@@ -72,7 +72,7 @@ static const NSTimeInterval periodicCleanInterval = 2.0;
         // If we moved from 0 to 1 element, start clean timer
         if( self.texturePools.count == 1 && !isTimerRunning )
         {
-            NSLog(@"ISF TexturePool: Start Clean Timer");
+//            NSLog(@"ISF TexturePool: Start Clean Timer");
             dispatch_resume(cleanTimer);
             isTimerRunning = YES;
         }
