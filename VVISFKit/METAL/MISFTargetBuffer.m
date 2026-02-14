@@ -72,8 +72,7 @@
 - (void)dealloc
 {
     VVRELEASE(name);
-#warning mto-anomes : double release?
-    VVRELEASE(self.texture);
+    VVRELEASE(_texture);
     VVRELEASE(readonlyTexture);
     VVRELEASE(bufferSize);
     VVRELEASE(blankRenderer);
@@ -82,8 +81,7 @@
 
 - (void)clearBuffer
 {
-#warning mto-anomes : double release?
-    VVRELEASE(self.texture);
+    VVRELEASE(_texture);
     VVRELEASE(readonlyTexture);
 }
 
