@@ -7,7 +7,6 @@
 #import <VVBufferPool/VVBufferPool.h>
 #import "MISFBlankRenderer.h"
 #import "MISFTextureRenderer.h"
-#import "MISFTexturePool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
     id<MTLTexture> readonlyTexture;
     MISFBlankRenderer *blankRenderer;
     MISFTextureRenderer *textureRenderer;
-    MISFTexturePool *texturePool;
 }
 
 + (id)createForDevice:(id<MTLDevice>)theDevice pixelFormat:(MTLPixelFormat)thePixelFormat;
