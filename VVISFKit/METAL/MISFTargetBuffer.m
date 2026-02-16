@@ -106,8 +106,7 @@
                                                                   height:bufferSize.height
                                                              pixelFormat:pixelFormat];
                 // Make sure it's not de-allocated before completedHandler
-                id<MTLTexture> __block oldTexture = [self.texture retain];
-                VVRELEASE(self.texture);
+                id<MTLTexture> __block oldTexture = self.texture;
                 self.texture = newTexture;
                 // Init texture with blank data, because it might be read before any render occurs on it
                 [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
