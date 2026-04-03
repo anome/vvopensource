@@ -311,8 +311,9 @@ static const size_t BUFFER_ALLOCATION_SIZE = sizeof(IsfInputsBufferType);
         }
     }
     [inputs unlock];
-    IsfInputsBufferType *pointer = _buffer.contents;
-    *pointer = bufferCpuData;
+    id<MTLDevice> device = renderEncoder.device;
+    [_buffer release];
+    _buffer = [device newBufferWithBytes:&bufferCpuData length:BUFFER_ALLOCATION_SIZE options:MTLResourceStorageModeShared];
 }
 
 #pragma mark Definitions
