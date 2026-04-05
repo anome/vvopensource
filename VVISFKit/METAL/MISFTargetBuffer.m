@@ -117,7 +117,6 @@
                 {
                     [[MISFTexturePoolsManager sharedManager] recycleTexture:self.texture withCalledId:self.callerId];
                     self.texture = pooledTexture;
-                    
                 }
                 else
                 {
@@ -127,7 +126,6 @@
                                                                  pixelFormat:pixelFormat]; // owned
                     // Make sure it's not de-allocated before completedHandler
                     id<MTLTexture> __block oldTexture = self.texture;
-                    self.texture = newTexture;
                     // Init texture with blank data, because it might be read before any render occurs on it
                     [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
                     [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
@@ -144,7 +142,6 @@
                                                                   height:bufferSize.height
                                                              pixelFormat:pixelFormat];
                 self.texture = newTexture;
-
             }
         }
     }

@@ -6,7 +6,6 @@ static const NSTimeInterval lifetimeInSeconds = 0.5;
 
 
 @implementation MISFTextureEntry
-
 @end
 
 
@@ -84,10 +83,7 @@ static const NSTimeInterval lifetimeInSeconds = 0.5;
 	@synchronized (self)
     {
 		self.entries = [self.entries arrayByAddingObject:entry];
-
 	}
 }
-
-
 
 @end

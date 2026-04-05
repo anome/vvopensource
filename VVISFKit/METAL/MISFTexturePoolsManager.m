@@ -65,8 +65,6 @@ static const NSTimeInterval periodicCleanInterval = 2.0;
             NSMutableDictionary *mutablePools = [self.texturePools mutableCopy];
             mutablePools[callerId] = pool; // +1 retain count
             self.texturePools = [NSDictionary dictionaryWithDictionary:mutablePools];
-
-
         }
         
         // If we moved from 0 to 1 element, start clean timer
@@ -155,7 +153,6 @@ static const NSTimeInterval periodicCleanInterval = 2.0;
         dispatch_source_cancel(cleanTimer);
 
     }
-
 }
 
 
