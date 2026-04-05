@@ -29,7 +29,6 @@
     VVRELEASE(_name);
     VVRELEASE(_evalWidth);
     VVRELEASE(_evalHeight);
-    [super dealloc];
 }
 @end
 
@@ -46,7 +45,6 @@
 - (void)dealloc
 {
     VVRELEASE(_targetBuffer);
-    [super dealloc];
 }
 @end
 
@@ -66,7 +64,6 @@
 {
     VVRELEASE(_path);
     VVRELEASE(_name);
-    [super dealloc];
 }
 
 @end
@@ -82,7 +79,7 @@
     self = [super init];
     if( self )
     {
-        _filePath = [filePath retain];
+        _filePath = filePath;
         _jsonString = nil;
         _passes = [NSArray<MISFModelPass *> new];
         _persistentBuffers = [NSArray<MISFModelBuffer *> new];
@@ -108,8 +105,8 @@
     // Open & load fragment
     NSError *fileError = nil;
     VVRELEASE(rawFragmentString);
-    rawFragmentString = [[NSString stringWithContentsOfFile:_filePath encoding:NSUTF8StringEncoding
-                                                      error:&fileError] retain];
+    rawFragmentString = [NSString stringWithContentsOfFile:_filePath encoding:NSUTF8StringEncoding
+                                                      error:&fileError];
 
     // Not sure this can occur, it's taken from GL implementation
     if( rawFragmentString == nil )
@@ -126,7 +123,7 @@
     }
 
     VVRELEASE(_fileName);
-    _fileName = [[_filePath lastPathComponent] retain];
+    _fileName = [_filePath lastPathComponent];
 
     // Check for vertex, open & load vertex
     //    look for a vert shader that matches the name of the frag shader
@@ -206,9 +203,9 @@
         jsonStringRange.location = openCommentRange.location + openCommentRange.length;
         jsonStringRange.length = closeCommentRange.location - jsonStringRange.location;
         VVRELEASE(_jsonString);
-        _jsonString = [[rawFragmentString substringWithRange:jsonStringRange] retain];
+        _jsonString = [rawFragmentString substringWithRange:jsonStringRange];
         VVRELEASE(_fragShaderSource);
-        _fragShaderSource = [[rawFragmentString substringWithRange:fragShaderSourceRange] retain];
+        _fragShaderSource = [rawFragmentString substringWithRange:fragShaderSourceRange];
     }
     return YES;
 }
@@ -221,7 +218,7 @@
 
     //    parse the JSON dict, turning it into a dictionary and values
     VVRELEASE(jsonObject);
-    jsonObject = (_jsonString == nil) ? nil : [[_jsonString objectFromJSONStringWithError:errorPtr] retain];
+    jsonObject = (_jsonString == nil) ? nil : [_jsonString objectFromJSONStringWithError:errorPtr];
     if( jsonObject == nil )
     {
         // Probably got an error object too
@@ -246,17 +243,17 @@
     if( unsafeFileDescription != nil && [unsafeFileDescription isKindOfClass:stringClass] )
     {
         VVRELEASE(_fileDescription);
-        _fileDescription = [unsafeFileDescription retain];
+        _fileDescription = unsafeFileDescription;
     }
     if( unsafeCredits != nil && [unsafeCredits isKindOfClass:stringClass] )
     {
         VVRELEASE(_credits);
-        _credits = [unsafeCredits retain];
+        _credits = unsafeCredits;
     }
     if( unsafeCategoryNames != nil && [unsafeCategoryNames isKindOfClass:arrayClass] )
     {
         VVRELEASE(_categoryNames);
-        _categoryNames = [unsafeCategoryNames retain];
+        _categoryNames = unsafeCategoryNames;
     }
     return YES;
 }
@@ -406,7 +403,7 @@
                     }
                     else if( [persistentObj isKindOfClass:[NSNumber class]] )
                     {
-                        persistentNum = [[persistentObj retain] autorelease];
+                        persistentNum = persistentObj;
                     }
                     //    if there's a valid "PERSISTENT" flag in this pass dict and it's indicating a positive...
                     if( persistentNum != nil && [persistentNum intValue] > 0 )
@@ -498,7 +495,7 @@
     }
     NSArray *newImportedImages = [_importedImages arrayByAddingObject:importedImage];
     VVRELEASE(_importedImages);
-    _importedImages = [newImportedImages retain];
+    _importedImages = newImportedImages;
     return YES;
 }
 
@@ -532,7 +529,7 @@
                         {
                             return success;
                         }
-                        [tmpMutDict autorelease];
+                        tmpMutDict;
                     }
                     //    else the import dict already had a name key, just add it straightaway
                     else
@@ -1010,7 +1007,6 @@
     VVRELEASE(_jsonString);
     VVRELEASE(_fragShaderSource);
     VVRELEASE(_vertShaderSource);
-    [super dealloc];
 }
 
 @end

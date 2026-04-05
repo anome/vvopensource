@@ -80,7 +80,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         _inputImagesAreFlipped = NO;
         _bypassSinglePassRenderIsolation = NO;
 #warning mto-anomes: error case: if preloadedmedia MTLdevice and given MTLdevice here are different, it could turn bad
-        preloadedMedia = [thePreloadedMedia retain];
+        preloadedMedia = thePreloadedMedia;
         device = theDevice;
         pixelFormat = thePixelFormat;
         passes = [NSMutableArray<MISFRenderPass *> new];
@@ -125,7 +125,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     MISFMetalModel *metalModel = [MISFMetalModel new];
     metalModel.parentModel = model;
     NSString *varDeclarations =
-        [[[ISFMetalScene _assembleShaderSource_VarDeclarationsFromModel:model] copy] autorelease];
+        [[ISFMetalScene _assembleShaderSource_VarDeclarationsFromModel:model] copy];
     NSString *fragmentCode = [MISFShaderConverter translateFragmentToMetal:model.fragShaderSource
                                                              inputUniforms:varDeclarations
                                                                  withError:errorPtr];
@@ -226,8 +226,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     VVRELEASE(textureRenderer);
     VVRELEASE(importedImageInputs);
     VVRELEASE(preloadedMedia);
-
-    [super dealloc];
 }
 
 - (BOOL)allocateGpuResourcesWithError:(NSError **)errorPtr
@@ -478,7 +476,6 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
     NSMutableDictionary *subDict = (bufferRequiresEval) ? [self _assembleSubstitutionDict] : nil;
     if( subDict != nil )
     {
-        [subDict retain];
         [subDict setObject:NUMINT(outputTextureSize.width) forKey:@"WIDTH"];
         [subDict setObject:NUMINT(outputTextureSize.height) forKey:@"HEIGHT"];
     }
@@ -1004,9 +1001,7 @@ const MTLPixelFormat PIXEL_FORMAT_FOR_FLOAT_TARGET = MTLPixelFormatRGBA32Float;
         }
     }
     [inputs unlock];
-    if( returnMe != nil )
-        [returnMe retain];
-    return [returnMe autorelease];
+    return returnMe;
 }
 
 @end

@@ -19,7 +19,6 @@
         heightExpression = nil;
         return self;
     }
-    [self release];
     return nil;
 }
 
@@ -27,7 +26,6 @@
 {
     VVRELEASE(widthExpression);
     VVRELEASE(heightExpression);
-    [super dealloc];
 }
 
 - (void)setWidthString:(NSString *)newWidthString
@@ -36,7 +34,7 @@
     if( newWidthString != nil )
     {
         NSError *err = nil;
-        widthExpression = [[DDExpression expressionFromString:newWidthString error:&err] retain];
+        widthExpression = [DDExpression expressionFromString:newWidthString error:&err];
     }
 }
 
@@ -46,7 +44,7 @@
     if( newHeightString != nil )
     {
         NSError *err = nil;
-        heightExpression = [[DDExpression expressionFromString:newHeightString error:&err] retain];
+        heightExpression = [DDExpression expressionFromString:newHeightString error:&err];
     }
 }
 #warning mto-anomes: useless?

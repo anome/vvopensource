@@ -16,7 +16,7 @@
     {
         return nil;
     }
-    return [returnMe autorelease];
+    return returnMe;
 }
 
 + (id)createForDevice:(id<MTLDevice>)device pixelFormat:(MTLPixelFormat)pixelFormat fromModel:(MISFModelBuffer *)model
@@ -38,7 +38,7 @@
         return nil;
     }
     returnMe.isPersistent = model.persistent;
-    return [returnMe autorelease];
+    return returnMe;
 }
 
 - (id)initWithDevice:(id<MTLDevice>)theDevice pixelFormat:(MTLPixelFormat)thePixelFormat
@@ -58,7 +58,6 @@
                                                     colorPixelFormat:pixelFormat];
         return self;
     }
-    [self release];
     return nil;
 }
 
@@ -70,7 +69,6 @@
     VVRELEASE(bufferSize);
     VVRELEASE(blankRenderer);
     VVRELEASE(textureRenderer);
-    [super dealloc];
 }
 
 - (void)clearBuffer

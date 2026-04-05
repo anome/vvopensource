@@ -46,7 +46,7 @@
 	id		returnMe = [[ISFAttrib alloc] initWithName:n description:desc label:l type:t values:min:max:def:iden:lArray:vArray];
 	if (returnMe == nil)
 		return nil;
-	return [returnMe autorelease];
+	return returnMe;
 }
 
 + (id) createFromAttrib:(ISFAttrib*)attrib
@@ -59,9 +59,9 @@
 	if (n==nil)
 		goto BAIL;
 	if (self = [super init])	{
-		attribName = [n retain];
-		attribDescription = (desc==nil) ? nil : [desc retain];
-		attribLabel = (l==nil) ? nil : [l retain];
+		attribName = n;
+		attribDescription = (desc==nil) ? nil : desc;
+		attribLabel = (l==nil) ? nil : l;
 		attribType = t;
 		labelArray = nil;
 		valArray = nil;
@@ -141,35 +141,27 @@
 		return self;
 	}
 	BAIL:
-	[self release];
 	return nil;
 }
 - (void) dealloc	{
 	if (attribName != nil)	{
-		[attribName release];
 		attribName = nil;
 	}
 	if (attribDescription != nil)	{
-		[attribDescription release];
 		attribDescription = nil;
 	}
 	if (attribLabel != nil)	{
-		[attribLabel release];
 		attribLabel = nil;
 	}
 	if (labelArray != nil)	{
-		[labelArray release];
 		labelArray = nil;
 	}
 	if (valArray != nil)	{
-		[valArray release];
 		valArray = nil;
 	}
 	if (userInfo != nil)	{
-		[userInfo release];
 		userInfo = nil;
 	}
-	[super dealloc];
 }
 
 - (NSString *) attribName	{
@@ -253,9 +245,7 @@
 
 
 - (void) setUserInfo:(id)n	{
-	if (userInfo != nil)
-		[userInfo release];
-	userInfo = (n==nil) ? nil : [n retain];
+	userInfo = (n==nil) ? nil : n;
 }
 - (id) userInfo	{
 	return userInfo;

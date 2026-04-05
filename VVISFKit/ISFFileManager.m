@@ -18,17 +18,15 @@
 }
 + (NSMutableArray *) defaultImageFilters	{
 	NSMutableArray		*sys = [self imageFiltersForPath:@"/Library/Graphics/ISF" recursive:YES];
-	[sys retain];
 	NSMutableArray		*user = [self imageFiltersForPath:[@"~/Library/Graphics/ISF" stringByExpandingTildeInPath] recursive:YES];
 	[sys addObjectsFromArray:user];
-	return [sys autorelease];
+	return sys;
 }
 + (NSMutableArray *) defaultGenerativeSources	{
 	NSMutableArray		*sys = [self generativeSourcesForPath:@"/Library/Graphics/ISF" recursive:YES];
-	[sys retain];
 	NSMutableArray		*user = [self generativeSourcesForPath:[@"~/Library/Graphics/ISF" stringByExpandingTildeInPath] recursive:YES];
 	[sys addObjectsFromArray:user];
-	return [sys autorelease];
+	return sys;
 }
 + (BOOL) fileIsProbablyAnISF:(NSString *)pathToFile	{
 	if (pathToFile==nil)
@@ -109,7 +107,7 @@
 					NSLog(@"\t\terr: categories was nil, or was the wrong type, %s",__func__);
 					return [NSArray array];
 				}
-				return [[categories retain] autorelease];
+				return categories;
 			}
 			else	{
 				NSLog(@"\t\terr: jsonObject was wrong class, %s",__func__);
@@ -193,9 +191,8 @@
 	NSArray				*sorted = [rawFiles sortedArrayUsingComparator:^(NSString *obj1, NSString *obj2)	{
 		return [obj1 caseInsensitiveCompare:obj2];
 	}];
-	[rawFiles release];
 	rawFiles = nil;
-	return [[sorted mutableCopy] autorelease];
+	return [sorted mutableCopy];
 	
 }
 + (BOOL) _isAFilter:(NSString *)pathToFile	{

@@ -9,7 +9,6 @@
     VVRELEASE(_convertedVertexCode);
     VVRELEASE(_fragmentBufferDefinitions);
     VVRELEASE(_vertexBufferDefinitions);
-    [super dealloc];
 }
 
 @end

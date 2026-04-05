@@ -10,7 +10,7 @@
     id returnMe = [[MISFRenderPass alloc] init];
     if( returnMe == nil )
         return returnMe;
-    return [returnMe autorelease];
+    return returnMe;
 }
 
 - (id)init
@@ -21,13 +21,11 @@
         targetIsFloat = NO;
         return self;
     }
-    [self release];
     return nil;
 }
 - (void)dealloc
 {
     VVRELEASE(targetName);
-    [super dealloc];
 }
 
 @end

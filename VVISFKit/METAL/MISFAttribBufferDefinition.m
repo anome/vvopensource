@@ -8,7 +8,7 @@
     self = [super init];
     if( self )
     {
-        _variableName = [theVariableName retain];
+        _variableName = theVariableName;
         _bufferIndex = theBufferIndex;
         _type = theType;
     }
@@ -24,7 +24,6 @@
 - (void)dealloc
 {
     VVRELEASE(_variableName);
-    [super dealloc];
 }
 
 @end

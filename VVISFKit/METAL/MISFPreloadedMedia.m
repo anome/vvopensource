@@ -10,6 +10,5 @@
     VVRELEASE(_vertexCode);
     VVRELEASE(_fragmentLibrary);
     VVRELEASE(_vertexLibrary);
-    [super dealloc];
 }
 @end

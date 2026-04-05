@@ -28,14 +28,14 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		
 		//	load the various supporting txt files which contain data which will be used to assemble frag and vertex shaders from ISF files 
 		NSBundle		*mb = [NSBundle bundleForClass:[ISFGLScene class]];
-		_ISFESCompatibility = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISF_ES_Compatibility" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] retain];
-		_ISFVertPassthru = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLScenePassthru" ofType:@"vs"] encoding:NSUTF8StringEncoding error:nil] retain];
-		_ISFVertVarDec = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLSceneVertShaderIncludeVarDec" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] retain];
-		_ISFVertInitFunc = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLSceneVertShaderIncludeInitFunc" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] retain];
-		_ISFMacro2DString = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2D" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] retain];
-		_ISFMacro2DBiasString = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2DBias" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] retain];
-		_ISFMacro2DRectString = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2DRect" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] retain];
-		_ISFMacro2DRectBiasString = [[NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2DRectBias" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil] retain];
+		_ISFESCompatibility = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISF_ES_Compatibility" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+		_ISFVertPassthru = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLScenePassthru" ofType:@"vs"] encoding:NSUTF8StringEncoding error:nil];
+		_ISFVertVarDec = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLSceneVertShaderIncludeVarDec" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+		_ISFVertInitFunc = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLSceneVertShaderIncludeInitFunc" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+		_ISFMacro2DString = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2D" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+		_ISFMacro2DBiasString = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2DBias" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+		_ISFMacro2DRectString = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2DRect" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+		_ISFMacro2DRectBiasString = [NSString stringWithContentsOfFile:[mb pathForResource:@"ISFGLMacro2DRectBias" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
 		if (_ISFESCompatibility==nil ||
 		_ISFVertPassthru==nil ||
 		_ISFVertVarDec==nil ||
@@ -92,7 +92,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	fileDescription = nil;
 	fileCredits = nil;
 	fileFunctionality = ISFF_Source;
-	categoryNames = [MUTARRAY retain];
+	categoryNames = MUTARRAY;
 	inputs = [[MutLockArray alloc] init];
 	imageInputs = [[MutLockArray alloc] init];
 	audioInputs = [[MutLockArray alloc] init];
@@ -146,7 +146,6 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	VVRELEASE(compiledInputTypeString);
 	OSSpinLockUnlock(&srcLock);
 	VVRELEASE(geoXYVBO);
-	[super dealloc];
 }
 
 
@@ -226,8 +225,8 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	OSSpinLockLock(&propertyLock);
 	NSString		*localFilePath = p;
 	NSString		*localFileName = [p lastPathComponent];
-	filePath = [p retain];
-	fileName = [localFileName retain];
+	filePath = p;
+	fileName = localFileName;
 	OSSpinLockUnlock(&propertyLock);
 	
 	//	there should be a JSON blob at the very beginning of the file describing the script's attributes and parameters- this is inside comments...
@@ -268,9 +267,9 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		jsonSourceRange.location = 0;
 		jsonSourceRange.length = (closeCommentRange.location + closeCommentRange.length) - jsonSourceRange.location;
 		
-		fragShaderSource = [[rawFile substringWithRange:fragShaderSourceRange] retain];
-		jsonString = [[rawFile substringWithRange:jsonStringRange] retain];
-		jsonSource = [[rawFile substringWithRange:jsonSourceRange] retain];
+		fragShaderSource = [rawFile substringWithRange:fragShaderSourceRange];
+		jsonString = [rawFile substringWithRange:jsonStringRange];
+		jsonSource = [rawFile substringWithRange:jsonSourceRange];
 		//	parse the JSON dict, turning it into a dictionary and values
 		id				jsonObject = (jsonString==nil) ? nil : [jsonString objectFromJSONString];
 		if (jsonObject==nil)	{
@@ -296,11 +295,11 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 			OSSpinLockLock(&propertyLock);
 			if (localFileDescription!=nil && [localFileDescription isKindOfClass:stringClass])	{
 				VVRELEASE(fileDescription);
-				fileDescription = [localFileDescription retain];
+				fileDescription = localFileDescription;
 			}
 			if (localFileCredits!=nil && [localFileCredits isKindOfClass:stringClass])	{
 				VVRELEASE(fileCredits);
-				fileCredits = [localFileCredits retain];
+				fileCredits = localFileCredits;
 			}
 			if (catsArray!=nil && [catsArray isKindOfClass:arrayClass])	{
 				VVRELEASE(categoryNames);
@@ -437,7 +436,6 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 										return;
 									}
 									[images addObject:tmpImage];
-									[tmpImage release];
 								}
 								//	load the images i assembled into a GL texture, store the cube texture in the array of imported buffers
 #if !TARGET_OS_IPHONE
@@ -456,7 +454,6 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 								//	the num at the userInfo stores how many inputs are using the buffer
 								[importedBuffer setUserInfo:[NSNumber numberWithInt:1]];
 								[_ISFImportedImages lockSetObject:importedBuffer forKey:[fullPaths objectAtIndex:0]];
-								[importedBuffer release];
 								
 								
 							}
@@ -544,7 +541,6 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 								//	the num at the userInfo stores how many inputs are using the buffer
 								[importedBuffer setUserInfo:[NSNumber numberWithInt:1]];
 								[_ISFImportedImages lockSetObject:importedBuffer forKey:fullPath];
-								[importedBuffer release];
 							}
 							
 							//	assuming i've imported or located the appropriate file, make an attrib for it and store it
@@ -584,7 +580,6 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 								NSMutableDictionary		*tmpMutDict = [importDict mutableCopy];
 								[tmpMutDict setObject:importDictKey forKey:@"NAME"];
 								parseImportedImageDict(tmpMutDict);
-								[tmpMutDict autorelease];
 							}
 							//	else the import dict already had a name key, just add it straightaway
 							else	{
@@ -631,7 +626,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 										persistentNum = [(NSString *)persistentObj numberByEvaluatingString];
 								}
 								else if ([persistentObj isKindOfClass:[NSNumber class]])
-									persistentNum = [[persistentObj retain] autorelease];
+									persistentNum = persistentObj;
 								//	if there's a valid "PERSISTENT" flag in this pass dict and it's indicating a positive...
 								if (persistentNum!=nil && [persistentNum intValue]>0)	{
 									//	add the target buffer as a persistent buffer
@@ -1008,21 +1003,21 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	tmpPath = VVFMTSTRING(@"%@.vs",noExtPath);
 	if ([fm fileExistsAtPath:tmpPath])	{
 		OSSpinLockLock(&srcLock);
-		vertShaderSource = [[NSString stringWithContentsOfFile:tmpPath encoding:NSUTF8StringEncoding error:nil] retain];
+		vertShaderSource = [NSString stringWithContentsOfFile:tmpPath encoding:NSUTF8StringEncoding error:nil];
 		OSSpinLockUnlock(&srcLock);
 	}
 	else	{
 		tmpPath = VVFMTSTRING(@"%@.vert",noExtPath);
 		if ([fm fileExistsAtPath:tmpPath])	{
 			OSSpinLockLock(&srcLock);
-			vertShaderSource = [[NSString stringWithContentsOfFile:tmpPath encoding:NSUTF8StringEncoding error:nil] retain];
+			vertShaderSource = [NSString stringWithContentsOfFile:tmpPath encoding:NSUTF8StringEncoding error:nil];
 			OSSpinLockUnlock(&srcLock);
 		}
 		else	{
 			OSSpinLockLock(&srcLock);
 			//tmpPath = [[NSBundle mainBundle] pathForResource:@"ISFGLScenePassthru" ofType:@"vs"];
 			//if (tmpPath != nil)
-				vertShaderSource = [_ISFVertPassthru retain];
+				vertShaderSource = _ISFVertPassthru;
 			OSSpinLockUnlock(&srcLock);
 		}
 	}
@@ -1133,7 +1128,6 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	NSMutableDictionary		*subDict = (bufferRequiresEval) ? [self _assembleSubstitutionDict] : nil;
 	//NSMutableDictionary		*subDict = MUTDICT;
 	if (subDict != nil)	{
-		[subDict retain];
 		[subDict setObject:NUMINT(s.width) forKey:@"WIDTH"];
 		[subDict setObject:NUMINT(s.height) forKey:@"HEIGHT"];
 	}
@@ -1201,7 +1195,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		
 		//	create a buffer of the appropriate size (if this is the last pass, observe the 2D texture preference from the method)
 		if (passIndex >= [passes count])	{
-			targetColorTex = (b==nil) ? nil : [b retain];
+			targetColorTex = (b==nil) ? nil : b;
 			//NSLog(@"\t\tlast pass, rendering into %@",targetColorTex);
 		}
 		else	{
@@ -1323,7 +1317,6 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 				exceptionWithName:@"Shader Problem"
 				reason:@"check userInfo dict for description"
 				userInfo:errDictCopy];
-			[errDictCopy autorelease];
 			[ex raise];
 		}
 	}
@@ -1360,7 +1353,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 	NSMutableArray		*imgThisPixelSamplerNames = nil;
 	NSMutableArray		*imgThisNormPixelSamplerNames = nil;
 	//	i need variable declarations for both the vertex and fragment shaders
-	NSMutableString		*varDeclarations = [[[self _assembleShaderSource_VarDeclarations] copy] autorelease];
+	NSMutableString		*varDeclarations = [[self _assembleShaderSource_VarDeclarations] copy];
 	
 	//	check the source string to see if it requires any of the macro functions, add them if necessary
 	//BOOL			requiresMacroFunctions = NO;
@@ -2968,9 +2961,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		}
 	}
 	[inputs unlock];
-	if (returnMe != nil)
-		[returnMe retain];
-	return [returnMe autorelease];
+	return returnMe;
 }
 
 
@@ -3010,28 +3001,28 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 - (NSString *) filePath	{
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&propertyLock);
-	returnMe = (filePath==nil) ? nil : [[filePath retain] autorelease];
+	returnMe = (filePath==nil) ? nil : filePath;
 	OSSpinLockUnlock(&propertyLock);
 	return returnMe;
 }
 - (NSString *) fileName	{
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&propertyLock);
-	returnMe = (fileName==nil) ? nil : [[fileName retain] autorelease];
+	returnMe = (fileName==nil) ? nil : fileName;
 	OSSpinLockUnlock(&propertyLock);
 	return returnMe;
 }
 - (NSString *) fileDescription	{
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&propertyLock);
-	returnMe = (fileDescription==nil) ? nil : [[fileDescription retain] autorelease];
+	returnMe = (fileDescription==nil) ? nil : fileDescription;
 	OSSpinLockUnlock(&propertyLock);
 	return returnMe;
 }
 - (NSString *) fileCredits	{
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&propertyLock);
-	returnMe = (fileCredits==nil) ? nil : [[fileCredits retain] autorelease];
+	returnMe = (fileCredits==nil) ? nil : fileCredits;
 	OSSpinLockUnlock(&propertyLock);
 	return returnMe;
 }
@@ -3044,7 +3035,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 - (NSArray *) categoryNames	{
 	NSArray		*returnMe = nil;
 	OSSpinLockLock(&propertyLock);
-	returnMe = (categoryNames==nil) ? nil : [[categoryNames retain] autorelease];
+	returnMe = (categoryNames==nil) ? nil : categoryNames;
 	OSSpinLockUnlock(&propertyLock);
 	return returnMe;
 }
@@ -3087,7 +3078,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		return nil;
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&srcLock);
-	returnMe = (jsonSource==nil) ? nil : [[jsonSource retain] autorelease];
+	returnMe = (jsonSource==nil) ? nil : jsonSource;
 	OSSpinLockUnlock(&srcLock);
 	return returnMe;
 }
@@ -3096,7 +3087,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		return nil;
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&srcLock);
-	returnMe = (jsonString==nil) ? nil : [[jsonString retain] autorelease];
+	returnMe = (jsonString==nil) ? nil : jsonString;
 	OSSpinLockUnlock(&srcLock);
 	return returnMe;
 }
@@ -3105,7 +3096,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		return nil;
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&srcLock);
-	returnMe = (vertShaderSource==nil) ? nil : [[vertShaderSource retain] autorelease];
+	returnMe = (vertShaderSource==nil) ? nil : vertShaderSource;
 	OSSpinLockUnlock(&srcLock);
 	return returnMe;
 }
@@ -3114,7 +3105,7 @@ NSString			*_ISFMacro2DRectBiasString = nil;
 		return nil;
 	NSString		*returnMe = nil;
 	OSSpinLockLock(&srcLock);
-	returnMe = (fragShaderSource==nil) ? nil : [[fragShaderSource retain] autorelease];
+	returnMe = (fragShaderSource==nil) ? nil : fragShaderSource;
 	OSSpinLockUnlock(&srcLock);
 	return returnMe;
 }

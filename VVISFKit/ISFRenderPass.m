@@ -10,7 +10,7 @@
 	id		returnMe = [[ISFRenderPass alloc] init];
 	if (returnMe == nil)
 		return returnMe;
-	return [returnMe autorelease];
+	return returnMe;
 }
 
 - (id) init	{
@@ -18,12 +18,10 @@
 		targetName = nil;
 		return self;
 	}
-	[self release];
 	return nil;
 }
 - (void) dealloc	{
 	VVRELEASE(targetName);
-	[super dealloc];
 }
 
 

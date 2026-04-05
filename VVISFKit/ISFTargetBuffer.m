@@ -14,7 +14,7 @@
 	id		returnMe = [[ISFTargetBuffer alloc] init];
 	if (returnMe == nil)
 		return nil;
-	return [returnMe autorelease];
+	return returnMe;
 }
 
 
@@ -33,7 +33,6 @@
 			uniformLocation[i] = -1;
 		return self;
 	}
-	[self release];
 	return nil;
 }
 - (void) dealloc	{
@@ -43,7 +42,6 @@
 	VVRELEASE(targetWidthExpression);
 	VVRELEASE(targetHeightString);
 	VVRELEASE(targetHeightExpression);
-	[super dealloc];
 }
 
 
@@ -51,18 +49,18 @@
 	VVRELEASE(targetWidthString);
 	VVRELEASE(targetWidthExpression);
 	if (n != nil)	{
-		targetWidthString = [n retain];
+		targetWidthString = n;
 		NSError		*err = nil;
-		targetWidthExpression = [[DDExpression expressionFromString:n error:&err] retain];
+		targetWidthExpression = [DDExpression expressionFromString:n error:&err];
 	}
 }
 - (void) setTargetHeightString:(NSString *)n	{
 	VVRELEASE(targetHeightString);
 	VVRELEASE(targetHeightExpression);
 	if (n != nil)	{
-		targetHeightString = [n retain];
+		targetHeightString = n;
 		NSError		*err = nil;
-		targetHeightExpression = [[DDExpression expressionFromString:n error:&err] retain];
+		targetHeightExpression = [DDExpression expressionFromString:n error:&err];
 	}
 }
 - (void) setFloatFlag:(BOOL)n	{

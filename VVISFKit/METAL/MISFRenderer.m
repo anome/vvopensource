@@ -258,7 +258,7 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
             // Push builtInVariables through bytes for best performance
             [renderEncoder setVertexBytes:&builtInVariablesDataPointer length:sizeof(MISFBuiltInVariablesBufferType) atIndex:BufferIndexTwo];
         }
-    }
+}
     
 
 
