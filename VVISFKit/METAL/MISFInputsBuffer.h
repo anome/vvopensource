@@ -24,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// The buffer parameters to insert inside the shader main function parameter list
 - (NSString *)bufferParametersStringWithBufferIndex:(NSString *)bufferIndex;
 
-@property(readonly, nonatomic) id<MTLBuffer> buffer;
+- (const void *)bytesPointer;
+- (NSUInteger)bytesLength;
 
 @end
 

@@ -237,9 +237,6 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
 
     // This buffer is re-created at each frame to make our renderer stateless in case of concurrent renders with different resolutions/contexts
     {
-        // --- Create built-in variables buffer
-        id<MTLBuffer> builtInVariablesBuffer = [[commandBuffer device] newBufferWithLength:sizeof(MISFBuiltInVariablesBufferType)
-                                                    options:MTLResourceStorageModeShared];
         // --- feed buffer of Built in variables
         MISFBuiltInVariablesBufferType builtInVariablesDataPointer;
         builtInVariablesDataPointer.PASSINDEX = self.builtin_PASSINDEX;
@@ -252,17 +249,15 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
         builtInVariablesDataPointer.FRAMEINDEX = self.builtin_FRAMEINDEX;
         builtInVariablesDataPointer.texture_inputImagesArePremultipled = self.builtin_texture_inputImagesArePremultipled;
         builtInVariablesDataPointer.texture_inputImagesAreFlipped = self.builtin_texture_inputImagesAreFlipped;
-        // Get data pointer on struct
-        MISFBuiltInVariablesBufferType *pointer = builtInVariablesBuffer.contents;
-        *pointer = builtInVariablesDataPointer;
-        [renderEncoder setFragmentBuffer:builtInVariablesBuffer offset:0 atIndex:BufferIndexZero];
+        
+        // Push builtInVariables through bytes for best performance
+        [renderEncoder setFragmentBytes:&builtInVariablesDataPointer length:sizeof(MISFBuiltInVariablesBufferType) atIndex:BufferIndexZero];
         
         if( customVertexCode )
         {
-            [renderEncoder setVertexBuffer:builtInVariablesBuffer offset:0 atIndex:BufferIndexTwo];
+            // Push builtInVariables through bytes for best performance
+            [renderEncoder setVertexBytes:&builtInVariablesDataPointer length:sizeof(MISFBuiltInVariablesBufferType) atIndex:BufferIndexTwo];
         }
-        
-        [builtInVariablesBuffer release];
     }
     
 
@@ -275,12 +270,13 @@ static NSString *const MISF_BUILTINS_STRUCT_TO_VARIABLES = @"\n"
 
     // Inputs Buffer feeding
     [inputsBufferForFragment feedInputs:inputs forRenderEncoder:renderEncoder];
-    [renderEncoder setFragmentBuffer:inputsBufferForFragment.buffer offset:0 atIndex:BufferIndexOne];
+    [renderEncoder setFragmentBytes:[inputsBufferForFragment bytesPointer] length:[inputsBufferForFragment bytesLength] atIndex:BufferIndexOne];
 
+    
     if( customVertexCode )
     {
         [inputsBufferForVertex feedInputs:inputs forRenderEncoder:renderEncoder];
-        [renderEncoder setVertexBuffer:inputsBufferForVertex.buffer offset:0 atIndex:BufferIndexThree];
+        [renderEncoder setVertexBytes:[inputsBufferForVertex bytesPointer] length:[inputsBufferForVertex bytesLength] atIndex:BufferIndexThree];
     }
 
     [renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:numberOfVertices];
