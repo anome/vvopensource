@@ -4,7 +4,7 @@
 /**
  MISFTexturePool manager.
  Role:
- - creating texturePools for each callerId (one callerId keeps its own textures to itself // This behaviour was created to allow re-use for mult-resolution renderings / transitions)
+ - creating texturePools for each callerId (one callerId keeps its own textures to itself // This behaviour was created to allow re-use for multi-resolution renderings / transitions)
  - Handling cleaning of those texturePools with a single thread
  */
 
@@ -128,7 +128,6 @@ static const NSTimeInterval periodicCleanInterval = 2.0;
             NSMutableDictionary *mutablePools = [self.texturePools mutableCopy];
             [mutablePools removeObjectsForKeys:keysToRemove];
             self.texturePools = [NSDictionary dictionaryWithDictionary:mutablePools];
-            VVRELEASE(mutablePools);
         }
         
         // If pools are empty, suspend timer
