@@ -92,7 +92,6 @@
     // Verify all aspects of the texture
     if( self.texture == nil )
     {
-#warning mto-anomes : double retain - possible memory leak?
         self.texture = [self createTextureForDevice:device
                                               width:bufferSize.width
                                              height:bufferSize.height
@@ -106,35 +105,35 @@
         // If resize
         if( self.texture.width != bufferSize.width || self.texture.height != bufferSize.height )
         {
+
+            // persistent case : we need to keep memory of textures, as we might be doing a transition
             if( self.isPersistent )
             {
                 id<MTLTexture> pooledTexture = [[MISFTexturePoolsManager sharedManager] acquireTextureWithWidth:bufferSize.width
                                                                         height:bufferSize.height
                                                                    pixelFormat:pixelFormat
                                                                         device:device
-                withCallerId:self.callerId]; // owned
+                withCallerId:self.callerId];
                 if( pooledTexture )
                 {
-                    [[MISFTexturePoolsManager sharedManager] recycleTexture:self.texture withCalledId:self.callerId];
+        
+                    [[MISFTexturePoolsManager sharedManager] recycleTexture:self.texture withCallerId:self.callerId];
                     self.texture = pooledTexture;
                 }
                 else
                 {
-                    id<MTLTexture> newTexture = [self createTextureForDevice:device
+
+                    [[MISFTexturePoolsManager sharedManager] recycleTexture:self.texture withCallerId:self.callerId];
+                    self.texture = [self createTextureForDevice:device
                                                                        width:bufferSize.width
                                                                       height:bufferSize.height
-                                                                 pixelFormat:pixelFormat]; // owned
-                    // Make sure it's not de-allocated before completedHandler
-                    id<MTLTexture> __block oldTexture = self.texture;
+                                                                 pixelFormat:pixelFormat];
                     // Init texture with blank data, because it might be read before any render occurs on it
                     [blankRenderer renderBlankOnTexture:self.texture onCommandBuffer:commandBuffer];
-                    [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull _) {
-                        [[MISFTexturePoolsManager sharedManager] recycleTexture:oldTexture withCalledId:self.callerId];
-
-                    }];
+                    
                 }
             }
-            // non-persistent case
+            // non-persistent case : just create a new texture
             else
             {
                 id<MTLTexture> newTexture = [self createTextureForDevice:device

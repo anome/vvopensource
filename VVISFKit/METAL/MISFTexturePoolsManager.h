@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
                                    device:(id<MTLDevice>)device
                                  withCallerId:(NSString*)uuid;
 
-- (void)recycleTexture:(id<MTLTexture>)texture withCalledId:(NSString*)callerId;
+- (void)recycleTexture:(id<MTLTexture>)texture withCallerId:(NSString*)callerId;
 
 @end
 

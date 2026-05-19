@@ -97,7 +97,7 @@ static const NSTimeInterval periodicCleanInterval = 2.0;
 }
 
 
-- (void)recycleTexture:(id<MTLTexture>)texture withCalledId:(NSString*)callerId
+- (void)recycleTexture:(id<MTLTexture>)texture withCallerId:(NSString*)callerId
 {
     MISFTexturePool* pool = [self lazyGetPoolForCallerId:callerId];
     if( !pool )
